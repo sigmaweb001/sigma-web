@@ -26,7 +26,7 @@ defineProps({
 .card {
   position: relative;
   border-radius: 15px;
-  transition: 0.5s;
+  transition: 0.3s;
   box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.05),
   inset -5px -5px 15px rgba(255, 255, 255, 0.05),
   5px 5px 15px rgba(0, 0, 0, 0.1), -5px -5px 15px rgba(255, 255, 255, 0.05);
@@ -37,7 +37,7 @@ defineProps({
   inset -5px -5px 15px rgba(255, 255, 255, 0.1),
   5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.06);
   border-radius: 15px;
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
 @media (prefers-color-scheme: dark) {
