@@ -30,7 +30,7 @@ export default defineAppConfig({
       showLinkIcon: true,
       exclude: [],
       fluid: true,
-      navigation: false
+      navigation: true
     },
     footer: {
       iconLinks: [
