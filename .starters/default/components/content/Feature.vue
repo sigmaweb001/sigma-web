@@ -47,9 +47,11 @@ defineProps({
     5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
   }
   .card:hover {
-    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
-    inset -5px -5px 15px rgba(255, 255, 255, 0.3),
-    5px 5px 15px rgba(0, 0, 0, 0.8), -5px -5px 15px rgba(255, 255, 255, 0.4);
+    /* background-color: rgb(253, 154, 71); */
+    /* background-color: rgb(108, 56, 250); */
+    box-shadow: inset 5px 5px 5px rgba(108, 56, 250, 0.2),
+    inset -5px -5px 15px rgba(253, 154, 71, 0.3),
+    5px 5px 15px rgba(108, 56, 250, 0.8), -5px -5px 15px rgba(253, 154, 71, 0.4);
   }
 }
 </style>
