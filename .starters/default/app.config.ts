@@ -1,17 +1,19 @@
 export default defineAppConfig({
   docus: {
-    title: 'Docus',
-    description: 'The best place to start your documentation.',
-    image: 'https://user-images.githubusercontent.com/904724/185365452-87b7ca7b-6030-4813-a2db-5e65c785bf88.png',
+    title: 'Sigma Streaming',
+    description: 'Powering the streaming experience',
+    // TODO: make this public
+    image: '.starters/default/public/cover.png',
     socials: {
-      twitter: 'nuxtstudio',
-      github: 'nuxt-themes/docus'
+      twitter: 'sigma-streaming',
+      github: 'sigma-streaming'
     },
     github: {
-      dir: '.starters/default/content',
+      // dir: '.starters/default/content',
+      dir: 'sigma-streaming',
       branch: 'main',
-      repo: 'docus',
-      owner: 'nuxt-themes',
+      repo: 'sigma-streaming',
+      owner: 'sigma-streaming',
       edit: true
     },
     aside: {

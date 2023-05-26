@@ -3,6 +3,15 @@ import { defineTheme } from 'pinceau'
 export default defineTheme({
   docus: {
     landing: {
+      sectionHeader: {
+        alignItems: 'center',
+        subtitle:  {
+          fontWeight: 700,
+          fontSize: '{fontSize.2xl}',
+        },
+        title: {
+        }
+      },
       hero: {
         content: {
           title: {
@@ -23,5 +32,19 @@ export default defineTheme({
         }
       }
     }
+  },
+  color: {
+    primary: {
+      50: '#FFE8D5',
+      100: '#FEDDC1',
+      200: '#FEC798',
+      300: '#FEB070',
+      400: '#FD9A47',
+      500: '#FD841F',
+      600: '#E26802',
+      700: '#AA4E02',
+      800: '#733501',
+      900: '#3B1B01',
+    },
   }
 })

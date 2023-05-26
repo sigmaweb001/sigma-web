@@ -21,20 +21,38 @@ defineProps({
 
 <template>
   <div class="section-header">
-    <span v-if="subtitle || $slots.subtitle" class="section-header-subtitle">
-      <ContentSlot :use="$slots.subtitle" unwrap="p">
+    <span
+      v-if="subtitle || $slots.subtitle"
+      class="section-header-subtitle"
+    >
+      <ContentSlot
+        :use="$slots.subtitle"
+        unwrap="p"
+      >
         {{ subtitle }}
       </ContentSlot>
     </span>
 
-    <h2 v-if="title || $slots.title" class="section-header-title">
-      <ContentSlot :use="$slots.title" unwrap="p">
+    <h2
+      v-if="title || $slots.title"
+      class="section-header-title"
+    >
+      <ContentSlot
+        :use="$slots.title"
+        unwrap="p"
+      >
         {{ title }}
       </ContentSlot>
     </h2>
 
-    <p v-if="description || $slots.description" class="section-header-description">
-      <ContentSlot :use="$slots.description" unwrap="p">
+    <p
+      v-if="description || $slots.description"
+      class="section-header-description"
+    >
+      <ContentSlot
+        :use="$slots.description"
+        unwrap="p"
+      >
         {{ description }}
       </ContentSlot>
     </p>
