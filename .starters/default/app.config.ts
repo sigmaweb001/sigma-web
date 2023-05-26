@@ -32,14 +32,14 @@ export default defineAppConfig({
       showLinkIcon: true,
       exclude: [],
       fluid: true,
-      navigation: true
+      navigation: true,
     },
     footer: {
       iconLinks: [
-        {
-          href: 'https://nuxt.com',
-          icon: 'simple-icons:nuxtdotjs'
-        }
+        // {
+        //   href: 'https://nuxt.com',
+        //   icon: 'simple-icons:nuxtdotjs'
+        // }
       ]
     }
   }
