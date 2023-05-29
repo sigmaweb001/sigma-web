@@ -1,10 +1,16 @@
 <script lang="ts" setup>
+const props = defineProps({
+  src: {
+    type: String,
+    required: true,
+  },
+})
 
 </script>
 
 <template>
   <div>
-    <img class="rounded-xl hero-image" alt="Hero Image" src="/hero-support.png" />
+    <img class="rounded-xl hero-image" alt="Hero Image" :src="src" />
   </div>
 </template>
 
