@@ -8,5 +8,11 @@ export default defineNuxtConfig({
     // https://github.com/nuxt/devtools
     '@nuxt/devtools',
     '@unocss/nuxt',
-  ]
+  ],
+  devtools: {
+    enabled: true,
+    componentInspector: {
+      toggleComboKey: 'meta-shift-x',
+    },
+  },
 })

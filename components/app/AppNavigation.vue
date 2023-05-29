@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { AFloating } from '../floating/type'
+
 const route = useRoute()
 const { navBottomLink } = useContentHelpers()
 const { navigation } = useContent()
@@ -22,19 +24,27 @@ const tree = computed(() => {
   })
 })
 
+console.log('[LOG] ~ file: AppNavigation.vue:22 ~ tree:', tree)
+
+const refs = useTemplateRefsList<HTMLDivElement>()
+
 const isActive = (link: any) => (link.exact ? route.fullPath === link._path : route.fullPath.startsWith(link._path))
 </script>
 
 <template>
-  <nav v-if="hasNavigation" :class="{vertical}">
+  <nav
+    v-if="hasNavigation"
+    :class="{ vertical }"
+  >
     <ul>
       <li
-        v-for="link in tree"
+        v-for="(link, idx) in tree"
         :key="link._path"
+        :ref="refs.set"
       >
         <NuxtLink
           class="link"
-          :to="link.redirect? link.redirect : navBottomLink(link)"
+          :to="link.redirect ? link.redirect : navBottomLink(link)"
           :class="{ active: isActive(link) }"
         >
           <Icon
@@ -42,7 +52,44 @@ const isActive = (link: any) => (link.exact ? route.fullPath === link._path : ro
             :name="link.icon"
           />
           {{ link.title }}
+
+          <Icon
+            v-if="link.subNav && !vertical && link.children"
+            name="carbon:chevron-down"
+          />
         </NuxtLink>
+
+        <ClientOnly v-if="link.subNav && !vertical">
+          <AFloating
+            trigger="hover"
+            :delay="100"
+            :hide-delay="200"
+            :reference-el="refs[idx]"
+          >
+            <div class="subnav">
+              <div class="h-18px" />
+              <ul class="bg-$color-gray-800 rounded-4px py-6px">
+                <li
+                  v-for="(_link, idx) in link.children"
+                  :key="_link._path"
+                  class="font-400 flex flex-col text-14px px-12px py-6px hover:text-$color-primary-500"
+                >
+                  <NuxtLink
+                    class="link"
+                    :to="_link.redirect ? _link.redirect : navBottomLink(_link)"
+                    :class="{ active: isActive(_link) }"
+                  >
+                    <Icon
+                      v-if="_link.icon && config?.header?.showLinkIcon"
+                      :name="_link.icon"
+                    />
+                    {{ _link.title }}
+                  </NuxtLink>
+                </li>
+              </ul>
+            </div>
+          </AFloating>
+        </ClientOnly>
       </li>
     </ul>
   </nav>

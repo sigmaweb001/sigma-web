@@ -84,3 +84,17 @@ body {
     }
   }
 }
+
+
+.slide-y-move,
+.slide-y-enter-active,
+.slide-y-leave-active {
+    transition: transform var(--slide-y-transform-duration, 0.35s) var(--slide-y-transform-timing, cubic-bezier(0.33, 1, 0.68, 1)),
+    opacity var(--slide-y-opacity-duration, 0.15s) var(--slide-y-opacity-timing, ease-in-out);
+}
+
+.slide-y-enter-from,
+.slide-y-leave-to {
+  opacity: var(--slide-y-opacity, 0);
+  --un-translate-y: var(--slide-y-translateY, 8px);
+}
