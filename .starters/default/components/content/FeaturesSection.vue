@@ -3,27 +3,27 @@ import Feature from './Feature.vue'
 
 const features: Feature[] = [
   {
-    icon: 'heroicons-solid:bolt',
-    description: 'We’re inspired by our customers’ ideas and are fun to work with',
+    icon: 'material-symbols:lightbulb-outline',
+    description: 'We’re inspired by our customers’s ideas and are fun to work with',
   },
   {
-    icon: 'heroicons-solid:circle-stack',
+    icon: 'bx:bxs-cloud-upload',
     description: 'Our video cloud platform is designed for unlimited scale',
   },
   {
-    icon: 'heroicons-solid:document-check',
+    icon: 'bxs-video-recording',
     description: 'We have the broadest video technology stack: Real-time, Live, VOD',
   },
   {
-    icon: 'heroicons-solid:cursor-arrow-ripple',
+    icon: 'mdi:heart-circle-outline',
     description: 'Our accessible products drive engagement and interactivity for all',
   },
   {
-    icon: 'heroicons-solid:command-line',
+    icon: 'mdi-code-braces',
     description: 'We build everything on our video APIs, and many tech companies use them too',
   },
   {
-    icon: 'heroicons-solid:adjustments-vertical',
+    icon: 'bx:bxs-smile',
     description: 'Our products are loved by customers and easy to use',
   },
 ]

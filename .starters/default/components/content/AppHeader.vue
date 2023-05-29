@@ -38,7 +38,7 @@ watch(isIndex, (value) => {
           <AppSearch v-if="hasDocSearch" />
           <!-- <AppTextDirection /> -->
 
-          <AppColorMode />
+          <!-- <AppColorMode /> -->
           <!-- <div class="social-icons">
             <AppSocialIcons />
           </div> -->

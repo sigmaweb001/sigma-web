@@ -25,6 +25,10 @@ defineProps({
   lights: {
     type: Boolean,
     default: false
+  },
+  largeIcon: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -49,8 +53,8 @@ watch([elementX, elementY], () => {
       <div v-if="noise" class="noise" />
       <div class="content">
         <ContentSlot :use="$slots.default" unwrap="p" />
-        <span v-if="icon" class="icon-wrapper">
-          <Icon :name="icon" />
+        <span v-if="icon" class="icon-wrapper" >
+          <Icon :name="icon" :class="[largeIcon &&'!w-40px !h-40px']" />
         </span>
         <h3 v-if="$slots.title" class="title">
           <ContentSlot :use="$slots.title" unwrap="p">
