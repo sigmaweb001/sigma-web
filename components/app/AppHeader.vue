@@ -36,11 +36,15 @@ watch(isIndex, (value) => {
 
         <div class="section right">
           <AppSearch v-if="hasDocSearch" />
-          <AppTextDirection />
+          <!-- <AppTextDirection /> -->
+
           <AppColorMode />
-          <div class="social-icons">
+          <!-- <div class="social-icons">
             <AppSocialIcons />
-          </div>
+          </div> -->
+          <ButtonLink href="https://portal.sigmaott.com">
+            Login
+          </ButtonLink>
         </div>
       </div>
     </Container>

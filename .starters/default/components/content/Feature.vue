@@ -15,7 +15,7 @@ defineProps({
       <div class="iconShadow flex h-14 w-14 flex-none items-center justify-center rounded-full">
         <Icon :name="feature.icon" size="20" />
       </div>
-      <p class="text-sidebase-green-900 dark:text-sidebase-green-400 text-lg">
+      <p class="text-sidebase-green-900 dark:text-sidebase-green-400 text-lg select-none">
         {{ feature.description }}
       </p>
     </div>

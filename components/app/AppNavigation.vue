@@ -68,11 +68,11 @@ const isActive = (link: any) => (link.exact ? route.fullPath === link._path : ro
           >
             <div class="subnav">
               <div class="h-18px" />
-              <ul class="bg-$color-gray-800 rounded-4px py-6px">
+              <ul class="dark:bg-$color-gray-800 rounded-4px py-6px bg-$color-gray-100">
                 <li
                   v-for="(_link, idx) in link.children"
                   :key="_link._path"
-                  class="font-400 flex flex-col text-14px px-12px py-6px hover:text-$color-primary-500"
+                  class="font-500 flex flex-col text-14px px-12px py-6px hover:text-$color-primary-500"
                 >
                   <NuxtLink
                     class="link"
