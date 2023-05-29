@@ -5,8 +5,14 @@ export default defineAppConfig({
     // TODO: make this public
     image: '.starters/default/public/cover.png',
     socials: {
-      twitter: 'sigma-streaming',
-      github: 'sigma-streaming'
+      facebook: 'sigma-streaming',
+      linkedin: {
+        label: 'Linkedin',
+        icon: 'simple-icons:linkedin',
+        href: 'https://www.linkedin.com/company/sigma-streaming',
+      },
+      youtube: 'sigma-streaming',
+
     },
     github: {
       // dir: '.starters/default/content',
@@ -35,12 +41,11 @@ export default defineAppConfig({
       navigation: true,
     },
     footer: {
-      iconLinks: [
-        // {
-        //   href: 'https://nuxt.com',
-        //   icon: 'simple-icons:nuxtdotjs'
-        // }
-      ]
-    }
+      credits: {
+        text: 'Thu Do Multimedia Communications Joint Stock Company',
+      },
+      iconLinks: [],
+      fluid: false
+    },
   }
 })
