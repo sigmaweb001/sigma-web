@@ -1,6 +1,7 @@
 export default defineNuxtConfig({
   // https://github.com/nuxt-themes/docus
   extends: '@nuxt-themes/docus',
+  css: ["aos/dist/aos.css"],
 
   modules: [
     // https://github.com/nuxt-modules/plausible

@@ -17,12 +17,16 @@ defineProps({
   backgroundImage: {
     type: [String, Object],
     default: 'none'
+  },
+  aos: {
+    type: String,
+    default: ''
   }
 })
 </script>
 
 <template>
-  <section class="container-section">
+  <section class="container-section" :data-aos="aos">
     <span v-if="$slots.root" class="root">
       <slot name="root" />
     </span>
