@@ -9,8 +9,8 @@ const props = defineProps(cardProps)
   <Card v-bind="props">
     <template #icon-float>
       <span
-        class="absolute top--30px z-10 left-32px inline-flex items-center justify-center rounded-xl bg-$color-primary-200 text-$color-primary-500 dark:bg-$color-primary-700 dark:text-$color-primary-200 p-2.5 shadow-lg text-white">
-        <Icon :name="iconFloat" size="40" />
+        class="absolute top--22px z-10 left-32px inline-flex items-center justify-center rounded-2xl bg-$color-primary-200 text-$color-primary-500 dark:bg-$color-primary-700 dark:text-$color-primary-100 p-2.5 shadow-lg text-white">
+        <Icon :name="iconFloat" size="24" />
       </span>
     </template>
 
