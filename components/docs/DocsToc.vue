@@ -20,7 +20,7 @@ const emit = defineEmits(['move'])
       <div v-if="config?.github?.edit">
         <DocsEditOn v-slot="{ url }" :page="page">
           <ProseA :href="url">
-            Edit this page on GitHub
+            Edit this page
           </ProseA>
         </DocsEditOn>
       </div>

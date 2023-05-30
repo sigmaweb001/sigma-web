@@ -16,7 +16,7 @@ const { config } = useDocus()
       <DocsEditOn v-slot="{ url }" :page="page">
         <ProseA :to="url">
           <span>
-            Edit this page on GitHub
+            Edit this page
           </span>
         </ProseA>
       </DocsEditOn>

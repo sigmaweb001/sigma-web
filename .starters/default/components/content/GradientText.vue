@@ -28,7 +28,7 @@ const props = defineProps({
     --color-secondary-100: #F1ECFF;
     --color-secondary-50: #F8F5FF; */
 .GradientTextSecondary {
-  background: linear-gradient(to right, #E5DCFF 10%, #A589F9 40%, #6B39FA 60%, #200273 90%);
+  background: linear-gradient(to right, #A589F9 20%, #8961FD 40%, #6B39FA 60%, #200273 90%);
 }
 
 .GradientText {
