@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="flex items-center justify-center h-2px divider-div my-24px">
+  <div class="flex items-center justify-center h-2px divider-div my-32px">
 
   </div>
 </template>

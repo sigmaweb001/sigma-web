@@ -31,6 +31,14 @@ export const cardProps = {
     type: Boolean,
     default: false
   },
+  aos: {
+    type: String,
+    default: ''
+  },
+  aosDuration: {
+    type: Number,
+    default: 1000
+  },
 }
 
 export const cardSlots = {

@@ -24,7 +24,8 @@ watch([elementX, elementY], () => {
 </script>
 
 <template>
-  <div ref="cardRef" class="card" :class="[{ lights, 'mt-30px': iconFloat }]">
+  <div :data-aos="aos" :data-aos-duration="aosDuration" ref="cardRef" class="card"
+    :class="[{ lights, 'mt-30px': iconFloat }]">
     <div class="wrapper ">
       <div v-if="noise" class="noise" />
       <div class="content flex" :class="[right ? 'flex-row-reverse' : 'flex-row']">

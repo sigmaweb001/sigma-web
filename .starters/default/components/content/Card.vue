@@ -14,7 +14,8 @@ watch([elementX, elementY], () => {
 </script>
 
 <template>
-  <div ref="cardRef" class="card" :class="[{ lights, 'mt-30px': iconFloat }]">
+  <div :data-aos="aos" :data-aos-duration="aosDuration" ref="cardRef" class="card"
+    :class="[{ lights, 'mt-30px': iconFloat }]">
     <slot name="icon-float" v-if="iconFloat">
       <span
         class="absolute top--30px z-10 left-32px inline-flex items-center justify-center rounded-xl bg-$color-primary-200 text-$color-primary-500 dark:bg-$color-primary-700 dark:text-$color-primary-200 p-4 shadow-lg text-white">

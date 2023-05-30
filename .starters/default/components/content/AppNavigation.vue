@@ -31,57 +31,27 @@ const isActive = (link: any) => (link.exact ? route.fullPath === link._path : ro
 </script>
 
 <template>
-  <nav
-    v-if="hasNavigation"
-    :class="{ vertical }"
-  >
+  <nav v-if="hasNavigation" :class="{ vertical }">
     <ul>
-      <li
-        v-for="(link, idx) in tree"
-        :key="link._path"
-        :ref="refs.set"
-      >
-        <NuxtLink
-          class="link"
-          :to="link.redirect ? link.redirect : navBottomLink(link)"
-          :class="{ active: isActive(link) }"
-        >
-          <Icon
-            v-if="link.icon && config?.header?.showLinkIcon"
-            :name="link.icon"
-          />
+      <li v-for="(link, idx) in tree" :key="link._path" :ref="refs.set">
+        <NuxtLink class="link" :to="link.redirect ? link.redirect : navBottomLink(link)"
+          :class="{ active: isActive(link) }">
+          <Icon v-if="link.icon && config?.header?.showLinkIcon" :name="link.icon" />
           {{ link.title }}
 
-          <Icon
-            v-if="link.subNav && !vertical && link.children"
-            name="carbon:chevron-down"
-          />
+          <Icon v-if="link.subNav && !vertical && link.children" name="carbon:chevron-down" />
         </NuxtLink>
 
         <ClientOnly v-if="link.subNav && !vertical">
-          <AFloating
-            trigger="hover"
-            :delay="100"
-            :hide-delay="200"
-            :reference-el="refs[idx]"
-          >
+          <AFloating trigger="hover" :delay="50" :hide-delay="100" :reference-el="refs[idx]">
             <div class="subnav">
-              <div class="h-18px" />
-              <ul class="dark:bg-$elements-backdrop-background rounded-4px py-6px bg-$color-gray-100">
-                <li
-                  v-for="(_link, idx) in link.children"
-                  :key="_link._path"
-                  class="font-500 flex flex-col text-14px px-12px py-6px hover:text-$color-primary-500"
-                >
-                  <NuxtLink
-                    class="link"
-                    :to="_link.redirect ? _link.redirect : navBottomLink(_link)"
-                    :class="{ active: isActive(_link) }"
-                  >
-                    <Icon
-                      v-if="_link.icon && config?.header?.showLinkIcon"
-                      :name="_link.icon"
-                    />
+              <div class="h-16px" />
+              <ul class="dark:bg-$color-gray-900 rounded-4px py-6px bg-$color-gray-100">
+                <li v-for="(_link, idx) in link.children" :key="_link._path"
+                  class="font-500 flex flex-col text-14px px-12px py-6px hover:text-$color-primary-500">
+                  <NuxtLink class="link" :to="_link.redirect ? _link.redirect : navBottomLink(_link)"
+                    :class="{ active: isActive(_link) }">
+                    <Icon v-if="_link.icon && config?.header?.showLinkIcon" :name="_link.icon" />
                     {{ _link.title }}
                   </NuxtLink>
                 </li>
