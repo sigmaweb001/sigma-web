@@ -2,7 +2,7 @@
 defineProps({
   subtitle: {
     type: String,
-    default: 'Section subtitle'
+    default: ''
   },
   subtitleColor: {
     type: String,

@@ -6,9 +6,3 @@ interface Testimonial {
   twitterLink?: string
   position?: string
 }
-
-
-interface Feature {
-  icon: string
-  description: string
-}

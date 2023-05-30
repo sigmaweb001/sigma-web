@@ -24,7 +24,6 @@ const tree = computed(() => {
   })
 })
 
-console.log('[LOG] ~ file: AppNavigation.vue:22 ~ tree:', tree)
 
 const refs = useTemplateRefsList<HTMLDivElement>()
 

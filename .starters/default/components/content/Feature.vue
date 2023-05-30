@@ -1,22 +1,19 @@
 <script setup lang="ts">
-import type { PropType } from 'vue'
 
-defineProps({
-  feature: {
-    type: Object as PropType<Feature>,
-    required: true,
-  },
-})
+defineProps<{
+  icon: string
+  description: string
+}>()
 </script>
 
 <template>
   <div class="card px-5 py-6 h-full flex items-center">
     <div class="flex items-center space-x-3">
       <div class="iconShadow flex h-14 w-14 flex-none items-center justify-center rounded-full">
-        <Icon :name="feature.icon" size="20" />
+        <Icon :name="icon" size="20" />
       </div>
       <p class="text-sidebase-green-900 dark:text-sidebase-green-400 text-lg select-none">
-        {{ feature.description }}
+        {{ description }}
       </p>
     </div>
   </div>
