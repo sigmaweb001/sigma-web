@@ -1,40 +1,8 @@
 <script setup lang="ts">
 import { useMouseInElement } from '@vueuse/core'
+import { cardProps } from './card/meta';
 
-defineProps({
-  icon: {
-    type: String,
-    default: ''
-  },
-  iconFloat: {
-    type: String,
-    default: ''
-  },
-  col: {
-    type: [String, Number, Object],
-    default: 1
-  },
-  row: {
-    type: [String, Number, Object],
-    default: 1
-  },
-  noise: {
-    type: Boolean,
-    default: false
-  },
-  lights: {
-    type: Boolean,
-    default: false
-  },
-  largeIcon: {
-    type: Boolean,
-    default: false
-  },
-  noPadding: {
-    type: Boolean,
-    default: false
-  },
-})
+defineProps(cardProps)
 
 const cardRef = ref<HTMLElement | null>(null)
 const { elementX, elementY } = useMouseInElement(cardRef)
@@ -46,19 +14,20 @@ watch([elementX, elementY], () => {
 </script>
 
 <template>
-
   <div ref="cardRef" class="card" :class="[{ lights, 'mt-30px': iconFloat }]">
-    <span v-if="iconFloat"
-      class="absolute top--30px z-10 left-32px inline-flex items-center justify-center rounded-xl bg-$color-primary-200 text-$color-primary-500 dark:bg-$color-primary-700 dark:text-$color-primary-200 p-4 shadow-lg text-white">
-      <Icon :name="iconFloat" size="28" />
-    </span>
+    <slot name="icon-float" v-if="iconFloat">
+      <span
+        class="absolute top--30px z-10 left-32px inline-flex items-center justify-center rounded-xl bg-$color-primary-200 text-$color-primary-500 dark:bg-$color-primary-700 dark:text-$color-primary-200 p-4 shadow-lg text-white">
+        <Icon :name="iconFloat" size="28" />
+      </span>
+    </slot>
 
     <div class="wrapper">
       <div v-if="noise" class="noise" />
       <div class="content">
         <ContentSlot :use="$slots.default" unwrap="p" />
-        <span v-if="icon" class="icon-wrapper" >
-          <Icon :name="icon" :class="[largeIcon &&'!w-40px !h-40px']" />
+        <span v-if="icon" class="icon-wrapper">
+          <Icon :name="icon" :class="[largeIcon && '!w-40px !h-40px']" />
         </span>
         <h3 v-if="$slots.title" class="title">
           <ContentSlot :use="$slots.title" unwrap="p">
