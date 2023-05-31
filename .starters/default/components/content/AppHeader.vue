@@ -42,7 +42,7 @@ watch(isIndex, (value) => {
           <!-- <div class="social-icons">
             <AppSocialIcons />
           </div> -->
-          <ButtonLink href="https://portal.sigmaott.com">
+          <ButtonLink  href="https://portal.sigmaott.com">
             Login
           </ButtonLink>
         </div>
