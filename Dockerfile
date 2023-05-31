@@ -5,9 +5,9 @@ FROM $NODE_VERSION AS dependency-base
 # create destination directory
 WORKDIR /app
 RUN corepack enable
+
 COPY .npmrc package.json pnpm-lock.yaml ./
-RUN --mount=type=cache,id=pnpm-store,target=/root/.pnpm-store \
-    pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile
 
 FROM dependency-base AS production-base
 COPY . .
