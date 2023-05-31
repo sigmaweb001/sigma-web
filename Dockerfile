@@ -3,6 +3,7 @@ ARG NODE_VERSION=node:16-alpine
 FROM $NODE_VERSION AS dependency-base
 
 # create destination directory
+RUN mkdir -p /app
 WORKDIR /app
 RUN corepack enable
 
