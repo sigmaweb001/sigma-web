@@ -38,7 +38,7 @@ defineProps({
         </h1>
       </div>
       <span class="py-1 text-sm font-regular text-gray-600 mr-1 flex flex-row items-center">
-          <FormatDate :date="new Date(post.timestamp * 1000)"/>
+          <!-- <FormatDate :date="new Date(post.timestamp * 1000)"/> -->
       </span>
     </div>
   </NuxtLink>
