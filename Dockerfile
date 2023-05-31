@@ -8,6 +8,7 @@ WORKDIR /app
 RUN corepack enable
 
 COPY .npmrc package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY .starters/default/.npmrc .starters/default/package.json ./.starters/default/
 RUN pnpm install
 
 FROM dependency-base AS production-base
