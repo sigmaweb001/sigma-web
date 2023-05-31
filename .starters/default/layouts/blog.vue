@@ -18,7 +18,7 @@ const contentQuery = await queryContent('blog/posts').sort(
               Blog
             </h2>
             <p class="lg:mx-auto lg:w-7/12 text-gray-600 dark:text-gray-300 text-2xl">
-              The newest updates, tutorials and insights into the development of sidebase and its modules!
+              The newest updates, tutorials and insights into the development of Sigma and its products!
             </p>
           </div>
         </div>
