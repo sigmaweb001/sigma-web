@@ -1,4 +1,5 @@
 icon: ph:star-duotone
 navigation.redirect: /documents/sigma-streaming-platform/get-started/introduction
 title: 'Documents'
-navigation.subNav: true
+layout: module
+navigation: false
