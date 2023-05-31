@@ -27,4 +27,4 @@ ENV PORT=8080
 ENV NODE_ENV=production
 EXPOSE 8080
 # start the app
-ENTRYPOINT ["node", ".starters/default/.output/server/index.mjs"]
+ENTRYPOINT ["node", "app/.starters/default/.output/server/index.mjs"]
