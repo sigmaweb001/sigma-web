@@ -1,31 +1,33 @@
-FROM node:18
+ARG NODE_VERSION=node:16-alpine
 
-RUN npm install -g pnpm
+# FROM node:18
+FROM $NODE_VERSION AS dependency-base
 
-RUN mkdir -p /usr/src/app
+# create destination directory
+WORKDIR /app
+RUN corepack enable
 
-WORKDIR /usr/src/app
+COPY .npmrc package.json pnpm-lock.yaml ./
 
-# RUN npm ci && npm cache clean --force
-COPY pnpm-lock.yaml ./
+FROM dependency-base AS production-base
+RUN --mount=type=cache,id=pnpm-store,target=/root/.pnpm-store \
+    pnpm install --frozen-lockfile
+COPY . .
+RUN pnpm build
 
-COPY package.json ./
+#
+FROM $NODE_VERSION AS production
 
-RUN pnpm install
+COPY --from=production-base /app/.starters/default/.output /app/.starters/default/.output
 
-ADD . ./
-
-RUN pnpm run build
-
-# ARG ALGOLIA_APP_ID
-# ENV ALGOLIA_APP_ID=${ALGOLIA_APP_ID}
-# ARG ALGOLIA_API_KEY
-# ENV ALGOLIA_API_KEY=${ALGOLIA_API_KEY}
-
+# Service hostname
 ENV NUXT_HOST=0.0.0.0
+
 ENV NUXT_PORT=8080
 ENV PORT=8080
 
-EXPOSE 8080
+ENV NODE_ENV=production
 
+EXPOSE 8080
+# start the app
 ENTRYPOINT ["node", ".starters/default/.output/server/index.mjs"]
