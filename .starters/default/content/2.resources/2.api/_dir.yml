@@ -1,2 +1,4 @@
 title: 'API'
 icon: heroicons-outline:bookmark-alt
+navigation.subNav: true
+layout: basic
