@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 
 const contentQuery = await queryContent('blog/posts').sort(
     { timestamp: -1, }

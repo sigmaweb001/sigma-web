@@ -1,8 +1,20 @@
+<script lang="ts" setup>
+import AOS from 'aos'
+
+onMounted(() => {
+  AOS.init()
+})
+</script>
+
+
 <template>
   <AppLayout>
     <svg class="noise-filter">
       <filter id="noise-filter">
-        <feTurbulence type="fractalNoise" baseFrequency="7.5" />
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="7.5"
+        />
       </filter>
     </svg>
     <NuxtPage />

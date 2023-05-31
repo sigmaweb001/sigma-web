@@ -1,0 +1,4 @@
+icon: ph:file-doc-duotone
+title: 'Documents'
+navigation.subNav: true
+layout: module-doc

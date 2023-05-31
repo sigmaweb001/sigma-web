@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { AFloating } from '../floating/type'
-
 const route = useRoute()
 const { navBottomLink } = useContentHelpers()
 const { navigation } = useContent()
@@ -43,21 +41,10 @@ const isActive = (link: any) => (link.exact ? route.fullPath === link._path : ro
         </NuxtLink>
 
         <ClientOnly v-if="link.subNav && !vertical">
-          <AFloating trigger="hover" :delay="50" :hide-delay="100" :reference-el="refs[idx]">
-            <div class="subnav">
-              <div class="h-16px" />
-              <ul class="dark:bg-$color-gray-900 rounded-4px py-6px bg-$color-gray-100">
-                <li v-for="(_link, idx) in link.children" :key="_link._path"
-                  class="font-500 flex flex-col text-14px px-12px py-6px hover:text-$color-primary-500">
-                  <NuxtLink class="link" :to="_link.redirect ? _link.redirect : navBottomLink(_link)"
-                    :class="{ active: isActive(_link) }">
-                    <Icon v-if="_link.icon && config?.header?.showLinkIcon" :name="_link.icon" />
-                    {{ _link.title }}
-                  </NuxtLink>
-                </li>
-              </ul>
-            </div>
-          </AFloating>
+          <FloatingAFloating trigger="hover" :delay="50" :hide-delay="100" :reference-el="refs[idx]">
+            <FloatingMenu :links="link.children"/>
+          </FloatingAFloating>
+
         </ClientOnly>
       </li>
     </ul>
