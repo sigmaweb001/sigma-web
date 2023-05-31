@@ -23,7 +23,7 @@ export default defineAppConfig({
       edit: true
     },
     aside: {
-      level: 2,
+      level: 3,
       collapsed: false,
       exclude: [],
       // navigation: true
