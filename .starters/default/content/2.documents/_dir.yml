@@ -1,0 +1,4 @@
+icon: ph:star-duotone
+navigation.redirect: /sigma-transcode
+title: 'Documents'
+navigation.subNav: true
