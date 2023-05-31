@@ -57,12 +57,6 @@ release image dev to harbor:
   only:
     - v2-sigma
 
-########### Docker build with remote cms ###########
-
-docker-build-transcode-live-production-remote:
-  extends: .base-build-production-from-remote
-  rules:
-    - if: '$RELEASE_COMPONENT  == "sigma-transcode"'
 
 ########### Docker release CMS #########
 
