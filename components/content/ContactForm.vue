@@ -25,6 +25,9 @@ const { value: firstName, attrs: firstNameAttrs } = register('firstName')
 const { value: lastName, attrs: lastNameAttrs } = register('lastName')
 const { value: workEmail, attrs: workEmailAttrs } = register('workEmail')
 
+
+const selectedFruit = ref()
+const fruits = ['banana', 'apple', 'watermelon', 'orange']
 </script>
 
 <template>
@@ -56,6 +59,10 @@ const { value: workEmail, attrs: workEmailAttrs } = register('workEmail')
             </label>
           </template>
         </AInput>
+
+        <div>
+          <ASelect v-model="selectedFruit" :options="fruits" :hint="`value: ${selectedFruit}`" />
+        </div>
 
         <ButtonLink @click="handleSubmit">
           Sending to us
