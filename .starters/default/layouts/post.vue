@@ -6,24 +6,23 @@ const { page } = useContent()
 
 <template>
   <div class="relative min-h-[91vh] overflow-hidden">
-    <div class="absolute -top-[30vh] left-0 select-none">
-      <NuxtImg class="w-[100vw]" src="/purple-blur.webp" alt="Background Image" />
-    </div>
+    <Glow />
     <div class="relative HeaderContainer px-12 xl:px-0">
-      <NuxtLink href="/blog" class="flex items-center gap-1 my-6">
-        <Icon name="heroicons-solid:arrow-left" />
+
+      <ButtonLink class="my-6" ghost href="/blog" icon="heroicons-solid:arrow-left">
         Back to overview
-      </NuxtLink>
+      </ButtonLink>
     </div>
     <div class="relative PostContainer pt-4 px-12 xl:px-0">
       <header class="flex items-center justify-between mb-4 lg:mb-6 not-format">
         <div class="w-full">
           <div class="mb-4">
             <p class="font-light text-gray-500 dark:text-gray-400 text-md">
-              Published on <FormatDate :date="new Date(page.timestamp * 1000)" />
+              Published on
+              <FormatDate :date="new Date(page.timestamp * 1000)" />
             </p>
             <h1 class="text-2xl font-extrabold leading-tight lg:mb-6 lg:text-4xl text-gray-900 dark:text-white">
-              {{page.title}}
+              {{ page.title }}
             </h1>
           </div>
           <address class="flex items-center not-italic w-full">
@@ -34,10 +33,10 @@ const { page } = useContent()
               <div class="flex items-end justify-between w-full ml-2">
                 <NuxtLink :href="page.avatarLink" target="_blank">
                   <span rel="author" class="text-base font-bold text-gray-900 dark:text-white">
-                    {{page.author}}
+                    {{ page.author }}
                   </span>
                   <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                    {{page.position}}
+                    {{ page.position }}
                   </p>
                 </NuxtLink>
               </div>
