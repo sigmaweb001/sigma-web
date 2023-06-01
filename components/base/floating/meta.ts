@@ -4,7 +4,7 @@ import { flip, shift } from '@floating-ui/vue'
 import type { LiteralUnion } from 'type-fest'
 import type { ComponentObjectPropsOptions, Ref } from 'vue'
 import { sameWidth as sameWidthMiddleware } from './middlewares'
-import type { Transitions } from '../transitions/index'
+import type { Transitions } from '../../transitions/index'
 export type NoUndefined<T> = T extends undefined ? never : T
 
 // ℹ️ Make sure to checkout meta definition rules

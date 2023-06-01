@@ -6,9 +6,6 @@ import { ThemeColors } from './plugin'
 
 export type ColorProp = LiteralUnion<ThemeColors, string> | undefined
 
-export const color = {
-  type: [String, undefined] as PropType<ColorProp>,
-} as const
 
 export const disabled = { type: Boolean } as const
 

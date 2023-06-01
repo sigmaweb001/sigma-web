@@ -4,6 +4,8 @@ import AOS from 'aos'
 onMounted(() => {
   AOS.init()
 })
+
+useProvideAnu()
 </script>
 
 

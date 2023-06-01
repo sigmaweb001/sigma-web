@@ -44,6 +44,8 @@
     "@nuxtjs/plausible": "^0.2.1",
     "@types/node": "^20.2.3",
     "@unocss/nuxt": "^0.52.4",
+    "@vorms/core": "^1.1.0",
+    "@vorms/resolvers": "^1.1.0",
     "aos": "^2.3.4",
     "eslint": "^8.41.0",
     "nuxt": "^3.5.1",
@@ -51,7 +53,8 @@
     "sass": "^1.62.1",
     "typescript": "^5.0.4",
     "vite-plugin-inspect": "^0.7.28",
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "zod": "^3.21.4"
   },
   "pnpm": {
     "peerDependencyRules": {

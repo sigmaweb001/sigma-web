@@ -1,6 +1,5 @@
 import { defu } from 'defu'
 import { useAnu } from '@/composables/useAnu'
-export const ANU_CONFIG = Symbol('ANU_CONFIG') as InjectionKey<PluginOptions>
 
 export type ThemeColors = 'primary' | 'success' | 'info' | 'warning' | 'danger'
 export type DefaultThemes = 'light' | 'dark'
@@ -26,7 +25,7 @@ const configDefaults: PluginOptions = {
     light: {
       class: '',
       colors: {
-        primary: '265, 97.7%, 66.3%',
+        primary: '27, 98%, 56%',
         success: '94.5, 100%, 39.6%',
         info: '200.1, 100%, 54.3%',
         warning: '42.4, 100%, 50%',
@@ -43,7 +42,7 @@ const configDefaults: PluginOptions = {
     dark: {
       class: 'dark',
       colors: {
-        primary: '261, 73%, 66.3%',
+        primary: '27, 98%, 56%',
         success: '94.5, 73%, 39.6%',
         info: '200.1, 73%, 54.3%',
         warning: '42.4, 73%, 50%',
@@ -61,8 +60,6 @@ const configDefaults: PluginOptions = {
 export function useProvideAnu() {
   const config = defu({}, configDefaults)
 
-
-  app.provide(ANU_CONFIG, config)
 
   // Initialize Anu instance with config values
   useAnu({

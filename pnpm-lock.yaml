@@ -48,6 +48,12 @@ devDependencies:
   '@unocss/nuxt':
     specifier: ^0.52.4
     version: 0.52.4
+  '@vorms/core':
+    specifier: ^1.1.0
+    version: 1.1.0(vue@3.3.4)
+  '@vorms/resolvers':
+    specifier: ^1.1.0
+    version: 1.1.0
   aos:
     specifier: ^2.3.4
     version: 2.3.4
@@ -72,6 +78,9 @@ devDependencies:
   vue:
     specifier: ^3.3.4
     version: 3.3.4
+  zod:
+    specifier: ^3.21.4
+    version: 3.21.4
 
 packages:
 
@@ -2499,6 +2508,21 @@ packages:
       muggle-string: 0.2.2
       vue-template-compiler: 2.7.14
     dev: false
+
+  /@vorms/core@1.1.0(vue@3.3.4):
+    resolution: {integrity: sha512-+QSWcWX/DIbifEXp2WJrnjnCRk4+Q8rsEfOPqTTQ+oUGJTU/KWtToO5hB60vZAXyyAp3ZOJHJMgJ3/L5xprWgA==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      deepmerge: 4.3.1
+      fast-deep-equal: 3.1.3
+      klona: 2.0.6
+      vue: 3.3.4
+    dev: true
+
+  /@vorms/resolvers@1.1.0:
+    resolution: {integrity: sha512-cGg9K+qBPK3D4ZikkAbxO50wbonOxpbhm27D4sxnDiYgKqJZV3yInJWjt3YQVlvJBYbRFI5QlcqD4PIMZBsFQw==}
+    dev: true
 
   /@vue-macros/common@1.3.3(vue@3.3.4):
     resolution: {integrity: sha512-bjHomaf3mu+ARMD4DX22C/lLVVocbmwgcLH7bg1rK4kB5ghesgShZTQIrNR6ZjifQmdGc/2jjZ/25kSb364uEA==}
@@ -10464,6 +10488,10 @@ packages:
       archiver-utils: 2.1.0
       compress-commons: 4.1.1
       readable-stream: 3.6.2
+
+  /zod@3.21.4:
+    resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
+    dev: true
 
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}

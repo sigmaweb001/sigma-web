@@ -3,7 +3,7 @@ import type { ABaseInputEvents, aBaseInputSlots } from './meta'
 import { aBaseInputProps } from './meta'
 import { ALoader } from '@/components/base/loader'
 import { useConfigurable } from '@/composables/useConfigurable'
-import TransitionExpand from '@/transitions/TransitionExpand.vue'
+import TransitionExpand from '@/components/transitions/TransitionExpand.vue'
 
 // TODO: Provide a way to attach classes to root element
 const props = defineProps(aBaseInputProps)

@@ -73,12 +73,6 @@ export default defineNuxtConfig({
       global: true
     },
     {
-      prefix: 'Floating',
-      path: resolve('./components/floating'),
-      global: true,
-      pattern: '**/*.vue'
-    },
-    {
       prefix: '',
       path: resolve('./components/global'),
       global: true
@@ -101,7 +95,8 @@ export default defineNuxtConfig({
     {
       prefix: '',
       path: resolve('./components/base'),
-      pattern: '**/*.vue'
+      pathPrefix: false,
+      extensions: ['.vue']
     }
   ],
   pinceau: {
