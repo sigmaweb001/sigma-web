@@ -18,11 +18,11 @@
     "tokens.config.ts"
   ],
   "scripts": {
-    "prepare": "nuxi prepare && nuxi prepare .starters/default",
-    "dev": "nuxi dev .starters/default",
-    "build": "nuxi build .starters/default",
-    "generate": "nuxi generate .starters/default",
-    "preview": "nuxi preview .starters/default",
+    "prepare": "nuxi prepare",
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "generate": "nuxi generate",
+    "preview": "nuxi preview",
     "lint": "eslint .",
     "release": "release-it"
   },
@@ -47,7 +47,10 @@
     "release-it": "^15.10.3",
     "typescript": "^5.0.4",
     "vite-plugin-inspect": "^0.7.28",
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "@unocss/nuxt": "^0.52.4",
+    "aos": "^2.3.4",
+    "@nuxtjs/plausible": "^0.2.1"
   },
   "pnpm": {
     "peerDependencyRules": {

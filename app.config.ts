@@ -1,47 +1,50 @@
 export default defineAppConfig({
   docus: {
-    title: 'Docus',
+    title: 'Sigma Streaming',
+    description: 'Powering the streaming experience',
+    // TODO: make this public
+    image: '/public/cover.png',
+    socials: {
+      facebook: 'sigma-streaming',
+      linkedin: {
+        label: 'Linkedin',
+        icon: 'simple-icons:linkedin',
+        href: 'https://www.linkedin.com/company/sigma-streaming',
+      },
+      youtube: 'sigma-streaming',
 
-    description: 'The best place to start your documentation.',
-
-    image: 'https://user-images.githubusercontent.com/904724/185365452-87b7ca7b-6030-4813-a2db-5e65c785bf88.png',
-
-    socials: {},
-
-    layout: 'default',
-
+    },
+    github: {
+      dir: '/content',
+      branch: 'document-api-blog',
+      repo: 'web',
+      owner: 'sigmaott',
+      edit: true
+    },
+    aside: {
+      level: 3,
+      collapsed: false,
+      exclude: [],
+      // navigation: true
+    },
+    main: {
+      padded: true,
+      fluid: true
+    },
     header: {
       title: '',
-      logo: false,
-      showLinkIcon: false,
-      fluid: false,
-      exclude: []
+      logo: true,
+      showLinkIcon: true,
+      exclude: [],
+      fluid: true,
+      navigation: true,
     },
-
-    aside: {
-      level: 0,
-      collapsed: false,
-      collapsible: true,
-      exclude: []
-    },
-
     footer: {
       credits: {
-        icon: 'IconDocus',
-        text: 'Powered by Docus',
-        href: 'https://docus.dev'
+        text: 'Thu Do Multimedia Communications Joint Stock Company',
       },
-      textLinks: [],
       iconLinks: [],
       fluid: false
     },
-
-    github: {
-      dir: undefined,
-      branch: undefined,
-      repo: undefined,
-      owner: undefined,
-      edit: false
-    }
   }
 })

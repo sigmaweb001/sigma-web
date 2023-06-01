@@ -8,8 +8,6 @@ const { page } = useContent()
 <template>
   <div>
     <ModulesBar :current-page-id="page._id" />
-    <DocsPageLayout>
       <slot />
-    </DocsPageLayout>
   </div>
 </template>
