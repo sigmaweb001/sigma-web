@@ -1,13 +1,17 @@
 <script setup lang="ts">
 
-defineProps<{
+const props = defineProps<{
   icon: string
   description: string
+  href?: string
 }>()
+
+const NuxtLink = resolveComponent('NuxtLink')
+const type = computed(() => props.href ? NuxtLink : 'div')
 </script>
 
 <template>
-  <div class="card px-5 py-6 h-full flex items-center">
+  <Component :to="href" :is="type" class="card px-5 py-6 h-full flex items-center">
     <div class="flex items-center space-x-3">
       <div class="iconShadow flex h-14 w-14 flex-none items-center justify-center rounded-full">
         <Icon :name="icon" size="20" />
@@ -16,7 +20,7 @@ defineProps<{
         {{ description }}
       </p>
     </div>
-  </div>
+  </Component>
 </template>
 
 <style scoped>
@@ -25,14 +29,14 @@ defineProps<{
   border-radius: 15px;
   transition: 0.3s;
   box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.05),
-  inset -5px -5px 15px rgba(255, 255, 255, 0.05),
-  5px 5px 15px rgba(0, 0, 0, 0.1), -5px -5px 15px rgba(255, 255, 255, 0.05);
+    inset -5px -5px 15px rgba(255, 255, 255, 0.05),
+    5px 5px 15px rgba(0, 0, 0, 0.1), -5px -5px 15px rgba(255, 255, 255, 0.05);
 }
 
 .iconShadow {
   box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
-  inset -5px -5px 15px rgba(255, 255, 255, 0.1),
-  5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.06);
+    inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+    5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.06);
   border-radius: 15px;
   transition: 0.3s;
 }
@@ -40,15 +44,16 @@ defineProps<{
 @media (prefers-color-scheme: dark) {
   .card {
     box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
-    inset -5px -5px 15px rgba(255, 255, 255, 0.1),
-    5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
+      inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+      5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
   }
+
   .card:hover {
     /* background-color: rgb(253, 154, 71); */
     /* background-color: rgb(108, 56, 250); */
     box-shadow: inset 5px 5px 5px rgba(108, 56, 250, 0.2),
-    inset -5px -5px 15px rgba(253, 154, 71, 0.3),
-    5px 5px 15px rgba(108, 56, 250, 0.8), -5px -5px 15px rgba(253, 154, 71, 0.4);
+      inset -5px -5px 15px rgba(253, 154, 71, 0.3),
+      5px 5px 15px rgba(108, 56, 250, 0.8), -5px -5px 15px rgba(253, 154, 71, 0.4);
   }
 }
 </style>
