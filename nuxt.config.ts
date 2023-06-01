@@ -16,13 +16,13 @@ const updateModule = defineNuxtModule({
   meta: {
     name: '@nuxt-themes/docus'
   },
-  setup (_, nuxt) {
+  setup(_, nuxt) {
     if (nuxt.options.dev) {
       $fetch('https://registry.npmjs.org/@nuxt-themes/docus/latest').then((release) => {
         if (release.version > version) {
           logger.info(`A new version of Docus (v${release.version}) is available: https://github.com/nuxt-themes/docus/releases/latest`)
         }
-      }).catch(() => {})
+      }).catch(() => { })
     }
   }
 })
@@ -48,10 +48,16 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'nuxt-config-schema',
     resolve('./app/module'),
-    updateModule as any
+    updateModule as any,
+    // https://github.com/nuxt-modules/plausible
+    '@nuxtjs/plausible',
+    // https://github.com/nuxt/devtools
+    '@nuxt/devtools',
+    '@unocss/nuxt',
   ],
   css: [
-    resolve('./assets/css/main.css')
+    resolve('./assets/css/main.css'),
+    'aos/dist/aos.css', 'assets/elements.styles.min.css'
   ],
   components: [
     {
@@ -62,6 +68,16 @@ export default defineNuxtConfig({
     {
       prefix: '',
       path: resolve('./components/content'),
+      global: true
+    },
+    {
+      prefix: 'Floating',
+      path: resolve('./components/floating'),
+      global: true
+    },
+    {
+      prefix: '',
+      path: resolve('./components/global'),
       global: true
     },
     {
@@ -103,5 +119,22 @@ export default defineNuxtConfig({
   },
   typescript: {
     includeWorkspace: true
+  },
+  devtools: {
+    enabled: true,
+    componentInspector: {
+      toggleComboKey: 'meta-shift-x',
+    },
+  },
+  app: {
+    head: {
+      script: [
+        {
+          src: 'https://unpkg.com/@stoplight/elements/web-components.min.js',
+          type: 'text/javascript',
+        }
+      ],
+
+    }
   }
 })

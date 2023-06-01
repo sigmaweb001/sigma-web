@@ -21,7 +21,18 @@ export default defineTheme({
     }
   },
   color: {
-    primary: theme.color.orange,
+    primary: {
+      50: '#FFE8D5',
+      100: '#FEDDC1',
+      200: '#FEC798',
+      300: '#FEB070',
+      400: '#FD9A47',
+      500: '#FD841F',
+      600: '#E26802',
+      700: '#AA4E02',
+      800: '#733501',
+      900: '#3B1B01',
+    },
     secondary: theme.color.purple,
     shadow: {
       initial: '{color.gray.400}',
@@ -402,10 +413,10 @@ export default defineTheme({
             },
             marginBottom: '{space.8}',
             gradientText: {
-              initial: 'linear-gradient(114deg, {color.gray.900} 10%, {color.gray.600} 54%, {color.gray.500})',
-              dark: 'linear-gradient(114deg, {color.gray.400} 10%, {color.gray.100} 54%, {color.gray.700})'
+              initial: 'linear-gradient(114deg, {color.gray.100} 10%, {color.gray.300} 54%, {color.gray.600})',
+              dark: 'linear-gradient(114deg, {color.gray.200} 10%, {color.gray.400} 54%, {color.gray.700})'
             },
-            mixBlendMode: 'normal'
+            mixBlendMode: 'exclusion'
           },
           description: {
             textAlign: {
@@ -473,8 +484,8 @@ export default defineTheme({
           borderRadius: '{radii.xs}',
           backgroundColor: 'transparent',
           backgroundImage: {
-            initial: 'linear-gradient(135deg, rgba({temp.color.gray.100}, 0.5), rgba({temp.color.gray.200}, .5))',
-            dark: 'linear-gradient(135deg, rgba({temp.color.gray.800}, 0.4), rgba({temp.color.gray.800}, .7))'
+            initial: 'linear-gradient(180deg, rgba({temp.color.gray.100}, 0.3), rgba({temp.color.gray.100}, 0.6))',
+            dark: 'linear-gradient(180deg, rgba({temp.color.gray.800}, 0.3), rgba({temp.color.gray.900}, 0.6))',
           }
         },
         noise: {
@@ -555,15 +566,12 @@ export default defineTheme({
         }
       },
       sectionHeader: {
-        alignItems: {
-          initial: 'center',
-          xl: 'flex-start'
-        },
+        alignItems: 'center',
         marginBottom: '{space.8}',
         subtitle: {
-          fontSize: '{text.lg.fontSize}',
+          fontSize: '{fontSize.2xl}',
           lineHeight: '{text.lg.lineHeight}',
-          fontWeight: '{fontWeight.normal}',
+          fontWeight: 700,
           letterSpacing: '{letterSpacing.wide}',
           marginBottom: '{space.2}'
         },
