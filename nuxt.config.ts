@@ -73,7 +73,8 @@ export default defineNuxtConfig({
     {
       prefix: 'Floating',
       path: resolve('./components/floating'),
-      global: true
+      global: true,
+      pattern: '**/*.vue'
     },
     {
       prefix: '',
