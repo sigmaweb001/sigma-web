@@ -18,7 +18,7 @@ const docs = computed(() => {
 
 <template>
   <section>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-4 gap-y-4 place-content-stretch">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-4 gap-y-4 place-content-stretch max-w-58rem mx-auto">
       <Feature v-for="(doc, index) in docs" :key="index" :icon="doc.icon" :description="doc.title"
         :href="doc.redirect ? doc.redirect : navBottomLink(doc)">
       </Feature>

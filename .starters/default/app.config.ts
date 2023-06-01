@@ -15,11 +15,10 @@ export default defineAppConfig({
 
     },
     github: {
-      // dir: '.starters/default/content',
-      dir: 'sigma-streaming',
-      branch: 'main',
-      repo: 'sigma-streaming',
-      owner: 'sigma-streaming',
+      dir: '.starters/default/content',
+      branch: 'document-api-blog',
+      repo: 'web',
+      owner: 'sigmaott',
       edit: true
     },
     aside: {
