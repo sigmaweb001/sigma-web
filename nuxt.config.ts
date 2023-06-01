@@ -95,6 +95,11 @@ export default defineNuxtConfig({
       prefix: '',
       path: resolve('./components/landing'),
       global: true
+    },
+    {
+      prefix: '',
+      path: resolve('./components/base'),
+      pattern: '**/*.vue'
     }
   ],
   pinceau: {
