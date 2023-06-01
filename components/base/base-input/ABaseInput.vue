@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { ABaseInputEvents, aBaseInputSlots } from './meta'
 import { aBaseInputProps } from './meta'
-import { ALoader } from '@components/base/loader'
+import { ALoader } from '@/components/base/loader'
 import { useConfigurable } from '@/composables/useConfigurable'
 import TransitionExpand from '@/transitions/TransitionExpand.vue'
 

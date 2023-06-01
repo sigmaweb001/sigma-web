@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { AInputEvents } from './meta'
 import { aInputProps, aTextareaBaseInputSlots } from './meta'
-import { ABaseInput, aBaseInputProps } from '@/components/base-input'
+import { ABaseInput, aBaseInputProps } from '@/components/base/base-input'
 
 const props = defineProps(aInputProps)
 defineEmits<AInputEvents>()

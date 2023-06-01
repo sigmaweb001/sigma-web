@@ -1,5 +1,5 @@
 import type { ExtractPublicPropTypes } from 'vue'
-import { aBaseInputProps, aBaseInputSlots } from '@/components/base-input'
+import { aBaseInputProps, aBaseInputSlots } from '@/components/base/base-input'
 
 // ℹ️ Make sure to checkout meta definition rules
 
