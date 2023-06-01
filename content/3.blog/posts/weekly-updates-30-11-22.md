@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Weekly sidebase updates [30.11.22]
+title: Weekly sigma updates [01.06.23]
 description: In our weekly calls we discuss updates to sidebase. These are the notes from the call on the 30.11.22
 image: /blog/weekly-talk-30-11-22/preview.png
 timestamp: 1669829161
