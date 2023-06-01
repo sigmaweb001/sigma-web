@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import FormatDate from "~/components/common/FormatDate.vue";
 
 const { page } = useContent()
 </script>
