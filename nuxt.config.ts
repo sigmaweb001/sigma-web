@@ -57,7 +57,9 @@ export default defineNuxtConfig({
   ],
   css: [
     resolve('./assets/css/main.css'),
-    'aos/dist/aos.css', 'assets/elements.styles.min.css'
+    'aos/dist/aos.css', '@/assets/elements.styles.min.css',
+    '@/assets/scss/index.scss',
+    '@/preset-theme-default/src/scss/index.scss'
   ],
   components: [
     {
@@ -69,12 +71,6 @@ export default defineNuxtConfig({
       prefix: '',
       path: resolve('./components/content'),
       global: true
-    },
-    {
-      prefix: 'Floating',
-      path: resolve('./components/floating'),
-      global: true,
-      pattern: '**/*.vue'
     },
     {
       prefix: '',
@@ -95,6 +91,12 @@ export default defineNuxtConfig({
       prefix: '',
       path: resolve('./components/landing'),
       global: true
+    },
+    {
+      prefix: '',
+      path: resolve('./components/base'),
+      pathPrefix: false,
+      extensions: ['.vue']
     }
   ],
   pinceau: {

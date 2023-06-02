@@ -7,7 +7,7 @@ RUN mkdir -p /app
 WORKDIR /app
 RUN corepack enable
 
-COPY .npmrc package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY .npmrc package.json pnpm-lock.yaml ./
 RUN pnpm install
 
 FROM dependency-base AS production-base

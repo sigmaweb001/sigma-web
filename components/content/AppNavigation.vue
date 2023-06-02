@@ -41,9 +41,9 @@ const isActive = (link: any) => (link.exact ? route.fullPath === link._path : ro
         </NuxtLink>
 
         <ClientOnly v-if="link.subNav && !vertical">
-          <FloatingAFloating trigger="hover" :delay="50" :hide-delay="100" :reference-el="refs[idx]">
-            <FloatingMenu :links="link.children"/>
-          </FloatingAFloating>
+          <AFloating trigger="hover" :delay="50" :hide-delay="100" :reference-el="refs[idx]">
+            <FloatingMenu :links="link.children" />
+          </AFloating>
 
         </ClientOnly>
       </li>

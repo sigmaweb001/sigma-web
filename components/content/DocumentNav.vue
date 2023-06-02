@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { AFloating } from '../floating/type'
 
 const route = useRoute()
 const { navBottomLink } = useContentHelpers()
@@ -16,7 +15,7 @@ defineProps({
 const hasNavigation = computed(() => !!config.value.aside?.level)
 
 const filtered = computed(() => config.value.header?.exclude || [])
-const docs = computed(() => navigation.value.find((item) => item._path === "/resources")?.children || [])
+const docs = computed(() => navigation.value.find((item) => item._path === '/resources')?.children || [])
 
 const tree = computed(() => {
   return (docs.value || []).filter((item: any) => {
@@ -31,22 +30,42 @@ const isActive = (link: any) => (link.exact ? route.fullPath === link._path : ro
 </script>
 
 <template>
-
-  <nav v-if="hasNavigation" :class="{ vertical }">
+  <nav
+    v-if="hasNavigation"
+    :class="{ vertical }"
+  >
     <ul>
-      <li v-for="(link, idx) in tree" :key="link._path" :ref="refs.set">
-        <NuxtLink class="link" :to="link.redirect ? link.redirect : navBottomLink(link)"
-          :class="{ active: isActive(link) }">
-          <Icon v-if="link.icon && config?.header?.showLinkIcon" :name="link.icon" />
+      <li
+        v-for="(link, idx) in tree"
+        :key="link._path"
+        :ref="refs.set"
+      >
+        <NuxtLink
+          class="link"
+          :to="link.redirect ? link.redirect : navBottomLink(link)"
+          :class="{ active: isActive(link) }"
+        >
+          <Icon
+            v-if="link.icon && config?.header?.showLinkIcon"
+            :name="link.icon"
+          />
           {{ link.title }}
 
-          <Icon v-if="link.subNav && !vertical && link.children" name="carbon:chevron-down" />
+          <Icon
+            v-if="link.subNav && !vertical && link.children"
+            name="carbon:chevron-down"
+          />
         </NuxtLink>
 
         <ClientOnly v-if="link.subNav && !vertical">
-          <FloatingAFloating trigger="hover" :delay="50" :hide-delay="100" :reference-el="refs[idx]">
-            <FloatingMenu :links="link.children"/>
-          </FloatingAFloating>
+          <AFloating
+            trigger="hover"
+            :delay="50"
+            :hide-delay="100"
+            :reference-el="refs[idx]"
+          >
+            <FloatingMenu :links="link.children" />
+          </AFloating>
         </ClientOnly>
       </li>
     </ul>

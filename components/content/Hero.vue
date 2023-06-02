@@ -116,6 +116,7 @@ css({
       position: 'relative',
       display: 'flex',
       alignItems: 'center',
+      justifyContent: 'center'
     },
   }
 })

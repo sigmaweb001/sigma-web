@@ -7,11 +7,17 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
+import { presetAnu } from './preset'
+import { presetThemeDefault } from './preset-theme-default/src'
 
 export default defineConfig({
   presets: [
     presetUno(),
     presetAttributify(),
+
+    // anu-vue presets
+    presetAnu(),
+    presetThemeDefault(),
   ],
   transformers: [
     transformerDirectives(),

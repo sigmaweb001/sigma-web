@@ -18,33 +18,111 @@ watch(isIndex, (value) => {
     }
   })
 }, { immediate: true })
+
+
+const { navBottomLink } = useContentHelpers()
+
+const { navigation } = useContent()
+
+const docsResource = computed(() => {
+  const res = navigation.value.find((item) => item._path === '/resources')?.children || []
+  return res
+})
+
+const docs = computed(() => {
+  const res = navigation.value.find((item) => item._path === '/products')?.children || []
+  return res
+})
 </script>
 
 <template>
   <footer>
-    <Container :fluid="config?.footer?.fluid" padded class="footer-layout">
+    <Container
+      :fluid="config?.footer?.fluid"
+      padded
+      class="footer-layout text-14px py-8px"
+    >
+      <div class="col-span-4 flex flex-col gap-8px">
+        <p class="font-bold mb-8px">
+          Resources
+        </p>
+        <NuxtLink
+          v-for="link in docsResource"
+          :key="link._path"
+          :to="navBottomLink(link)"
+        >
+          {{ link.title }}
+        </NuxtLink>
+      </div>
+
+      <div class="col-span-4 flex flex-col gap-8px">
+        <p class="font-bold mb-8px">
+          Company
+        </p>
+        <NuxtLink to="https://thudomultimedia.com/">
+          About us
+        </NuxtLink>
+        <NuxtLink to="/get-in-touch">
+          Contact Us
+        </NuxtLink>
+      </div>
+
+      <div class="col-span-4 flex flex-col gap-8px">
+        <p class="font-bold mb-16px">
+          Products
+        </p>
+
+        <NuxtLink
+          v-for="link in docs"
+          :key="link._path"
+          :to="link._path"
+        >
+          {{ link.title }}
+        </NuxtLink>
+      </div>
+      <div />
+    </Container>
+  </footer>
+  <footer>
+    <Container
+      :fluid="config?.footer?.fluid"
+      padded
+      class="footer-layout"
+    >
       <!-- Left -->
       <div class="left">
         <div>
-          <a v-if="config?.footer?.credits" rel="noopener" target="_blank" class="footer-credits">
-          <!-- <Component
+          <a
+            v-if="config?.footer?.credits"
+            rel="noopener"
+            target="_blank"
+            class="footer-credits"
+          >
+            <!-- <Component
             :is="config?.footer?.credits?.icon"
             v-if="config?.footer?.credits?.icon"
             class="credits-icon"
           /> -->
-          <img src="/thudo_logo.png" alt="logo" class="w-80px h-50px mr-8px">
-          <p class="font-700 select-none hover:text-$color-primary-500" v-if="config?.footer?.credits?.text">{{
-            config.footer.credits.text }}</p>
-        </a>
+            <img
+              src="/thudo_logo.png"
+              alt="logo"
+              class="w-80px h-50px mr-8px"
+            >
+            <p
+              v-if="config?.footer?.credits?.text"
+              class="font-700 select-none hover:text-$color-primary-500"
+            >{{
+              config.footer.credits.text }}</p>
+          </a>
 
-        <div class="text-12px leading-20px text-$color-gray-400 mt-8px">
-          <p>
-            10th floor, No 48 Le Van Luong
-          </p>
-          <p>
-            N1 New Urban, Nhan Chinh Ward, Thanh Xuan District, Hanoi, Vietnam
-          </p>
-        </div>
+          <div class="text-12px leading-20px text-$color-gray-400 mt-8px">
+            <p>
+              10th floor, No 48 Le Van Luong
+            </p>
+            <p>
+              N1 New Urban, Nhan Chinh Ward, Thanh Xuan District, Hanoi, Vietnam
+            </p>
+          </div>
         </div>
       </div>
 
@@ -69,8 +147,15 @@ watch(isIndex, (value) => {
 
       <!-- Right -->
       <div class="right">
-        <a v-for="icon in icons.slice(0, 6 - nbSocialIcons)" :key="icon.label" class="icon-link" :aria-label="icon.label"
-          :href="icon.href" target="_blank" :rel="icon?.rel || 'noopener noreferrer'">
+        <a
+          v-for="icon in icons.slice(0, 6 - nbSocialIcons)"
+          :key="icon.label"
+          class="icon-link"
+          :aria-label="icon.label"
+          :href="icon.href"
+          target="_blank"
+          :rel="icon?.rel || 'noopener noreferrer'"
+        >
           <Icon :name="icon.icon" />
         </a>
         <AppSocialIcons ref="socialIcons" />
