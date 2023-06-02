@@ -5,7 +5,7 @@ layout: basic
 main:
   fluid: false
 ---
-::container-section{aos="fade-up" margin="{space.24} 0 {space.12}" padding="{space.24} 0 {space.12}" }
+::container-section{aos="fade-up" padding="{space.12} 0 {space.12}" }
 #root
   ::glow
   ---
@@ -25,7 +25,7 @@ main:
       initial: radial-gradient(circle at 40% 50%, {color.primary.600}, {color.secondary.700} 52%)
       lg: radial-gradient(circle at 55% 72%, {color.primary.600} 0%, {color.primary.700} 12%, {color.primary.800} 22%, {color.secondary.800} 40%, {color.secondary.900} 64%)
   noise: true
-  backgroundImage: linear-gradient(transparent 75%, {docus.body.backgroundColor})
+  backgroundImage: linear-gradient(transparent 100%, {docus.body.backgroundColor})
   afterBlendMode:
     light: color
     dark: multiply

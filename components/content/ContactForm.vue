@@ -83,25 +83,28 @@ const { value: userReceive, attrs: userReceiveAttrs } = register('userReceive')
 </script>
 
 <template>
-  <div class="grid grid-cols-2 max-w-77rem gap-10 mx-auto">
+  <div class="grid grid-cols-2 max-w-77rem gap-10 mx-auto py-10">
     <Card noise class="">
       <form class="text-start text-white flex flex-col gap-12px">
-        <AInput id="first_name" v-model="firstName" type="string" v-bind="firstNameAttrs" :error="errors.firstName">
-          <template #label>
-            <label for="first_name">
-              <span>First name </span>
-              <span class="text-$color-primary-500">*</span>
-            </label>
-          </template>
-        </AInput>
-        <AInput id="last_name" v-model="lastName" type="string" v-bind="lastNameAttrs" :error="errors.lastName">
-          <template #label>
-            <label for="last_name">
-              <span>Last name </span>
-              <span class="text-$color-primary-500">*</span>
-            </label>
-          </template>
-        </AInput>
+        <div class="grid grid-cols-2 items-end gap-10px">
+          <AInput id="first_name" v-model="firstName" type="string" v-bind="firstNameAttrs" :error="errors.firstName">
+            <template #label>
+              <label for="first_name">
+                <span>First name </span>
+                <span class="text-$color-primary-500">*</span>
+              </label>
+            </template>
+          </AInput>
+          <AInput id="last_name" v-model="lastName" type="string" v-bind="lastNameAttrs" :error="errors.lastName">
+            <template #label>
+              <label for="last_name">
+                <span>Last name </span>
+                <span class="text-$color-primary-500">*</span>
+              </label>
+            </template>
+          </AInput>
+
+        </div>
 
         <AInput id="work_email" v-model="workEmail" type="string" v-bind="workEmailAttrs" :error="errors.workEmail">
           <template #label>
@@ -149,9 +152,11 @@ const { value: userReceive, attrs: userReceiveAttrs } = register('userReceive')
           </template>
         </ATextarea>
 
-        <p>
+        <p class="text-14px">
           By submitting this form, I agree to the processing of my personal data for the purpose of responding to my
-          request, in compliance with ThuDo Multimedia’s <NuxtLink href="">Privacy Notice.</NuxtLink>
+          request, in compliance with ThuDo Multimedia’s <NuxtLink class="text-$color-primary-500 hover:underline"
+            href="/terms">Privacy
+            Notice</NuxtLink>
         </p>
 
         <ACheckbox v-bind="userReceiveAttrs" v-model="userReceive">
@@ -165,11 +170,42 @@ const { value: userReceive, attrs: userReceiveAttrs } = register('userReceive')
       </form>
     </Card>
 
-    <div class="grid place-items-center">
-      <ButtonLink>
+    <div class="flex flex-col gap-48px items-center py-48px">
+      <ButtonLink size="large" href="tel:+842436687038;123">
         Call us on (+84) 24 3668 7038 - ext 123
       </ButtonLink>
-      <NuxtImg src="/contact-image.png" width="240" height="240" />
+      <div class="grid grid-cols-[1fr_2fr] gap-24px text-white">
+        <p class="font-bold">
+          Contact
+        </p>
+        <div>
+          <p>
+            <strong>
+              24/7 Call center:
+            </strong>
+            1900 585868
+          </p>
+          <p>
+            <strong>
+              Sale team:
+            </strong>
+            (+84) 912993743
+          </p>
+          <p>
+            <strong>
+              E-mail:
+            </strong>
+            sales@gviet.vn
+          </p>
+        </div>
+        <p class="font-bold">
+          Post address
+        </p>
+        <p>
+          Floor 10, No. 48 Le Van Luong, N2 New Urban Area, Nhan Chinh Ward, Thanh Xuan District, City. Hanoi
+        </p>
+      </div>
+      <NuxtImg src="/contact-image.png" width="500" height="500" />
     </div>
   </div>
 </template>
