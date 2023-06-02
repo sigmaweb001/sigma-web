@@ -31,7 +31,7 @@ const options = getCountries().map((countryCode) => {
 
 
   const countryName = getFlag(countryCode) + ' ' + getCountryName(countryCode)
-  return { value: countryCode, text: countryName, phone: `+` + getCountryCallingCode(countryCode) }
+  return { value: countryCode, text: countryName, phone: '+' + getCountryCallingCode(countryCode) }
 })
 
 const defaultCountry = options.find((option) => option.value === 'VN')
@@ -84,10 +84,19 @@ const { value: userReceive, attrs: userReceiveAttrs } = register('userReceive')
 
 <template>
   <div class="grid grid-cols-2 max-w-77rem gap-10 mx-auto py-10">
-    <Card noise class="">
+    <Card
+      noise
+      class=""
+    >
       <form class="text-start text-white flex flex-col gap-12px">
         <div class="grid grid-cols-2 items-end gap-10px">
-          <AInput id="first_name" v-model="firstName" type="string" v-bind="firstNameAttrs" :error="errors.firstName">
+          <AInput
+            id="first_name"
+            v-model="firstName"
+            type="string"
+            v-bind="firstNameAttrs"
+            :error="errors.firstName"
+          >
             <template #label>
               <label for="first_name">
                 <span>First name </span>
@@ -95,7 +104,13 @@ const { value: userReceive, attrs: userReceiveAttrs } = register('userReceive')
               </label>
             </template>
           </AInput>
-          <AInput id="last_name" v-model="lastName" type="string" v-bind="lastNameAttrs" :error="errors.lastName">
+          <AInput
+            id="last_name"
+            v-model="lastName"
+            type="string"
+            v-bind="lastNameAttrs"
+            :error="errors.lastName"
+          >
             <template #label>
               <label for="last_name">
                 <span>Last name </span>
@@ -103,10 +118,15 @@ const { value: userReceive, attrs: userReceiveAttrs } = register('userReceive')
               </label>
             </template>
           </AInput>
-
         </div>
 
-        <AInput id="work_email" v-model="workEmail" type="string" v-bind="workEmailAttrs" :error="errors.workEmail">
+        <AInput
+          id="work_email"
+          v-model="workEmail"
+          type="string"
+          v-bind="workEmailAttrs"
+          :error="errors.workEmail"
+        >
           <template #label>
             <label for="work_email">
               <span>Work email </span>
@@ -116,8 +136,16 @@ const { value: userReceive, attrs: userReceiveAttrs } = register('userReceive')
         </AInput>
 
         <div class="grid grid-cols-3 items-end gap-10px">
-          <ASelect hint="&nbsp" v-bind="countryAttrs" emitObject v-model="country" :options="options" class="col-span-1"
-            optionsWrapperClasses="max-w-200px" listClasses="max-h-400px">
+          <ASelect
+            v-bind="countryAttrs"
+            v-model="country"
+            hint="&nbsp"
+            emit-object
+            :options="options"
+            class="col-span-1"
+            options-wrapper-classes="max-w-200px"
+            list-classes="max-h-400px"
+          >
             <template #label>
               <label for="phone">
                 <span>Phone </span>
@@ -125,16 +153,27 @@ const { value: userReceive, attrs: userReceiveAttrs } = register('userReceive')
               </label>
             </template>
           </ASelect>
-          <AInput v-bind="phoneAttrs" id="phone" v-model="phone" class="col-span-2" type="tel"
-            inputWrapperClasses="!spacing:gap-x-0"
-            :hint="`Example: ${getExampleNumber(country?.value, example).formatNational()}`" :error="errors.phone">
+          <AInput
+            v-bind="phoneAttrs"
+            id="phone"
+            v-model="phone"
+            class="col-span-2"
+            type="tel"
+            input-wrapper-classes="!spacing:gap-x-0"
+            :hint="`Example: ${getExampleNumber(country?.value, example).formatNational()}`"
+            :error="errors.phone"
+          >
             <template #prepend-inner>
               <span class="flex-shrink-0">{{ country?.phone }}</span>
             </template>
           </AInput>
         </div>
 
-        <ATextarea v-model="yourPoint" v-bind="yourPointAttrs" :error="errors.yourPoint">
+        <ATextarea
+          v-model="yourPoint"
+          v-bind="yourPointAttrs"
+          :error="errors.yourPoint"
+        >
           <template #label>
             <label for="phone">
               <span>Tell us about your project and your pain point </span>
@@ -143,7 +182,12 @@ const { value: userReceive, attrs: userReceiveAttrs } = register('userReceive')
           </template>
         </ATextarea>
 
-        <ATextarea id="yourQuestion" v-model="yourQuestion" v-bind="yourQuestionAttrs" :error="errors.yourQuestion">
+        <ATextarea
+          id="yourQuestion"
+          v-model="yourQuestion"
+          v-bind="yourQuestionAttrs"
+          :error="errors.yourQuestion"
+        >
           <template #label>
             <label for="yourQuestion">
               <span>Your question for us </span>
@@ -154,24 +198,38 @@ const { value: userReceive, attrs: userReceiveAttrs } = register('userReceive')
 
         <p class="text-14px">
           By submitting this form, I agree to the processing of my personal data for the purpose of responding to my
-          request, in compliance with ThuDo Multimedia’s <NuxtLink class="text-$color-primary-500 hover:underline"
-            href="/terms">Privacy
-            Notice</NuxtLink>
+          request, in compliance with ThuDo Multimedia’s <NuxtLink
+            class="text-$color-primary-500 hover:underline"
+            href="/terms"
+          >
+            Privacy
+            Notice
+          </NuxtLink>
         </p>
 
-        <ACheckbox v-bind="userReceiveAttrs" v-model="userReceive">
+        <ACheckbox
+          v-bind="userReceiveAttrs"
+          v-model="userReceive"
+        >
           I would like to opt-in to receive updates from ThuDo Multimedia about products, news, webinars, and events.
         </ACheckbox>
 
 
-        <ButtonLink class="mx-auto" @click="handleSubmit" type="submit">
+        <ButtonLink
+          class="mx-auto"
+          type="submit"
+          @click="handleSubmit"
+        >
           Sending to us
         </ButtonLink>
       </form>
     </Card>
 
     <div class="flex flex-col gap-48px items-center py-48px">
-      <ButtonLink size="large" href="tel:+842436687038;123">
+      <ButtonLink
+        size="large"
+        href="tel:+842436687038;123"
+      >
         Call us on (+84) 24 3668 7038 - ext 123
       </ButtonLink>
       <div class="grid grid-cols-[1fr_2fr] gap-24px text-white">
@@ -205,7 +263,11 @@ const { value: userReceive, attrs: userReceiveAttrs } = register('userReceive')
           Floor 10, No. 48 Le Van Luong, N2 New Urban Area, Nhan Chinh Ward, Thanh Xuan District, City. Hanoi
         </p>
       </div>
-      <NuxtImg src="/contact-image.png" width="500" height="500" />
+      <NuxtImg
+        src="/contact-image.png"
+        width="500"
+        height="500"
+      />
     </div>
   </div>
 </template>
