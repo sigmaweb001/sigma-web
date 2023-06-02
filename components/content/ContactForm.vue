@@ -42,14 +42,20 @@ const { register, handleSubmit, handleReset, errors } = useForm({
     lastName: '',
     workEmail: '',
     country: defaultCountry,
-    phone: ''
+    phone: '',
+    yourPoint: '',
+    yourQuestion: '',
+    userReceive: false
   },
   validate: zodResolver(
     z.object({
       firstName: z.string().nonempty('First name is required'),
       lastName: z.string().nonempty('Last name is required'),
       workEmail: z.string().email('Invalid email address'),
-      phone: z.string().nonempty('Phone number is required')
+      phone: z.string().nonempty('Phone number is required'),
+      yourPoint: z.string().nonempty('User point is required'),
+      yourQuestion: z.string().nonempty('User question is required'),
+      userReceive: z.boolean()
     })
   ),
   onSubmit(data) {
@@ -69,6 +75,9 @@ const { value: phone, attrs: phoneAttrs } = register('phone', {
     }
   }
 })
+const { value: yourPoint, attrs: yourPointAttrs } = register('yourPoint')
+const { value: yourQuestion, attrs: yourQuestionAttrs } = register('yourQuestion')
+const { value: userReceive, attrs: userReceiveAttrs } = register('userReceive')
 
 
 </script>
@@ -76,7 +85,7 @@ const { value: phone, attrs: phoneAttrs } = register('phone', {
 <template>
   <div class="grid grid-cols-2 max-w-77rem gap-10 mx-auto">
     <Card noise class="">
-      <form class="text-start text-white flex flex-col gap-24px">
+      <form class="text-start text-white flex flex-col gap-12px">
         <AInput id="first_name" v-model="firstName" type="string" v-bind="firstNameAttrs" :error="errors.firstName">
           <template #label>
             <label for="first_name">
@@ -121,16 +130,36 @@ const { value: phone, attrs: phoneAttrs } = register('phone', {
             </template>
           </AInput>
         </div>
-        Tell us about your project and your pain point *
 
-        Your question for us *
+        <ATextarea v-model="yourPoint" v-bind="yourPointAttrs" :error="errors.yourPoint">
+          <template #label>
+            <label for="phone">
+              <span>Tell us about your project and your pain point </span>
+              <span class="text-$color-primary-500">*</span>
+            </label>
+          </template>
+        </ATextarea>
 
-        By submitting this form, I agree to the processing of my personal data for the purpose of responding to my
-        request, in compliance with ThuDo Multimedia’s Privacy Notice.
+        <ATextarea id="yourQuestion" v-model="yourQuestion" v-bind="yourQuestionAttrs" :error="errors.yourQuestion">
+          <template #label>
+            <label for="yourQuestion">
+              <span>Your question for us </span>
+              <span class="text-$color-primary-500">*</span>
+            </label>
+          </template>
+        </ATextarea>
 
-        I would like to opt-in to receive updates from ThuDo Multimedia about products, news, webinars, and events.
+        <p>
+          By submitting this form, I agree to the processing of my personal data for the purpose of responding to my
+          request, in compliance with ThuDo Multimedia’s <NuxtLink href="">Privacy Notice.</NuxtLink>
+        </p>
 
-        <ButtonLink class="ml-auto" @click="handleSubmit" type="submit">
+        <ACheckbox v-bind="userReceiveAttrs" v-model="userReceive">
+          I would like to opt-in to receive updates from ThuDo Multimedia about products, news, webinars, and events.
+        </ACheckbox>
+
+
+        <ButtonLink class="mx-auto" @click="handleSubmit" type="submit">
           Sending to us
         </ButtonLink>
       </form>
