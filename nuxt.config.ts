@@ -124,7 +124,7 @@ export default defineNuxtConfig({
     includeWorkspace: true
   },
   devtools: {
-    enabled: true,
+    enabled: process.env.DEV_TOOL === 'true',
     componentInspector: {
       toggleComboKey: 'meta-shift-x',
     },
