@@ -60,7 +60,7 @@ else
     >
 
     <!-- 👉 Typography -->
-    <div
+    <!-- <div
       v-if="_isTypographyUsed"
       class="a-card-typography-wrapper"
     >
@@ -79,7 +79,7 @@ else
           />
         </template>
       </ATypography>
-    </div>
+    </div> -->
 
     <slot />
   </div>

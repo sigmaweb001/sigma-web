@@ -107,6 +107,7 @@ function middleware() {
         v-bind="{ ...$attrs, ...slotProps }"
         ref="selectRef"
         class="a-select-input cursor-pointer"
+        readonly
         :value="props.modelValue ? props.modelValue.text ?? props.modelValue : undefined"
       >
     </template>
@@ -121,7 +122,7 @@ function middleware() {
     <ACard
       v-show="isOptionsVisible"
       ref="refFloating"
-      class="a-select-options-container bg-[hsl(var(--a-surface-c))]"
+      class="a-select-options-container bg-[hsl(var(--a-surface-c))] "
       :class="props.optionsWrapperClasses"
       @click="closeOptions"
     >
@@ -138,7 +139,7 @@ function middleware() {
         :items="options"
         :model-value="props.modelValue"
         :emit-object="props.emitObject"
-        class="a-select-options-list"
+        class="a-select-options-list of-auto"
         :class="props.listClasses"
         @click:item="(item) => handleOptionClick(item)"
       >

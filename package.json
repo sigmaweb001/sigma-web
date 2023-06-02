@@ -48,6 +48,7 @@
     "@vorms/resolvers": "^1.1.0",
     "aos": "^2.3.4",
     "eslint": "^8.41.0",
+    "libphonenumber-js": "^1.10.31",
     "nuxt": "^3.5.2",
     "release-it": "^15.10.3",
     "sass": "^1.62.1",

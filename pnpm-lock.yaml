@@ -60,6 +60,9 @@ devDependencies:
   eslint:
     specifier: ^8.41.0
     version: 8.41.0
+  libphonenumber-js:
+    specifier: ^1.10.31
+    version: 1.10.31
   nuxt:
     specifier: ^3.5.2
     version: 3.5.2(@types/node@20.2.3)(eslint@8.41.0)(sass@1.62.1)(typescript@5.1.3)
@@ -5810,6 +5813,10 @@ packages:
     dependencies:
       prelude-ls: 1.2.1
       type-check: 0.4.0
+
+  /libphonenumber-js@1.10.31:
+    resolution: {integrity: sha512-qYTzElLePmz3X/6I0JPX5n87tu7jVIMtR/yRLi5PGVPvMCMSVTCR+079KmdNK005i4dBjFxY/bMYceI9IBp47w==}
+    dev: true
 
   /lilconfig@2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
