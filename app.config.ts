@@ -16,8 +16,8 @@ export default defineAppConfig({
     },
     github: {
       dir: '/content',
-      branch: 'document-api-blog',
-      repo: 'web',
+      branch: 'origin-web-next',
+      repo: 'web-nexr',
       owner: 'sigmaott',
       edit: true
     },
