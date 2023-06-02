@@ -6,7 +6,7 @@ main:
   fluid: false
 ---
 ::container-section{aos="fade-up" margin="{space.24} 0 {space.12}" padding="{space.24} 0 {space.12}" }
-<!-- #root
+#root
   ::glow
   ---
   height: 100%
@@ -30,7 +30,7 @@ main:
     light: color
     dark: multiply
   ---
-  :: -->
+  ::
 
 #default
   ::section-header

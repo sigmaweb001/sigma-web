@@ -1,8 +1,5 @@
 import { Transition, TransitionGroup, defineComponent, h } from 'vue'
-// import { capitalize } from '@/utils/helpers'
-export function capitalize(str: string) {
-  return (str[0] as string).toUpperCase() + str.slice(1)
-}
+
 export function createTransition(name: string) {
   return defineComponent({
     name: `A${capitalize(name)}Transition`,

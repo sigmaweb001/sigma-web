@@ -79,42 +79,80 @@ function middleware() {
 
 <template>
   <!-- 👉 Select Input -->
-  <ABaseInput v-bind="{
-    ..._baseInputProps,
-    inputWrapperClasses: ['!cursor-pointer', _baseInputProps.inputWrapperClasses],
-    class: $attrs.class,
-  }" ref="refReference" append-inner-icon="i-bx-chevron-down" class="a-select" :input-wrapper-attrs="{
-  onClick: handleInputClick,
-}">
+  <ABaseInput
+    v-bind="{
+      ..._baseInputProps,
+      inputWrapperClasses: ['!cursor-pointer', _baseInputProps.inputWrapperClasses],
+      class: $attrs.class,
+    }"
+    ref="refReference"
+    append-inner-icon="i-bx-chevron-down"
+    class="a-select"
+    :input-wrapper-attrs="{
+      onClick: handleInputClick,
+    }"
+  >
     <!-- ℹ️ Recursively pass down slots to child -->
-    <template v-for="(_, name) in aSelectBaseInputSlots" #[name]="slotProps">
-      <slot :name="name" v-bind="slotProps" />
+    <template
+      v-for="(_, name) in aSelectBaseInputSlots"
+      #[name]="slotProps"
+    >
+      <slot
+        :name="name"
+        v-bind="slotProps"
+      />
     </template>
     <template #default="slotProps">
-      <input v-bind="{ ...$attrs, ...slotProps }" ref="selectRef" readonly class="a-select-input cursor-pointer"
-        :value="props.modelValue ? props.modelValue.text ?? props.modelValue : undefined">
+      <input
+        v-bind="{ ...$attrs, ...slotProps }"
+        ref="selectRef"
+        class="a-select-input cursor-pointer"
+        :value="props.modelValue ? props.modelValue.text ?? props.modelValue : undefined"
+      >
     </template>
   </ABaseInput>
 
   <!-- 👉 Select options -->
-  <AFloating :reference-el="refReference && refReference.refInputContainer" :middleware="middleware"
-    class="a-select-floating">
-    <ACard v-show="isOptionsVisible" ref="refFloating" class="a-select-options-container bg-[hsl(var(--a-surface-c))]"
-      :class="props.optionsWrapperClasses" @click="closeOptions">
-      <!-- ℹ️ Recursively pass down slots to child -->
-      <template v-for="(_, name) in aSelectCardSlots" #[name]="slotProps">
-        <slot :name="name" v-bind="slotProps" />
+  <AFloating
+    :reference-el="refReference && refReference.refInputContainer"
+    :middleware="middleware"
+    class="a-select-floating"
+  >
+    <ACard
+      v-show="isOptionsVisible"
+      ref="refFloating"
+      class="a-select-options-container bg-[hsl(var(--a-surface-c))]"
+      :class="props.optionsWrapperClasses"
+      @click="closeOptions"
+    >
+      <template
+        v-for="(_, name) in aSelectCardSlots"
+        #[name]="slotProps"
+      >
+        <slot
+          :name="name"
+          v-bind="slotProps"
+        />
       </template>
-      <AList :items="options" :model-value="props.modelValue" :emit-object="props.emitObject"
-        class="a-select-options-list" :class="props.listClasses" @click:item="(item) => handleOptionClick(item)">
-        <!-- ℹ️ Recursively pass down slots to child -->
+      <AList
+        :items="options"
+        :model-value="props.modelValue"
+        :emit-object="props.emitObject"
+        class="a-select-options-list"
+        :class="props.listClasses"
+        @click:item="(item) => handleOptionClick(item)"
+      >
         <template
           v-for="{ originalKey: originalSlotName, prefixedKey: updatedSlotName } in aSelectListSlotsWithPrefixMeta"
-          #[originalSlotName]="slotProps">
-          <slot :name="updatedSlotName" v-bind="{
-            ...slotProps,
-            handleOptionClick,
-          }" />
+          #[originalSlotName]="slotProps"
+        >
+          <slot
+            :name="updatedSlotName"
+            v-bind="{
+              ...slotProps,
+              handleOptionClick,
+            }"
+          />
         </template>
       </AList>
     </ACard>

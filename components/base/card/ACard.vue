@@ -15,6 +15,7 @@ defineOptions({
 })
 
 const slots = useSlots()
+console.log('[LOG] ~ file: ACard.vue:18 ~ slots:', slots)
 
 const { getLayerClasses } = useLayer()
 const { styles, classes } = getLayerClasses(
@@ -36,30 +37,50 @@ else
 </script>
 
 <template>
-  <div class="a-card relative overflow-hidden bg-[hsla(var(--a-surface-c),var(--un-bg-opacity,1))]" :class="classes"
-    :style="styles">
+  <div
+    class="a-card relative overflow-hidden bg-[hsla(var(--a-surface-c),var(--un-bg-opacity,1))]"
+    :class="classes"
+    :style="styles"
+  >
     <!-- 👉 Loader  -->
     <!--
         ℹ️ We have intentionally placed loader on top.
         Because we have card content style based on last child pseudo selector.
     -->
-    <ALoader v-if="typeof props.loading !== 'undefined'"
-      v-bind="typeof props.loading === 'boolean' ? { loading: props.loading } : props.loading" />
+    <ALoader
+      v-if="typeof props.loading !== 'undefined'"
+      v-bind="typeof props.loading === 'boolean' ? { loading: props.loading } : props.loading"
+    />
 
     <!-- 👉 Image -->
-    <img v-if="props.img" :src="props.img" :alt="props.imgAlt">
+    <img
+      v-if="props.img"
+      :src="props.img"
+      :alt="props.imgAlt"
+    >
 
     <!-- 👉 Typography -->
-    <div v-if="_isTypographyUsed" class="a-card-typography-wrapper">
-      <ATypography :title="props.title" :subtitle="props.subtitle" :text="Object.values(_textProp) as ConfigurableValue">
-        <!-- ℹ️ Recursively pass down slots to child -->
-        <template v-for="(_, name) in aCardTypographySlots" #[name]="slotProps">
-          <slot :name="name" v-bind="slotProps" />
+    <div
+      v-if="_isTypographyUsed"
+      class="a-card-typography-wrapper"
+    >
+      <ATypography
+        :title="props.title"
+        :subtitle="props.subtitle"
+        :text="Object.values(_textProp) as ConfigurableValue"
+      >
+        <template
+          v-for="(_, name) in aCardTypographySlots"
+          #[name]="slotProps"
+        >
+          <slot
+            :name="name"
+            v-bind="slotProps"
+          />
         </template>
       </ATypography>
     </div>
 
-    <!-- 👉 Slot: Default -->
     <slot />
   </div>
 </template>

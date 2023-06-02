@@ -11,7 +11,7 @@ export type ConfigurableValue = undefined | ContentType | [ContentType, ClassAtt
 
 export function useConfigurable(value: MaybeRef<ConfigurableValue>) {
   return computed(() => {
-    const _value = toRef(value)
+    const _value = toValue(value)
 
     const [content, classes, attrs] = _value === undefined
       ? []

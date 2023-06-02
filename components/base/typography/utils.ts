@@ -11,7 +11,6 @@ export function isTypographyUsed(props: { [K in keyof ATypographyProps]: ToRef<A
         return !!prop.value
 
       if (typeof prop.value === 'number') {
-        // Thanks: https://stackoverflow.com/a/69422789/10796681
         // Check if prop is not null or undefined
         return (prop.value ?? null) !== null
       }

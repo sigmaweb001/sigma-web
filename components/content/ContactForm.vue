@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useForm } from '@vorms/core'
-import { zodResolver } from '@vorms/resolvers/zod';
-import z from 'zod';
+import { zodResolver } from '@vorms/resolvers/zod'
+import z from 'zod'
 
 const { register, handleSubmit, handleReset } = useForm({
   initialValues: {
@@ -32,9 +32,17 @@ const fruits = ['banana', 'apple', 'watermelon', 'orange']
 
 <template>
   <div class="grid grid-cols-2 max-w-77rem gap-10 mx-auto">
-    <Card noise class="">
+    <Card
+      noise
+      class=""
+    >
       <form class="text-start">
-        <AInput id="first_name" v-model="firstName" type="string" v-bind="firstNameAttrs">
+        <AInput
+          id="first_name"
+          v-model="firstName"
+          type="string"
+          v-bind="firstNameAttrs"
+        >
           <template #label>
             <label for="first_name">
               <span>First name </span>
@@ -42,7 +50,12 @@ const fruits = ['banana', 'apple', 'watermelon', 'orange']
             </label>
           </template>
         </AInput>
-        <AInput id="last_name" v-model="lastName" type="string" v-bind="lastNameAttrs">
+        <AInput
+          id="last_name"
+          v-model="lastName"
+          type="string"
+          v-bind="lastNameAttrs"
+        >
           <template #label>
             <label for="last_name">
               <span>Last name </span>
@@ -51,7 +64,12 @@ const fruits = ['banana', 'apple', 'watermelon', 'orange']
           </template>
         </AInput>
 
-        <AInput id="work_email" v-model="workEmail" type="string" v-bind="workEmailAttrs">
+        <AInput
+          id="work_email"
+          v-model="workEmail"
+          type="string"
+          v-bind="workEmailAttrs"
+        >
           <template #label>
             <label for="work_email">
               <span>Work email </span>
@@ -61,7 +79,18 @@ const fruits = ['banana', 'apple', 'watermelon', 'orange']
         </AInput>
 
         <div>
-          <ASelect v-model="selectedFruit" :options="fruits" :hint="`value: ${selectedFruit}`" />
+          <ASelect
+            v-model="selectedFruit"
+            :options="fruits"
+            :hint="`value: ${selectedFruit}`"
+          >
+            <template #label>
+              <label for="Phone">
+                <span>Phone </span>
+                <span class="text-$color-primary-500">*</span>
+              </label>
+            </template>
+          </ASelect>
         </div>
 
         <ButtonLink @click="handleSubmit">
@@ -74,8 +103,11 @@ const fruits = ['banana', 'apple', 'watermelon', 'orange']
       <ButtonLink>
         Call us on (+84) 24 3668 7038 - ext 123
       </ButtonLink>
-      <NuxtImg src="/contact-image.png" width="240" height="240" />
+      <NuxtImg
+        src="/contact-image.png"
+        width="240"
+        height="240"
+      />
     </div>
   </div>
 </template>
-
