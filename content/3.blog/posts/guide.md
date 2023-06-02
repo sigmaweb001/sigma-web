@@ -8,7 +8,7 @@ date: 02/06/2023
 author: Son Hong Do
 position: Software Engineer at Sigma
 avatar: https://scontent.fhan17-1.fna.fbcdn.net/v/t39.30808-6/340922816_749073590254214_4809946987104508067_n.jpg?_nc_cat=101&cb=99be929b-59f725be&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=aGqfO7-qbacAX_0rMOg&_nc_ht=scontent.fhan17-1.fna&oh=00_AfAi0NW2sGTAbkG5mPG8PDIZplnS2VAXdMXqeQ8PfUF87w&oe=647DFCE4
-avatarLink: https://sidebase.io
+avatarLink: https://github.com/sondh0127
 
 published: false
 ---
