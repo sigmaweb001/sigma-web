@@ -9,6 +9,6 @@ defineProps({
 
 <template>
   <time :title="date.toDateString()">
-    {{ date.getDate() }}.{{ date.getMonth() + 1 }}.{{ date.getFullYear() }}
+    {{ date.toLocaleDateString() }}
   </time>
 </template>
