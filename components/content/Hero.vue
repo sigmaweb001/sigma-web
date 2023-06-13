@@ -21,7 +21,7 @@ watch(height, (value) => {
           <ContentSlot :use="$slots.announce" unwrap="p" />
         </p>
 
-        <h1 class="title !leading-[1.08]">
+        <h1 class="title !leading-[1.2]">
           <ContentSlot :use="$slots.title" unwrap="p">
             Hero Title
           </ContentSlot>

@@ -35,6 +35,10 @@
   box-shadow: none !important;
 }
 
+html, body {
+  font-family: 'Inter' !important;
+}
+
 body {
   /* overflow-y: scroll; */
   -webkit-font-smoothing: antialiased;
