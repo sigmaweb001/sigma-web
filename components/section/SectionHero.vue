@@ -45,9 +45,11 @@
         </ul>
 
         <div class="mt-6 flex flex-col">
-          <SButton size="lg">
-            Get demo
-          </SButton>
+          <NuxtLink to="/get-in-touch">
+            <SButton size="lg">
+              Get demo
+            </SButton>
+          </NuxtLink>
         </div>
       </div>
     </div>

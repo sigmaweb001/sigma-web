@@ -63,9 +63,7 @@ const benefitTwo = {
 <template>
   <div>
     <SectionHero />
-    <SectionTitle pretitle="Core Components" title="Unleashing the Potential in Sigma Streaming Platform">
-
-    </SectionTitle>
+    <SectionTitle pretitle="Core Components" title="Unleashing the Potential in Sigma Streaming Platform" />
     <SectionBenefits :data="benefitOne" />
 
     <SectionBenefits img-pos="right" :data="benefitTwo" />
