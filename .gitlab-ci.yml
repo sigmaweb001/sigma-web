@@ -44,7 +44,7 @@ image build dev:
   script:
     - docker build -t $HARBOR_IMAGE_TAG:$CI_COMMIT_SHORT_SHA .
   only:
-    - v2-sigma
+    - main
 
 release image dev to harbor:
   stage: docker-release
@@ -55,7 +55,7 @@ release image dev to harbor:
   script:
     - docker push $HARBOR_IMAGE_TAG:$CI_COMMIT_SHORT_SHA
   only:
-    - v2-sigma
+    - main
 
 
 ########### Docker release CMS #########
