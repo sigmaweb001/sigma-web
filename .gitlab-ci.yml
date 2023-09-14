@@ -44,8 +44,12 @@ image build dev:
     - dind
   script:
     - docker build -t $HARBOR_IMAGE_TAG:$CI_COMMIT_SHORT_SHA .
-  only:
-    - main
+  rules:
+    - changes:
+      - studio/**/*
+      when: never
+       
+    - when: always
 
 studio-image-build:
   stage: build
