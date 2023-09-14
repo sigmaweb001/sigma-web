@@ -1,54 +1,35 @@
 <script setup lang="ts">
-const socials = ['twitter', 'facebook', 'instagram', 'youtube', 'github', 'medium']
-
-const { config } = useDocus()
-
-const icons = computed<any>(() => {
-  return Object.entries(config.value.socials || {})
-    .map(([key, value]) => {
-      if (typeof value === 'object') {
-        return value
-      } else if (typeof value === 'string' && value && socials.includes(key)) {
-        return {
-          href: `https://${key}.com/${value}`,
-          icon: `fa-brands:${key}`,
-          label: value,
-          rel: 'noopener noreferrer'
-        }
-      } else {
-        return null
-      }
-    })
-    .filter(Boolean)
-})
+const icons = computed<any>(() => [
+  {
+    name: 'facebook',
+    href: 'https://www.facebook.com/sigma-streaming',
+    rel: 'noopener noreferrer',
+    label: 'Facebook',
+    icon: 'i-fa-brands:facebook',
+  },
+  {
+    name: 'linkedin',
+    href: 'https://www.linkedin.com/in/sigma-streaming',
+    rel: 'noopener noreferrer',
+    label: 'LinkedIn',
+    icon: 'i-fa-brands:linkedin',
+  },
+  {
+    name: 'github',
+    href: 'https://www.github.com/sigma-streaming',
+    rel: 'noopener noreferrer',
+    label: 'GitHub',
+    icon: 'i-fa-brands:github',
+  },
+])
 </script>
 
 <template>
   <NuxtLink
-    v-for="icon in icons"
-    :key="icon.label"
-    :rel="icon.rel"
-    :title="icon.label"
-    :aria-label="icon.label"
-    :href="icon.href"
-    target="_blank"
+    v-for="icon in icons" :key="icon.label" :rel="icon.rel" :title="icon.label" :aria-label="icon.label"
+    :href="icon.href" target="_blank"
+    class="flex text-gray-500 hover:text-primary"
   >
-    <Icon
-      v-if="icon.icon"
-      :name="icon.icon"
-    />
+    <div v-if="icon.icon" :class="icon.icon" class="text-20px" />
   </NuxtLink>
 </template>
-
-<style lang="ts" scoped>
-css({
-  a: {
-    display: 'flex',
-    padding: '{docus.app.socialIcons.padding}',
-    color: '{elements.text.secondary.color.static}',
-    '&:hover': {
-      color: '{elements.text.secondary.color.hover}'
-    }
-  }
-})
-</style>

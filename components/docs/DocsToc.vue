@@ -1,55 +1,23 @@
-<script setup lang="ts">
-const { toc, page } = useContent()
-const { config } = useDocus()
-const emit = defineEmits(['move'])
+<script lang="ts" setup>
+const { outline, subheading } = definePropsRefs<{
+  outline: any[]
+  subheading?: boolean
+  subheadings?: any[]
+}>()
 </script>
 
 <template>
-  <div class="docs-toc">
-    <template v-if="toc?.links?.length">
-      <div class="docs-toc-title">
-        <span>Table of Contents</span>
-      </div>
-
-      <DocsTocLinks
-        :links="toc.links"
-        @move="emit('move')"
-      />
-    </template>
-    <div class="docs-toc-bottom">
-      <div v-if="config?.github?.edit">
-        <DocsEditOn v-slot="{ url }" :page="page">
-          <ProseA :href="url">
-            Edit this page
-          </ProseA>
-        </DocsEditOn>
-      </div>
-    </div>
-  </div>
+  <ol class="text-sm" :class="[subheading && 'mt-1 ml-6']">
+    <li v-for="heading in outline" :key="heading._key">
+      <a class="inline-flex py-1 text-slate-600 focus:text-violet-500 hover:text-violet-500" :href="`#${heading.slug}`">
+        <template v-for="item in heading.children" :key="item">
+          <span v-if="typeof item === 'string'">{{ item }}</span>
+          <span v-else>{{ item.text }}</span>
+        </template>
+      </a>
+      <template v-if="heading.subheadings.length > 0">
+        <DocsToc :outline="heading.subheadings" :subheading="true" />
+      </template>
+    </li>
+  </ol>
 </template>
-
-<style scoped lang="ts">
-css({
-  '.docs-toc': {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '8px',
-    '.docs-toc-title': {
-      display: 'none',
-      '@lg': {
-        display: 'block',
-        overflow: 'hidden',
-        fontSize: '{text.sm.fontSize}',
-        lineHeight: '{text.sm.lineHeight}',
-        fontWeight: '{fontWeight.semibold}'
-      }
-    },
-    '.docs-toc-bottom': {
-      fontSize: '{text.sm.fontSize}',
-      lineHeight: '{text.sm.lineHeight}',
-      color: '{elements.text.secondary.color.static}',
-      py: '{space.2}',
-    }
-  }
-})
-</style>

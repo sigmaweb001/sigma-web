@@ -2,12 +2,12 @@
 const props = defineProps({
   throttle: {
     type: Number,
-    default: 200
+    default: 200,
   },
   duration: {
     type: Number,
-    default: 2000
-  }
+    default: 2000,
+  },
 })
 
 const nuxtApp = useNuxtApp()
@@ -16,7 +16,7 @@ const nuxtApp = useNuxtApp()
 const data = reactive({
   percent: 0,
   show: false,
-  canSucceed: true
+  canSucceed: true,
 })
 // Local variables
 let _timer = null
@@ -24,31 +24,32 @@ let _throttle = null
 let _cut
 
 // Functions
-function clear () {
+function clear() {
   _timer && clearInterval(_timer)
   _throttle && clearTimeout(_throttle)
   _timer = null
 }
-function start () {
-  if (data.show) { return }
+function start() {
+  if (data.show)
+    return
   clear()
   data.percent = 0
   data.canSucceed = true
 
-  if (props.throttle) {
+  if (props.throttle)
     _throttle = setTimeout(startTimer, props.throttle)
-  } else {
+
+  else
     startTimer()
-  }
 }
-function increase (num) {
+function increase(num) {
   data.percent = Math.min(100, Math.floor(data.percent + num))
 }
-function finish () {
+function finish() {
   data.percent = 100
   hide()
 }
-function hide () {
+function hide() {
   clear()
   setTimeout(() => {
     data.show = false
@@ -57,7 +58,7 @@ function hide () {
     }, 400)
   }, 500)
 }
-function startTimer () {
+function startTimer() {
   data.show = true
   _cut = 10000 / Math.floor(props.duration)
   _timer = setInterval(() => {
@@ -66,7 +67,6 @@ function startTimer () {
 }
 
 // Hooks
-nuxtApp.hook('content:middleware:start', start)
 nuxtApp.hook('page:start', start)
 nuxtApp.hook('page:finish', finish)
 
@@ -75,11 +75,9 @@ onBeforeUnmount(() => clear)
 
 <template>
   <div
-    class="nuxt-progress"
-    :class="{
+    class="nuxt-progress" :class="{
       'nuxt-progress-failed': !data.canSucceed,
-    }"
-    :style="{
+    }" :style="{
       width: `${data.percent}%`,
       insetInlineStart: data.left,
       opacity: data.show ? 1 : 0,
@@ -88,19 +86,17 @@ onBeforeUnmount(() => clear)
   />
 </template>
 
-<style lang="ts">
-css({
-  '.nuxt-progress': {
-    height: '{docus.app.loadingBar.height}',
-    position: 'fixed',
-    top: '0px',
-    insetInlineStart: '0px',
-    insetInlineEnd: '0px',
-    width: '0%',
-    opacity: 1,
-    transition: 'width 0.1s, height 0.4s, opacity 0.4s',
-    background: 'repeating-linear-gradient(to right, {docus.app.loadingBar.gradientColorStop1} 0%, {docus.app.loadingBar.gradientColorStop2} 50%, {docus.app.loadingBar.gradientColorStop3} 100%)',
-    zIndex: '999999',
-  }
-})
+<style>
+.nuxt-progress {
+  height: 3px;
+  position: fixed;
+  top: 0px;
+  inset-inline-start: 0px;
+  inset-inline-end: 0px;
+  width: 0%;
+  opacity: 1;
+  transition: width 0.1s, height 0.4s, opacity 0.4s;
+  background: repeating-linear-gradient(to right, var(--color-primary-600) 0%, var(--color-primary-500) 50%, var(--color-secondary-500) 100%);
+  z-index: 999999;
+}
 </style>

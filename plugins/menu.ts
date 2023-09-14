@@ -23,15 +23,16 @@ export default defineNuxtPlugin((ctx: any) => {
 
         if (isVisible) {
           html.style.overflow = 'hidden'
-        } else {
+        }
+        else {
           setTimeout(() => {
             html.style.overflow = ''
           }, 100) /* had to put it, because of layout shift on leave transition */
         }
       },
       {
-        immediate: true
-      }
+        immediate: true,
+      },
     )
   }
 
@@ -41,8 +42,8 @@ export default defineNuxtPlugin((ctx: any) => {
         visible,
         close,
         open,
-        toggle
-      }
-    }
+        toggle,
+      },
+    },
   }
 })

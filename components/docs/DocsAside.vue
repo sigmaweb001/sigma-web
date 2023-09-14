@@ -1,36 +1,18 @@
-<script setup lang="ts">
-const { tree } = useDocus()
+<script lang="ts" setup>
+const { outline: items } = useDocsStore()
 </script>
 
 <template>
-  <nav>
-    <DocsNavigation v-if="tree?.length > 0" :links="tree" />
-    <NuxtLink v-else to="/" class="go-back-link">
-      <Icon name="heroicons-outline:arrow-left" class="icon" />
-      <span class="text">Go back</span>
-    </NuxtLink>
-  </nav>
+  <div class="sticky top-[55px] hidden h-max lg:block">
+    <nav class="w-64 px-5">
+      <template v-if="items.length > 0">
+        <div>
+          <h3 class="mb-2 mt-10 text-sm font-semibold">
+            On This Page
+          </h3>
+          <DocsToc :outline="items" />
+        </div>
+      </template>
+    </nav>
+  </div>
 </template>
-
-<style scoped lang="ts">
-css({
-  '.go-back-link': {
-    display: 'flex',
-    alignItems: 'center',
-    fontSize: '{text.sm.fontSize}',
-    lineHeight: '{text.sm.lineHeight}',
-    cursor: 'pointer',
-    color: '{elements.text.secondary.color.static}',
-    '&:hover': {
-      color: '{elements.text.secondary.color.hover}'
-    },
-    '.icon': {
-      width: '{space.4}',
-      height: '{space.4}'
-    },
-    '.text': {
-      marginInlineStart: '{space.2}'
-    }
-  }
-})
-</style>

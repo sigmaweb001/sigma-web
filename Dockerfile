@@ -1,29 +1,27 @@
-ARG NODE_VERSION=node:16-alpine
+FROM registry.gviet.vn:5000/library/node:18-alpine as build-stage
 
-FROM $NODE_VERSION AS dependency-base
-
-# create destination directory
-RUN mkdir -p /app
 WORKDIR /app
 RUN corepack enable
+RUN corepack prepare pnpm@8.6.2 --activate
 
-COPY .npmrc package.json pnpm-lock.yaml ./
-RUN pnpm install
+COPY .npmrc pnpm-lock.yaml ./
 
-FROM dependency-base AS production-base
+RUN pnpm fetch
+
 COPY . .
+
+RUN pnpm install -r --prefer-offline --frozen-lockfile
+
 RUN pnpm build
 
-#
-FROM $NODE_VERSION AS production
-COPY --from=production-base /app/.output /app/.output
+FROM registry.gviet.vn:5000/library/node:18-alpine AS production
+COPY --from=build-stage /app/.output /app/.output
 
-# Service hostname
 ENV NUXT_HOST=0.0.0.0
 ENV NUXT_PORT=8080
 ENV PORT=8080
 
 ENV NODE_ENV=production
 EXPOSE 8080
-# start the app
+
 ENTRYPOINT ["node", "app/.output/server/index.mjs"]

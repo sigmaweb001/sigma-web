@@ -1,143 +1,96 @@
-import { createResolver, logger, defineNuxtModule } from '@nuxt/kit'
-import { $fetch } from 'ofetch'
-import { version } from './package.json'
+import { pwa } from './config/pwa'
+import { appDescription } from './utils/index'
 
-const { resolve } = createResolver(import.meta.url)
-
-// That allows to overwrite these dependencies paths via `.env` for local development
-const envModules = {
-  tokens: process?.env?.THEME_DEV_TOKENS_PATH || '@nuxt-themes/tokens',
-  elements: process?.env?.THEME_DEV_ELEMENTS_PATH || '@nuxt-themes/elements',
-  studio: process?.env?.THEME_DEV_STUDIO_PATH || '@nuxthq/studio',
-  typography: process?.env?.THEME_DEV_TYPOGRAPHY_PATH || '@nuxt-themes/typography'
-}
-
-const updateModule = defineNuxtModule({
-  meta: {
-    name: '@nuxt-themes/docus'
-  },
-  setup(_, nuxt) {
-    if (nuxt.options.dev) {
-      $fetch('https://registry.npmjs.org/@nuxt-themes/docus/latest').then((release) => {
-        if (release.version > version) {
-          logger.info(`A new version of Docus (v${release.version}) is available: https://github.com/nuxt-themes/docus/releases/latest`)
-        }
-      }).catch(() => { })
-    }
-  }
-})
-
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  app: {
-    head: {
-      htmlAttrs: {
-        lang: 'en'
-      }
-    }
-  },
-  extends: [
-    envModules.typography,
-    envModules.elements
-  ],
   modules: [
-    envModules.tokens,
-    envModules.studio,
-    '@nuxtjs/color-mode',
-    '@nuxt/content',
     '@vueuse/nuxt',
-    'nuxt-config-schema',
-    resolve('./app/module'),
-    updateModule as any,
-    // https://github.com/nuxt-modules/plausible
-    '@nuxtjs/plausible',
-    // https://github.com/nuxt/devtools
-    '@nuxt/devtools',
     '@unocss/nuxt',
+    '@nuxtjs/color-mode',
+    '@vite-pwa/nuxt',
+    'radix-vue/nuxt',
+    '@nuxt/devtools',
+    '@nuxtjs/i18n',
+    '@vue-macros/nuxt',
+    '@nuxtjs/sanity',
+    '@nuxt/image',
   ],
+
+  i18n: {
+    defaultLocale: 'en',
+    strategy: 'prefix_except_default',
+    locales: ['en', 'vi'],
+    // locales: [
+    //   {
+    //     code: 'en',
+    //     file: 'en.json',
+    //   },
+    //   {
+    //     code: 'vi',
+    //     file: 'vi.json',
+    //   },
+    // ],
+    // lazy: true,
+    // langDir: 'locales',
+  },
+  sanity: {
+    projectId: 'xbopepf9',
+    dataset: 'production',
+  },
+
+  image: {
+    sanity: {
+      projectId: 'xbopepf9',
+      dataset: 'production',
+    },
+  },
+  experimental: {
+    // when using generate, payload js assets included in sw precache manifest
+    // but missing on offline, disabling extraction it until fixed
+    payloadExtraction: false,
+    inlineSSRStyles: false,
+    renderJsonPayloads: true,
+    typedPages: true,
+  },
+
   css: [
-    resolve('./assets/css/main.css'),
-    'aos/dist/aos.css', '@/assets/elements.styles.min.css',
-    '@/assets/scss/index.scss',
-    '@/preset-theme-default/src/scss/index.scss'
+    '@unocss/reset/tailwind.css',
+    'vue-json-pretty/lib/styles.css',
   ],
-  components: [
-    {
-      prefix: '',
-      path: resolve('./components/layout'),
-      global: true
-    },
-    {
-      prefix: '',
-      path: resolve('./components/content'),
-      global: true
-    },
-    {
-      prefix: '',
-      path: resolve('./components/global'),
-      global: true
-    },
-    {
-      prefix: '',
-      path: resolve('./components/app'),
-      global: true
-    },
-    {
-      prefix: '',
-      path: resolve('./components/docs'),
-      global: true
-    },
-    {
-      prefix: '',
-      path: resolve('./components/landing'),
-      global: true
-    },
-    {
-      prefix: '',
-      path: resolve('./components/base'),
-      pathPrefix: false,
-      extensions: ['.vue']
-    }
-  ],
-  pinceau: {
-    studio: true
-  },
-  content: {
-    documentDriven: true,
-    highlight: {
-      theme: {
-        dark: 'github-dark',
-        default: 'github-light'
-      },
-      preload: ['json', 'js', 'ts', 'html', 'css', 'vue', 'diff', 'shell', 'markdown', 'yaml', 'bash', 'ini']
-    },
-    navigation: {
-      fields: ['icon', 'titleTemplate', 'header', 'main', 'aside', 'footer']
-    }
-  },
+
   colorMode: {
     classSuffix: '',
-    dataValue: 'theme',
-    preference: 'dark'
   },
-  typescript: {
-    includeWorkspace: true
-  },
-  devtools: {
-    enabled: process.env.DEV_TOOL === 'true',
-    componentInspector: {
-      toggleComboKey: 'meta-shift-x',
+
+  nitro: {
+    esbuild: {
+      options: {
+        target: 'esnext',
+      },
     },
   },
+
   app: {
     head: {
-      script: [
-        {
-          src: 'https://unpkg.com/@stoplight/elements/web-components.min.js',
-          type: 'text/javascript',
-        }
+      viewport: 'width=device-width,initial-scale=1',
+      link: [
+        { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/login_sigma.png' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
       ],
+      meta: [
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'description', content: appDescription },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+      ],
+    },
+  },
 
-    }
-  }
+  // pwa,
+
+  devtools: {
+    enabled: true,
+  },
+  vite: {
+    optimizeDeps: { exclude: ['fsevents'] },
+  },
 })
