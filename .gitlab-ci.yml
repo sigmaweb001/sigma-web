@@ -45,6 +45,8 @@ image build dev:
   script:
     - docker build -t $HARBOR_IMAGE_TAG:$CI_COMMIT_SHORT_SHA .
   only:
+    changes:
+      - /**/*
     refs:
       - main
   except:
@@ -74,6 +76,8 @@ release image dev to harbor:
   script:
     - docker push $HARBOR_IMAGE_TAG:$CI_COMMIT_SHORT_SHA
   only:
+    changes:
+      - /**/*
     refs:
       - main
   except:
