@@ -46,11 +46,6 @@ image build dev:
     - docker build -t $HARBOR_IMAGE_TAG:$CI_COMMIT_SHORT_SHA .
   only:
     - main
-  except:
-    changes:
-      - studio/**/*
-    refs:
-      - main
 
 studio-image-build:
   stage: build
@@ -74,11 +69,6 @@ release image dev to harbor:
     - docker push $HARBOR_IMAGE_TAG:$CI_COMMIT_SHORT_SHA
   only:
     - main
-  except:
-    changes:
-      - studio/**/*
-    refs:
-      - main
 
 release-studio-dev-to-harbor:
   stage: docker-release
