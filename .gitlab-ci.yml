@@ -52,7 +52,7 @@ studio-image-build:
   tags:
     - dind
   script:
-    - docker -f ./studio/Dockerfile build -t $STUDIO_IMAGE_TAG:$CI_COMMIT_SHORT_SHA .
+    - docker build -f ./studio/Dockerfile -t $STUDIO_IMAGE_TAG:$CI_COMMIT_SHORT_SHA .
   only:
     changes:
       - studio/**/*
