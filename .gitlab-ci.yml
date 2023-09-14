@@ -17,6 +17,7 @@ image: docker:stable
 variables:
   REGISTRY_GROUP: sigma-livestream
   HARBOR_IMAGE_TAG: $REGISTRY/$REGISTRY_GROUP/$CI_PROJECT_NAME
+  STUDIO_IMAGE_TAG: $REGISTRY/$REGISTRY_GROUP/sanity-studio
   DOCKER_IMAGE_TAG: $DOCKER_USERNAME/$CI_PROJECT_NAME
   DEPLOY_IMAGE: $REGISTRY/$REGISTRY_GROUP/$CI_PROJECT_NAME
   DEPLOY_PATH: sigma-transcode-live/sigma-transcode-live
@@ -46,6 +47,18 @@ image build dev:
   only:
     - main
 
+studio-image-build:
+  stage: build
+  tags:
+    - dind
+  script:
+    - docker -f ./studio/Dockerfile build -t $STUDIO_IMAGE_TAG:$CI_COMMIT_SHORT_SHA .
+  only:
+    changes:
+      - studio/**/*
+    refs:
+      - main
+
 release image dev to harbor:
   stage: docker-release
   tags:
@@ -57,6 +70,19 @@ release image dev to harbor:
   only:
     - main
 
+release-studio-dev-to-harbor:
+  stage: docker-release
+  tags:
+    - dind
+  before_script:
+    - docker login -u $HARBOR_USERNAME -p $HARBOR_PASSWORD $REGISTRY
+  script:
+    - docker push $STUDIO_IMAGE_TAG:$CI_COMMIT_SHORT_SHA
+  only:
+    changes:
+      - studio/**/*
+    refs:
+      - main
 
 ########### Docker release CMS #########
 
@@ -74,7 +100,7 @@ docker-release-cms:
 
 ########### Docker deploy dev #############
 
-deploy to dev:
+deploy-to-dev:
   stage: deploy
   only:
     - develop
