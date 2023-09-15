@@ -33,9 +33,20 @@ export default defineNuxtConfig({
     // langDir: 'locales',
   },
   sanity: {
+    minimal: false,
     projectId: 'xbopepf9',
     dataset: 'production',
-    useCdn: process.env.NODE_ENV === 'production',
+    useCdn: false,
+    withCredentials: true,
+    perspective: 'previewDrafts',
+    apiVersion: '2023-09-15',
+    token: 'skUkcWpvAKU9pPT22C8s058oAXhuKbMowAVNkrFXuJA8UfuFbRUctmktJvmv0yhl0H0pXrVzWHmzRFVAI9xJT1Pf62ejxXvBUkB6c8KliCyEDAxo9mDwF5pcS8R6xzPJQEXVGL5vDTVNs5mZ0xQFSJvR0aX0J9X9dKp8mAJeG7dJcniNQYhh',
+    additionalClients: {
+      preview: {
+        useCdn: false,
+        // withCredentials: true,
+      },
+    },
   },
 
   image: {

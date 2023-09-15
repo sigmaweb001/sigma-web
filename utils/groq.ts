@@ -1,3 +1,5 @@
+import groq from 'groq'
+
 export const docsquery = groq`
 *[_type == "docs"] | order(_createdAt desc) {
   ...,

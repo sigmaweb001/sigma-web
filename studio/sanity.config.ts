@@ -16,8 +16,8 @@ const hiddenDocTypes = listItem =>
 function getPreviewUrl(doc: SanityDocument) {
   const host = `http://localhost:3333/blogs`
   return doc?.slug?.current
-    ? `${host}/${doc.slug.current}`
-    : host
+    ? `${host}/${doc.slug.current}?preview=true`
+    : `${host}?preview=true`
 }
 
 const defaultDocumentNode: DefaultDocumentNodeResolver = (S, { schemaType }) => {

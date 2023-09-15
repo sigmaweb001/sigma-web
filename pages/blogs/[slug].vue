@@ -2,14 +2,30 @@
 const route = useRoute()
 const slug = eagerComputed(() => route.params.slug)
 const preview = eagerComputed(() => route.query.preview)
-const { data: post, refresh } = await useSanityQuery(singleBlogPostQuery, { slug })
 
-const sanity = useSanity()
+const sanityClient = preview.value
+  ? {
+      client: 'preview',
+      server: false,
+      initialCache: false,
+    }
+  : undefined
+
+const { data: post, refresh } = await useLazySanityQuery(singleBlogPostQuery, { slug: slug.value }, {
+  server: false,
+  initialCache: false,
+})
+// useLazySanityQuery
 onMounted(() => {
   if (preview.value) {
-    const observable = sanity.client.listen(singleBlogPostQuery, { slug })
+    const sanity = useSanity()
+    console.log('[LOG] ~ file: [slug].vue:19 ~ sanity:', sanity)
+
+    const observable = sanity.client.listen(singleBlogPostQuery, { slug: slug.value })
     observable.subscribe((event) => {
-      refresh()
+      setTimeout(() => {
+        refresh()
+      }, 900)
     })
   }
 })
@@ -21,9 +37,9 @@ useHead({
 
 <template>
   <div class="max-w-screen-md py-5 container lg:py-8">
-    <div class="flex justify-center">
+    <!-- <div class="flex justify-center">
       <BlogsCategoryLabel :categories="post?.categories" />
-    </div>
+    </div> -->
 
     <h1
       class="text-brand-primary mb-3 mt-2 text-center text-3xl font-semibold tracking-tight lg:text-4xl lg:leading-snug dark:text-white"
@@ -31,7 +47,7 @@ useHead({
       {{ post?.title }}
     </h1>
 
-    <div class="mt-3 flex justify-center text-gray-500 space-x-3">
+    <!-- <div class="mt-3 flex justify-center text-gray-500 space-x-3">
       <div class="flex items-center gap-3">
         <div class="relative h-10 w-10 flex-shrink-0">
           <template v-if="post?.author?.image">
@@ -58,7 +74,7 @@ useHead({
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <div class="relative z-0 mx-auto aspect-video max-w-screen-lg overflow-hidden lg:rounded-lg">

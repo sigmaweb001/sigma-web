@@ -16,7 +16,7 @@ const { author } = definePropsRefs<{
             provider="sanity"
             :src="author.image.asset._ref"
             :alt="author.name"
-            class="rounded-full object-cover"
+            class="absolute inset-0 h-full w-full rounded-full object-cover"
             fit="cover"
             sizes="xs:96px"
           />
