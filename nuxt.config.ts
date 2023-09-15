@@ -35,6 +35,7 @@ export default defineNuxtConfig({
   sanity: {
     projectId: 'xbopepf9',
     dataset: 'production',
+    useCdn: process.env.NODE_ENV === 'production',
   },
 
   image: {

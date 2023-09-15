@@ -1,8 +1,18 @@
 <script lang="ts" setup>
 const route = useRoute()
 const slug = eagerComputed(() => route.params.slug)
-
+const preview = eagerComputed(() => route.query.preview)
 const { data: post, refresh } = await useSanityQuery(singleBlogPostQuery, { slug })
+
+const sanity = useSanity()
+onMounted(() => {
+  if (preview.value) {
+    const observable = sanity.client.listen(singleBlogPostQuery, { slug })
+    observable.subscribe((event) => {
+      refresh()
+    })
+  }
+})
 
 useHead({
   title: post.value?.title,
@@ -62,14 +72,14 @@ useHead({
   <div class="py-5 container lg:py-8">
     <article class="mx-auto max-w-screen-md">
       <div class="mx-auto my-3 prose prose-trueGray dark:prose-invert">
-        <SSanityContent :blocks="post.body" />
+        <SSanityContent :blocks="post?.body" />
       </div>
       <div class="mb-7 mt-7 flex justify-center">
         <Link href="/" class="bg-brand-secondary/20 rounded-full px-5 py-2 text-sm text-blue-600 dark:text-blue-500">
           ← View all posts
         </Link>
       </div>
-      <BlogsAuthorCard v-if="post.author" :author="post.author" />
+      <BlogsAuthorCard v-if="post?.author" :author="post.author" />
     </article>
   </div>
 </template>

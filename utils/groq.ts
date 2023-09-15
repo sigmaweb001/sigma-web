@@ -54,14 +54,14 @@ export const productsQuery = groq`
 
 // Get all posts
 export const blogPostQuery = groq`
-*[_type == "blogPost"] | order(publishedAt desc, _createdAt desc) {
+*[_type == 'blogPost'] | order(publishedAt desc, _createdAt desc) {
   _id,
   _createdAt,
   publishedAt,
   mainImage {
     ...,
-    "blurDataURL":asset->metadata.lqip,
-    "ImageColor": asset->metadata.palette.dominant.background,
+    'blurDataURL':asset->metadata.lqip,
+    'ImageColor': asset->metadata.palette.dominant.background,
   },
   featured,
   excerpt,
