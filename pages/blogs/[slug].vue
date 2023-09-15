@@ -3,6 +3,10 @@ const route = useRoute()
 const slug = eagerComputed(() => route.params.slug)
 
 const { data: post, refresh } = await useSanityQuery(singleBlogPostQuery, { slug })
+
+useHead({
+  title: post.value?.title,
+})
 </script>
 
 <template>

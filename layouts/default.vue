@@ -8,8 +8,7 @@ useHead({
 </script>
 
 <template>
-  <AppNavbar/>
+  <AppNavbar />
   <slot />
   <SectionFooter />
-
 </template>
