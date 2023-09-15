@@ -1,14 +1,42 @@
 import { defineConfig } from 'sanity'
-import { deskTool } from 'sanity/desk'
+import { deskTool, type DefaultDocumentNodeResolver } from 'sanity/desk'
 import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './schemas'
 import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list'
 import { codeInput } from '@sanity/code-input'
 import { table } from '@sanity/table';
+import Iframe from 'sanity-plugin-iframe-pane'
+import { SanityDocument } from 'sanity'
 
 
 const hiddenDocTypes = listItem =>
   !["siteconfig"].includes(listItem.getId());
+
+// Customize this function to show the correct URL based on the current document
+function getPreviewUrl(doc: SanityDocument) {
+  const host = `http://localhost:3333/blogs`
+  return doc?.slug?.current
+    ? `${host}/${doc.slug.current}`
+    : host
+}
+
+const defaultDocumentNode: DefaultDocumentNodeResolver = (S, { schemaType }) => {
+  // Only show preview pane on `movie` schema type documents
+  switch (schemaType) {
+    case `blogPost`:
+      return S.document().views([
+        S.view.form(),
+        S.view
+          .component(Iframe)
+          .options({
+            url: (doc: SanityDocument) => getPreviewUrl(doc),
+          })
+          .title('Preview'),
+      ])
+    default:
+      return S.document().views([S.view.form()])
+  }
+}
 
 export default defineConfig({
   name: 'default',
@@ -19,6 +47,7 @@ export default defineConfig({
 
   plugins: [
     deskTool({
+      defaultDocumentNode,
       structure: (S, context) => {
         return S.list()
           .title('Content Manager')
@@ -127,29 +156,5 @@ export default defineConfig({
 
   schema: {
     types: schemaTypes,
-  },
-  document: {
-    // prev is the result from previous plugins and thus can be composed
-    productionUrl: async (prev, context) => {
-      // context includes the client and other details
-      const {getClient, dataset, document} = context
-      const client = getClient({apiVersion: '2023-05-31'})
-
-      if (document._type === 'blogPost') {
-        console.log('[LOG] ~ file: sanity.config.ts:139 ~ document:', document)
-        const slug = await client.fetch(
-          `*[_type == 'blogPost' && _id == $postId][0].slug.current`,
-          {postId: document._id}
-        )
-
-        const params = new URLSearchParams()
-        params.set('preview', 'true')
-        params.set('dataset', dataset)
-
-        return `http://localhost:3333/blogs/${slug}?${params.toString()}`
-      }
-
-      return prev
-    },
   },
 })

@@ -29,6 +29,9 @@ dependencies:
   sanity:
     specifier: ^3.15.1
     version: 3.15.1(@types/react@18.0.25)(react-dom@18.2.0)(react@18.2.0)(styled-components@5.3.9)
+  sanity-plugin-iframe-pane:
+    specifier: ^2.5.7
+    version: 2.5.7(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.15.1)(styled-components@5.3.9)
   styled-components:
     specifier: ^5.3.9
     version: 5.3.9(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
@@ -1535,6 +1538,7 @@ packages:
 
   /@emotion/memoize@0.7.4:
     resolution: {integrity: sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==}
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -5992,6 +5996,27 @@ packages:
       diff-match-patch: 1.0.5
     dev: false
 
+  /sanity-plugin-iframe-pane@2.5.7(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.15.1)(styled-components@5.3.9):
+    resolution: {integrity: sha512-OmpRd9YNEAs7hMYF8b45EkTjbXq3LyeLahMfQid9stZsIreFCOxYktZc1Z2M7GYCN9OQUl/6F4iCiwGh1MbIVA==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: ^18
+      sanity: ^3
+      styled-components: ^5.2
+    dependencies:
+      '@sanity/icons': 2.4.1(react@18.2.0)
+      '@sanity/incompatible-plugin': 1.0.4(react-dom@18.2.0)(react@18.2.0)
+      '@sanity/ui': 1.7.11(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.9)
+      framer-motion: 10.16.1(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      sanity: 3.15.1(@types/react@18.0.25)(react-dom@18.2.0)(react@18.2.0)(styled-components@5.3.9)
+      styled-components: 5.3.9(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
+      usehooks-ts: 2.9.1(react-dom@18.2.0)(react@18.2.0)
+    transitivePeerDependencies:
+      - react-dom
+      - react-is
+    dev: false
+
   /sanity-plugin-utils@1.6.2(@babel/core@7.22.11)(@sanity/ui@1.7.11)(react-dom@18.2.0)(react-fast-compare@3.2.2)(react-is@18.2.0)(react@18.2.0)(rxjs@7.8.1)(sanity@3.15.1):
     resolution: {integrity: sha512-zn4sKLaLG5ZcibPNB8RfTjU32sear2XIHPxIoIWJCHXO3yD+JEq+/MvkwW7CnfdEcZeXPfb5DEx1CGjIQwO3Iw==}
     engines: {node: '>=14'}
@@ -6748,6 +6773,17 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       react: 18.2.0
+    dev: false
+
+  /usehooks-ts@2.9.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-2FAuSIGHlY+apM9FVlj8/oNhd+1y+Uwv5QNkMQz1oSfdHk4PXo1qoCw9I5M7j0vpH8CSWFJwXbVPeYDjLCx9PA==}
+    engines: {node: '>=16.15.0', npm: '>=8'}
+    peerDependencies:
+      react: ^16.8.0  || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0  || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /util-deprecate@1.0.2:
