@@ -10,6 +10,7 @@ const serializers = {
     image: resolveComponent('CustomImage'),
   },
   styles: {
+    h1: resolveComponent('CustomH1'),
     h2: resolveComponent('CustomH2'),
     h3: resolveComponent('CustomH3'),
     h4: resolveComponent('CustomH4'),

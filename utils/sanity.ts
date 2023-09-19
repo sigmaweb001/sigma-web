@@ -1,4 +1,4 @@
-export const serializers: Serializers = {
+export const serializers = {
   types: {
     box: resolveComponent('CustomBox'),
     code: resolveComponent('CustomCode'),

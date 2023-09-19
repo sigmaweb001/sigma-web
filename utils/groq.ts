@@ -113,3 +113,109 @@ export const configQuery = groq`
   ...,
 }
 `
+// SECTION - Site Config
+// Construct our "site" GROQ
+const site = `
+  "site": {
+    "title": *[_type == "generalSettings"][0].siteTitle,
+  }
+`
+
+// TODO
+// // Construct our "image meta" GROQ
+// export const imageMeta = `
+//   "alt": coalesce(alt, asset->altText),
+//   asset,
+//   crop,
+//   customRatio,
+//   hotspot,
+//   "id": asset->assetId,
+//   "type": asset->mimeType,
+//   "aspectRatio": asset->metadata.dimensions.aspectRatio,
+//   "lqip": asset->metadata.lqip
+// `
+
+// Construct our "portable text content" GROQ
+// export const ptContent = `
+//   ...,
+//   markDefs[]{
+//     ...,
+//     _type == "link" => {
+//       "url": @.url,
+//       "isButton": @.isButton,
+//       "styles": @.styles{style, isLarge, isBlock},
+//       "page":@.page->{
+//         ${page}
+//       }
+//     }
+//   },
+//   _type == "photo" => {
+//     ${imageMeta}
+//   }
+// `
+
+// Construct our content "modules" GROQ
+// TODO: photos
+// mobilePhoto{
+//   ${imageMeta}
+// },
+// desktopPhoto{
+//   ${imageMeta}
+// }
+// Construct our content "modules" GROQ
+
+//   video{
+//     id,
+//     title
+//   }
+
+export const modules = `
+  _type == 'hero' => {
+    ...,
+    photos {
+      ...,
+    },
+    content,
+    bgType,
+    video {
+      ...,
+      id,
+      title,
+    }
+  }
+`
+// TODO: dynamic home ID
+const homeID = '"408dd32d-f8cf-4371-8198-aae51e5ea0a1"'
+
+// !SECTION: Site Config
+
+// SECTION: Pages
+// Fetch a static page with our global data
+export function getStaticPageQuery(pageData: string) {
+  // ${queries.site}
+
+  const query = `
+  {
+    "page": ${pageData},
+  }
+  `
+  return query
+}
+
+export function getHomeQuery() {
+  return `
+    *[_type == "page" && _id == ${homeID}] | order(_updatedAt desc)[0]{
+      "id": _id,
+      title,
+      modules[]{
+        defined(_ref) => { ...@->content[0] {
+          ${modules}
+        }},
+        !defined(_ref) => {
+          ${modules},
+        }
+      },
+    } 
+  `
+}
+// !SECTION: Pages

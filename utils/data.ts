@@ -265,43 +265,42 @@ export const navigation = ref([
 ],
 )
 
-
 export const resources = [
   {
     key: 'overview',
     title: 'Overview',
-    path: '/overview'
+    path: '/overview',
   },
   {
     key: 'documents',
     title: 'Documents',
-    path: '/documents'
+    path: '/documents',
   },
   {
     key: 'api',
     title: 'API',
-    path: '/api'
+    path: '/api',
   },
   {
     key: 'blogs',
     title: 'Blogs',
-    path: '/blogs'
-  }
+    path: '/blogs',
+  },
 ]
 export const products = [
   {
     key: 'sigma-machine',
     title: 'Sigma Machine',
-    path: '/products/sigma-machine'
+    path: '/products/sigma-machine',
   },
   {
     key: 'sigma-dai',
     title: 'Sigma DAI',
-    path: '/products/sigma-dai'
+    path: '/products/sigma-dai',
   },
   {
     key: 'sigma-interactive',
     title: 'Sigma Interactive',
-    path: '/product/sigma-interactive'
-  }
+    path: '/product/sigma-interactive',
+  },
 ]

@@ -1,11 +1,14 @@
 <script lang="ts" setup>
-
+const { module } = definePropsRefs<{
+  module: any
+}>()
 </script>
 
 <template>
   <div class="grid justify-items-center py-20 container" xl="flex flex-wrap">
     <div class="w-full flex items-center" xl="w-1/2">
-      <div class="grid mx-auto mb-8 justify-items-center" xl="max-w-2xl justify-items-start">
+      <div class="h-fon grid mx-auto mb-8 justify-items-center text-27px tracking-tight prose prose-trueGray" xl="max-w-2xl justify-items-start">
+        <SSanityContent :blocks="module.content" />
         <h1
           class="text-4xl font-bold leading-snug tracking-tight text-gray-800" lg="text-5xl leading-tight"
           xl="text-6xl leading-tight" dark="text-white"

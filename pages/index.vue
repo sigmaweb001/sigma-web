@@ -3,6 +3,8 @@ useHead({
   title: 'Home',
 })
 
+const { data } = await useSanityQuery(getHomeQuery(), undefined, { server: false })
+
 const benefitOne = {
   // title: 'Highlight your benefits',
   // desc: 'You can use this space to highlight your first benefit or a feature of your product. It can also contain an image or Illustration like in the example along with some bullet points.',
@@ -62,7 +64,16 @@ const benefitTwo = {
 
 <template>
   <div>
-    <SectionHero />
+    <!-- <DevOnly>
+      <div>
+        <VueJsonPretty :data="data" />
+      </div>
+    </DevOnly> -->
+    <template v-for="item in data?.modules" :key="item.id">
+      <SectionHero :module="item" />
+    </template>
+
+    <SectionHero2 />
     <SectionTitle pretitle="Core Components" title="Unleashing the Potential in Sigma Streaming Platform" />
     <SectionBenefits :data="benefitOne" />
 
