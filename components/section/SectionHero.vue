@@ -7,7 +7,7 @@ const { item } = definePropsRefs<{
 <template>
   <DevOnly>
     <div class="fixed right-0 top-0 z-100 max-h-1/2 max-w-1/2 of-auto bg-white">
-      <details open>
+      <details>
         <VueJsonPretty :data="item" />
       </details>
     </div>
@@ -21,47 +21,12 @@ const { item } = definePropsRefs<{
         >
           {{ item.title }}
         </h1>
-        <p class="pt-5 text-xl leading-normal text-gray-500 lg:text-xl xl:text-2xl dark:text-gray-300">
+        <p class="py-5 text-xl leading-normal text-gray-500 lg:text-xl xl:text-2xl dark:text-gray-300">
           {{ item.subtitle }}
         </p>
 
         <div class="prose-li-sigma prose prose-black">
           <SSanityContent :blocks="item.content" />
-        </div>
-
-        <ul class="grid mt-4 gap-4">
-          <li class="flex items-center gap-2">
-            <span class="h-24px w-24px flex-center rounded-full bg-primary/50">
-              <i class="i-ri-check-line text-14px text-primary" />
-            </span>
-            <span>
-              Stream seamlessly. Interact. Monetize. Elevate your content.
-            </span>
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="h-24px w-24px flex-center rounded-full bg-primary/50">
-              <i class="i-ri-check-line text-14px text-primary" />
-            </span>
-            <span>
-              Unlock potential: Secure hosting, flawless events, API integration. Revenue awaits.
-            </span>
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="h-24px w-24px flex-center rounded-full bg-primary/50">
-              <i class="i-ri-check-line text-14px text-primary" />
-            </span>
-            <span>
-              Empower your stream: Transcode, interact, monetize. Experience the future.
-            </span>
-          </li>
-        </ul>
-
-        <div class="mt-6 flex flex-col">
-          <NuxtLink to="/get-in-touch">
-            <SButton size="lg">
-              Get demo
-            </SButton>
-          </NuxtLink>
         </div>
       </div>
     </div>

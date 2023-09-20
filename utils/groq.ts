@@ -135,24 +135,47 @@ const site = `
 //   "lqip": asset->metadata.lqip
 // `
 
+// TODO: dynamic home ID
+const homeID = '"30d6989d-103b-4f66-b92c-0b5b0ad9fafe"'
+
+// Construct our "page" GROQ
+const page = `
+  "type": _type,
+  "slug": slug.current,
+  "isHome": _id == ${homeID},
+`
+
+// Construct our "image meta" GROQ
+export const imageMeta = `
+  "alt": coalesce(alt, asset->altText),
+  asset,
+  crop,
+  customRatio,
+  hotspot,
+  "id": asset->assetId,
+  "type": asset->mimeType,
+  "aspectRatio": asset->metadata.dimensions.aspectRatio,
+  "lqip": asset->metadata.lqip
+`
+
 // Construct our "portable text content" GROQ
-// export const ptContent = `
-//   ...,
-//   markDefs[]{
-//     ...,
-//     _type == "link" => {
-//       "url": @.url,
-//       "isButton": @.isButton,
-//       "styles": @.styles{style, isLarge, isBlock},
-//       "page":@.page->{
-//         ${page}
-//       }
-//     }
-//   },
-//   _type == "photo" => {
-//     ${imageMeta}
-//   }
-// `
+export const ptContent = `
+  ...,
+  markDefs[]{
+    ...,
+    _type == "link" => {
+      ...,
+      "url": @.url,
+      "isButton": @.isButton,
+      "page":@.page->{
+        ${page}
+      }
+    }
+  },
+  _type == "photo" => {
+    ${imageMeta}
+  }
+`
 
 // Construct our content "modules" GROQ
 // TODO: photos
@@ -177,7 +200,9 @@ export const modules = `
     },
     title,
     subtitle,
-    content,
+    content[] {
+      ${ptContent}
+    },
     bgType,
     video {
       ...,
@@ -186,8 +211,6 @@ export const modules = `
     }
   }
 `
-// TODO: dynamic home ID
-const homeID = '"30d6989d-103b-4f66-b92c-0b5b0ad9fafe"'
 
 // !SECTION: Site Config
 

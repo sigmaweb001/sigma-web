@@ -8,6 +8,7 @@ const serializers = {
     box: resolveComponent('CustomBox'),
     code: resolveComponent('CustomCode'),
     image: resolveComponent('CustomImage'),
+    link: resolveComponent('CustomLink'),
   },
   // listItem: resolveComponent('CustomLi'),
   styles: {
