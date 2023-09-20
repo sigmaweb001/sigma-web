@@ -1,9 +1,4 @@
-import {
-  orderRankField,
-  orderRankOrdering
-} from "@sanity/orderable-document-list";
 import { getModuleName } from '../../utils/helper'
-import { definePlugin, defineType, defineField } from 'sanity'
 
 export default {
   name: "section",
@@ -23,7 +18,8 @@ export default {
       name: 'content',
       type: 'array',
       of: [
-        { type: 'hero' },
+        { type: 'hero'},
+        { type: 'feature'},
       ],
       validation: Rule =>
         Rule.length(1).error('You can only have one piece of content')

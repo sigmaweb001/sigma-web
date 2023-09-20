@@ -1,8 +1,3 @@
-import {
-  orderRankField,
-  orderRankOrdering
-} from "@sanity/orderable-document-list";
-
 export default {
   name: "hero",
   title: "Hero",
