@@ -11,7 +11,7 @@ export default {
       styles: [{ title: 'Paragraph', value: 'normal' }],
       lists: [
         { title: "Bullet", value: "bullet" },
-        { title: "Numbered", value: "number" }
+        { title: "Numbered", value: "number" },
       ],
       marks: {
         decorators: [
