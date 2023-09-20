@@ -9,9 +9,20 @@ export default {
   type: "object",
   fields: [
     {
-      title: 'Overlay Content',
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+      validation: Rule => Rule.required(),
+    },
+    {
+      name: 'subtitle',
+      title: 'Subtitle',
+      type: 'string',
+    },
+    {
+      title: 'Content',
       name: 'content',
-      type: 'blockContent'
+      type: 'portableSimple'
     },
     {
       title: 'Background Type',

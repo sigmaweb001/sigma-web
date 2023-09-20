@@ -9,6 +9,7 @@ const serializers = {
     code: resolveComponent('CustomCode'),
     image: resolveComponent('CustomImage'),
   },
+  // listItem: resolveComponent('CustomLi'),
   styles: {
     h1: resolveComponent('CustomH1'),
     h2: resolveComponent('CustomH2'),

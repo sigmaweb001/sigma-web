@@ -64,13 +64,8 @@ const benefitTwo = {
 
 <template>
   <div>
-    <!-- <DevOnly>
-      <div>
-        <VueJsonPretty :data="data" />
-      </div>
-    </DevOnly> -->
     <template v-for="item in data?.modules" :key="item.id">
-      <SectionHero :module="item" />
+      <SectionHero :item="item" />
     </template>
 
     <SectionHero2 />

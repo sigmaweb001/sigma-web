@@ -12,6 +12,8 @@ import page from './documents/page'
 import section from './documents/section'
 // SECTION: Modules
 import hero from './modules/hero'
+// SECTION: Objects
+import portableSimple from './objects/portable-simple'
 
 export const schemaTypes = [
   // Documents
@@ -19,6 +21,8 @@ export const schemaTypes = [
   page,
   // Modules
   hero,
+  // Objects
+  portableSimple,
 
   // Others
   docs,

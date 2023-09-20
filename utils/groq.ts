@@ -175,6 +175,8 @@ export const modules = `
     photos {
       ...,
     },
+    title,
+    subtitle,
     content,
     bgType,
     video {
@@ -185,7 +187,7 @@ export const modules = `
   }
 `
 // TODO: dynamic home ID
-const homeID = '"408dd32d-f8cf-4371-8198-aae51e5ea0a1"'
+const homeID = '"30d6989d-103b-4f66-b92c-0b5b0ad9fafe"'
 
 // !SECTION: Site Config
 
