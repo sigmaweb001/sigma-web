@@ -21,12 +21,14 @@ const { data } = definePropsRefs<{
 <template>
   <div class="my-10 container">
     <div class="flex items-center gap-10">
-      <div v-if="data.photos?.photo" class="relative h-482px w-521px flex-shrink-0">
-        <SNuxtImg :image="data.photos?.photo" alt="Customer" />
+      <div class="px-10">
+        <div v-if="data.photos?.photo" class="relative h-482px w-521px flex-shrink-0">
+          <SNuxtImg :image="data.photos?.photo" alt="Customer" />
+        </div>
       </div>
-      <div class="rounded-lg bg-gray-200 dark:bg-trueGray-800">
+      <div class="rounded-lg bg-gray-200 p-5 dark:bg-trueGray-800">
         <div
-          class="grid grid-col-[repeat(var(--size),minmax(0,1fr))] gap-5"
+          class="grid grid-cols-[repeat(var(--size),minmax(0,1fr))] gap-5"
           :style="{
             '--size': data.size || 2,
           }"

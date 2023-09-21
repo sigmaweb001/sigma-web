@@ -123,6 +123,7 @@ html.dark .shiki span {
   color: var(--shiki-dark) !important;
 }
 
+/* SECTION */
 .prose-li-sigma :where(li):not(:where(.not-prose, .not-prose *)) {
   @apply relative not-last:mb-3 list-none pl-2;
 }
@@ -138,4 +139,10 @@ html.dark .shiki span {
   height: 20px;
   content: "";
 }
+
+.prose-img-w-full :where(img,video):not(:where(.not-prose,.not-prose *)) {
+  width: 100%;
+}
+
+/* SECTION */
 </style>

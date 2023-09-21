@@ -295,12 +295,12 @@ export const products = [
   },
   {
     key: 'sigma-dai',
-    title: 'Sigma DAI',
-    path: '/products/sigma-dai',
+    title: 'Sigma SSAI',
+    path: '/products/sigma-ssai',
   },
   {
     key: 'sigma-interactive',
     title: 'Sigma Interactive',
-    path: '/product/sigma-interactive',
+    path: '/products/sigma-interactive',
   },
 ]

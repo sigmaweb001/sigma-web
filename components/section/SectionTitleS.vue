@@ -29,7 +29,7 @@ defineProps<{
     </template>
 
     <template v-if="item.description">
-      <SSanityContent :blocks="item.description" class="max-w-2xl py-4 text-start text-lg prose prose-gray lg:text-xl xl:text-xl" />
+      <SSanityContent :blocks="item.description" class="max-w-2xl py-2 text-start text-lg prose prose-gray lg:text-xl xl:text-xl" />
     </template>
   </div>
 </template>

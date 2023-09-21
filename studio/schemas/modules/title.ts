@@ -31,7 +31,7 @@ export default {
         layout: 'radio',
         direction: 'horizontal'
       },
-      initialValue: 'left'
+      initialValue: 'center'
     },
   ],
   preview: {

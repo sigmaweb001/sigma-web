@@ -225,6 +225,9 @@ export const modules = `
   _type == 'photoFeature' => {
     ...,
   },
+  _type == 'simpleContent' => {
+    ...,
+  },
   _type == 'cta' => {
     ...,
     "page":@.page->{

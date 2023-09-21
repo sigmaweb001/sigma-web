@@ -1,23 +1,24 @@
 <script lang="ts" setup>
 
-
 </script>
 
 <template>
-  <div class="border-t border-b border-gray-200 dark:border-trueGray-700 mt-20">
-    <footer class="container text-15px py-10 grid grid-cols-3 gap-10">
+  <div class="mt-20 border-b border-t border-gray-200 dark:border-trueGray-700">
+    <footer class="grid grid-cols-3 gap-10 py-10 text-15px container">
       <div class="flex flex-col gap-8px">
-        <p class="font-500 mb-8px cursor-default">
+        <p class="mb-8px cursor-default font-500">
           Resources
         </p>
-        <NuxtLink hover="underline underline-primary text-primary" v-for="link in resources" :key="link.path"
-          :to="link.path">
+        <NuxtLink
+          v-for="link in resources" :key="link.path" hover="underline underline-primary text-primary"
+          :to="link.path"
+        >
           {{ link.title }}
         </NuxtLink>
       </div>
 
-      <div class="flex flex-col gap-8px justify-self-center">
-        <p class="font-500 mb-8px cursor-default">
+      <div class="flex flex-col justify-self-center gap-8px">
+        <p class="mb-8px cursor-default font-500">
           Company
         </p>
         <NuxtLink hover="underline underline-primary text-primary" to="https://thudomultimedia.com/">
@@ -28,30 +29,32 @@
         </NuxtLink>
       </div>
 
-      <div class="flex flex-col gap-8px justify-self-end">
-        <p class="font-500 mb-8px cursor-default">
+      <div class="flex flex-col justify-self-end gap-8px">
+        <p class="mb-8px cursor-default font-500">
           Products
         </p>
 
-        <NuxtLink hover="underline underline-primary text-primary" v-for="link in products" :key="link.path"
-          :to="link.path">
+        <NuxtLink
+          v-for="link in products" :key="link.path" hover="underline underline-primary text-primary"
+          :to="link.path"
+        >
           {{ link.title }}
         </NuxtLink>
       </div>
     </footer>
   </div>
   <div class="py-5">
-    <footer class="container grid grid-cols-2 gap-10">
+    <footer class="grid grid-cols-2 gap-10 container">
       <div class="left">
         <div>
-          <a rel="noopener" target="_blank" class="flex max-w-250px">
-            <img src="/thudo_logo.png" alt="logo" class="w-80px h-50px mr-8px">
-            <p class="font-600 text-xs select-none text-gray-400 hover:text-primary">
+          <a rel="noopener" target="_blank" class="max-w-250px flex">
+            <img src="/thudo_logo.png" alt="logo" class="mr-8px h-50px w-80px">
+            <p class="select-none text-xs font-600 text-gray-400 hover:text-primary">
               Thu Do Multimedia Communications Joint Stock Company
             </p>
           </a>
 
-          <div class="text-xs text-gray-500 mt-8px">
+          <div class="mt-8px text-xs text-gray-500">
             <p>
               10th floor, No 48 Le Van Luong
             </p>
@@ -69,7 +72,7 @@
           </div>
         </div>
 
-        <div class="text-xs text-gray-500 mt-8px">
+        <div class="mt-8px text-xs text-gray-500">
           <p>
             Tel: (+84) 4 3668 7038
           </p>

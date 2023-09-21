@@ -27,7 +27,7 @@ export default {
         ]
       },
       validation: Rule => Rule.required(),
-      initialValue: 12
+      initialValue: 3
     },
     {
       name: 'title',
