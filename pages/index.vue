@@ -5,34 +5,6 @@ useHead({
 
 const { data } = await useSanityQuery(getHomeQuery(), undefined, { server: false })
 
-const benefitOne = {
-  // title: 'Highlight your benefits',
-  // desc: 'You can use this space to highlight your first benefit or a feature of your product. It can also contain an image or Illustration like in the example along with some bullet points.',
-  image: '/benefit-one.png',
-  bullets: [
-    {
-      title: 'Ingest',
-      desc: 'Get your content and data from different streaming sources.',
-      icon: 'i-ri:box-2-line',
-    },
-    {
-      title: 'Transcoder',
-      desc: 'Converts original audio, video and image signals into suitable, compatible formats to play on different receivers.',
-      icon: 'i-ri:barcode-box-line',
-    },
-    {
-      title: 'Packager',
-      desc: 'Data encapsulation and encryption enables service providers to secure content through digital rights management.',
-      icon: 'i-ri:inbox-unarchive-line',
-    },
-    {
-      title: 'Origin',
-      desc: 'Perform transport of manifest and segment files using ABR technologies, such as Apple HLS and MPEG, DASH.',
-      icon: 'i-ri:honor-of-kings-line',
-    },
-  ],
-}
-
 const benefitTwo = {
   title: 'Products',
   desc: '',
@@ -78,8 +50,6 @@ const benefitTwo = {
     </template>
 
     <div class="h-10px w-full bg-red" />
-    <SectionTitle pretitle="Core Components" title="Unleashing the Potential in Sigma Streaming Platform" />
-    <SectionBenefits :data="benefitOne" />
 
     <SectionBenefits img-pos="right" :data="benefitTwo" />
 

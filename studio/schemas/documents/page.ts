@@ -49,7 +49,7 @@ export default {
         { type: 'hero' },
         { type: 'feature' },
         { type: 'title' },
-        // { type: 'grid' },
+        { type: 'gridFeature' },
         // { type: 'marquee' },
         // { type: 'dividerPhoto' },
         {

@@ -26,6 +26,7 @@ export default {
         layout: 'radio',
         direction: 'horizontal'
       },
+      initialValue: 'left'
     },
   ],
   preview: {
