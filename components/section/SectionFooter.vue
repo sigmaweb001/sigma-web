@@ -44,17 +44,17 @@
     </footer>
   </div>
   <div class="py-5">
-    <footer class="grid grid-cols-2 gap-10 container">
+    <footer class="grid grid-cols-2 items-end gap-10 container">
       <div class="left">
         <div>
           <a rel="noopener" target="_blank" class="max-w-250px flex">
-            <img src="/thudo_logo.png" alt="logo" class="mr-8px h-50px w-80px">
-            <p class="select-none text-xs font-600 text-gray-400 hover:text-primary">
+            <img src="/thudo_logo.png" alt="logo" class="mr-8px h-50px w-100px">
+            <p class="select-none text-13px font-600 text-gray-400 hover:text-primary">
               Thu Do Multimedia Communications Joint Stock Company
             </p>
           </a>
 
-          <div class="mt-8px text-xs text-gray-500">
+          <div class="mt-8px text-13px text-gray-500">
             <p>
               10th floor, No 48 Le Van Luong
             </p>
@@ -72,7 +72,7 @@
           </div>
         </div>
 
-        <div class="mt-8px text-xs text-gray-500">
+        <div class="mt-8px text-13px text-gray-500">
           <p>
             Tel: (+84) 4 3668 7038
           </p>
