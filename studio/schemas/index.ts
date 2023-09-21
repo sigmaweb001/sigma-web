@@ -17,6 +17,8 @@ import title from './modules/title'
 import gridFeature from './modules/gridFeature'
 import gridCustomer from './modules/gridCustomer'
 import cta from './modules/cta'
+import photoFeature from './modules/photoFeature'
+
 // SECTION: Objects
 import portableSimple from './objects/portable-simple'
 import portableComplex from './objects/portable-complex'
@@ -33,6 +35,7 @@ export const schemaTypes = [
   gridFeature,
   gridCustomer,
   cta,
+  photoFeature,
 
   // Objects
   portableSimple,

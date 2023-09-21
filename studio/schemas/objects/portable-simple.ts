@@ -8,7 +8,9 @@ export default {
     {
       title: 'Block',
       type: 'block',
-      styles: [{ title: 'Paragraph', value: 'normal' }],
+      styles: [
+        { title: 'Paragraph', value: 'normal' },
+      ],
       lists: [
         { title: "Bullet", value: "bullet" },
         { title: "Numbered", value: "number" },

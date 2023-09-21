@@ -1,34 +1,7 @@
 <script lang="ts" setup>
-const route = useRoute()
-const slug = eagerComputed(() => route.params.slug)
-const preview = eagerComputed(() => route.query.preview)
+const slug = eagerComputed(() => useRoute().params.slug)
 
-const sanityClient = preview.value
-  ? {
-      client: 'preview',
-      server: false,
-      initialCache: false,
-    }
-  : undefined
-
-const { data: post, refresh } = await useLazySanityQuery(singleBlogPostQuery, { slug: slug.value }, {
-  server: false,
-  initialCache: false,
-})
-// useLazySanityQuery
-onMounted(() => {
-  if (preview.value) {
-    const sanity = useSanity()
-    console.log('[LOG] ~ file: [slug].vue:19 ~ sanity:', sanity)
-
-    const observable = sanity.client.listen(singleBlogPostQuery, { slug: slug.value })
-    observable.subscribe((event) => {
-      setTimeout(() => {
-        refresh()
-      }, 900)
-    })
-  }
-})
+const { data: post } = await useSanityData(singleBlogPostQuery, { slug: slug.value })
 
 useHead({
   title: post.value?.title,
@@ -87,9 +60,7 @@ useHead({
 
   <div class="py-5 container lg:py-8">
     <article class="mx-auto max-w-screen-md">
-      <div class="mx-auto my-3 prose prose-trueGray dark:prose-invert">
-        <SSanityContent :blocks="post?.body" />
-      </div>
+      <SSanityContent :blocks="post?.body" class="mx-auto my-3 prose prose-trueGray" />
       <div class="mb-7 mt-7 flex justify-center">
         <Link href="/" class="bg-brand-secondary/20 rounded-full px-5 py-2 text-sm text-blue-600 dark:text-blue-500">
           ← View all posts

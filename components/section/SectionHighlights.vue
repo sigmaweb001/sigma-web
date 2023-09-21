@@ -29,19 +29,20 @@ const data = [
     title: '24/7 Customer Support',
     desc: 'Connect with our support starting when become our partner.',
     icon: 'i-ri:customer-service-2-line',
-  }
+  },
 ]
 </script>
+
 <template>
   <div class="grid grid-cols-3 gap-24px container">
-    <div class="grid justify-items-center bg-gray-100 px-10 py-10 dark:bg-trueGray-800 text-center p-6 rounded-2xl" v-for="(item, i) in data" :key="i">
-      <div class="border border-primary-300/50 rounded-lg p-2 h-60px w-60px flex-center">
+    <div v-for="(item, i) in data" :key="i" class="grid justify-items-center rounded-2xl bg-gray-100 p-6 px-10 py-10 text-center dark:bg-trueGray-800">
+      <div class="h-60px w-60px flex-center border border-primary-300/50 rounded-lg p-2">
         <i :class="item.icon" class="text-24px text-primary" />
       </div>
-      <h4 class="text-xl font-medium mt-4 text-gray-800 dark:text-gray-200">
+      <h4 class="mt-4 text-xl font-medium text-gray-800 dark:text-gray-200">
         {{ item.title }}
       </h4>
-      <p class="mt-1 text-gray-500 dark:text-gray-400 text-balance text-sm">
+      <p class="mt-1 text-balance text-sm text-gray-500 dark:text-gray-400">
         {{ item.desc }}
       </p>
     </div>

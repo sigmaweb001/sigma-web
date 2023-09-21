@@ -30,6 +30,11 @@ export default {
       initialValue: 12
     },
     {
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+    },
+    {
       name: "items",
       title: "Items",
       type: "array",
@@ -55,8 +60,7 @@ export default {
             {
               name: "description",
               title: "Description",
-              type: "text",
-              rows: 2
+              type: 'portableSimple'
             },
           ]
         }
@@ -65,11 +69,12 @@ export default {
   ],
   preview: {
     select: {
+      title: 'title',
       items: 'items',
     },
-    prepare({ items, }) {
+    prepare({ items, title }) {
       return {
-        title: items.map(item => item.title).join(', ')
+        title: title || items.map(item => item.title).join(', ')
       }
     }
   }

@@ -24,5 +24,7 @@ const serializers = {
 </script>
 
 <template>
-  <SanityContent v-if="blocks" :blocks="blocks" :serializers="serializers" />
+  <div class="prose dark:prose-invert">
+    <SanityContent v-if="blocks" :blocks="blocks" :serializers="serializers" />
+  </div>
 </template>

@@ -7,16 +7,17 @@ import { codeInput } from '@sanity/code-input'
 import { table } from '@sanity/table';
 import Iframe from 'sanity-plugin-iframe-pane'
 import { SanityDocument } from 'sanity'
+import { ensurePrefix } from '@antfu/utils'
 
 
 const hiddenDocTypes = listItem =>
   !["siteconfig"].includes(listItem.getId());
 
 // Customize this function to show the correct URL based on the current document
-function getPreviewUrl(doc: SanityDocument) {
-  const host = `http://localhost:3333/blogs`
+function getPreviewUrl(doc: SanityDocument, path: string) {
+  const host = `http://localhost:3333` + path
   return doc?.slug?.current
-    ? `${host}/${doc.slug.current}?preview=true`
+    ? `${host}${ensurePrefix('/', doc.slug.current)}?preview=true`
     : `${host}?preview=true`
 }
 
@@ -29,7 +30,17 @@ const defaultDocumentNode: DefaultDocumentNodeResolver = (S, { schemaType }) => 
         S.view
           .component(Iframe)
           .options({
-            url: (doc: SanityDocument) => getPreviewUrl(doc),
+            url: (doc: SanityDocument) => getPreviewUrl(doc, '/blogs'),
+          })
+          .title('Preview'),
+      ])
+    case `page`:
+      return S.document().views([
+        S.view.form(),
+        S.view
+          .component(Iframe)
+          .options({
+            url: (doc: SanityDocument) => getPreviewUrl(doc, ''),
           })
           .title('Preview'),
       ])

@@ -1,6 +1,6 @@
 export const imageVideoSelect = [
   {
-    title: 'Background Type',
+    title: 'Media',
     name: 'bgType',
     type: 'string',
     options: {
@@ -9,9 +9,9 @@ export const imageVideoSelect = [
         { title: 'Video', value: 'video' }
       ],
       layout: 'radio',
-      direction: 'horizontal'
+      direction: 'horizontal',
+      initialValue: 'photo'
     },
-    validation: Rule => Rule.required()
   },
   {
     name: 'photos',

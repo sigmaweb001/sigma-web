@@ -18,9 +18,7 @@ const { item } = definePropsRefs<{
           {{ item.subtitle }}
         </p>
 
-        <div class="prose-li-sigma prose prose-black">
-          <SSanityContent :blocks="item.content" />
-        </div>
+        <SSanityContent :blocks="item.content" class="prose-li-sigma prose-gray" />
       </div>
     </div>
     <div class="relative w-full flex items-center justify-center" xl="w-1/2">

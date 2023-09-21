@@ -222,6 +222,9 @@ export const modules = `
   _type == 'gridCustomer' => {
     ...,
   },
+  _type == 'photoFeature' => {
+    ...,
+  },
   _type == 'cta' => {
     ...,
     "page":@.page->{
@@ -245,9 +248,9 @@ export function getStaticPageQuery(pageData: string) {
   return query
 }
 
-export function getHomeQuery() {
+export function getPageQuery() {
   return `
-    *[_type == "page" && _id == ${homeID}] | order(_updatedAt desc)[0]{
+    *[_type == "page" && slug.current == $slug] | order(_updatedAt desc)[0]{
       "id": _id,
       title,
       modules[]{

@@ -16,7 +16,7 @@ export default {
     {
       name: 'description',
       title: 'Description',
-      type: 'string',
+      type: 'portableSimple'
     },
     {
       name: 'align',
@@ -36,11 +36,12 @@ export default {
   ],
   preview: {
     select: {
+      title: 'title',
       pretitle: 'pretitle',
     },
-    prepare({ pretitle = '', slug = {} }) {
+    prepare({ pretitle = '', title = '' }) {
       return {
-        title: pretitle
+        title: pretitle || title
       }
     }
   }

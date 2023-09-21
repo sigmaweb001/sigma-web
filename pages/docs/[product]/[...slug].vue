@@ -41,9 +41,7 @@ const serializers = {
     <h1 class="text-4xl font-bold text-gray-800 dark:text-white">
       {{ dataPost.title }}
     </h1>
-    <div class="prose-a:text-violet-500 prose-pre:bg-slate-100 prose-pre:text-slate-700 prose-headings:scroll-m-20 mt-4 max-w-none prose">
-      <SSanityContent :blocks="dataPost.body" />
-    </div>
+    <SSanityContent :blocks="dataPost.body" class="prose-a:text-violet-500 prose-pre:bg-slate-100 prose-pre:text-slate-700 prose-headings:scroll-m-20 mt-4 max-w-none" />
     <div class="mt-10 flex justify-between border-t py-5">
       <div>
         <template v-if="prevPost">

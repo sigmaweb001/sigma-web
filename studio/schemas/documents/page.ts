@@ -52,6 +52,7 @@ export default {
         { type: 'gridFeature' },
         { type: 'gridCustomer' },
         { type: 'cta' },
+        { type: 'photoFeature'},
         {
           title: 'Reusable Section',
           type: 'reference',

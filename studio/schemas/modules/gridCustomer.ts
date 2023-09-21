@@ -1,9 +1,11 @@
+import { imageVideoSelect } from "../imageVideoSelect";
 
 export default {
   name: "gridCustomer",
   title: "Grid Customer",
   type: "object",
   fields: [
+    ...imageVideoSelect,
     {
       title: 'Grid Size',
       name: 'size',
