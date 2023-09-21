@@ -209,6 +209,12 @@ export const modules = `
       id,
       title,
     }
+  },
+  _type == 'title' => {
+    ...,
+  },
+  _type == 'feature' => {
+    ..., 
   }
 `
 

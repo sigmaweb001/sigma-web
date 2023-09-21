@@ -5,13 +5,6 @@ const { item } = definePropsRefs<{
 </script>
 
 <template>
-  <DevOnly>
-    <div class="fixed right-0 top-0 z-100 max-h-1/2 max-w-1/2 of-auto bg-white">
-      <details>
-        <VueJsonPretty :data="item" />
-      </details>
-    </div>
-  </DevOnly>
   <div class="grid justify-items-center py-20 container" xl="flex flex-wrap">
     <div class="w-full flex items-center" xl="w-1/2">
       <div class="grid mx-auto mb-8 justify-items-center tracking-tight" xl="max-w-2xl justify-items-start">

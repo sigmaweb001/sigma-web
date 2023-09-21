@@ -13,10 +13,10 @@ import section from './documents/section'
 // SECTION: Modules
 import hero from './modules/hero'
 import feature from './modules/feature'
+import title from './modules/title'
 // SECTION: Objects
 import portableSimple from './objects/portable-simple'
 import portableComplex from './objects/portable-complex'
-import featuredItem from './objects/feature-item'
 
 export const schemaTypes = [
   // Documents
@@ -26,11 +26,11 @@ export const schemaTypes = [
   // Modules
   hero,
   feature,
+  title,
 
   // Objects
   portableSimple,
   portableComplex,
-  featuredItem,
 
   // Others
   docs,

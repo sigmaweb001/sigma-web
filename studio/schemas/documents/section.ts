@@ -19,6 +19,7 @@ export default {
       type: 'array',
       of: [
         { type: 'hero'},
+        { type: 'title'},
         { type: 'feature'},
       ],
       validation: Rule =>

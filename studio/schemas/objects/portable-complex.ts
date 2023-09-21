@@ -1,5 +1,3 @@
-import { imageVideoSelect } from '../imageVideoSelect'
-
 export default {
   title: "Portable Complex",
   name: "portableComplex",
@@ -238,68 +236,5 @@ export default {
         }
       }
     },
-
-    {
-      name: "featureList",
-      title: "Feature List",
-      type: "object",
-      fields: [
-        // {
-        //   name: "columns",
-        //   title: "Number of Columns",
-        //   type: "string",
-        //   options: {
-        //     list: [
-        //       { value: "1", title: "One Column" },
-        //       { value: "2", title: "Two Columns" }
-        //     ]
-        //   }
-        // },
-        {
-          name: "items",
-          title: "Items",
-          type: "array",
-          description: "Add features",
-          of: [
-            {
-              type: "object",
-              fields: [
-                {
-                  name: "icon",
-                  title: "Icon",
-                  description: "SVG Icons only. Preferred 24x24px.",
-                  type: "image",
-                  options: {
-                    accept: "image/svg+xml"
-                  }
-                },
-                {
-                  name: "title",
-                  title: "Title",
-                  type: "string"
-                },
-                {
-                  name: "description",
-                  title: "Description",
-                  type: "text",
-                  rows: 2
-                },
-              ]
-            }
-          ]
-        },
-        ...imageVideoSelect
-      ],
-      preview: {
-        select: {
-          items: "items"
-        },
-        prepare({ items }) {
-          return {
-            title: items.map(item => item.title).join(", ")
-          };
-        }
-      }
-    }
   ]
 };
