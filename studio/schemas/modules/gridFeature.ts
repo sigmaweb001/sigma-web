@@ -44,6 +44,14 @@ export default {
           type: "object",
           fields: [
             {
+              name: "image",
+              title: "Image",
+              description: "Image",
+              type: "image",
+              options: {
+              }
+            },
+            {
               name: "icon",
               title: "Icon",
               description: "SVG Icons only. Preferred 24x24px.",

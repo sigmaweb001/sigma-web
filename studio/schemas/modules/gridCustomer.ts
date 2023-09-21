@@ -7,6 +7,20 @@ export default {
   fields: [
     ...imageVideoSelect,
     {
+      name: 'align',
+      title: 'Align',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Left', value: 'left' },
+          { title: 'Right', value: 'right' },
+        ],
+        layout: 'radio',
+        direction: 'horizontal'
+      },
+      initialValue: 'center'
+    },
+    {
       title: 'Grid Size',
       name: 'size',
       type: 'number',
@@ -54,12 +68,11 @@ export default {
               title: "Title",
               type: "string"
             },
-            // {
-            //   name: "description",
-            //   title: "Description",
-            //   type: "text",
-            //   rows: 2
-            // },
+            {
+              name: "description",
+              title: "Description",
+              type: "portableSimple",
+            },
           ]
         }
       ]
@@ -68,10 +81,11 @@ export default {
   preview: {
     select: {
       items: 'items',
+      align: 'align'
     },
-    prepare({ items, }) {
+    prepare({ items, align }) {
       return {
-        title: items.map(item => item.title).join(', ')
+        title: items.map(item => item.title).join(', ') || align
       }
     }
   }
