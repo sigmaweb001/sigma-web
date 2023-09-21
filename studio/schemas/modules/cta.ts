@@ -23,7 +23,7 @@ export default {
   ],
   preview: {
     select: {
-      pretitle: 'title',
+      title: 'title',
     },
     prepare({ title = '', }) {
       return {
