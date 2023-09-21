@@ -4,34 +4,6 @@ useHead({
 })
 
 const { data } = await useSanityQuery(getHomeQuery(), undefined, { server: false })
-
-const benefitTwo = {
-  title: 'Products',
-  desc: '',
-  image: '/benefit-two.png',
-  bullets: [
-    {
-      title: 'Transcode Live',
-      desc: 'Convert the original audio, video and image signals into suitable, compatible formats that can be played on different receivers for live streaming content.',
-      icon: 'i-ri:live-line',
-    },
-    {
-      title: 'Interactive',
-      desc: 'The audience can interact, participate, or influence the streaming experience in some way that encourage real-time exchanges, creating deeper connections and driving revenue opportunities.',
-      icon: 'i-ri:star-smile-line',
-    },
-    {
-      title: 'SSAI',
-      desc: 'A combination of manifest manipulation, ad server communication, and ad bitrate and resolution normalization, all of which happens on the server-side before presenting a manifest to clients.',
-      icon: 'i-ri:advertisement-line',
-    },
-    {
-      title: 'Livestream',
-      desc: 'Allows to receive and broadcast (distribute) multiple streams of live radio and television events.',
-      icon: 'i-ri:broadcast-line',
-    },
-  ],
-}
 </script>
 
 <template>
@@ -47,32 +19,13 @@ const benefitTwo = {
       <SectionHero v-if="item._type === 'hero'" :item="item" />
       <SectionTitleS v-if="item._type === 'title'" :item="item" />
       <SectionBenefits v-else-if="item._type === 'feature'" :data="item" />
+      <SectionGridFeature v-else-if="item._type === 'gridFeature'" :data="item" />
+      <SectionCustomers v-else-if="item._type === 'gridCustomer'" :data="item" />
+      <SectionCta v-else-if="item._type === 'cta'" :data="item" />
     </template>
 
-    <div class="h-10px w-full bg-red" />
-
-    <SectionBenefits img-pos="right" :data="benefitTwo" />
-
-    <SectionTitle pretitle="Highlights Features" title="What's included">
-      <!-- This section is to highlight a promo or demo video of your product.
-      Analysts say a landing page with video has 3% more conversion rate. So,
-      don't forget to add one. Just like this. -->
-    </SectionTitle>
-    <SectionHighlights />
     <!-- <SectionVideo /> -->
-
-    <SectionTitle pretitle="Testimonials" title="Why customers love us?">
-      <!-- Testimonails is a great way to increase the brand trust and awareness.
-      Use this section to highlight your popular customers. -->
-    </SectionTitle>
-    <SectionCustomers />
     <!-- <SectionTestimonials /> -->
-
-    <SectionTitle pretitle="FAQ" title="Frequently Asked Questions">
-      Answer your customers possible questions here, it will increase the
-      conversion rate as well as support or chat requests.
-    </SectionTitle>
-    <SectionFaq />
-    <SectionCta />
+    <!-- <SectionFaq /> -->
   </div>
 </template>

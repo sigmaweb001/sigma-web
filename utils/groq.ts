@@ -215,6 +215,18 @@ export const modules = `
   },
   _type == 'feature' => {
     ..., 
+  },
+  _type == 'gridFeature' => {
+    ...,
+  },
+  _type == 'gridCustomer' => {
+    ...,
+  },
+  _type == 'cta' => {
+    ...,
+    "page":@.page->{
+      ${page}
+    }
   }
 `
 

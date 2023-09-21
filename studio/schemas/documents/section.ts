@@ -18,9 +18,12 @@ export default {
       name: 'content',
       type: 'array',
       of: [
-        { type: 'hero'},
-        { type: 'title'},
-        { type: 'feature'},
+        { type: 'hero' },
+        { type: 'feature' },
+        { type: 'title' },
+        { type: 'gridFeature' },
+        { type: 'gridCustomer' },
+        { type: 'cta' },
       ],
       validation: Rule =>
         Rule.length(1).error('You can only have one piece of content')

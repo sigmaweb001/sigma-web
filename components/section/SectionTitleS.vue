@@ -4,6 +4,7 @@ defineProps<{
     align?: 'left'
     title: string
     pretitle: string
+    description: string
   }
 }>()
 </script>
@@ -27,9 +28,9 @@ defineProps<{
       </h2>
     </template>
 
-    <template v-if="$slots.default">
+    <template v-if="item.description">
       <p class="max-w-2xl py-4 text-lg leading-normal text-gray-500 lg:text-xl xl:text-xl dark:text-gray-300">
-        <slot />
+        {{ item.description }}
       </p>
     </template>
   </div>

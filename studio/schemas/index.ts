@@ -15,6 +15,8 @@ import hero from './modules/hero'
 import feature from './modules/feature'
 import title from './modules/title'
 import gridFeature from './modules/gridFeature'
+import gridCustomer from './modules/gridCustomer'
+import cta from './modules/cta'
 // SECTION: Objects
 import portableSimple from './objects/portable-simple'
 import portableComplex from './objects/portable-complex'
@@ -29,6 +31,8 @@ export const schemaTypes = [
   feature,
   title,
   gridFeature,
+  gridCustomer,
+  cta,
 
   // Objects
   portableSimple,

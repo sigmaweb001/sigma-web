@@ -21,7 +21,7 @@ const { data } = definePropsRefs<{
 <!-- <img :src="data.image" layout="intrinsic" placeholder="blur"> -->
 
 <template>
-  <div class="mb-20 mt-10 flex flex-wrap container lg:flex-nowrap lg:gap-10">
+  <div class="my-10 flex flex-wrap container lg:flex-nowrap lg:gap-10">
     <div class="w-full flex items-center justify-center lg:w-1/2" :class="{ 'lg:order-1': data.bgPos === 'right' }">
       <div v-if="data.photos?.photo" class="relative h-482px w-521px">
         <SNuxtImg :image="data.photos?.photo" alt="Benefits" />

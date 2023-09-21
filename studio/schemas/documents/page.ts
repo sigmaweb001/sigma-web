@@ -50,8 +50,8 @@ export default {
         { type: 'feature' },
         { type: 'title' },
         { type: 'gridFeature' },
-        // { type: 'marquee' },
-        // { type: 'dividerPhoto' },
+        { type: 'gridCustomer' },
+        { type: 'cta' },
         {
           title: 'Reusable Section',
           type: 'reference',

@@ -1,4 +1,3 @@
-import { imageVideoSelect } from '../imageVideoSelect'
 
 export default {
   name: "gridFeature",
