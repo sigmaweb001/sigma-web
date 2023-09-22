@@ -27,7 +27,7 @@ const menus = [
         <NavigationMenuList class="m-0 flex list-none">
           <NavigationMenuItem value="1">
             <NavigationMenuTrigger
-              class="group text-16-medium text-mainText flex select-none items-center justify-between gap-[2px] rounded-[4px] px-3 py-2 outline-none hover:text-primary"
+              class="group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-3 py-2 outline-none hover:text-primary"
             >
               Products
               <div
@@ -47,7 +47,7 @@ const menus = [
 
           <NavigationMenuItem value="2">
             <NavigationMenuTrigger
-              class="group text-16-medium text-mainText flex select-none items-center justify-between gap-[2px] rounded-[4px] px-3 py-2 outline-none hover:text-primary"
+              class="group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-3 py-2 outline-none hover:text-primary"
             >
               Resources
               <div
@@ -57,13 +57,13 @@ const menus = [
             </NavigationMenuTrigger>
             <NavigationMenuContent class="shadow-item absolute left-0 top-0 w-full" lg="w-auto">
               <ul class="grid m-0 list-none gap-12px p-12px" lg="grid-cols-2 w-684px">
+                <AppNavMenuItem title="All Resources" to="/resources" />
                 <AppNavMenuItem title="Blogs" to="/blogs">
                   Blogs
                 </AppNavMenuItem>
                 <AppNavMenuItem title="API" to="/api">
                   API
                 </AppNavMenuItem>
-                <AppNavMenuItem title="All Resources" to="/resources" />
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
@@ -76,7 +76,7 @@ const menus = [
 
         <div class="absolute left-0 top-full w-full flex perspective-[2000px] justify-center">
           <NavigationMenuViewport
-            class="relative mt-0px h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-8px bg-white shadow-xl transition-width,height duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn"
+            class="relative h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-8px bg-white shadow-xl transition-width,height duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn"
             lg="w-[var(--radix-navigation-menu-viewport-width)]" dark="bg-trueGray-800"
           />
         </div>
