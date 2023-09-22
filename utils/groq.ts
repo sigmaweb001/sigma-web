@@ -105,9 +105,9 @@ export const singleBlogPostQuery = groq`*[_type == "blogPost" && slug.current ==
     "image": mainImage
   },
 }`
-// !SECTION: Resources
-export const resourceListQuery = groq`
-*[_type == 'resourceItem'] | order(publishedAt desc, _createdAt desc) {
+// SECTION: Resources
+
+const resourceItem = `
   _id,
   _createdAt,
   publishedAt,
@@ -120,9 +120,27 @@ export const resourceListQuery = groq`
   categories[]->,
   asset,
   "assetUrl": asset.asset->url
+`
+
+export const resourceListQuery = `
+*[_type == 'resourceItem'] | order(publishedAt desc, _createdAt desc) {
+  ${resourceItem}
 }
 `
-// SECTION: Resources
+// *[_type == "resourceItem" && $slug in categories[]->slug.current ] | order(publishedAt desc, _createdAt desc) {
+//   ${resourceItem}
+// }
+
+// Get Resources by Category
+export const resourceItemByCatQuery = `
+*[_type == "resourceCategory" && slug.current == $slug][0] {
+  ...,
+  "items": *[_type == 'resourceItem' && references(^._id)] {
+    ${resourceItem}
+  }
+}
+`
+// !SECTION: Resources
 
 // !SECTION
 

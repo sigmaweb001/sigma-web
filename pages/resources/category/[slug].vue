@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-const slug = eagerComputed(() => useRoute())
-const { data, refresh } = await useSanityData(resourceListQuery, { categorySlug: slug.value })
+const slug = eagerComputed(() => useRoute().params.slug)
+const { data, refresh } = await useSanityData(resourceItemByCatQuery, { slug: slug.value })
 
 useHead({
-  // title: 'Sigma Resources',
+  title: () => data.value?.title,
 })
 </script>
 
@@ -11,12 +11,19 @@ useHead({
   <div class="py-5 container lg:py-8">
     <div>
       <h1 class="text-center text-4xl font-bold dark:text-white">
-        Sigma Resources
+        {{ data?.title }}
       </h1>
     </div>
-    <div class="grid mt-10 gap-10 md:grid-cols-2 lg:gap-10">
-      <template v-for="item in data" :key="item._id">
-        <ResourceList :item="item" />
+    <DevOnly>
+      <div class="fixed right-0 top-0 z-100 max-h-200px max-w-1/2 of-auto bg-white">
+        <details open>
+          <VueJsonPretty :data="data" />
+        </details>
+      </div>
+    </DevOnly>
+    <div class="grid mt-10 gap-10 md:grid-cols-3 lg:gap-10">
+      <template v-for="item in data?.items" :key="item._id">
+        <ResourceItem :item="item" />
       </template>
     </div>
 
