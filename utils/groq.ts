@@ -127,9 +127,6 @@ export const resourceListQuery = `
   ${resourceItem}
 }
 `
-// *[_type == "resourceItem" && $slug in categories[]->slug.current ] | order(publishedAt desc, _createdAt desc) {
-//   ${resourceItem}
-// }
 
 // Get Resources by Category
 export const resourceItemByCatQuery = `
