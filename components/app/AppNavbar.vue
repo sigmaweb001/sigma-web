@@ -37,9 +37,9 @@ const menus = [
             </NavigationMenuTrigger>
             <NavigationMenuContent
               class="shadow-item absolute left-0 top-0 w-full data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft"
-              xl="w-auto"
+              md="w-auto"
             >
-              <ul class="one grid m-0 list-none gap-x-[10px] p-12px" xl="grid-cols-1 w-280px">
+              <ul class="one grid m-0 list-none gap-x-[10px] p-12px" md="grid-cols-1 w-280px">
                 <AppNavMenuItem v-for="item in products" :key="item.key" :to="item.path" :title="item.title" />
               </ul>
             </NavigationMenuContent>
@@ -55,8 +55,8 @@ const menus = [
                 aria-hidden
               />
             </NavigationMenuTrigger>
-            <NavigationMenuContent class="shadow-item absolute left-0 top-0 w-full" xl="w-auto">
-              <ul class="grid m-0 list-none gap-12px p-12px" xl="grid-cols-2 w-684px">
+            <NavigationMenuContent class="shadow-item absolute left-0 top-0 w-full" md="w-auto">
+              <ul class="grid m-0 list-none gap-12px p-12px" md="grid-cols-2 w-684px">
                 <AppNavMenuItem title="All Resources" to="/resources" />
                 <AppNavMenuItem title="Blogs" to="/blogs">
                   Blogs
@@ -77,7 +77,7 @@ const menus = [
         <div class="absolute left-0 top-full w-full flex perspective-[2000px] justify-center">
           <NavigationMenuViewport
             class="relative h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden border-1px border-gray-200 rounded-8px bg-white shadow-xl transition-width,height duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn dark:border-trueGray-700"
-            xl="w-[var(--radix-navigation-menu-viewport-width)]" dark="bg-trueGray-800"
+            md="w-[var(--radix-navigation-menu-viewport-width)]" dark="bg-trueGray-800"
           />
         </div>
       </div>
