@@ -15,6 +15,7 @@ defineProps<{
       <SectionCta v-else-if="item._type === 'cta'" :data="item" />
       <SectionPhotoFeature v-else-if="item._type === 'photoFeature'" :data="item" />
       <SectionSimpleContent v-else-if="item._type === 'simpleContent'" :data="item" />
+      <SectionFeaturedResource v-else-if="item._type === 'featuredResource'" :data="item" />
     </template>
   </div>
 </template>

@@ -54,6 +54,7 @@ export default {
         { type: 'cta' },
         { type: 'photoFeature'},
         { type: 'simpleContent'},
+        { type: 'featuredResource'},
         {
           title: 'Reusable Section',
           type: 'reference',

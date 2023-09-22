@@ -19,6 +19,8 @@ import gridCustomer from './modules/gridCustomer'
 import cta from './modules/cta'
 import photoFeature from './modules/photoFeature'
 import simpleContent from './modules/simpleContent'
+import featuredResource from './modules/featuredResource'
+
 // Resource
 import resourceCategory from './documents/resource/resourceCategory'
 import resourceItem from './documents/resource/resourceItem'
@@ -44,6 +46,8 @@ export const schemaTypes = [
   cta,
   photoFeature,
   simpleContent,
+  
+  featuredResource,
 
   // Objects
   portableSimple,

@@ -25,7 +25,8 @@ export default {
         { type: 'gridCustomer' },
         { type: 'cta' },
         { type: 'photoFeature'},
-        { type: 'simpleContent'}
+        { type: 'simpleContent'},
+        { type: 'featuredResource'},
       ],
       validation: Rule =>
         Rule.length(1).error('You can only have one piece of content')

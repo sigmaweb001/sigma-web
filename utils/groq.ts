@@ -267,6 +267,12 @@ export const modules = `
     "page":@.page->{
       ${page}
     }
+  },
+  _type == 'featuredResource' => {
+    ...,
+    items[]->{
+      ${resourceItem}
+    }
   }
 `
 
