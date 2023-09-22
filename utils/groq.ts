@@ -53,7 +53,6 @@ export const productsQuery = groq`
 `
 
 // SECTION: Blogs
-
 // Get all posts
 export const blogPostQuery = groq`
 *[_type == 'blogPost'] | order(publishedAt desc, _createdAt desc) {
@@ -106,6 +105,26 @@ export const singleBlogPostQuery = groq`*[_type == "blogPost" && slug.current ==
     "image": mainImage
   },
 }`
+// !SECTION: Resources
+export const resourceListQuery = groq`
+*[_type == 'resourceItem'] | order(publishedAt desc, _createdAt desc) {
+  _id,
+  _createdAt,
+  publishedAt,
+  mainImage {
+    ...,
+  },
+  featured,
+  slug,
+  title,
+  categories[]->,
+  asset,
+  "assetUrl": asset.asset->url
+}
+`
+// SECTION: Resources
+
+// !SECTION
 
 // Get Site Config
 export const configQuery = groq`

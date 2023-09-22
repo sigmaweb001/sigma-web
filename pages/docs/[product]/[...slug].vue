@@ -37,7 +37,7 @@ const serializers = {
 </script>
 
 <template>
-  <div class="mx-auto px-5 container">
+  <div class="mx-auto px-10 container">
     <h1 class="text-4xl font-bold text-gray-800 dark:text-white">
       {{ dataPost.title }}
     </h1>

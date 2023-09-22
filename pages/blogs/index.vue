@@ -6,7 +6,7 @@ const { data: posts, refresh } = await useSanityQuery(blogPostQuery)
 </script>
 
 <template>
-  <div class="py-5 container lg:py-8">
+  <div class="py-5 container lg:py-10">
     <div>
       <h1 class="text-center text-4xl font-bold dark:text-white">
         Sigma Blogs

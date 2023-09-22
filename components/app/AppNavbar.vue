@@ -63,6 +63,7 @@ const menus = [
                 <AppNavMenuItem title="API" to="/api">
                   API
                 </AppNavMenuItem>
+                <AppNavMenuItem title="All Resources" to="/resources" />
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>

@@ -19,6 +19,9 @@ import gridCustomer from './modules/gridCustomer'
 import cta from './modules/cta'
 import photoFeature from './modules/photoFeature'
 import simpleContent from './modules/simpleContent'
+// Resource
+import resourceCategory from './documents/resource/resourceCategory'
+import resourceItem from './documents/resource/resourceItem'
 
 // SECTION: Objects
 import portableSimple from './objects/portable-simple'
@@ -28,6 +31,9 @@ export const schemaTypes = [
   // Documents
   section,
   page,
+
+  resourceCategory,
+  resourceItem,
   
   // Modules
   hero,
@@ -48,8 +54,10 @@ export const schemaTypes = [
   category,
   product,
   blockContent,
+
   blogAuthor,
   blogCategory,
   blogPost,
+  
   siteconfig
 ]

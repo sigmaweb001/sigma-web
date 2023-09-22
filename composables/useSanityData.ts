@@ -1,4 +1,4 @@
-export async function useSanityData(query, params: any) {
+export async function useSanityData(query, params?: any) {
   const route = useRoute()
   const preview = eagerComputed(() => route.query.preview)
 
@@ -8,7 +8,6 @@ export async function useSanityData(query, params: any) {
 
       const observable = sanity.client.listen(query, params)
       observable.subscribe((event) => {
-        console.log('[LOG] ~ file: useSanityData.ts:11 ~ event:', event)
         setTimeout(() => {
           refresh()
         }, 900)

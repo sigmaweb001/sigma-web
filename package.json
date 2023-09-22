@@ -30,7 +30,7 @@
     "@vite-pwa/nuxt": "^0.1.0",
     "@vorms/core": "^1.1.0",
     "@vorms/resolvers": "^1.1.0",
-    "@vue-macros/nuxt": "^1.7.10",
+    "@vue-macros/nuxt": "^1.8.1",
     "@vueuse/nuxt": "^10.3.0",
     "class-variance-authority": "^0.7.0",
     "consola": "^3.2.3",
