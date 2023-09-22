@@ -34,7 +34,7 @@ const props = defineProps<{
     v-bind="{ ...props, ...$attrs }"
     provider="sanity"
     :src="image.asset._ref"
-    class="absolute inset-0 h-full w-full"
+    class="absolute inset-0 h-full w-full object-cover"
     fit="cover"
   />
   <!-- sizes="xs:96px" -->

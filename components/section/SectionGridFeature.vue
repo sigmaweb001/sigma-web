@@ -25,18 +25,20 @@ const { data } = definePropsRefs<{
     >
       <div
         v-for="(item, i) in data.items" :key="i"
-        class="grid content-start rounded-2xl bg-gray-100 p-6 px-10 py-10 dark:bg-trueGray-800"
+        class="grid content-start rounded-2xl bg-gray-100 dark:bg-trueGray-800"
       >
         <div v-if="item?.image" class="relative h-200px w-full of-hidden rounded-t-xl">
           <SNuxtImg :image="item?.image" alt="Feature" />
         </div>
-        <div v-if="item.icon" class="mx-auto h-60px w-60px flex-center border border-primary-300/50 rounded-lg p-2">
-          <i :class="item.icon" class="text-24px text-primary" />
+        <div class="px-10">
+          <div v-if="item.icon" class="mx-auto mt-5 h-60px w-60px flex-center border border-primary-300/50 rounded-lg p-2">
+            <i :class="item.icon" class="text-24px text-primary" />
+          </div>
+          <h4 v-if="item.title" class="mt-4 text-center font-medium text-gray-800 dark:text-gray-200">
+            {{ item.title }}
+          </h4>
+          <SSanityContent v-if="item.description" :blocks="item.description" class="prose-li-sigma mb-5 text-start prose-gray" />
         </div>
-        <h4 v-if="item.title" class="mt-4 text-center font-medium text-gray-800 dark:text-gray-200">
-          {{ item.title }}
-        </h4>
-        <SSanityContent v-if="item.description" :blocks="item.description" class="prose-li-sigma text-start prose-gray" />
       </div>
     </div>
   </div>

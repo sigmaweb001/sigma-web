@@ -44,7 +44,7 @@ const { item } = definePropsRefs<{
     </div>
 
     <SButton>
-      <a :href="`${item.assetUrl}?dl=`">Download</a>
+      <a class="w-full" :href="`${item.assetUrl}?dl=`">Download</a>
     </SButton>
   </div>
 </template>
