@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import SSanityContent from '@/components/s/SanityContent.vue'
-
 const { isButton, linkType, page, url, children } = definePropsRefs<{
   linkType: 'internal' | 'external'
   page: {

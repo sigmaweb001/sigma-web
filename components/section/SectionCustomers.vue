@@ -21,8 +21,8 @@ const { data } = definePropsRefs<{
 <template>
   <div class="my-10 container">
     <div class="flex items-center justify-around gap-10" :class="[data.align === 'right' ? 'flex-row-reverse' : 'flex-row']">
-      <div class="px-10">
-        <div v-if="data.photos?.photo" class="relative h-482px w-521px flex-shrink-0">
+      <div v-if="data.photos?.photo" class="px-10">
+        <div class="relative h-482px w-521px flex-shrink-0">
           <SNuxtImg :image="data.photos?.photo" alt="Customer" />
         </div>
       </div>
