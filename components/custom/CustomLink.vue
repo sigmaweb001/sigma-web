@@ -15,12 +15,14 @@ const { isButton, linkType, page, url, children } = definePropsRefs<{
 </script>
 
 <template>
-  <template v-if="linkType === 'internal'">
-    <NuxtLink :to="useLocalePath()(page.slug)">
-      <SButton v-if="isButton" size="lg">
-        <slot />
-      </SButton>
-      <slot v-else />
-    </NuxtLink>
-  </template>
+  <div class="w-full flex-center" xl="justify-start">
+    <template v-if="linkType === 'internal'">
+      <NuxtLink :to="useLocalePath()(page.slug)">
+        <SButton v-if="isButton" size="lg">
+          <slot />
+        </SButton>
+        <slot v-else />
+      </NuxtLink>
+    </template>
+  </div>
 </template>
