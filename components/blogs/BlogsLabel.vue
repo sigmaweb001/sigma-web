@@ -28,7 +28,7 @@ const bgcolor = {
     <slot />
   </div>
   <span
-    v-else class="inline-block text-xs font-medium tracking-wider uppercase" :class="[
+    v-else class="inline-block rounded px-4px py-2px text-11px font-medium tracking-wider uppercase" :class="[
       !nomargin && 'mt-5',
       colors[color] || colors.pink,
       bgcolor[color] || bgcolor.pink,
