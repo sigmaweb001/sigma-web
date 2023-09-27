@@ -27,7 +27,7 @@ export default {
     },
     prepare({ title = '', }) {
       return {
-        title: title
+        title: '[CTA]: ' + title
       }
     }
   }

@@ -1,6 +1,6 @@
 export default {
   name: "photoFeature",
-  title: "Photo Feature",
+  title: "Feature Image",
   type: "object",
   fields: [
     {
@@ -56,7 +56,7 @@ export default {
     },
     prepare({ items, }) {
       return {
-        title: items.map(item => item.title).join(', ')
+        title: '[Feature Image]: ' +  (items[0]?.title)
       }
     }
   }

@@ -41,7 +41,7 @@ export default {
     },
     prepare({ pretitle = '', title = '' }) {
       return {
-        title: pretitle || title
+        title: "[Title]: " + (pretitle || title)
       }
     }
   }

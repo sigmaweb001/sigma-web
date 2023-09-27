@@ -2,7 +2,7 @@ import { imageVideoSelect } from "../imageVideoSelect";
 
 export default {
   name: "gridCustomer",
-  title: "Grid Customer",
+  title: "Feature List (bg)",
   type: "object",
   fields: [
     ...imageVideoSelect,
@@ -85,7 +85,7 @@ export default {
     },
     prepare({ items, align }) {
       return {
-        title: items.map(item => item.title).join(', ') || align
+        title: '[Feature List (bg)]: ' + (items[0]?.title || align)
       }
     }
   }

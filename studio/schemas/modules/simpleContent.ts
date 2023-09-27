@@ -1,6 +1,6 @@
 export default {
   name: "simpleContent",
-  title: "Simple Content",
+  title: "Blog Content",
   type: "object",
   fields: [
     {
@@ -14,8 +14,9 @@ export default {
       content: 'content',
     },
     prepare({ content, }) {
+      console.log('[LOG] ~ file: simpleContent.ts:19 ~ content[0]:', content[0])
       return {
-        title: 'Content'
+        title: '[Blog Content]: ' + content[0]?.children?.find(item => item.text)?.text
       }
     }
   }

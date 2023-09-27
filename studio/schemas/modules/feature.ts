@@ -2,7 +2,7 @@ import { imageVideoSelect } from '../imageVideoSelect'
 
 export default {
   name: "feature",
-  title: "Feature",
+  title: "Feature List",
   type: "object",
   fields: [
     {
@@ -69,7 +69,7 @@ export default {
     },
     prepare({ items, }) {
       return {
-        title: items.map(item => item.title).join(', ')
+        title: '[Feature List]: ' + items[0]?.title
       }
     }
   }

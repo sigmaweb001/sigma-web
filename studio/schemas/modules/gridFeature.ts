@@ -1,7 +1,7 @@
 
 export default {
   name: "gridFeature",
-  title: "Grid Feature",
+  title: "Feature Grid",
   type: "object",
   fields: [
     {
@@ -82,7 +82,7 @@ export default {
     },
     prepare({ items, title }) {
       return {
-        title: title || items.map(item => item.title).join(', ')
+        title: '[Feature Grid]: ' +  (title || items[0]?.title )
       }
     }
   }

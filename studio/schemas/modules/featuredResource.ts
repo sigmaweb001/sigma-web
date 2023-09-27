@@ -22,7 +22,7 @@ export default {
     },
     prepare({ items }) {
       return {
-        title:  'Featured Resource: ' + items.length + ' items'
+        title:  '[Featured Resource]: ' + items.length + ' items'
       }
     }
   }

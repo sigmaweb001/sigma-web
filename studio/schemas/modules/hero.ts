@@ -88,5 +88,16 @@ export default {
         return parent.bgType !== 'video'
       }
     }
-  ]
+  ],
+  preview: {
+    select: {
+      title: "title",
+      photos: "photos",
+    },
+    prepare({ title, photos}) {
+      return {
+        title: '[Hero]: ' + title,
+      };
+    }
+  }
 };
