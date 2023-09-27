@@ -58,12 +58,8 @@ const menus = [
             <NavigationMenuContent class="shadow-item absolute left-0 top-0 w-full" md="w-auto">
               <ul class="grid m-0 list-none gap-12px p-12px" md="grid-cols-2 w-684px">
                 <AppNavMenuItem title="All Resources" to="/resources" />
-                <AppNavMenuItem title="Blogs" to="/blogs">
-                  Blogs
-                </AppNavMenuItem>
-                <AppNavMenuItem title="API" to="/api">
-                  API
-                </AppNavMenuItem>
+                <AppNavMenuItem title="Blog articles" to="/resources/blog" />
+                <AppNavMenuItem title="eBooks & download" to="/resources/blog" />
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
