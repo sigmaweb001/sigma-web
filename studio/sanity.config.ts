@@ -9,14 +9,14 @@ import Iframe from 'sanity-plugin-iframe-pane'
 import { SanityDocument } from 'sanity'
 import { ensurePrefix } from '@antfu/utils'
 
-
 const hiddenDocTypes = listItem =>
   !["siteconfig"].includes(listItem.getId());
 
 // Customize this function to show the correct URL based on the current document
 function getPreviewUrl(doc: SanityDocument, path: string) {
   const domain = process.env.production ? 'https://sigmaott.com': 'http://localhost:3333'
-  const host = domain + path
+  const _path = path === '/' ? path : '/products' + ensurePrefix('/', path)
+  const host = domain + _path
   return doc?.slug?.current
     ? `${host}${ensurePrefix('/', doc.slug.current)}?preview=true`
     : `${host}?preview=true`
