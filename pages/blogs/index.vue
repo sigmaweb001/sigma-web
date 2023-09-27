@@ -14,7 +14,7 @@ const { data: posts, refresh } = await useSanityQuery(blogPostQuery)
     </div>
     <div class="grid mt-10 gap-10 md:grid-cols-2 lg:gap-10">
       <template v-for="post in posts?.slice(0, 2)" :key="post._id">
-        <BlogsPostList
+        <BlogsItem
           :post="post"
           aspect="landscape"
           :preload-image="true"
@@ -23,7 +23,7 @@ const { data: posts, refresh } = await useSanityQuery(blogPostQuery)
     </div>
     <div class="grid mt-10 gap-10 md:grid-cols-2 xl:grid-cols-3 lg:gap-10">
       <template v-for="post in posts?.slice(2, 14)" :key="post._id">
-        <BlogsPostList :post="post" aspect="square" />
+        <BlogsItem :post="post" aspect="square" />
       </template>
     </div>
     <div class="mt-10 flex justify-center">

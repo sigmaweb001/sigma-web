@@ -16,7 +16,7 @@
 		"prefix": "debug-pretty",
 		"body": [
 			"<DevOnly>",
-			"\t<div class=\"fixed right-0 top-0 z-100 max-h-200px max-w-1/2 of-auto bg-white\">",
+			"\t<div class=\"fixed right-0 top-0 z-100 max-h-500px max-w-1/2 of-auto bg-white\">",
 			"\t\t<details open>",
 			"\t\t\t<VueJsonPretty :data=\"${1:value}\"/>",
 			"\t\t</details>",

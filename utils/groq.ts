@@ -54,9 +54,10 @@ export const productsQuery = groq`
 
 // SECTION: Blogs
 // Get all posts
-export const blogPostQuery = groq`
-*[_type == 'blogPost'] | order(publishedAt desc, _createdAt desc) {
+
+const blogItem = `
   _id,
+  _type,
   _createdAt,
   publishedAt,
   mainImage {
@@ -69,12 +70,17 @@ export const blogPostQuery = groq`
   slug,
   title,
   author-> {
+    ...,
     _id,
     image,
     slug,
     name
   },
   categories[]->,
+`
+export const blogPostQuery = `
+*[_type == 'blogPost'] | order(publishedAt desc, _createdAt desc) {
+  ${blogItem}
 }
 `
 
@@ -95,7 +101,10 @@ export const singleBlogPostQuery = groq`*[_type == "blogPost" && slug.current ==
       }
     }
   },
-  author->,
+  author-> {
+    ...,
+    bio
+  },
   categories[]->,
   // "estReadingTime": round(length(pt::text(body)) / 5 / 180),
   "related": *[_type == "blogPost" && count(categories[@._ref in ^.^.categories[]._ref]) > 0 ] | order(publishedAt desc, _createdAt desc) [0...5] {
@@ -109,6 +118,7 @@ export const singleBlogPostQuery = groq`*[_type == "blogPost" && slug.current ==
 
 const resourceItem = `
   _id,
+  _type,
   _createdAt,
   publishedAt,
   mainImage {
@@ -119,12 +129,31 @@ const resourceItem = `
   title,
   categories[]->,
   asset,
+  description,
   "assetUrl": asset.asset->url
 `
+// ${resourceItem}
 
-export const resourceListQuery = `
-*[_type == 'resourceItem'] | order(publishedAt desc, _createdAt desc) {
+export const allResourceListQuery = `
+*[_type == 'resource' || _type == 'blog'] | order(publishedAt desc, _createdAt desc) {
+  _type == "resource" => {
+    ${resourceItem}
+  },
+  _type == "blog" => {
+    ${blogItem}
+  }
+}
+`
+
+export const resourceResourceQuery = `
+*[_type == 'resource'] | order(publishedAt desc, _createdAt desc) {
   ${resourceItem}
+}
+`
+
+export const blogResourceQuery = `
+*[_type == 'blog'] | order(publishedAt desc, _createdAt desc) {
+  ${blogItem}
 }
 `
 

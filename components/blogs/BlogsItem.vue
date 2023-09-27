@@ -13,8 +13,8 @@ const { minimal, post } = definePropsRefs<{
 </script>
 
 <template>
-  <div class="group cursor-pointer" :class="{ 'grid gap-10 md:grid-cols-2': minimal }">
-    <div class="overflow-hidden rounded-md bg-gray-100 transition-all hover:scale-105 dark:bg-gray-800">
+  <div class="group bg-gray-100/75 dark:bg-gray-900/75" :class="{ 'grid gap-10 md:grid-cols-2': minimal }">
+    <div class="overflow-hidden rounded-md transition-all duration-300 hover:scale-105 dark:bg-gray-800">
       <NuxtLink
         class="relative block" :class="{
           'aspect-video': aspect === 'landscape',
@@ -66,28 +66,33 @@ const { minimal, post } = definePropsRefs<{
             </NuxtLink>
           </p>
         </div>
-
-        <div class="mt-3 flex items-center text-gray-500 space-x-3 dark:text-gray-400">
+        <div class="mb-2 mt-3 flex items-center text-gray-500 space-x-3 dark:text-gray-400">
           <NuxtLink to="#">
             <div class="flex items-center gap-3">
-              <div class="relative h-5 w-5 flex-shrink-0">
+              <div class="relative h-32px w-32px flex-shrink-0">
                 <NuxtImg
                   v-if="post.author.image" provider="sanity"
-                  class="absolute inset-0 h-full w-full rounded-full object-cover" :src="post.author.image.asset._ref" :alt="post?.author?.name" sizes="xs:20px"
+                  class="absolute inset-0 h-full w-full rounded-full object-cover" :src="post.author.image.asset._ref" :alt="post?.author?.name" sizes="xs:32px"
                   fit="cover"
                 />
               </div>
-              <span class="truncate text-sm">
-                {{ post.author.name }}
-              </span>
+              <div>
+                <span class="truncate text-sm">
+                  {{ post.author.name }}
+
+                </span>
+                <template v-if="post.author.bio">
+                  <SSanityContent class="text-xs [&_p]:!my-0" :blocks="post.author.bio" />
+                </template>
+              </div>
             </div>
           </NuxtLink>
-          <span class="text-xs text-gray-300 dark:text-gray-600">
+          <!-- <span class="text-xs text-gray-300 dark:text-gray-600">
             &bull;
           </span>
           <time class="truncate text-sm" :datetime="post?.publishedAt || post._createdAt">
             {{ useDateFormat(post?.publishedAt || post._createdAt, 'MMMM D, YYYY').value }}
-          </time>
+          </time> -->
         </div>
       </div>
     </div>

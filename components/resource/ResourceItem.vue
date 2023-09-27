@@ -9,9 +9,9 @@ const { item } = definePropsRefs<{
 </script>
 
 <template>
-  <div class="grid cursor-pointer gap-2 of-hidden rounded-md bg-gray-100 transition-all dark:bg-gray-800">
+  <div class="group flex flex-col gap-2 bg-gray-100/75 dark:bg-gray-900/75">
     <div
-      class="relative block aspect-16/9"
+      class="relative block aspect-16/9 of-hidden rounded-md transition-all duration-300 hover:scale-105"
     >
       <template v-if="item?.mainImage">
         <SNuxtImg :image="item?.mainImage" sizes="md:30vw lg:33vw" :preload="!!preloadImage" loading="lazy" />
@@ -21,6 +21,9 @@ const { item } = definePropsRefs<{
           <i class="i-ri:image-fill text-24px" />
         </span>
       </template>
+      <SButton class="absolute bottom-2 right-2 h-8 w-8 rounded-full bg-white p-0" variant="link">
+        <a class="i-ri:download-line text-14px" :href="`${item.assetUrl}?dl=`" />
+      </SButton>
     </div>
 
     <div class="flex items-center px-3">
@@ -35,16 +38,13 @@ const { item } = definePropsRefs<{
           }" class="mt-2 dark:text-white"
         >
           <span
-            class="transition-[background-size] bg-[length:0px_10px] from-primary-300 to-primary-200 bg-gradient-to-r bg-left-bottom bg-no-repeat duration-500 hover:bg-[length:100%_10px] hover:bg-[length:100%_3px] dark:from-primary-600 dark:to-primary-700"
+            class="transition-[background-size] cursor-default bg-[length:0px_10px] from-primary-300 to-primary-200 bg-gradient-to-r bg-left-bottom bg-no-repeat duration-500 hover:bg-[length:100%_10px] hover:bg-[length:100%_3px] dark:from-primary-600 dark:to-primary-700"
           >
             {{ item.title }}
           </span>
         </h2>
+        <SSanityContent class="text-14px" :blocks="item.description" />
       </div>
     </div>
-
-    <SButton>
-      <a class="w-full" :href="`${item.assetUrl}?dl=`">Download</a>
-    </SButton>
   </div>
 </template>
