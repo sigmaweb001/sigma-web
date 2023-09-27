@@ -8,6 +8,7 @@ import page from './documents/page'
 import section from './documents/section'
 
 import category from './documents/category'
+import tag from './documents/tag'
 import author from './documents/author'
 import blog from './documents/blog'
 import resource from './documents/resource'
@@ -35,6 +36,7 @@ export const schemaTypes = [
 
   author,
   category,
+  tag,
   blog,
   resource,
   

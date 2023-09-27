@@ -52,10 +52,17 @@ export default {
       }
     },
     {
-      name: "categories",
-      title: "Categories",
+      name: "category",
+      title: "Category",
+      type: "reference",
+      validation: Rule => Rule.required(), 
+      to: { type: "category" }
+    },
+    {
+      name: "tags",
+      title: "Tags",
       type: "array",
-      of: [{ type: "reference", to: { type: "category" } }]
+      of: [{ type: "reference", to: { type: "tag" } }]
     },
     {
       name: "publishedAt",
