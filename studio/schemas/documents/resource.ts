@@ -1,6 +1,6 @@
 export default {
-  name: "resourceItem",
-  title: "Resource Item",
+  name: "resource",
+  title: "Resource",
   type: "document",
   initialValue: () => ({
     publishedAt: new Date().toISOString()
@@ -10,6 +10,11 @@ export default {
       name: "title",
       title: "Title",
       type: "string"
+    },
+    {
+      name: "description",
+      title: "Description",
+      type: "blockContent"
     },
     {
       name: 'asset',
@@ -45,24 +50,18 @@ export default {
       name: "categories",
       title: "Categories",
       type: "array",
-      of: [{ type: "reference", to: { type: "resourceCategory" } }]
+      of: [{ type: "reference", to: { type: "category" } }]
     },
     {
       name: "publishedAt",
       title: "Published at",
       type: "datetime"
     },
-    {
-      name: "featured",
-      title: "Mark as Featured",
-      type: "boolean"
-    },
-    {
-      name: "description",
-      title: "Description",
-      type: "blockContent"
-    },
-    
+    // {
+    //   name: "featured",
+    //   title: "Mark as Featured",
+    //   type: "boolean"
+    // },
   ],
 
   preview: {

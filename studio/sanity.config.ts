@@ -66,10 +66,10 @@ export default defineConfig({
             ...S.documentTypeListItems().filter(hiddenDocTypes),
             S.divider(),
             S.listItem()
-              .title('Documents Management')
+              .title('Documents')
               .child(
                 S.list()
-                  .title('Documents Management')
+                  .title('Documents')
                   .items(
                     [
                       S.divider(),
@@ -119,10 +119,10 @@ export default defineConfig({
                   )
               ),
             S.listItem()
-              .title('Blogs Mangagement')
+              .title('Blogs')
               .child(
                 S.list()
-                  .title('Blogs Management')
+                  .title('Blogs')
                   .items(
                     [
                       S.listItem()
@@ -146,6 +146,38 @@ export default defineConfig({
                             .title("Authors")
                             .filter('_type == "blogAuthor"')
                         ),
+                      S.divider(),
+                    ]
+                  )
+              ),
+            S.listItem()
+              .title('eBooks & Download')
+              .child(
+                S.list()
+                  .title('eBooks & Download')
+                  .items(
+                    [
+                      // S.listItem()
+                      //   .title("Blogs")
+                      //   .child(
+                      //     S.documentList()
+                      //       .title("Blogs")
+                      //       .filter('_type == "blogPost"')
+                      //   ),
+                      // S.listItem()
+                      //   .title("Categories")
+                      //   .child(
+                      //     S.documentList()
+                      //       .title("Categories")
+                      //       .filter('_type == "blogCategory"')
+                      //   ),
+                      // S.listItem()
+                      //   .title("Authors")
+                      //   .child(
+                      //     S.documentList()
+                      //       .title("Authors")
+                      //       .filter('_type == "blogAuthor"')
+                      //   ),
                       S.divider(),
                     ]
                   )

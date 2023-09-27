@@ -1,6 +1,6 @@
 export default {
-  name: "resourceCategory",
-  title: "Resource Category",
+  name: "category",
+  title: "Category",
   type: "document",
   fields: [
     {

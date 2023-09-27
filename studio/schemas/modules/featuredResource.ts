@@ -11,7 +11,7 @@ export default {
       of: [
         {
           type: "reference",
-          to: [{ type: "resourceItem" }]
+          to: [{ type: "resource" }]
         }
       ]
     }

@@ -1,6 +1,6 @@
 export default {
-  name: "blogPost",
-  title: "Blog Post",
+  name: "blog",
+  title: "Blog",
   type: "document",
   initialValue: () => ({
     publishedAt: new Date().toISOString()
@@ -33,7 +33,7 @@ export default {
       name: "author",
       title: "Author",
       type: "reference",
-      to: { type: "blogAuthor" }
+      to: { type: "author" }
     },
     {
       name: "mainImage",
@@ -55,18 +55,18 @@ export default {
       name: "categories",
       title: "Categories",
       type: "array",
-      of: [{ type: "reference", to: { type: "blogCategory" } }]
+      of: [{ type: "reference", to: { type: "category" } }]
     },
     {
       name: "publishedAt",
       title: "Published at",
       type: "datetime"
     },
-    {
-      name: "featured",
-      title: "Mark as Featured",
-      type: "boolean"
-    },
+    // {
+    //   name: "featured",
+    //   title: "Mark as Featured",
+    //   type: "boolean"
+    // },
     {
       name: "body",
       title: "Body",
@@ -77,7 +77,7 @@ export default {
   preview: {
     select: {
       title: "title",
-      author: "blogAuthor.name",
+      author: "author.name",
       media: "mainImage"
     },
     prepare(selection) {

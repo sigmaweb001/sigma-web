@@ -1,15 +1,18 @@
 import docs from './docs'
-import category from './category'
 import product from './product'
 import blockContent from './blockContent'
 
-import blogAuthor from './blog/blogAuthor'
-import blogCategory from './blog/blogCategory'
-import blogPost from './blog/blogPost'
 import siteconfig from './siteconfig'
 // SECTION: Documents
 import page from './documents/page'
 import section from './documents/section'
+
+import category from './documents/category'
+import author from './documents/author'
+import blog from './documents/blog'
+import resource from './documents/resource'
+
+
 // SECTION: Modules
 import hero from './modules/hero'
 import feature from './modules/feature'
@@ -21,10 +24,6 @@ import photoFeature from './modules/photoFeature'
 import simpleContent from './modules/simpleContent'
 import featuredResource from './modules/featuredResource'
 
-// Resource
-import resourceCategory from './documents/resource/resourceCategory'
-import resourceItem from './documents/resource/resourceItem'
-
 // SECTION: Objects
 import portableSimple from './objects/portable-simple'
 import portableComplex from './objects/portable-complex'
@@ -34,8 +33,10 @@ export const schemaTypes = [
   section,
   page,
 
-  resourceCategory,
-  resourceItem,
+  author,
+  category,
+  blog,
+  resource,
   
   // Modules
   hero,
@@ -55,13 +56,9 @@ export const schemaTypes = [
 
   // Others
   docs,
-  category,
   product,
   blockContent,
 
-  blogAuthor,
-  blogCategory,
-  blogPost,
-  
+ 
   siteconfig
 ]
