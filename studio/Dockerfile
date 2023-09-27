@@ -17,6 +17,6 @@ RUN pnpm build
 FROM registry.gviet.vn:5000/library/nginx:stable-alpine AS production
 #  server nginx in production
 COPY --from=build-stage /app/dist /usr/share/nginx/html
-
+COPY default.conf /etc/nginx/conf.d/default.conf
 # EXPOSE 80
 # CMD ["nginx", "-g", "daemon off;"]
