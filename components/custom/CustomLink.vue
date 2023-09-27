@@ -16,7 +16,7 @@ const { isButton, linkType, page, url, children } = definePropsRefs<{
   <div class="w-full flex-center" xl="justify-start">
     <template v-if="linkType === 'internal'">
       <NuxtLink :to="useLocalePath()(page.slug)">
-        <SButton v-if="isButton" size="lg">
+        <SButton v-if="isButton" size="lg" variant="gradient">
           <slot />
         </SButton>
         <slot v-else />
