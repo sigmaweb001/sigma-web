@@ -11,9 +11,18 @@ export default {
   fields: [
     orderRankField({ type: "category" }),
     {
+      title: "Icon",
+      name: "icon",
+      type: "iconPicker",
+      options: {
+        providers: ["mdi"]
+      }
+    },
+    {
       name: "title",
       title: "Title",
-      type: "string"
+      type: "string",
+      validation: Rule => Rule.required(),
     },
     {
       name: "slug",
@@ -30,5 +39,17 @@ export default {
       title: "Description",
       type: "text"
     }
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'title',
+      icon: 'icon',
+    },
+    prepare({ title, icon }) {
+      return {
+        title: title || '',
+        subtitle: icon?.name || ''
+      }
+    }
+  },
 };

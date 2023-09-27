@@ -8,13 +8,14 @@ import { table } from '@sanity/table';
 import Iframe from 'sanity-plugin-iframe-pane'
 import { SanityDocument } from 'sanity'
 import { ensurePrefix } from '@antfu/utils'
+import { iconPicker } from 'sanity-plugin-icon-picker';
 
 const hiddenDocTypes = listItem =>
   !["siteconfig"].includes(listItem.getId());
 
 // Customize this function to show the correct URL based on the current document
 function getPreviewUrl(doc: SanityDocument, path: string) {
-  const domain = process.env.production ? 'https://sigmaott.com': 'http://localhost:3333'
+  const domain = 'https://sigmaott.com'
   const _path = path === '/' ? path : '/products' + ensurePrefix('/', path)
   const host = domain + _path
   return doc?.slug?.current
@@ -196,6 +197,7 @@ export default defineConfig({
     visionTool(),
     codeInput(),
     table(),
+    iconPicker(),
   ],
 
   schema: {

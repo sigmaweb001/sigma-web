@@ -33,7 +33,7 @@ const categories = computed(() => [
   },
 ])
 
-const { data: tags } = await useSanityData(allCategoryQuery)
+const { data: _categories } = await useSanityData(allCategoryQuery)
 
 function toSlug(slug: string) {
   return localPath({
