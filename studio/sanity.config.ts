@@ -15,7 +15,8 @@ const hiddenDocTypes = listItem =>
 
 // Customize this function to show the correct URL based on the current document
 function getPreviewUrl(doc: SanityDocument, path: string) {
-  const host = `http://localhost:3333` + path
+  const domain = process.env.production ? 'https://sigmaott.com': 'http://localhost:3333'
+  const host = domain + path
   return doc?.slug?.current
     ? `${host}${ensurePrefix('/', doc.slug.current)}?preview=true`
     : `${host}?preview=true`
