@@ -39,8 +39,8 @@ const { minimal, post } = definePropsRefs<{
     </div>
 
     <div :class="[minimal ? 'flex items-center' : '']">
-      <div>
-        <BlogsCategoryLabel :categories="post.categories" :nomargin="minimal" />
+      <div class="p-2">
+        <BlogsCategoryLabel :categories="post.categories" />
         <h2
           :class="{
             'text-2xl': fontSize === 'large',

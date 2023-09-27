@@ -3,7 +3,6 @@ import { ensurePrefix } from '@antfu/utils'
 
 const { categories, pathPrefix } = definePropsRefs<{
   categories: any[]
-  nomargin?: boolean
   pathPrefix?: string
 }>()
 
@@ -11,10 +10,10 @@ const toSlug = (slug: string) => `${pathPrefix.value || '/'}${ensurePrefix('/', 
 </script>
 
 <template>
-  <div v-if="categories?.length" class="flex gap-3">
+  <div v-if="categories?.length" class="flex flex-wrap gap-3">
     <template v-for="(category, index) in categories.slice(0)" :key="index">
       <NuxtLink :to="toSlug(category.slug.current)">
-        <BlogsLabel :nomargin="nomargin" :color="category.color">
+        <BlogsLabel :color="category.color">
           {{ category.title }}
         </BlogsLabel>
       </NuxtLink>

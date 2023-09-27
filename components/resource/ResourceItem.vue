@@ -28,7 +28,7 @@ const { item } = definePropsRefs<{
 
     <div class="flex items-center px-3">
       <div>
-        <BlogsCategoryLabel :categories="item.categories" :nomargin="true" path-prefix="/resources/category" />
+        <BlogsCategoryLabel :categories="item.categories" path-prefix="/resources/category" />
         <h2
           :class="{
             'text-2xl': fontSize === 'large',

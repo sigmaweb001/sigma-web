@@ -132,10 +132,19 @@ const resourceItem = `
   description,
   "assetUrl": asset.asset->url
 `
-// ${resourceItem}
-
 export const allResourceListQuery = `
 *[_type == 'resource' || _type == 'blog'] | order(publishedAt desc, _createdAt desc) {
+  _type == "resource" => {
+    ${resourceItem}
+  },
+  _type == "blog" => {
+    ${blogItem}
+  }
+}
+`
+// && categories[].slug.current == $slug
+export const allResourceListByTagQuery = `
+*[(_type == 'resource' || _type == 'blog') && defined(categories) && $slug in categories[]->slug.current] | order(publishedAt desc, _createdAt desc) {
   _type == "resource" => {
     ${resourceItem}
   },
@@ -166,6 +175,13 @@ export const resourceItemByCatQuery = `
   }
 }
 `
+
+export const allCategoryQuery = `
+*[_type == "category"] | order(publishedAt desc, _createdAt desc) {
+  ...,
+}
+`
+
 // !SECTION: Resources
 
 // !SECTION
