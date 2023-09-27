@@ -15,7 +15,8 @@ export default {
       name: "icon",
       type: "iconPicker",
       options: {
-        providers: ["mdi"]
+        providers: ["mdi"],
+        storeSvg: true
       }
     },
     {

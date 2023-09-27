@@ -5,7 +5,7 @@ useHead({
   title: 'Resources',
 })
 const localPath = useLocalePath()
-const categories = computed(() => [
+const _categories = computed(() => [
   {
     title: 'All resources',
     icon: 'i-ri:article-line',
@@ -33,13 +33,19 @@ const categories = computed(() => [
   },
 ])
 
-const { data: _categories } = await useSanityData(allCategoryQuery)
+const { data: categories } = await useSanityData(allCategoryQuery)
 
 function toSlug(slug: string) {
   return localPath({
     path: joinURL('/resources', 'tags', slug),
     query: useRoute().query,
   })
+}
+
+function getIcon(data: any) {
+  const encodedSvg = encodeURIComponent(data.svg)
+  const imgSrc = `url(data:image/svg+xml;utf8,${encodedSvg})`
+  return imgSrc
 }
 </script>
 
@@ -49,7 +55,7 @@ function toSlug(slug: string) {
       All Resources
     </h1>
     <div class="flex">
-      <div class="max-w-256px flex-shrink-0 px-5 py-5">
+      <div class="min-w-3 flex-shrink-0 px-10 py-5">
         <h3 class="text-lg font-600">
           Categories
         </h3>
@@ -59,7 +65,8 @@ function toSlug(slug: string) {
             class="flex cursor-pointer items-center justify-between gap-2 rounded-xl px-3 py-2 hover:bg-primary/10 hover:text-primary"
           >
             <div class="flex items-center gap-2">
-              <div :class="item.icon" />
+              <div class="i-ri:arrow-right-line" :style="{ '--un-icon': getIcon(item.icon) }" />
+              <!-- <p v-html="getIcon(item.icon)" /> -->
               <p>{{ item.title }}</p>
             </div>
             <div class="i-ri:arrow-right-line" />
