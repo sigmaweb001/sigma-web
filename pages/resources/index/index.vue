@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-const { data, refresh } = await useSanityData(allResourceListQuery)
+const { data, refresh, pending } = await useSanityData(allResourceListQuery)
 </script>
 
 <template>
-  <ResourceBlogList :data="data" />
+  <ResourceBlogList title="All resources" :data="data" :loading="pending" />
 </template>

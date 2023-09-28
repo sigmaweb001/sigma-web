@@ -15,7 +15,7 @@ export async function useSanityData(query, params?: any) {
     }
   })
 
-  const { data, refresh } = await useLazySanityQuery(query, params, preview.value
+  const { data, refresh, ...rest } = await useLazySanityQuery(query, params, preview.value
     ? {
         client: 'preview',
         server: false,
@@ -23,5 +23,5 @@ export async function useSanityData(query, params?: any) {
       }
     : undefined)
 
-  return { data }
+  return { data, refresh, ...rest }
 }

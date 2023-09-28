@@ -44,19 +44,16 @@ const { minimal, post } = definePropsRefs<{
         <h2
           :class="{
             'text-2xl': fontSize === 'large',
-            'text-3xl': minimal,
             'text-lg': fontSize !== 'large',
             'font-medium': fontWeight === 'normal',
             'font-semibold leading-snug tracking-tight': fontWeight !== 'normal',
           }" class="mt-2 dark:text-white"
         >
-          <NuxtLink :to="`/blogs/${pathPrefix ? `${pathPrefix}/` : ''}${post.slug.current}`">
-            <span
-              class="transition-[background-size] bg-[length:0px_10px] from-primary-300 to-primary-200 bg-gradient-to-r bg-left-bottom bg-no-repeat duration-500 group-hover:bg-[length:100%_10px] hover:bg-[length:100%_3px] dark:from-primary-600 dark:to-primary-700"
-            >
-              {{ post.title }}
-            </span>
-          </NuxtLink>
+          <span
+            class="transition-[background-size] cursor-default bg-[length:0px_10px] from-primary-300 to-primary-200 bg-gradient-to-r bg-left-bottom bg-no-repeat duration-500 hover:bg-[length:100%_10px] hover:bg-[length:100%_3px] dark:from-primary-600 dark:to-primary-700"
+          >
+            {{ post.title }}
+          </span>
         </h2>
 
         <div class="hidden">

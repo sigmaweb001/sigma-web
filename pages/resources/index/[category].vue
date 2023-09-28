@@ -1,9 +1,12 @@
 <script lang="ts" setup>
+const { category } = definePropsRefs<{
+  category: any
+}>()
 const slug = eagerComputed(() => useRoute().params.category)
 
-const { data } = await useSanityData(resourceByCategoryQuery, { slug: slug.value })
+const { data, pending } = await useSanityData(resourceByCategoryQuery, { slug: slug.value })
 </script>
 
 <template>
-  <ResourceBlogList :data="data" />
+  <ResourceBlogList :title="category?.title" :data="data" :loading="pending" />
 </template>
