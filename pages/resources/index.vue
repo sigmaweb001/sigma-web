@@ -50,7 +50,7 @@ const currentTag = computed(() => tags.value?.find(item => item.slug.current ===
 
         <div v-if="categories?.length" class="mt-4 flex flex-wrap gap-2">
           <template v-for="(category, index) in tags" :key="index">
-            <BlogsLabel class="text-12px !px-2 !py-1" :color="category.color" :to="getPath('/resources', '/tag', category.slug.current)">
+            <BlogsLabel class="text-12px !px-2 !py-1" :color="category.color" :to="getPath('/resources', '/tags', category.slug.current)">
               {{ category.title }}
             </BlogsLabel>
           </template>
