@@ -42,7 +42,7 @@ const currentTrigger = ref('')
 
             <div class="flex items-center gap-0.75">
               <span class="h-1.5 w-1.5 animate-ping rounded-full bg-primary" />
-              <span class="hidden text-14px/19px font-600 tracking-widest" lg="inline-block">Streaming</span>
+              <span class="text-14px/19px font-600 tracking-widest" lg="inline-block">Streaming</span>
             </div>
           </div>
         </NuxtLink>

@@ -1,37 +1,11 @@
 <script lang="ts" setup>
 import { joinURL } from 'ufo'
+import { ensurePrefix } from '@antfu/utils'
 
 useHead({
   title: 'Resources',
 })
 const localPath = useLocalePath()
-const _categories = computed(() => [
-  {
-    title: 'All resources',
-    icon: 'i-ri:article-line',
-    to: localPath({
-      path: '/resources',
-      query: useRoute().query,
-    }),
-
-  },
-  {
-    title: 'Blog articles',
-    icon: 'i-ri:file-list-3-line',
-    to: localPath({
-      path: '/resources/blog',
-      query: useRoute().query,
-    }),
-  },
-  {
-    title: 'eBooks & download',
-    icon: 'i-ri:book-open-line',
-    to: localPath({
-      path: '/resources/resource',
-      query: useRoute().query,
-    }),
-  },
-])
 
 const { data: categories } = await useSanityData(allCategoryQuery)
 
@@ -47,6 +21,13 @@ function getIcon(data: any) {
   const imgSrc = `url(data:image/svg+xml;utf8,${encodedSvg})`
   return imgSrc
 }
+
+function getPath(path: string) {
+  return localPath({
+    path: `/resources${ensurePrefix('/', path)}`,
+    query: useRoute().query,
+  })
+}
 </script>
 
 <template>
@@ -55,18 +36,28 @@ function getIcon(data: any) {
       All Resources
     </h1>
     <div class="flex">
-      <div class="min-w-3 flex-shrink-0 px-10 py-5">
+      <div class="min-w-1/4 flex-shrink-0 px-8 py-5">
         <h3 class="text-lg font-600">
           Categories
         </h3>
         <div class="grid mx--2 mt-4 gap-2">
           <NuxtLink
-            v-for="item in categories" :key="item.to" exact-active-class="text-primary" :to="item.to"
+            exact-active-class="text-primary" :to="getPath('/')"
+            class="flex cursor-pointer items-center justify-between gap-2 rounded-xl px-3 py-2 hover:bg-primary/10 hover:text-primary"
+          >
+            <div class="flex items-center gap-2">
+              <div class="i-ri:article-line" />
+              <p>All resources </p>
+            </div>
+            <div class="i-ri:arrow-right-line" />
+          </NuxtLink>
+
+          <NuxtLink
+            v-for="item in categories" :key="item.to" exact-active-class="text-primary" :to="getPath(item.slug.current)"
             class="flex cursor-pointer items-center justify-between gap-2 rounded-xl px-3 py-2 hover:bg-primary/10 hover:text-primary"
           >
             <div class="flex items-center gap-2">
               <div class="i-ri:arrow-right-line" :style="{ '--un-icon': getIcon(item.icon) }" />
-              <!-- <p v-html="getIcon(item.icon)" /> -->
               <p>{{ item.title }}</p>
             </div>
             <div class="i-ri:arrow-right-line" />

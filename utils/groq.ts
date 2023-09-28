@@ -76,7 +76,7 @@ const blogItem = `
     slug,
     name
   },
-  categories[]->,
+  category->,
 `
 export const blogPostQuery = `
 *[_type == 'blogPost'] | order(publishedAt desc, _createdAt desc) {
@@ -105,9 +105,9 @@ export const singleBlogPostQuery = groq`*[_type == "blogPost" && slug.current ==
     ...,
     bio
   },
-  categories[]->,
+  tags[]->,
   // "estReadingTime": round(length(pt::text(body)) / 5 / 180),
-  "related": *[_type == "blogPost" && count(categories[@._ref in ^.^.categories[]._ref]) > 0 ] | order(publishedAt desc, _createdAt desc) [0...5] {
+  "related": *[_type == "blogPost" && count(tags[@._ref in ^.^.tags[]._ref]) > 0 ] | order(publishedAt desc, _createdAt desc) [0...5] {
     title,
     slug,
     "date": coalesce(publishedAt,_createdAt),
@@ -127,7 +127,7 @@ const resourceItem = `
   featured,
   slug,
   title,
-  categories[]->,
+  category->,
   asset,
   description,
   "assetUrl": asset.asset->url
@@ -142,9 +142,9 @@ export const allResourceListQuery = `
   }
 }
 `
-// && categories[].slug.current == $slug
-export const allResourceListByTagQuery = `
-*[(_type == 'resource' || _type == 'blog') && defined(categories) && $slug in categories[]->slug.current] | order(publishedAt desc, _createdAt desc) {
+
+export const resourceByCategoryQuery = `
+*[(_type == 'resource' || _type == 'blog') && category->.slug.current == $slug] | order(publishedAt desc, _createdAt desc) {
   _type == "resource" => {
     ${resourceItem}
   },
@@ -154,27 +154,26 @@ export const allResourceListByTagQuery = `
 }
 `
 
-export const resourceResourceQuery = `
-*[_type == 'resource'] | order(publishedAt desc, _createdAt desc) {
-  ${resourceItem}
-}
-`
-
-export const blogResourceQuery = `
-*[_type == 'blog'] | order(publishedAt desc, _createdAt desc) {
-  ${blogItem}
-}
-`
-
-// Get Resources by Category
-export const resourceItemByCatQuery = `
-*[_type == "resourceCategory" && slug.current == $slug][0] {
-  ...,
-  "items": *[_type == 'resourceItem' && references(^._id)] {
+export const resourceByTagQuery = `
+*[(_type == 'resource' || _type == 'blog') && defined(tags) && $slug in tags[]->slug.current] | order(publishedAt desc, _createdAt desc) {
+  _type == "resource" => {
     ${resourceItem}
+  },
+  _type == "blog" => {
+    ${blogItem}
   }
 }
 `
+
+// // Get Resources by Category
+// export const resourceItemByCatQuery = `
+// *[_type == "resourceCategory" && slug.current == $slug][0] {
+//   ...,
+//   "items": *[_type == 'resourceItem' && references(^._id)] {
+//     ${resourceItem}
+//   }
+// }
+// `
 
 export const allCategoryQuery = `
 *[_type == "category"] | order(publishedAt desc, _createdAt desc) {
