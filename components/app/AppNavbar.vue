@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 const currentTrigger = ref('')
+
+const { data: categories, pending } = await useSanityData(allCategoryQuery)
 </script>
 
 <template>
@@ -80,10 +82,16 @@ const currentTrigger = ref('')
               />
             </NavigationMenuTrigger>
             <NavigationMenuContent class="shadow-item absolute left-0 top-0 w-full" md="w-auto">
-              <ul class="grid m-0 list-none gap-12px p-12px" md="grid-cols-2 w-684px">
-                <AppNavMenuItem title="All Resources" to="/resources" />
-                <AppNavMenuItem title="Blog articles" to="/resources/blog" />
-                <AppNavMenuItem title="eBooks & download" to="/resources/blog" />
+              <ul class="grid grid-flow-row grid-cols-2 m-0 list-none gap-x-12px p-12px" md="w-684px">
+                <AppNavMenuItem
+                  title="All resource"
+                  :to="getPath('/resources')"
+                />
+                <AppNavMenuItem
+                  v-for="item in categories" :key="item._id" :title="item.title"
+                  :to="getPath('/resources', item.slug.current)"
+                  :icon="item.icon"
+                />
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
