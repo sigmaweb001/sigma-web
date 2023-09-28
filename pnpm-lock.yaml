@@ -20,6 +20,9 @@ dependencies:
   '@sanity/client':
     specifier: ^6.4.12
     version: 6.4.12
+  '@studio-freight/lenis':
+    specifier: ^1.0.24
+    version: 1.0.24
   groq:
     specifier: ^3.16.7
     version: 3.16.7
@@ -40,6 +43,9 @@ devDependencies:
   '@antfu/eslint-config':
     specifier: ^0.40.3
     version: 0.40.3(eslint@8.50.0)(typescript@5.2.2)
+  '@hypernym/nuxt-gsap':
+    specifier: ^2.4.1
+    version: 2.4.1
   '@iconify-json/carbon':
     specifier: ^1.1.21
     version: 1.1.21
@@ -1959,6 +1965,12 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
+  /@hypernym/nuxt-gsap@2.4.1:
+    resolution: {integrity: sha512-VK7wKRvWm2zsS11FAFFJUvrouW50ffWtjyCGrAl1aSzOmWksACM48i9ow78EUljAKi2GMttAN4F6j/7PX0AALA==}
+    dependencies:
+      gsap: 3.12.2
+    dev: true
+
   /@iconify-json/carbon@1.1.21:
     resolution: {integrity: sha512-bK2cMVM4noBU+FGlay433flpXLRzQu0ED095iAnoO6ka3yb4uz0lvb8acpN5gthyGLJ89C4HpfIbQZLQnMKQww==}
     dependencies:
@@ -3141,6 +3153,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@studio-freight/lenis@1.0.24:
+    resolution: {integrity: sha512-lOd+vy62k/ekOEU0PLXjHIpobVKBYeBEiy0T3x6MrvgG5ohbP3+iVRZAUAdw94Sv2jk6AgowwJqifB9pC/qc9Q==}
+    dev: false
 
   /@surma/rollup-plugin-off-main-thread@2.2.3:
     resolution: {integrity: sha512-lR8q/9W7hZpMWweNiAKU7NQerBnzQQLvi8qnTDU/fxItPhtZVMbPV3lbCwjhIlNBe9Bbr5V+KHshvWmVSG9cxQ==}
@@ -6969,6 +6985,10 @@ packages:
     resolution: {integrity: sha512-4Qlmwi9uQOyvc8YLFP5d+y8YssFnfK4imY3ZzP+U06LrV/KectnLsl/nDUQS2YfyTrQ7sGZQVNbhKw8DjT3phw==}
     engines: {node: '>=14.18.0'}
     dev: false
+
+  /gsap@3.12.2:
+    resolution: {integrity: sha512-EkYnpG8qHgYBFAwsgsGEqvT1WUidX0tt/ijepx7z8EUJHElykg91RvW1XbkT59T0gZzzszOpjQv7SE41XuIXyQ==}
+    dev: true
 
   /gzip-size@6.0.0:
     resolution: {integrity: sha512-ax7ZYomf6jqPTQ4+XCpUGyXKHk5WweS+e05MBO4/y3WJ5RkmPXNKvX+bx1behVILVwr6JSQvZAku021CHPXG3Q==}

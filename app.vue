@@ -1,5 +1,18 @@
 <script setup lang="ts">
+import Lenis from '@studio-freight/lenis'
 
+const { $ScrollTrigger, $gsap } = useNuxtApp()
+
+onMounted(() => {
+  const lenis = new Lenis()
+  lenis.on('scroll', $ScrollTrigger.update)
+
+  $gsap.ticker.add((time) => {
+    lenis.raf(time * 1000)
+  })
+
+  $gsap.ticker.lagSmoothing(0)
+})
 </script>
 
 <template>
@@ -45,6 +58,26 @@ body,
   height: 100dvh;
   font-family: 'Plus Jakarta Sans', sans-serif;
   @apply p-0 m-0 antialiased;
+}
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 html.dark {

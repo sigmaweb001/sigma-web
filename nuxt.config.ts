@@ -13,7 +13,15 @@ export default defineNuxtConfig({
     '@vue-macros/nuxt',
     '@nuxtjs/sanity',
     '@nuxt/image',
+    '@hypernym/nuxt-gsap',
   ],
+
+  gsap: {
+    composables: true,
+    extraPlugins: {
+      scrollTrigger: true,
+    },
+  },
 
   i18n: {
     defaultLocale: 'en',
