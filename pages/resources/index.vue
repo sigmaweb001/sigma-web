@@ -8,8 +8,10 @@ useHead({
 const localPath = useLocalePath()
 
 const { data: categories, pending } = await useSanityData(allCategoryQuery)
+const { data: tags, pending: pendingTag } = await useSanityData(allTagQuery)
 
 const currentCat = computed(() => categories.value?.find(item => item.slug.current === useRoute().params.category))
+const currentTag = computed(() => tags.value?.find(item => item.slug.current === useRoute().params.tag))
 
 function toSlug(slug: string) {
   return localPath({
@@ -34,7 +36,7 @@ function getPath(path: string) {
 
 <template>
   <div class="flex">
-    <div class="mt-120px min-w-1/4 flex-shrink-0 px-8 py-5">
+    <div class="mt-120px w-1/4 flex-shrink-0 px-8 py-5">
       <h3 class="text-lg font-600">
         Categories
       </h3>
@@ -65,7 +67,7 @@ function getPath(path: string) {
 
       <hr class="my-5 h-px border-0 bg-gray-200 dark:bg-gray-700">
 
-      <template v-if="categories?.length">
+      <template v-if="tags?.length">
         <h3 class="text-lg font-600">
           Tags
         </h3>
@@ -80,7 +82,7 @@ function getPath(path: string) {
       </template>
     </div>
     <div class="flex-1">
-      <NuxtPage :category="currentCat" />
+      <NuxtPage :category="currentCat" :tag="currentTag" />
     </div>
   </div>
 </template>

@@ -165,18 +165,14 @@ export const resourceByTagQuery = `
 }
 `
 
-// // Get Resources by Category
-// export const resourceItemByCatQuery = `
-// *[_type == "resourceCategory" && slug.current == $slug][0] {
-//   ...,
-//   "items": *[_type == 'resourceItem' && references(^._id)] {
-//     ${resourceItem}
-//   }
-// }
-// `
-
 export const allCategoryQuery = `
 *[_type == "category"] | order(publishedAt desc, _createdAt desc) {
+  ...,
+}
+`
+
+export const allTagQuery = `
+*[_type == "tag"] | order(publishedAt desc, _createdAt desc) {
   ...,
 }
 `
