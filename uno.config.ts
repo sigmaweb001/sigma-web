@@ -240,7 +240,7 @@ export default defineConfig({
       center: true,
       padding: {
         DEFAULT: '2rem',
-        xl: '0px',
+        xl: '1rem',
       },
       screens: {
         '2xl': '1400px',
@@ -289,6 +289,10 @@ export default defineConfig({
         marquee: 'linear',
         float: 'linear',
       },
+    },
+
+    boxShadow: {
+      normal: '0px 12px 12px 0px rgba(0, 0, 0, 0.12)',
     },
   },
 })

@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-
+const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)
 </script>
 
 <template>
   <div class="mt-20 border-b border-t border-gray-200 dark:border-trueGray-700">
-    <footer class="grid grid-cols-3 gap-10 py-10 text-15px container">
+    <footer class="grid grid-cols-4 gap-10 px-10 py-10 text-15px container">
       <div class="flex flex-col gap-8px">
-        <p class="mb-8px cursor-default font-500">
+        <p class="mb-8px cursor-default font-500 text-primary">
           Resources
         </p>
         <NuxtLink
@@ -18,7 +18,7 @@
       </div>
 
       <div class="flex flex-col justify-self-center gap-8px">
-        <p class="mb-8px cursor-default font-500">
+        <p class="mb-8px cursor-default font-500 text-primary">
           Company
         </p>
         <NuxtLink hover="underline underline-primary text-primary" to="https://thudomultimedia.com/">
@@ -30,20 +30,33 @@
       </div>
 
       <div class="flex flex-col justify-self-end gap-8px">
-        <p class="mb-8px cursor-default font-500">
+        <p class="mb-8px cursor-default font-500 text-primary">
           Products
         </p>
 
-        <!-- <NuxtLink
-          v-for="link in products" :key="link.path" hover="underline underline-primary text-primary"
-          :to="link.path"
+        <NuxtLink
+          v-for="item in pages?.products" :key="item.slug.current" hover="underline underline-primary text-primary"
+          :to="getPath('/products', item.slug.current)"
         >
-          {{ link.title }}
-        </NuxtLink> -->
+          {{ item.title }}
+        </NuxtLink>
+      </div>
+
+      <div class="flex flex-col justify-self-end gap-8px">
+        <p class="mb-8px cursor-default font-500 text-primary">
+          Engines
+        </p>
+
+        <NuxtLink
+          v-for="item in pages?.engines" :key="item.slug.current" hover="underline underline-primary text-primary"
+          :to="getPath('/products', item.slug.current)"
+        >
+          {{ item.title }}
+        </NuxtLink>
       </div>
     </footer>
   </div>
-  <div class="py-5">
+  <div class="py-10">
     <footer class="grid grid-cols-2 items-end gap-10 container">
       <div class="left">
         <div>
