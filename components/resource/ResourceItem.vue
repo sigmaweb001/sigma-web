@@ -29,7 +29,10 @@ const { item } = definePropsRefs<{
     <div class="flex items-center px-3">
       <div>
         <BlogsCategoryLabel :categories="item.categories" path-prefix="/resources/category" />
-        <h2
+        <NuxtLink
+          :to="item.assetUrl"
+          external
+          target="_blank"
           :class="{
             'text-2xl': fontSize === 'large',
             'text-lg': fontSize !== 'large',
@@ -42,7 +45,7 @@ const { item } = definePropsRefs<{
           >
             {{ item.title }}
           </span>
-        </h2>
+        </NuxtLink>
         <SSanityContent class="text-14px" :blocks="item.description" />
       </div>
     </div>

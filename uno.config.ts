@@ -198,6 +198,7 @@ export default defineConfig({
     presetWebFonts({
       fonts: {
         sans: 'Inter:100,200,300,400,500,600,700,800,900',
+        // sans: 'Anek Latin:100,200,300,400,500,600,700,800',
         // sans: 'Plus Jakarta Sans:300,400,500,600,700,800',
         serif: 'DM Serif Display',
         mono: 'DM Mono',

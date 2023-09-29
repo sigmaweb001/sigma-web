@@ -56,7 +56,8 @@ html,
 body,
 #__nuxt {
   height: 100dvh;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
+  /* font-family: 'Anek Latin', sans-serif; */
   @apply p-0 m-0 antialiased;
 }
 
