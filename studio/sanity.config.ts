@@ -7,8 +7,8 @@ import { codeInput } from '@sanity/code-input'
 import { table } from '@sanity/table';
 import Iframe from 'sanity-plugin-iframe-pane'
 import { SanityDocument } from 'sanity'
-import { ensurePrefix } from '@antfu/utils'
 import { iconPicker } from 'sanity-plugin-icon-picker';
+import { joinURL, withQuery } from 'ufo'
 
 const hiddenDocTypes = listItem =>
   !["siteconfig"].includes(listItem.getId());
@@ -16,11 +16,13 @@ const hiddenDocTypes = listItem =>
 // Customize this function to show the correct URL based on the current document
 function getPreviewUrl(doc: SanityDocument, path: string) {
   const domain = 'https://sigmaott.com'
-  const _path = path === '/' ? path : '/products' + ensurePrefix('/', path)
-  const host = domain + _path
-  return doc?.slug?.current
-    ? `${host}${ensurePrefix('/', doc.slug.current)}?preview=true`
-    : `${host}?preview=true`
+
+  return withQuery(
+    joinURL(domain, path === '/' ? '' : '/products', doc?.slug?.current),
+    {
+      preview: true
+    }
+  )
 }
 
 const defaultDocumentNode: DefaultDocumentNodeResolver = (S, { schemaType }) => {
@@ -148,38 +150,6 @@ export default defineConfig({
                             .title("Authors")
                             .filter('_type == "blogAuthor"')
                         ),
-                      S.divider(),
-                    ]
-                  )
-              ),
-            S.listItem()
-              .title('eBooks & Download')
-              .child(
-                S.list()
-                  .title('eBooks & Download')
-                  .items(
-                    [
-                      // S.listItem()
-                      //   .title("Blogs")
-                      //   .child(
-                      //     S.documentList()
-                      //       .title("Blogs")
-                      //       .filter('_type == "blogPost"')
-                      //   ),
-                      // S.listItem()
-                      //   .title("Categories")
-                      //   .child(
-                      //     S.documentList()
-                      //       .title("Categories")
-                      //       .filter('_type == "blogCategory"')
-                      //   ),
-                      // S.listItem()
-                      //   .title("Authors")
-                      //   .child(
-                      //     S.documentList()
-                      //       .title("Authors")
-                      //       .filter('_type == "blogAuthor"')
-                      //   ),
                       S.divider(),
                     ]
                   )
