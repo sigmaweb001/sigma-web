@@ -155,7 +155,7 @@ const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)
 
       <div class="hidden justify-self-end gap-3 lg:flex">
         <NuxtLink to="https://portal.sigmaott.com/" external>
-          <SButton class="w-100px">
+          <SButton class="w-100px" variant="gradient">
             Login
           </SButton>
         </NuxtLink>
