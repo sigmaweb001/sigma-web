@@ -165,6 +165,17 @@ export const resourceByTagQuery = `
 }
 `
 
+export const allPageQuery = `
+{
+  "products": *[_type == "page" && pageCategory == "product"] | order(publishedAt desc, _createdAt desc) {
+    ...,
+  },
+  "engines": *[_type == "page" && pageCategory == "engine"] | order(publishedAt desc, _createdAt desc) {
+    ...,
+  },
+}
+`
+
 export const allCategoryQuery = `
 *[_type == "category"] | order(publishedAt desc, _createdAt desc) {
   ...,

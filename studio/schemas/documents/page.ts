@@ -11,13 +11,28 @@ export default {
     { title: 'Content', name: 'content', default: true },
     { title: 'Settings', name: 'settings' }
   ],
+  orderings: [orderRankOrdering],
   fields: [
+    orderRankField({ type: "category" }),
+    {
+      title: "Icon",
+      name: "icon",
+      type: "iconPicker",
+      options: {
+        storeSvg: true
+      }
+    },
     {
       name: 'title',
       title: 'Title',
       type: 'string',
       validation: Rule => Rule.required(),
       group: 'settings'
+    },
+    {
+      name: 'description',
+      title: 'Description',
+      type: 'string',
     },
     {
       title: 'URL Slug',
@@ -31,16 +46,34 @@ export default {
       validation: Rule => Rule.required(),
       group: 'settings'
     },
-    // SECTION: WHAT IS THIS?
-    // {
-    //   title: 'Overlay header with transparency?',
-    //   name: 'hasTransparentHeader',
-    //   type: 'boolean',
-    //   description:
-    //     'When activated the header will overlay the first content module with a transparent background and white text until scrolling is engaged.',
-    //   initialValue: false,
-    //   group: 'settings'
-    // },
+    {
+      name: "hideFromMenu",
+      title: "Hide from menu",
+      type: "boolean",
+      initialValue: false,
+      group: 'settings'
+    },
+    {
+      name: "new",
+      title: "New",
+      type: "boolean",
+      initialValue: false,
+      group: 'settings'
+    },
+    {
+      title: 'Page Category',
+      name: 'pageCategory',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Our Product', value: 'product' },
+          { title: 'Our Engine', value: 'engine' }
+        ],
+        layout: 'radio',
+        initialValue: 'product'
+      },
+      group: 'settings'
+    },
     {
       title: 'Page Content',
       name: 'modules',

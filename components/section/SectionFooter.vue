@@ -34,12 +34,12 @@
           Products
         </p>
 
-        <NuxtLink
+        <!-- <NuxtLink
           v-for="link in products" :key="link.path" hover="underline underline-primary text-primary"
           :to="link.path"
         >
           {{ link.title }}
-        </NuxtLink>
+        </NuxtLink> -->
       </div>
     </footer>
   </div>
@@ -70,6 +70,7 @@
           <div class="flex gap-3">
             <AppSocialIcons />
           </div>
+          <DarkSwitch />
         </div>
 
         <div class="mt-8px text-13px text-gray-500">

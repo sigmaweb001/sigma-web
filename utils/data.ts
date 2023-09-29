@@ -287,20 +287,3 @@ export const resources = [
     path: '/blogs',
   },
 ]
-export const products = [
-  {
-    key: 'sigma-machine',
-    title: 'Sigma Machine',
-    path: '/products/sigma-machine',
-  },
-  {
-    key: 'sigma-dai',
-    title: 'Sigma SSAI',
-    path: '/products/sigma-ssai',
-  },
-  {
-    key: 'sigma-interactive',
-    title: 'Sigma Interactive',
-    path: '/products/sigma-interactive',
-  },
-]

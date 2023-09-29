@@ -18,7 +18,7 @@ function toggleDark() {
   <div class="flex items-center">
     <button class="rounded-full text-gray-500 outline-none dark:text-gray-300 focus:outline-none focus-visible:ring focus-visible:ring-gray-100 focus:ring-opacity-20" @click="toggleDark">
       <span class="sr-only">Dark Mode</span>
-      <div class="i-carbon-sun dark:i-carbon-moon text-20px" />
+      <div class="i-carbon-sun dark:i-carbon-moon text-18px" />
     </button>
   </div>
 </template>

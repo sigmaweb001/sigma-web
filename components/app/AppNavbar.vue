@@ -1,7 +1,25 @@
 <script lang="ts" setup>
 const currentTrigger = ref('')
+const products = [
+  {
+    key: 'sigma-machine',
+    title: 'Sigma Machine',
+    path: '/products/sigma-machine',
+  },
+  {
+    key: 'sigma-dai',
+    title: 'Sigma SSAI',
+    path: '/products/sigma-ssai',
+  },
+  {
+    key: 'sigma-interactive',
+    title: 'Sigma Interactive',
+    path: '/products/sigma-interactive',
+  },
+]
 
 const { data: categories, pending } = await useSanityData(allCategoryQuery)
+const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)
 </script>
 
 <template>
@@ -53,7 +71,7 @@ const { data: categories, pending } = await useSanityData(allCategoryQuery)
         <NavigationMenuList class="m-0 flex list-none">
           <NavigationMenuItem value="1">
             <NavigationMenuTrigger
-              class="group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-3 py-2 outline-none hover:text-primary"
+              class="group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-3 py-2 text-lg outline-none hover:text-primary"
             >
               Products
               <div
@@ -65,15 +83,44 @@ const { data: categories, pending } = await useSanityData(allCategoryQuery)
               class="shadow-item absolute left-0 top-0 w-full data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft"
               md="w-auto"
             >
-              <ul class="one grid m-0 list-none gap-x-[10px] p-12px" md="grid-cols-1 w-280px">
-                <AppNavMenuItem v-for="item in products" :key="item.key" :to="item.path" :title="item.title" />
-              </ul>
+              <div class="flex">
+                <div class="grid grid-cols-3 gap-6 px-5 py-5" md="w-768px">
+                  <div class="col-span-2">
+                    <h1 class="text-xl font-600">
+                      Our products
+                    </h1>
+                    <div class="my-2 h-1px bg-gray-200 dark:bg-trueGray-700" />
+                    <ul class="grid m-0 list-none gap-10px" md="grid-cols-2">
+                      <AppNavMenuItem
+                        v-for="item in pages.products" :key="item.key"
+                        :to="getPath('/products', item.slug.current)"
+                        v-bind="item"
+                      />
+                    </ul>
+                  </div>
+
+                  <div class="col-span-1">
+                    <h1 class="text-xl font-600">
+                      Our engines
+                    </h1>
+                    <div class="my-2 h-1px bg-gray-200 dark:bg-trueGray-700" />
+                    <ul class="grid m-0 list-none gap-10px" md="grid-cols-1">
+                      <AppNavMenuItem
+                        v-for="item in pages.engines" :key="item.key"
+                        :to="getPath('/products', item.slug.current)"
+                        v-bind="item"
+                      />
+                    </ul>
+                  </div>
+                </div>
+                <div v-if="false" md="w-384px" />
+              </div>
             </NavigationMenuContent>
           </NavigationMenuItem>
 
           <NavigationMenuItem value="2">
             <NavigationMenuTrigger
-              class="group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-3 py-2 outline-none hover:text-primary"
+              class="group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-3 py-2 text-lg outline-none hover:text-primary"
             >
               Resources
               <div
@@ -82,15 +129,11 @@ const { data: categories, pending } = await useSanityData(allCategoryQuery)
               />
             </NavigationMenuTrigger>
             <NavigationMenuContent class="shadow-item absolute left-0 top-0 w-full" md="w-auto">
-              <ul class="grid grid-flow-row grid-cols-2 m-0 list-none gap-x-12px p-12px" md="w-684px">
-                <AppNavMenuItem
-                  title="All resource"
-                  :to="getPath('/resources')"
-                />
+              <ul class="grid grid-flow-row grid-cols-2 m-0 list-none gap-x-12px p-12px" md="w-500px">
+                <AppNavMenuItem title="All resource" :to="getPath('/resources')" />
                 <AppNavMenuItem
                   v-for="item in categories" :key="item._id" :title="item.title"
-                  :to="getPath('/resources', item.slug.current)"
-                  :icon="item.icon"
+                  :to="getPath('/resources', item.slug.current)" :icon="item.icon"
                 />
               </ul>
             </NavigationMenuContent>
@@ -112,12 +155,10 @@ const { data: categories, pending } = await useSanityData(allCategoryQuery)
 
       <div class="hidden justify-self-end gap-3 lg:flex">
         <NuxtLink to="https://portal.sigmaott.com/" external>
-          <SButton>
+          <SButton class="w-100px">
             Login
           </SButton>
         </NuxtLink>
-
-        <DarkSwitch />
       </div>
     </NavigationMenuRoot>
   </div>

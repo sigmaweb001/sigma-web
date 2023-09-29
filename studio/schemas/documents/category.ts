@@ -2,7 +2,6 @@ import {
   orderRankField,
   orderRankOrdering
 } from "@sanity/orderable-document-list";
-
 export default {
   name: "category",
   title: "Category",
@@ -15,7 +14,6 @@ export default {
       name: "icon",
       type: "iconPicker",
       options: {
-        providers: ["mdi"],
         storeSvg: true
       }
     },
