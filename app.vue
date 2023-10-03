@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Lenis from '@studio-freight/lenis'
+import { useShowDrawer } from './composables/drawer'
 
 const { $ScrollTrigger, $gsap } = useNuxtApp()
 
@@ -13,6 +14,11 @@ onMounted(() => {
 
   $gsap.ticker.lagSmoothing(0)
 })
+const showDrawer = useShowDrawer()
+
+useRouter().afterEach(() => setTimeout(() => {
+  showDrawer.value = false
+}, 50))
 </script>
 
 <template>

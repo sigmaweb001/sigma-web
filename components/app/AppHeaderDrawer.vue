@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const { data: categories, pending } = await useSanityData(allCategoryQuery)
 const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)
+
+const showDrawer = useShowDrawer()
 </script>
 
 <template>
