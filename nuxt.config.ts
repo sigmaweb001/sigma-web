@@ -15,6 +15,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@hypernym/nuxt-gsap',
     'nuxt-simple-sitemap',
+    'nuxt-simple-robots',
   ],
 
   site: {
