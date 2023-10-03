@@ -48,7 +48,7 @@ const { minimal, post } = definePropsRefs<{
             'font-medium': fontWeight === 'normal',
             'font-semibold leading-snug tracking-tight': fontWeight !== 'normal',
           }" class="dark:text-white"
-          :to="getPath('resources', 'blogs', post.slug.current)"
+          :to="getPath('/resources', 'blogs', post.slug.current)"
         >
           <span
             class="transition-[background-size] cursor-default bg-[length:0px_10px] from-primary-300 to-primary-200 bg-gradient-to-r bg-left-bottom bg-no-repeat duration-500 hover:bg-[length:100%_10px] hover:bg-[length:100%_3px] dark:from-primary-600 dark:to-primary-700"
