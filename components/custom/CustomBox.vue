@@ -21,7 +21,7 @@ definePropsRefs<{
         <template v-if="item.icon">
           <div class="relative flex overflow-hidden rounded-full bg-violet-100 p-3 text-violet-600">
             <div class="absolute inset-0 z-10 bg-violet-600 mix-blend-screen" />
-            <NuxtImg provider="sanity" :src="item.icon.asset._ref" :width="16" :height="16" alt="icon" />
+            <div class="i-ri:article-line h-16px w-16px text-indigo-50" :style="icon && { '--un-icon': getIcon(item.icon) }" />
           </div>
         </template>
         <div class="flex flex-col">
