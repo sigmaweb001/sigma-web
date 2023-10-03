@@ -84,13 +84,8 @@ export const blogPostQuery = `
 }
 `
 
-// Paths for generateStaticParams
-export const pathquery = groq`
-*[_type == "blogPost" && defined(slug.current)][].slug.current
-`
-
 // Single Post
-export const singleBlogPostQuery = groq`*[_type == "blogPost" && slug.current == $slug][0] {
+export const singleBlogQuery = `*[_type == "blog" && slug.current == $slug][0] {
   ...,
   body[]{
     ...,
@@ -106,7 +101,7 @@ export const singleBlogPostQuery = groq`*[_type == "blogPost" && slug.current ==
     bio
   },
   tags[]->,
-  // "estReadingTime": round(length(pt::text(body)) / 5 / 180),
+  "estReadingTime": round(length(pt::text(body)) / 5 / 180 ),
   "related": *[_type == "blogPost" && count(tags[@._ref in ^.^.tags[]._ref]) > 0 ] | order(publishedAt desc, _createdAt desc) [0...5] {
     title,
     slug,

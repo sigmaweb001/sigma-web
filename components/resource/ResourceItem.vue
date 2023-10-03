@@ -28,7 +28,7 @@ const { item } = definePropsRefs<{
 
     <div class="flex items-center px-3">
       <div>
-        <BlogsCategoryLabel :categories="item.categories" path-prefix="/resources/category" />
+        <BlogsTagsLabel :categories="item.tags" path-prefix="/resources/category" />
         <NuxtLink
           :to="item.assetUrl"
           external

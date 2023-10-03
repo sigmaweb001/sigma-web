@@ -14,7 +14,12 @@ export default defineNuxtConfig({
     '@nuxtjs/sanity',
     '@nuxt/image',
     '@hypernym/nuxt-gsap',
+    'nuxt-simple-sitemap',
   ],
+
+  site: {
+    url: 'https://sigmaott.com',
+  },
 
   gsap: {
     composables: true,
@@ -84,6 +89,11 @@ export default defineNuxtConfig({
       options: {
         target: 'esnext',
       },
+    },
+    prerender: {
+      crawlLinks: true,
+      routes: ['/', 'sitemap.xml'],
+      // ignore: ['/tak', '/konfiguration', '/checkout'],
     },
   },
 

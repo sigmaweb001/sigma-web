@@ -71,7 +71,7 @@ const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)
         <NavigationMenuList class="m-0 flex list-none">
           <NavigationMenuItem value="1">
             <NavigationMenuTrigger
-              class="group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-3 py-2 text-lg outline-none hover:text-primary"
+              class="group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-3 py-2 text-base outline-none hover:text-primary"
             >
               Products
               <div
@@ -84,7 +84,7 @@ const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)
               md="w-auto"
             >
               <div class="flex">
-                <div class="grid grid-cols-3 gap-6 px-5 py-5" md="w-768px">
+                <div class="grid grid-cols-3 gap-6 px-5 py-5" md="w-screen-md" lg="w-screen-lg">
                   <div class="col-span-2">
                     <h1 class="text-xl font-600">
                       Our products
@@ -120,7 +120,7 @@ const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)
 
           <NavigationMenuItem value="2">
             <NavigationMenuTrigger
-              class="group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-3 py-2 text-lg outline-none hover:text-primary"
+              class="group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-3 py-2 text-base outline-none hover:text-primary"
             >
               Resources
               <div
@@ -130,7 +130,7 @@ const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)
             </NavigationMenuTrigger>
             <NavigationMenuContent class="shadow-item absolute left-0 top-0 w-full" md="w-auto">
               <ul class="grid grid-flow-row grid-cols-2 m-0 list-none gap-x-12px p-12px" md="w-500px">
-                <AppNavMenuItem title="All resource" :to="getPath('/resources')" />
+                <AppNavMenuItem title="All resources" :to="getPath('/resources')" />
                 <AppNavMenuItem
                   v-for="item in categories" :key="item._id" :title="item.title"
                   :to="getPath('/resources', item.slug.current)" :icon="item.icon"

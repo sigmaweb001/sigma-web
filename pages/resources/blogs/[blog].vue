@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-const slug = eagerComputed(() => useRoute().params.slug)
+const slug = eagerComputed(() => useRoute().params.blog)
 
-const { data: post } = await useSanityData(singleBlogPostQuery, { slug: slug.value })
+const { data: post } = await useSanityData(singleBlogQuery, { slug: slug.value })
 
 useHead({
   title: post.value?.title,
@@ -10,9 +10,9 @@ useHead({
 
 <template>
   <div class="max-w-screen-md py-5 container lg:py-8">
-    <!-- <div class="flex justify-center">
-      <BlogsCategoryLabel :categories="post?.categories" />
-    </div> -->
+    <div class="flex justify-center">
+      <BlogsTagsLabel :categories="post?.tags" />
+    </div>
 
     <h1
       class="text-brand-primary mb-3 mt-2 text-center text-3xl font-semibold tracking-tight lg:text-4xl lg:leading-snug dark:text-white"
@@ -20,7 +20,7 @@ useHead({
       {{ post?.title }}
     </h1>
 
-    <!-- <div class="mt-3 flex justify-center text-gray-500 space-x-3">
+    <div class="mt-3 flex justify-center text-gray-500 space-x-3">
       <div class="flex items-center gap-3">
         <div class="relative h-10 w-10 flex-shrink-0">
           <template v-if="post?.author?.image">
@@ -47,7 +47,7 @@ useHead({
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
 
   <div class="relative z-0 mx-auto aspect-video max-w-screen-lg overflow-hidden lg:rounded-lg">
@@ -59,8 +59,8 @@ useHead({
   </div>
 
   <div class="py-5 container lg:py-8">
-    <article class="mx-auto max-w-screen-md">
-      <SSanityContent :blocks="post?.body" class="mx-auto my-3 prose prose-trueGray" />
+    <article class="mx-auto max-w-screen-lg">
+      <SSanityContent :blocks="post?.body" class="mx-auto my-3 max-w-100ch prose prose-trueGray" />
       <div class="mb-7 mt-7 flex justify-center">
         <Link href="/" class="bg-brand-secondary/20 rounded-full px-5 py-2 text-sm text-blue-600 dark:text-blue-500">
           ← View all posts

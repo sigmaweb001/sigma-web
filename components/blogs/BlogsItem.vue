@@ -15,12 +15,12 @@ const { minimal, post } = definePropsRefs<{
 <template>
   <div class="group bg-gray-100/75 dark:bg-gray-900/75" :class="{ 'grid gap-10 md:grid-cols-2': minimal }">
     <div class="overflow-hidden rounded-md transition-all duration-300 hover:scale-105 dark:bg-gray-800">
-      <NuxtLink
+      <div
         class="relative block" :class="{
           'aspect-video': aspect === 'landscape',
           'aspect-[5/4]': aspect === 'custom',
           'aspect-square': aspect !== 'landscape' && aspect !== 'custom',
-        }" :to="`/blogs/${pathPrefix ? `${pathPrefix}/` : ''}${post.slug.current}`"
+        }"
       >
         <template v-if="post?.mainImage">
           <NuxtImg
@@ -35,26 +35,27 @@ const { minimal, post } = definePropsRefs<{
             <i class="i-ri:image-fill text-24px" />
           </span>
         </template>
-      </NuxtLink>
+      </div>
     </div>
 
     <div :class="[minimal ? 'flex items-center' : '']">
       <div class="p-2">
-        <BlogsCategoryLabel :categories="post.categories" />
-        <h2
+        <BlogsTagsLabel :categories="post.tags" />
+        <NuxtLink
           :class="{
             'text-2xl': fontSize === 'large',
             'text-lg': fontSize !== 'large',
             'font-medium': fontWeight === 'normal',
             'font-semibold leading-snug tracking-tight': fontWeight !== 'normal',
-          }" class="mt-2 dark:text-white"
+          }" class="dark:text-white"
+          :to="getPath('resources', 'blogs', post.slug.current)"
         >
           <span
             class="transition-[background-size] cursor-default bg-[length:0px_10px] from-primary-300 to-primary-200 bg-gradient-to-r bg-left-bottom bg-no-repeat duration-500 hover:bg-[length:100%_10px] hover:bg-[length:100%_3px] dark:from-primary-600 dark:to-primary-700"
           >
             {{ post.title }}
           </span>
-        </h2>
+        </NuxtLink>
 
         <div class="hidden">
           <p v-if="post.excerpt" class="line-clamp-3 mt-2 text-sm text-gray-500 dark:text-gray-400">

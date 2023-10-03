@@ -11,8 +11,8 @@ const currentTag = computed(() => tags.value?.find(item => item.slug.current ===
 </script>
 
 <template>
-  <div class="flex">
-    <div class="mt-120px w-1/4 flex-shrink-0 px-8 py-5">
+  <div class="flex container">
+    <div class="mt-120px w-1/4 flex-shrink-0 py-5 pr-10">
       <h3 class="text-lg font-600">
         Categories
       </h3>
