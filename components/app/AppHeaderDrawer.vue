@@ -4,7 +4,7 @@ const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)
 </script>
 
 <template>
-  <SSheet>
+  <SSheet v-model:open="showDrawer">
     <SSheetTrigger as-child>
       <img src="/logo_sigma.png" alt="LS" class="h-10 w-10 cursor-pointer">
     </SSheetTrigger>
