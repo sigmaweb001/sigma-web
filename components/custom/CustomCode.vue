@@ -3,7 +3,7 @@ import { getHighlighter } from 'shikiji'
 
 const { language, code } = definePropsRefs<{
   language: string
-  code: code
+  code: string
 }>()
 
 const langMap = {

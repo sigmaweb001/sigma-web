@@ -60,7 +60,7 @@ useHead({
 
   <div class="py-5 container lg:py-8">
     <article class="mx-auto max-w-screen-lg">
-      <SSanityContent :blocks="post?.body" class="mx-auto my-3 max-w-100ch prose prose-trueGray" />
+      <SSanityContent :blocks="post?.body" class="mx-auto my-3 max-w-85ch prose prose-trueGray" />
       <div class="mb-7 mt-7 flex justify-center">
         <Link href="/" class="bg-brand-secondary/20 rounded-full px-5 py-2 text-sm text-blue-600 dark:text-blue-500">
           ← View all posts
