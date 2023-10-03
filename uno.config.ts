@@ -8,189 +8,17 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
-import { type CSSObject, type Rule } from 'unocss'
-import { type Theme } from '@unocss/preset-mini'
-import { handler } from '@unocss/preset-mini/utils'
-import type { Preset } from '@unocss/core'
-import animatedJSON from './uno/animated.json'
-
-function getAnimated() {
-  return animatedJSON as unknown as {
-    [key: string]: {
-      animationName: string
-      css: CSSObject
-      keyframes: string
-    }
-  }
-}
-
-export const durationShortcuts = {
-  faster: 0.5,
-  fast: 0.8,
-  slow: 2,
-  slower: 3,
-}
-
-/**
- * animate.css
- */
-export const animatedRules: Rule<Theme>[] = [
-  ['animated', {
-    '--une-animated-duration': '1s',
-    'animation-duration': 'var(--une-animated-duration)',
-    'animation-fill-mode': 'both',
-  }],
-  [
-    new RegExp(`^animated-(${Object.keys(animatedJSON).join('|')})$`),
-    ([, name]) => {
-      const { animationName, css, keyframes } = getAnimated()[name]
-
-      return [
-        `@keyframes ${animationName} { ${keyframes} }`,
-        css,
-      ]
-    },
-    {
-      autocomplete: [
-        `animated-(${Object.keys(animatedJSON).join('|')})`,
-      ],
-    },
-  ],
-  [
-    /^animated-(infinite|(repeat-(infinite|(\d+(\.\d+)?))))$/,
-    ([, , , repeat]) => {
-      const isInfinite = !repeat || repeat === 'infinite'
-
-      return {
-        'animation-iteration-count': isInfinite ? 'infinite' : repeat,
-      }
-    },
-    {
-      autocomplete: [
-        'animated-infinite',
-        'animated-repeat-infinite',
-        'animated-repeat-<num>',
-      ],
-    },
-  ],
-  [
-    /^animated-delay-(none|(\d+(\.\d+)?(m?s)?))$/,
-    ([, d]) => ({
-      'animation-delay': d === 'none' ? '0ms' : handler.bracket.cssvar.time(d),
-    }),
-    {
-      autocomplete: [
-        'animated-delay-none',
-        'animated-delay-$duration',
-      ],
-    },
-  ],
-  [
-    /^animated-(((fast|slow)(?:er)?)|duration-(none|(\d+(\.\d+)?(m?s)?)))/,
-    ([_, , shortcut, , v]) => {
-      if (shortcut) {
-        return {
-          'animation-duration': `calc(var(--une-animated-duration) * ${durationShortcuts[shortcut as keyof typeof durationShortcuts]});`,
-        }
-      }
-
-      return {
-        'animation-duration': v === 'none' ? '0ms' : handler.bracket.cssvar.time(v),
-      }
-    },
-    {
-      autocomplete: [
-        `animated-(${Object.keys(durationShortcuts).join('|')})`,
-        'animated-duration-none',
-        'animated-duration-$duration',
-      ],
-    },
-  ],
-]
-
-// SECTION:
-
-/**
- * @public
- */
-export interface PrimitivesOptions {
-  /**
-   * @default 'ui'
-   */
-  prefix?: string
-  /**
-   * @default 'open|checked|selected|active|disabled'
-   */
-  variants?: string
-  /**
-   * @default 'data-headlessui-state'
-   */
-  selector?: string
-  /**
-   * @default 'false'
-   * use [data~='checked'] or [data-checked]
-   */
-  isAttrBoolean?: boolean
-}
-
-function presetPrimitives(options: PrimitivesOptions = {}): Preset {
-  const {
-    prefix = 'ui',
-    variants = 'open|checked|selected|active|disabled',
-    selector = 'data-headlessui-state',
-    isAttrBoolean = false,
-  } = options
-
-  return {
-    name: 'unocss-preset-primitives',
-    variants: [
-      (matcher: string) => {
-        const regex = new RegExp(`^${prefix}(-not)?-(${variants})[:-]`)
-        const match = matcher.match(regex)
-        if (match) {
-          const attrGen = !isAttrBoolean
-            ? `[${selector}~='${match[2]}']`
-            : `[${selector}-${match[2]}]`
-          return {
-            matcher: matcher.slice(match[0].length),
-            selector: (s: any) => (match[1] === '-not')
-              ? `${s}[${selector}]:not(${attrGen}),:where([${selector}]:not(${attrGen})) ${s}:not(${selector})`
-              : `${s}${attrGen},:where(${attrGen}) ${s}`,
-          }
-        }
-        else {
-          return matcher
-        }
-      },
-    ],
-  }
-}
-
-function presetRadixUi(options: {
-  /**
-   * @default 'ui'
-   */
-  prefix?: string
-} = {}): Preset {
-  const {
-    prefix = 'ui',
-  } = options
-  const variants = 'active|checked|closed|delayed-open|hidden|inactive|indeterminate|instant-open|off|on|open|unchecked|visible'
-  return presetPrimitives({ prefix, variants, selector: 'data-state' })
-}
-// !SECTION
+import { presetUseful } from 'unocss-preset-useful'
 
 export default defineConfig({
   shortcuts: [
     ['flex-center', 'flex items-center justify-center'],
   ],
   rules: [
-    ...animatedRules,
   ],
   presets: [
-    presetUno(),
+    presetUseful(),
     presetAttributify(),
-    presetRadixUi(),
     presetIcons({
       scale: 1.2,
     }),
@@ -210,10 +38,8 @@ export default defineConfig({
   ],
   theme: {
     colors: {
-      'background': 'hsl(var(--background))',
-      'ring': 'hsl(var(--ring))',
 
-      'primary': {
+      primary: {
         DEFAULT: 'hsl(var(--primary))',
         foreground: 'hsl(var(--primary-foreground))',
         50: '#FFE8D5',
@@ -227,13 +53,37 @@ export default defineConfig({
         800: '#733501',
         900: '#3B1B01',
       },
-      'secondary': {
+
+      border: 'hsl(var(--border))',
+      input: 'hsl(var(--input))',
+      ring: 'hsl(var(--ring))',
+      background: 'hsl(var(--background))',
+      foreground: 'hsl(var(--foreground))',
+
+      secondary: {
         DEFAULT: 'hsl(var(--secondary))',
         foreground: 'hsl(var(--secondary-foreground))',
       },
-
-      'accent': 'hsl(var(--accent))',
-      'accent-foreground': 'hsl(var(--accent-foreground))',
+      destructive: {
+        DEFAULT: 'hsl(var(--destructive))',
+        foreground: 'hsl(var(--destructive-foreground))',
+      },
+      muted: {
+        DEFAULT: 'hsl(var(--muted))',
+        foreground: 'hsl(var(--muted-foreground))',
+      },
+      accent: {
+        DEFAULT: 'hsl(var(--accent))',
+        foreground: 'hsl(var(--accent-foreground))',
+      },
+      popover: {
+        DEFAULT: 'hsl(var(--popover))',
+        foreground: 'hsl(var(--popover-foreground))',
+      },
+      card: {
+        DEFAULT: 'hsl(var(--card))',
+        foreground: 'hsl(var(--card-foreground))',
+      },
     },
 
     container: {

@@ -30,13 +30,12 @@ export default defineNitroPlugin((nitroApp) => {
   async function createFeed(feed: Feed, options: { type: string; category: string; getURL: (slug: string) => string }) {
     feed.options = {
       title: 'Sigma Streaming',
-      copyright: ' Thu Do Multimedia Communications Joint Stock Company ',
+      copyright: 'All rights reserved 2023, Thu Do Multimedia Communications Joint Stock Company ',
       description: 'Sigma Streaming Website',
       id: 'https://sigmaott.com/',
       link: 'https://sigmaott.com/',
       image: 'https://sigmaott.com/logo_sigma.png',
       favicon: 'https://sigmaott.com/favicon.ico',
-      copyright: 'All rights reserved 2023, Son Hong Do',
       generator: 'Feed Nuxt',
       author: {
         name: 'Son Hong Do',

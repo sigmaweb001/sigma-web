@@ -7,6 +7,9 @@ const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)
 
 <template>
   <div class="sticky top-0 z-10 h-64px w-full bg-white shadow" dark="bg-trueGray-900">
+    <div md="hidden" class="h-full flex-center">
+      <AppHeaderDrawer />
+    </div>
     <NavigationMenuRoot
       v-model="currentTrigger" class="relative z-100 hidden w-full"
       md="grid w-full grid-cols-3 items-center container h-full xl:px-5 mx-auto"
@@ -69,7 +72,7 @@ const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)
               <div class="flex">
                 <div class="grid grid-cols-3 gap-6 px-5 py-5" md="w-screen-md" lg="w-screen-lg">
                   <div class="col-span-2">
-                    <h1 class="text-xl font-600">
+                    <h1 class="text-lg font-600">
                       Our products
                     </h1>
                     <div class="my-2 h-1px bg-gray-200 dark:bg-trueGray-700" />
@@ -83,7 +86,7 @@ const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)
                   </div>
 
                   <div class="col-span-1">
-                    <h1 class="text-xl font-600">
+                    <h1 class="text-lg font-600">
                       Our engines
                     </h1>
                     <div class="my-2 h-1px bg-gray-200 dark:bg-trueGray-700" />

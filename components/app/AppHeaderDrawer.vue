@@ -1,32 +1,64 @@
 <script setup lang="ts">
-const filtered = computed(() => [])
-
-const links = computed(() => {
-  return ([]).filter((item: any) => {
-    if (filtered.value.includes(item._path))
-      return false
-    return true
-  })
-})
-
-const { visible, open, close } = useMenu()
-
-watch(visible, v => (v ? open() : close()))
+const { data: categories, pending } = await useSanityData(allCategoryQuery)
+const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)
 </script>
 
 <template>
-  <Sheet class="w-full border-r border-gray-200 bg-white">
-    <SheetTrigger>
-      <button aria-label="Menu" class="relative z-10 flex p-4 text-gray-500 lg:hidden hover:text-gray-700">
-        <div class="i-carbon:menu h-4 w-4" aria-hidden="true" />
-      </button>
-    </SheetTrigger>
-    <SheetContent side="left">
-      <SheetHeader class="flex items-center justify-between gap-4 border-b border-gray-200 px-4">
-        <div class="icons flex items-center overflow-auto">
-          <AppSocialIcons />
-        </div>
-      </SheetHeader>
-    </SheetContent>
-  </Sheet>
+  <SSheet>
+    <SSheetTrigger as-child>
+      <img src="/logo_sigma.png" alt="LS" class="h-10 w-10 cursor-pointer">
+    </SSheetTrigger>
+    <SSheetContent>
+      <!-- <SSheetHeader>
+        <SSheetTitle>Edit profile</SSheetTitle>
+        <SSheetDescription>
+          Make changes to your profile here. Click save when you're done.
+        </SSheetDescription>
+      </SSheetHeader> -->
+      <div class="grid gap-4">
+        <h1 class="text-base font-600">
+          Our products
+        </h1>
+        <ul class="grid m-0 list-none gap-6px" md="grid-cols-2">
+          <AppLinkDrawer
+            v-for="item in pages.products" :key="item.key"
+            :to="getPath('/products', item.slug.current)"
+            v-bind="item"
+          />
+        </ul>
+        <div class="my-1 h-1px bg-gray-200 dark:bg-trueGray-700" />
+        <h1 class="text-base font-600">
+          Our engines
+        </h1>
+        <ul class="grid m-0 list-none gap-6px" md="grid-cols-2">
+          <AppLinkDrawer
+            v-for="item in pages.engines" :key="item.key"
+            :to="getPath('/products', item.slug.current)"
+            v-bind="item"
+          />
+        </ul>
+
+        <div class="my-1 h-1px bg-gray-200 dark:bg-trueGray-700" />
+
+        <h1 class="text-base font-600">
+          Resources
+        </h1>
+
+        <ul class="grid grid-flow-row grid-cols-2 m-0 list-none gap-x-12px" md="w-500px">
+          <AppLinkDrawer title="All resources" :to="getPath('/resources')" />
+          <AppLinkDrawer
+            v-for="item in categories" :key="item._id" :title="item.title"
+            :to="getPath('/resources', item.slug.current)" :icon="item.icon"
+          />
+        </ul>
+      </div>
+      <!-- <SSheetFooter>
+        <SSheetClose as-child>
+          <button type="submit">
+            Save changes
+          </button>
+        </SSheetClose>
+      </SSheetFooter> -->
+    </SSheetContent>
+  </SSheet>
 </template>
