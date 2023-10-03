@@ -16,7 +16,23 @@ export default defineNuxtConfig({
     '@hypernym/nuxt-gsap',
     'nuxt-simple-sitemap',
     'nuxt-simple-robots',
+    'nuxt-module-feed',
   ],
+
+  feed: {
+    sources: [
+      {
+        path: '/feed.xml',
+        type: 'rss2',
+        cacheTime: 60 * 15,
+      },
+      {
+        path: '/feed-blogs.xml',
+        type: 'rss2',
+        cacheTime: 60 * 15,
+      },
+    ],
+  },
 
   site: {
     url: 'https://sigmaott.com',
