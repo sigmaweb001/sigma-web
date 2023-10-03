@@ -1,23 +1,12 @@
 <script lang="ts" setup>
 const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)
+const { data: categories, pending } = await useSanityData(allCategoryQuery)
 </script>
 
 <template>
   <div class="mt-20 border-b border-t border-gray-200 dark:border-trueGray-700">
     <footer class="grid grid-cols-4 gap-10 px-10 py-10 text-15px container">
       <div class="flex flex-col gap-8px">
-        <p class="mb-8px cursor-default font-500 text-primary">
-          Resources
-        </p>
-        <NuxtLink
-          v-for="link in resources" :key="link.path" hover="underline underline-primary text-primary"
-          :to="link.path"
-        >
-          {{ link.title }}
-        </NuxtLink>
-      </div>
-
-      <div class="flex flex-col justify-self-center gap-8px">
         <p class="mb-8px cursor-default font-500 text-primary">
           Company
         </p>
@@ -29,7 +18,19 @@ const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)
         </NuxtLink>
       </div>
 
-      <div class="flex flex-col justify-self-end gap-8px">
+      <div class="flex flex-col gap-8px">
+        <p class="mb-8px cursor-default font-500 text-primary">
+          Resources
+        </p>
+        <NuxtLink
+          v-for="item in categories" :key="item.slug.current" hover="underline underline-primary text-primary"
+          :to="getPath('/resources', item.slug.current)"
+        >
+          {{ item.title }}
+        </NuxtLink>
+      </div>
+
+      <div class="flex flex-col gap-8px">
         <p class="mb-8px cursor-default font-500 text-primary">
           Products
         </p>
@@ -42,7 +43,7 @@ const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)
         </NuxtLink>
       </div>
 
-      <div class="flex flex-col justify-self-end gap-8px">
+      <div class="flex flex-col gap-8px">
         <p class="mb-8px cursor-default font-500 text-primary">
           Engines
         </p>

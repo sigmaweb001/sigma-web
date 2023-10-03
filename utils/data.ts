@@ -264,26 +264,3 @@ export const navigation = ref([
   },
 ],
 )
-
-export const resources = [
-  {
-    key: 'overview',
-    title: 'Overview',
-    path: '/overview',
-  },
-  {
-    key: 'documents',
-    title: 'Documents',
-    path: '/documents',
-  },
-  {
-    key: 'api',
-    title: 'API',
-    path: '/api',
-  },
-  {
-    key: 'blogs',
-    title: 'Blogs',
-    path: '/blogs',
-  },
-]

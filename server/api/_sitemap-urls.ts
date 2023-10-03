@@ -1,7 +1,7 @@
 import { joinURL } from 'ufo'
 import { createClient } from '#sanity-client'
 import { useRuntimeConfig } from '#imports'
-import { allCategoryQuery, allPageQuery, allTagQuery } from '~/utils/groq'
+import { allBlogsQuery, allCategoryQuery, allPageQuery, allTagQuery } from '~/utils/groq'
 
 // server/api/_sitemap-urls.ts
 export default cachedEventHandler(
@@ -9,10 +9,11 @@ export default cachedEventHandler(
     const config = useRuntimeConfig()
     const client = createClient(config.public.sanity)
 
-    const [categories, tags, pages] = await Promise.all([
+    const [categories, tags, pages, blogs] = await Promise.all([
       client.fetch(allCategoryQuery),
       client.fetch(allTagQuery),
       client.fetch(allPageQuery),
+      client.fetch(allBlogsQuery),
     ])
     const { products, engines } = pages
 
@@ -38,6 +39,12 @@ export default cachedEventHandler(
       ...tags.map((item) => {
         return {
           loc: joinURL('/resources', 'tags', item.slug.current),
+          lastmod: item._updatedAt,
+        }
+      }),
+      ...blogs.map((item) => {
+        return {
+          loc: joinURL('/resources', 'blogs', item.slug.current),
           lastmod: item._updatedAt,
         }
       }),

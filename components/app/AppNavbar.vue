@@ -1,22 +1,5 @@
 <script lang="ts" setup>
 const currentTrigger = ref('')
-const products = [
-  {
-    key: 'sigma-machine',
-    title: 'Sigma Machine',
-    path: '/products/sigma-machine',
-  },
-  {
-    key: 'sigma-dai',
-    title: 'Sigma SSAI',
-    path: '/products/sigma-ssai',
-  },
-  {
-    key: 'sigma-interactive',
-    title: 'Sigma Interactive',
-    path: '/products/sigma-interactive',
-  },
-]
 
 const { data: categories, pending } = await useSanityData(allCategoryQuery)
 const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)

@@ -47,7 +47,7 @@ export interface BlogAuthor {
 
 export interface BlogPost {
   _id: string
-  _type: 'blogPost'
+  _type: 'blog'
   _createdAt: string
   excerpt: string
   publishedAt: string

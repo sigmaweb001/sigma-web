@@ -78,8 +78,8 @@ const blogItem = `
   },
   category->,
 `
-export const blogPostQuery = `
-*[_type == 'blogPost'] | order(publishedAt desc, _createdAt desc) {
+export const allBlogsQuery = `
+*[_type == 'blog'] | order(publishedAt desc, _createdAt desc) {
   ${blogItem}
 }
 `
