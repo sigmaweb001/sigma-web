@@ -73,7 +73,7 @@ const hasFeatureBlog = computed(() => config.value.featuredBlog)
               md="w-auto"
             >
               <div class="flex" md="w-screen-md" lg="w-screen-lg" xl="w-screen-xl">
-                <div class="grid grid-cols-3 w-3/4 gap-6 px-5">
+                <div class="grid grid-cols-3 gap-6 px-5" :class="[hasFeatureBlog ? 'w-3/4' : 'w-full']">
                   <div class="col-span-2 py-5">
                     <h1 class="text-lg font-600">
                       Our products
