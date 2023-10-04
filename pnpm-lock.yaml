@@ -32,6 +32,9 @@ dependencies:
   speakingurl:
     specifier: ^14.0.1
     version: 14.0.1
+  swiper:
+    specifier: ^10.3.1
+    version: 10.3.1
   tailwind-merge:
     specifier: ^1.14.0
     version: 1.14.0
@@ -10788,6 +10791,11 @@ packages:
       csso: 5.0.5
       picocolors: 1.0.0
     dev: true
+
+  /swiper@10.3.1:
+    resolution: {integrity: sha512-24Wk3YUdZHxjc9faID97GTu6xnLNia+adMt6qMTZG/HgdSUt4fS0REsGUXJOgpTED0Amh/j+gRGQxsLayJUlBQ==}
+    engines: {node: '>= 4.7.0'}
+    dev: false
 
   /synckit@0.8.5:
     resolution: {integrity: sha512-L1dapNV6vu2s/4Sputv8xGsCdAVlb5nRDMFU/E27D44l5U6cw1g0dGd45uLc+OXjNMmF4ntiMdCimzcjFKQI8Q==}
