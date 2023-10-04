@@ -17,7 +17,15 @@ export default defineNuxtConfig({
     'nuxt-simple-sitemap',
     'nuxt-simple-robots',
     'nuxt-module-feed',
+    '@nuxtjs/google-fonts',
   ],
+
+  googleFonts: {
+    families: {
+      Inter: [100, 200, 300, 400, 500, 600, 700],
+    },
+    download: true,
+  },
 
   feed: {
     sources: [

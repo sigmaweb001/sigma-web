@@ -4,7 +4,6 @@ import {
   presetIcons,
   presetTypography,
   presetUno,
-  presetWebFonts,
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
@@ -17,20 +16,12 @@ export default defineConfig({
   rules: [
   ],
   presets: [
-    presetUseful(),
+    presetUno(),
     presetAttributify(),
     presetIcons({
       scale: 1.2,
     }),
     presetTypography(),
-    presetWebFonts({
-      fonts: {
-        sans: 'Inter:100,200,300,400,500,600,700,800,900',
-        // sans: 'Anek Latin:100,200,300,400,500,600,700,800',
-        serif: 'DM Serif Display',
-        mono: 'DM Mono',
-      },
-    }),
   ],
   transformers: [
     transformerDirectives(),
