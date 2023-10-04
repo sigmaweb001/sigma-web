@@ -2,8 +2,8 @@ import docs from './docs'
 import product from './product'
 import blockContent from './blockContent'
 
-import siteconfig from './siteconfig'
 // SECTION: Documents
+import siteconfig from './documents/siteconfig'
 import page from './documents/page'
 import section from './documents/section'
 

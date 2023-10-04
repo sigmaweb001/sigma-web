@@ -13,7 +13,7 @@ const { data } = defineProps<{
     }
     isButton: true
     url: null
-    children: any
+    children?: any
   }
 }>()
 </script>

@@ -8,7 +8,7 @@ const { isButton, linkType, page, url, children } = definePropsRefs<{
   }
   isButton: true
   url: null
-  children: any
+  children?: any
 }>()
 </script>
 

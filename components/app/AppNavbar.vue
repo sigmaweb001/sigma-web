@@ -1,8 +1,11 @@
 <script lang="ts" setup>
-const currentTrigger = ref('')
+const currentTrigger = ref('1')
 
 const { data: categories, pending } = await useSanityData(allCategoryQuery)
 const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)
+const { data: config } = await useSanityQuery(configQuery)
+
+const hasFeatureBlog = computed(() => config.value.featuredBlog)
 </script>
 
 <template>
@@ -61,7 +64,7 @@ const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)
             >
               Products
               <div
-                class="i-ri:arrow-down-s-line relative top-[1px] transition-transform duration-[250] ease-in ui-open:rotate-180"
+                class="i-ri:arrow-down-s-line ui-open:rotate-180 relative top-[1px] transition-transform duration-[250] ease-in"
                 aria-hidden
               />
             </NavigationMenuTrigger>
@@ -69,9 +72,9 @@ const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)
               class="shadow-item absolute left-0 top-0 w-full data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft"
               md="w-auto"
             >
-              <div class="flex">
-                <div class="grid grid-cols-3 gap-6 px-5 py-5" md="w-screen-md" lg="w-screen-lg">
-                  <div class="col-span-2">
+              <div class="flex" md="w-screen-md" lg="w-screen-lg" xl="w-screen-xl">
+                <div class="grid grid-cols-3 w-3/4 gap-6 px-5">
+                  <div class="col-span-2 py-5">
                     <h1 class="text-lg font-600">
                       Our products
                     </h1>
@@ -85,7 +88,7 @@ const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)
                     </ul>
                   </div>
 
-                  <div class="col-span-1">
+                  <div class="col-span-1 py-5">
                     <h1 class="text-lg font-600">
                       Our engines
                     </h1>
@@ -99,7 +102,23 @@ const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)
                     </ul>
                   </div>
                 </div>
-                <div v-if="false" md="w-384px" />
+                <div v-if="hasFeatureBlog" class="w-1/4 border-l-1px border-gray-200 pb-4 dark:border-trueGray-700">
+                  <div class="relative aspect-16/9 w-full of-hidden">
+                    <SNuxtImg :image="config?.featuredBlog.mainImage" />
+                  </div>
+                  <div class="px-2 py-2">
+                    <NuxtLink
+                      class="font-medium dark:text-white"
+                      :to="getPath('/resources', 'blogs', config?.featuredBlog.slug.current)"
+                    >
+                      <span
+                        class="transition-[background-size] cursor-default bg-[length:0px_10px] from-primary-300 to-primary-200 bg-gradient-to-r bg-left-bottom bg-no-repeat duration-500 hover:bg-[length:100%_10px] hover:bg-[length:100%_3px] dark:from-primary-600 dark:to-primary-700"
+                      >
+                        {{ config?.featuredBlog.title }}
+                      </span>
+                    </NuxtLink>
+                  </div>
+                </div>
               </div>
             </NavigationMenuContent>
           </NavigationMenuItem>
@@ -110,7 +129,7 @@ const { data: pages, pending: pendingPage } = await useSanityData(allPageQuery)
             >
               Resources
               <div
-                class="i-ri:arrow-down-s-line relative top-[1px] transition-transform duration-[250] ease-in ui-open:rotate-180"
+                class="i-ri:arrow-down-s-line ui-open:rotate-180 relative top-[1px] transition-transform duration-[250] ease-in"
                 aria-hidden
               />
             </NavigationMenuTrigger>

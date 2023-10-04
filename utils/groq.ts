@@ -191,16 +191,9 @@ export const allTagQuery = `
 export const configQuery = groq`
 *[_type == "siteconfig"][0] {
   ...,
+  featuredBlog->
 }
 `
-// SECTION - Site Config
-// Construct our "site" GROQ
-const site = `
-  "site": {
-    "title": *[_type == "generalSettings"][0].siteTitle,
-  }
-`
-
 // TODO
 // // Construct our "image meta" GROQ
 // export const imageMeta = `
@@ -327,8 +320,6 @@ export const modules = `
 // SECTION: Pages
 // Fetch a static page with our global data
 export function getStaticPageQuery(pageData: string) {
-  // ${queries.site}
-
   const query = `
   {
     "page": ${pageData},

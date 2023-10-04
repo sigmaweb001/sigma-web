@@ -2,10 +2,9 @@
 const { children, level, listItem, style } = definePropsRefs<{
   style: 'normal'
   listItem: 'bullet'
-  children: any
+  children?: any
   level: 1
 }>()
-console.log('[LOG] ~ file: CustomLi.vue:3 ~ children:', children)
 </script>
 
 <template>

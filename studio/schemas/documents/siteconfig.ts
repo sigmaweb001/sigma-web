@@ -31,6 +31,12 @@ export default {
   ],
   fields: [
     {
+      name: "featuredBlog",
+      title: "Featured Blog",
+      type: "reference",
+      to: [{ type: "blog" }]
+    },
+    {
       name: "title",
       type: "string",
       title: "Site title"
@@ -83,10 +89,7 @@ export default {
           name: "alt",
           type: "string",
           title: "Alternative text",
-          description: "Important for SEO and accessiblity.",
-          options: {
-            isHighlighted: true
-          }
+          description: "Important for SEO and accessiblity.", 
         }
       ]
     },
@@ -104,9 +107,6 @@ export default {
           type: "string",
           title: "Alternative text",
           description: "Important for SEO and accessiblity.",
-          options: {
-            isHighlighted: true
-          }
         }
       ]
     },
