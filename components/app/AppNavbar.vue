@@ -64,7 +64,7 @@ const hasFeatureBlog = computed(() => config.value.featuredBlog)
             >
               Products
               <div
-                class="i-ri:arrow-down-s-line ui-open:rotate-180 relative top-[1px] transition-transform duration-[250] ease-in"
+                class="i-ri:arrow-down-s-line relative top-[1px] transition-transform duration-[250] ease-in data-[state=open]:rotate-180"
                 aria-hidden
               />
             </NavigationMenuTrigger>
@@ -129,7 +129,7 @@ const hasFeatureBlog = computed(() => config.value.featuredBlog)
             >
               Resources
               <div
-                class="i-ri:arrow-down-s-line ui-open:rotate-180 relative top-[1px] transition-transform duration-[250] ease-in"
+                class="i-ri:arrow-down-s-line relative top-[1px] transition-transform duration-[250] ease-in data-[state=open]:rotate-180"
                 aria-hidden
               />
             </NavigationMenuTrigger>
