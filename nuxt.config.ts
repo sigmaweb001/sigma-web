@@ -116,9 +116,7 @@ export default defineNuxtConfig({
       },
     },
     prerender: {
-      crawlLinks: true,
       routes: ['/', 'sitemap.xml'],
-      // ignore: ['/tak', '/konfiguration', '/checkout'],
     },
   },
 
