@@ -73,11 +73,11 @@ export default defineNuxtConfig({
   sanity: {
     projectId: 'xbopepf9',
     dataset: 'production',
-    apiVersion: '2023-09-15',
     useCdn: true,
     token: 'skUkcWpvAKU9pPT22C8s058oAXhuKbMowAVNkrFXuJA8UfuFbRUctmktJvmv0yhl0H0pXrVzWHmzRFVAI9xJT1Pf62ejxXvBUkB6c8KliCyEDAxo9mDwF5pcS8R6xzPJQEXVGL5vDTVNs5mZ0xQFSJvR0aX0J9X9dKp8mAJeG7dJcniNQYhh',
     additionalClients: {
       preview: {
+        apiVersion: '2023-09-15',
         useCdn: false,
         perspective: 'previewDrafts',
         withCredentials: true,
@@ -116,7 +116,7 @@ export default defineNuxtConfig({
       },
     },
     prerender: {
-      routes: ['sitemap.xml'],
+      routes: ['\', sitemap.xml'],
     },
   },
 
