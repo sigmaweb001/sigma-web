@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@unocss/nuxt',
     '@nuxtjs/color-mode',
-    '@vite-pwa/nuxt',
+    // '@vite-pwa/nuxt',
     'radix-vue/nuxt',
     '@nuxt/devtools',
     '@nuxtjs/i18n',
