@@ -38,18 +38,17 @@ stages:
   # - openMr
   # - production
 
-image build dev:
+image-build-dev:
   stage: build
   tags:
     - dind
   script:
     - docker build -t $HARBOR_IMAGE_TAG:$CI_COMMIT_SHORT_SHA .
-  rules:
-    - changes:
+  only:
+    changes:
       - studio/**/*
-      when: never
-       
-    - when: always
+    refs:
+      - main
 
 studio-image-build:
   stage: build
@@ -63,7 +62,7 @@ studio-image-build:
     refs:
       - main
 
-release image dev to harbor:
+release-image-dev-to-harbor:
   stage: docker-release
   tags:
     - dind
@@ -71,12 +70,11 @@ release image dev to harbor:
     - docker login -u $HARBOR_USERNAME -p $HARBOR_PASSWORD $REGISTRY
   script:
     - docker push $HARBOR_IMAGE_TAG:$CI_COMMIT_SHORT_SHA
-  rules:
-    - changes:
+  only:
+    changes:
       - studio/**/*
-      when: never
-       
-    - when: always
+    refs:
+      - main
 
 release-studio-dev-to-harbor:
   stage: docker-release
@@ -92,19 +90,54 @@ release-studio-dev-to-harbor:
     refs:
       - main
 
-########### Docker release CMS #########
+########## Docker build production ####### 
 
-docker-release-cms:
-  stage: build
-  rules:
-    # Runs only when a tag with 'X.Y.Z.DEVRELEASE.A' pattern is created
-    - if: '$CI_COMMIT_TAG =~ /^([0-9]|[1-9][0-9]*)\.([0-9]|[1-9][0-9]*)\.([0-9]|[1-9][0-9]*)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/'
+docker-build-landing-page-production:
+  stage: build-image
+  tags:
+    - dind
+  script:
+    - docker build -t $HARBOR_IMAGE_TAG:$CI_COMMIT_TAG --build-arg PACKAGE=$PACKAGE .
   variables:
-    RELEASE_COMPONENT: sigma-transcode
-    RELEASE_VERSION: $CI_COMMIT_TAG
-  trigger:
-    project: sigma-livestream/front-end/sigma-streaming-micro-frontend
-    branch: main
+    PACKAGE: landing-page
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^([0-9]|[1-9][0-9]*)\.([0-9]|[1-9][0-9]*)\.([0-9]|[1-9][0-9]*)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/'
+
+
+docker-build-studio-production:
+  stage: build-image
+  tags:
+    - dind
+  script:
+    - docker build -f ./studio/Dockerfile -t $STUDIO_IMAGE_TAG:$CI_COMMIT_TAG --build-arg PACKAGE=$PACKAGE .
+  variables:
+    PACKAGE: landing-page
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^([0-9]|[1-9][0-9]*)\.([0-9]|[1-9][0-9]*)\.([0-9]|[1-9][0-9]*)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/'
+
+
+########## Docker push production ####### 
+
+docker-push-landing-page-production:
+  stage: docker-release
+  tags:
+    - dind
+  script:
+    - docker push $HARBOR_IMAGE_TAG:$CI_COMMIT_TAG
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^([0-9]|[1-9][0-9]*)\.([0-9]|[1-9][0-9]*)\.([0-9]|[1-9][0-9]*)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/'
+
+
+docker-push-studio-production:
+  stage: docker-release
+  tags:
+    - dind
+  script:
+    - docker push $STUDIO_IMAGE_TAG:$CI_COMMIT_TAG
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^([0-9]|[1-9][0-9]*)\.([0-9]|[1-9][0-9]*)\.([0-9]|[1-9][0-9]*)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/'
+
+
 
 ########### Docker deploy dev #############
 
