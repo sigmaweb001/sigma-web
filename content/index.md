@@ -4,7 +4,7 @@ description: 'Sigma Streaming Home'
 ---
 ::section-hero
 #title
-Powering the Streaming experience
+Powering The _Streaming Experience_
 #subtitle
 Unlocking business value with reliable streaming from a trusted partner
 #image
