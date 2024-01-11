@@ -17,7 +17,7 @@ Unlocking business value with reliable streaming from a trusted partner
 
 #cta
 ::button-link{href="/get-in-touch"}
-Get Demo
+Get Demo1
 ::
 
 ::button-link{href="/get-in-touch" white}
