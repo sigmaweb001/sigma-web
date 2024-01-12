@@ -153,7 +153,7 @@ section {
 }
 
 section>img {
-  @apply py-10 px-10;
+  @apply py-10 px-10 mx-auto;
 }
 
 [center=true] {
