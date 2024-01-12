@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="col-span-[var(--span)] grid items-start rounded-2xl bg-gray-100 dark:bg-trueGray-800 px-10 py-10"
+  <div class="col-span-[var(--span)] flex flex-col items-start rounded-2xl bg-gray-100 dark:bg-trueGray-800 px-10 py-10"
     :style="{ '--span': span ?? 1 }" :class="[!left ? 'justify-items-center' : 'justify-items-start']">
     <div v-if="$slots.image" class="size-100px relative flex flex-shrink-0 items-center justify-center">
       <Slot class="absolute inset-0 h-full w-full object-scale-down">
