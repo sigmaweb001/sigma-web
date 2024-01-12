@@ -34,7 +34,3 @@ npm run build
 ```
 
 Locally preview production build:
-
-```bash
-npm run preview
-```
