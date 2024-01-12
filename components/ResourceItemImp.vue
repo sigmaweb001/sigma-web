@@ -8,7 +8,7 @@ const { item } = definePropsRefs<{
   <div class="group flex flex-col gap-2 bg-gray-100/75 dark:bg-gray-900/75">
     <div class="relative aspect-16/9 of-hidden block rounded-md hover:scale-105 transition-all duration-300">
       <template v-if="item?.thumbnail">
-        <NuxtImg :src="item.thumbnail" />
+        <NuxtImg :src="item.thumbnail" class="absolute inset-0 object-scale-down" />
       </template>
       <template v-else>
         <div class="flex-center size-full inset-0 absolute">
