@@ -62,7 +62,7 @@ const tags = computed(() => appConfig.tags)
 <template>
   <AppNavbar />
   <div class="flex container">
-    <div class="mt-120px w-1/4 flex-shrink-0 py-5 pr-10">
+    <div class="mt-120px w-1/4 flex-shrink-0 py-5 pr-10 sticky top-[calc(var(--header-height))]">
       <h3 class="text-lg font-600">
         Categories
       </h3>

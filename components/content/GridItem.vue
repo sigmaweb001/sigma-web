@@ -8,6 +8,9 @@ defineProps<{
 <template>
   <div class="col-span-[var(--span)]" :style="{ '--span': span ?? 1 }">
     <ListItem v-if="$slots.title || $slots.subtitle" :icon="icon">
+      <template #image>
+        <slot name="image"/>
+      </template>
       <template #title>
         <slot name="title"/>
       </template>
