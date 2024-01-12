@@ -2,11 +2,12 @@
 defineProps<{
   span?: number
   icon?: string
+  center?: boolean
 }>()
 </script>
 
 <template>
-  <div class="col-span-[var(--span)]" :style="{ '--span': span ?? 1 }">
+  <div class="col-span-[var(--span)]" :style="{ '--span': span ?? 1 }" :class="[center ? 'flex flex-col justify-center': '']">
     <ListItem v-if="$slots.title || $slots.subtitle" :icon="icon">
       <template v-if="$slots.image" #image>
         <slot name="image"/>
