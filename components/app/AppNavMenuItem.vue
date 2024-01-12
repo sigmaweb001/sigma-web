@@ -14,7 +14,7 @@ const props = defineProps<{
       class="group block select-none rounded-[6px] p-8px text-gray-800 no-underline outline-none transition-colors hover:bg-primary/10 dark:text-trueGray-200 hover:text-primary">
       <div class="flex items-center gap-3">
         <Icon :name="icon ?? 'i-ri:article-line'"
-          class="h-10 w-10 p-2 flex-center rounded-full bg-primary/20 text-primary">
+          class="h-10 w-10 p-2 flex-center rounded-full flex-shrink-0 bg-primary/20 text-primary">
         </Icon>
         <div>
           <div class="flex items-center text-base font-500">

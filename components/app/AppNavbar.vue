@@ -11,7 +11,6 @@ const { data: pinResource } = await useAsyncData(`production-pin-resource:${appC
   }
 }).findOne(), { immediate: appConfig.productPinResource.enabled })
 
-console.log('[LOG] ~ pinResource:', pinResource)
 const { data: products } = await useAsyncData('products', () => queryContent('products').find())
 const { data: engines } = await useAsyncData('engines', () => queryContent('engines').find())
 const { data: solutions } = await useAsyncData('solutions', () => queryContent('solutions').find())
@@ -70,13 +69,13 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
             <SNavigationMenuTrigger>Products</SNavigationMenuTrigger>
             <SNavigationMenuContent>
               <div class="flex" md="w-screen-md" lg="w-screen-lg" xl="w-screen-xl">
-                <div class="grid grid-cols-3 gap-6 px-5" :class="[hasFeature ? 'w-3/4' : 'w-full']">
-                  <div class="col-span-2 py-5">
+                <div class="grid grid-cols-2 xl:grid-cols-3 gap-6 px-5" :class="[hasFeature ? 'w-3/4' : 'w-full']">
+                  <div class="xl:col-span-2 py-5">
                     <h1 class="text-lg font-600">
                       Our products
                     </h1>
                     <div class="my-2 h-1px bg-gray-200 dark:bg-trueGray-700" />
-                    <ul class="grid m-0 list-none gap-10px" md="grid-cols-2">
+                    <ul class="grid m-0 list-none gap-10px" xl="grid-cols-2">
                       <AppNavMenuItem v-for="item in products" :key="item.key" :to="item._path" v-bind="item" />
                     </ul>
                   </div>
@@ -92,9 +91,9 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
                   </div>
                 </div>
                 <div v-if="hasFeature && pinResource"
-                  class="w-1/4 p-1 border-l-1px h-full min-w-0 border-gray-200 dark:border-trueGray-700">
-                  <ResourceItemImp v-if="pinResource.type === 'resource'" :item="pinResource" />
-                  <BlogItem v-else :item="pinResource" />
+                  class="w-1/4 p-1 flex-center border-l-1px min-w-0 border-gray-200 dark:border-trueGray-700">
+                  <ResourceItemImp class="h-full" v-if="pinResource.type === 'resource'" :item="pinResource" />
+                  <BlogItem class="h-full" v-else :item="pinResource" />
                 </div>
               </div>
             </SNavigationMenuContent>
@@ -131,7 +130,6 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
                 Documentation
               </SNavigationMenuLink>
             </NuxtLink>
-
           </SNavigationMenuItem>
           <SNavigationMenuItem>
             <NuxtLink to="https://thudomultimedia.com/" external>
