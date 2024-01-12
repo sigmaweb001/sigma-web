@@ -6,7 +6,7 @@ const { icon } = definePropsRefs<{
 
 <template>
   <div class="mt-12 flex items-center space-x-4 first:mt-0">
-    <div v-if="$slots.image" class="mt-1 relative size-70px flex-center flex-shrink-0">
+    <div v-if="$slots.image" class="mt-1 relative size-100px flex-center flex-shrink-0">
       <Slot class="absolute inset-0 h-full w-full object-scale-down">
         <ContentSlot :use="$slots.image" unwrap="p" />
       </Slot>
