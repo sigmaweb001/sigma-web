@@ -219,6 +219,9 @@ Ready to Get Started?
 #subtitle
 Try our product for Free and start streaming today
 #default
+::button-link{href="https://appt.link/meet-with-sigma-team" target='_blank'}
+  View demo
+::
 ::button-link{href="/get-in-touch" white}
   Talk to Our Expert
 ::

@@ -20,7 +20,7 @@
         </div>
       </div>
 
-      <div class="relative w-full flex-shrink-0 text-center lg:w-auto">
+      <div class="relative w-full flex-shrink-0 text-center lg:w-auto flex gap-2">
         <ContentSlot :use="$slots.default" unwrap="p" />
       </div>
     </div>

@@ -142,11 +142,19 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
         </SNavigationMenuList>
       </div>
       <div class="hidden justify-self-end gap-3 lg:flex">
-        <NuxtLink to="https://portal.sigmaott.com/" external>
-          <SButton class="w-100px" variant="gradient">
-            Login
-          </SButton>
-        </NuxtLink>
+        <div class="lg:flex items-center">
+          <NuxtLink to="https://portal.sigmaott.com/" external>
+            <SNavigationMenuLink class="navigation-menu-trigger">
+              Login
+            </SNavigationMenuLink>
+          </NuxtLink>
+          <div class="h-30px border-l-1"/>
+          <NuxtLink to="https://appt.link/meet-with-sigma-team" external>
+            <SNavigationMenuLink class="navigation-menu-trigger text-primary">
+              View demo
+            </SNavigationMenuLink>
+          </NuxtLink>
+        </div>
       </div>
     </SNavigationMenu>
   </div>
