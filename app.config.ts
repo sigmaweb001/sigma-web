@@ -1,6 +1,6 @@
 export default defineAppConfig({
   header: {
-    title: 'Demo Studio',
+    title: 'Sigma Streaming',
     icon: 'tabler:brand-nuxt'
   },
   footer: {
@@ -42,5 +42,9 @@ export default defineAppConfig({
     link: 'https://github.com/nuxt/nuxtjs.org',
     textLink: 'Register now',
     text: 'Now Available: Product Porfolio Management Solution',
+  },
+  productPinResource: {
+    enabled: true,
+    path: '/resources/datasheets/datasheet-2'
   }
 })

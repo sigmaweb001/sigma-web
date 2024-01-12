@@ -1,9 +1,7 @@
 // nuxt.schema.ts
-// banner: {
-//   enabled: true,
-//   link: 'https://github.com/nuxt/nuxtjs.org',
-//   textLink: 'Register now',
-//   text: 'Now Available: Product Porfolio Management Solution',
+// productPinResource: {
+//   enabled: false,
+//   path: '/resources/datasheets/datasheet-2'
 // }
 
 import { field, group } from '@nuxthq/studio/theme'
@@ -139,7 +137,7 @@ export default defineNuxtSchema({
           type: 'boolean',
           title: 'Enabled',
           description: 'Enable or disable the banner',
-          icon: 'i-mdi-alert'
+          icon: 'mdi:toggle-switch'
         }),
         link: field({
           type:'string',
@@ -158,6 +156,25 @@ export default defineNuxtSchema({
           title: 'Text',
           description: 'Banner text',
           icon: 'i-mdi-format-quote-close'
+        })
+      }
+    }),
+    productPinResource: group({
+      title: 'Product pin resource',
+      description: 'Product pin resource configuration',
+      icon: 'i-mdi-pin',
+      fields: {
+        enabled: field({
+          type: 'boolean',
+          title: 'Enabled',
+          description: 'Enable or disable the product pin resource',
+          icon: 'i-mdi:toggle-switch'
+        }),
+        path: field({
+          type:'string',
+          title: 'Path',
+          description: 'Product pin resource path',
+          icon: 'i-mdi:application-parentheses-outline'
         })
       }
     })

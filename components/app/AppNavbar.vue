@@ -1,4 +1,17 @@
 <script lang="ts" setup>
+const appConfig = useAppConfig()
+const showBanner = computed(() => ENABLED_BANNER.value ?? appConfig.banner.enabled)
+useStyleTag(`#__nuxt { --header-height: ${showBanner.value ? 40 + 64 : 64}px; }`)
+
+const hasFeature = computed(() => appConfig.productPinResource.enabled)
+
+const { data: pinResource } = await useAsyncData(`production-pin-resource:${appConfig.productPinResource.path}`, () => queryContent('resources').where({
+  _path: {
+    $eq: appConfig.productPinResource.path
+  }
+}).findOne(), { immediate: appConfig.productPinResource.enabled })
+
+console.log('[LOG] ~ pinResource:', pinResource)
 const { data: products } = await useAsyncData('products', () => queryContent('products').find())
 const { data: engines } = await useAsyncData('engines', () => queryContent('engines').find())
 const { data: solutions } = await useAsyncData('solutions', () => queryContent('solutions').find())
@@ -8,11 +21,6 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
     { _dir: { $eq: '' } }
   ]
 }).find())
-const appConfig = useAppConfig()
-const hasFeatureBlog = computed(() => appConfig.featuredBlog)
-const showBanner = computed(() => ENABLED_BANNER.value ?? appConfig.banner.enabled)
-useStyleTag(`#__nuxt { --header-height: ${showBanner.value ? 40 + 64 : 64}px; }`)
-
 </script>
 
 <template>
@@ -62,7 +70,7 @@ useStyleTag(`#__nuxt { --header-height: ${showBanner.value ? 40 + 64 : 64}px; }`
             <SNavigationMenuTrigger>Products</SNavigationMenuTrigger>
             <SNavigationMenuContent>
               <div class="flex" md="w-screen-md" lg="w-screen-lg" xl="w-screen-xl">
-                <div class="grid grid-cols-3 gap-6 px-5" :class="[hasFeatureBlog ? 'w-3/4' : 'w-full']">
+                <div class="grid grid-cols-3 gap-6 px-5" :class="[hasFeature ? 'w-3/4' : 'w-full']">
                   <div class="col-span-2 py-5">
                     <h1 class="text-lg font-600">
                       Our products
@@ -83,19 +91,10 @@ useStyleTag(`#__nuxt { --header-height: ${showBanner.value ? 40 + 64 : 64}px; }`
                     </ul>
                   </div>
                 </div>
-                <div v-if="hasFeatureBlog" class="w-1/4 border-l-1px border-gray-200 pb-4 dark:border-trueGray-700">
-                  <div class="relative aspect-16/9 w-full of-hidden">
-                    <NuxtImg :image="config?.featuredBlog.mainImage" />
-                  </div>
-                  <div class="px-2 py-2">
-                    <NuxtLink class="font-medium dark:text-white"
-                      :to="getPath('/resources', 'blogs', config?.featuredBlog.slug.current)">
-                      <span
-                        class="transition-[background-size] cursor-default bg-[length:0px_10px] from-primary-300 to-primary-200 bg-gradient-to-r bg-left-bottom bg-no-repeat duration-500 hover:bg-[length:100%_10px] hover:bg-[length:100%_3px] dark:from-primary-600 dark:to-primary-700">
-                        {{ config?.featuredBlog.title }}
-                      </span>
-                    </NuxtLink>
-                  </div>
+                <div v-if="hasFeature && pinResource"
+                  class="w-1/4 p-1 border-l-1px h-full min-w-0 border-gray-200 dark:border-trueGray-700">
+                  <ResourceItemImp v-if="pinResource.type === 'resource'" :item="pinResource" />
+                  <BlogItem v-else :item="pinResource" />
                 </div>
               </div>
             </SNavigationMenuContent>
