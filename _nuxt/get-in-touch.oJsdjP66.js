@@ -1,1 +1,0 @@
-import{_ as e}from"./_plugin-vue_export-helper.x3n3nnut.js";import{b as c,c as t}from"./entry.dqxWF8pI.js";const o={};function n(r,s){return c(),t("div",null,"Get in touch")}const f=e(o,[["render",n]]);export{f as default};
