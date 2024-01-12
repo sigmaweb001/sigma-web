@@ -1,12 +1,11 @@
 ---
-title: Blog X
+title: 'Blog Red'
 author: antfu
-date: 2024-01-11
-thumbnail: /TestX.png
+date: 2024-01-10
+thumbnail: /logo_red.png
+tags: tag 1, tag 2
 ---
-
 # New Blog Post
-
 
 ## Introduction
 
