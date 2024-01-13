@@ -17,6 +17,9 @@
         <div class="flex gap-2">
           <ContentSlot :use="$slots.cta" unwrap="p" />
         </div>
+        <Slot class="text-sm text-gray-500 dark:text-gray-300">
+          <ContentSlot :use="$slots.extra" />
+        </Slot>
       </div>
     </div>
     <div class="relative w-full min-h-370px flex items-center justify-center" xl="w-1/2" lg="block w-1/2">

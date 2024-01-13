@@ -43,6 +43,7 @@ export default defineNuxtConfig({
     download: true,
   },
   i18n: {
+    vueI18n: './i18n.config.ts',
     defaultLocale: 'en',
     strategy: 'prefix_except_default',
     locales: [
@@ -60,6 +61,7 @@ export default defineNuxtConfig({
   },
   colorMode: {
     classSuffix: '',
+    preference: 'light'
   },
 
   $development: {

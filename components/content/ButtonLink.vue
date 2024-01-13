@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const props = withDefaults(defineProps<{
-  href: string, rounded?: boolean, size?: string, white?: boolean
+  href: any, rounded?: boolean, size?: string, white?: boolean
 }>(), {
   size: 'lg'
 })
