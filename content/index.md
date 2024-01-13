@@ -161,7 +161,7 @@ HIGHLIGHTS FEATURES
   ::
 ::
 
-::section-grid{bg}
+::section-grid{bg padding=16}
 #title
 Why customers love us?
 #subtitle
