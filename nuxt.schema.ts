@@ -139,6 +139,12 @@ export default defineNuxtSchema({
           description: 'Enable or disable the banner',
           icon: 'mdi:toggle-switch'
         }),
+        key: field({
+          type: 'string',
+          title: 'Key',
+          description: 'Key in a given Local Storage',
+          icon: 'mdi:toggle-switch'
+        }),
         link: field({
           type:'string',
           title: 'Link',
