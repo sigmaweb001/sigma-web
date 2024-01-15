@@ -1,8 +1,13 @@
 <script lang="ts" setup>
 
+const emit = defineEmits<{
+  close: [],
+}>()
+
 const appConfig = useAppConfig()
 function handleCloseBanner() {
-  ENABLED_BANNER.value = false
+  localStorage.setItem('disabled_banner', 'true')
+  emit('close')
 }
 </script>
 
