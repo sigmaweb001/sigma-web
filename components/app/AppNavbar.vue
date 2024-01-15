@@ -4,7 +4,7 @@ const showBanner = ref(false)
 onMounted(() => {
   if (!appConfig.banner.enabled)
     showBanner.value = false
-  else if (localStorage.getItem('disabled_banner')) 
+  else if (localStorage.getItem(appConfig.banner.key!)) 
     showBanner.value = false
   else
     showBanner.value = true

@@ -6,7 +6,7 @@ const emit = defineEmits<{
 
 const appConfig = useAppConfig()
 function handleCloseBanner() {
-  localStorage.setItem('disabled_banner', 'true')
+  localStorage.setItem(appConfig.banner.key!, 'true')
   emit('close')
 }
 </script>

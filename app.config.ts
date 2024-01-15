@@ -39,6 +39,7 @@ export default defineAppConfig({
   ],
   banner: {
     enabled: true,
+    key: 'disabled_banner',
     link: 'https://github.com/nuxt/nuxtjs.org',
     textLink: 'Register now',
     text: 'Now Available: Product Porfolio Management Solution',
