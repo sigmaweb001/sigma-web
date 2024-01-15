@@ -4,11 +4,15 @@ const showBanner = ref(false)
 onMounted(() => {
   if (!appConfig.banner.enabled)
     showBanner.value = false
-  else if(!localStorage.getItem('disabled_banner')) {
+  else if (localStorage.getItem('disabled_banner')) 
     showBanner.value = false
-  }
+  else
+    showBanner.value = true
 })
-useStyleTag(`#__nuxt { --header-height: ${showBanner.value ? 40 + 64 : 64}px; }`)
+
+const _style = computed(() => `#__nuxt { --header-height: ${showBanner.value ? 40 + 64 : 64}px; }`)
+
+useStyleTag(_style)
 const hasFeature = computed(() => appConfig.productPinResource.enabled)
 
 const { data: pinResource } = await useAsyncData(`production-pin-resource:${appConfig.productPinResource.path}`, () => queryContent('resources').where({
@@ -30,7 +34,7 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
 
 <template>
   <div class="sticky top-0 z-10 h-$header-height w-full bg-white shadow" dark="bg-trueGray-900">
-    <AppBanner v-show="showBanner" />
+    <AppBanner v-if="showBanner" @close="showBanner = false"/>
 
     <div md="hidden" class=" py-12px flex-center">
       <AppHeaderDrawer />
@@ -155,7 +159,7 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
             </SNavigationMenuLink>
           </NuxtLink>
           <div class="h-30px border-l-1"/>
-          <NuxtLink to="https://appt.link/meet-with-sigma-team" external>
+          <NuxtLink to="https://appt.link/meet-with-sigma-team" external target="_blank">
             <SNavigationMenuLink class="navigation-menu-trigger text-primary">
               View demo
             </SNavigationMenuLink>
