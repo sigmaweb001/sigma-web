@@ -61,7 +61,7 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
         <div class="mb-8px cursor-default font-500 text-primary">
           Company
         </div>
-        <NuxtLink hover="underline underline-primary text-primary" to="https://thudomultimedia.com/">
+        <NuxtLink hover="underline underline-primary text-primary" to="https://thudomultimedia.com/" target="_blank">
           About us
         </NuxtLink>
         <NuxtLink hover="underline underline-primary text-primary" to="/get-in-touch">

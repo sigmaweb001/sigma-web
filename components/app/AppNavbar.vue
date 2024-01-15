@@ -1,8 +1,14 @@
 <script lang="ts" setup>
 const appConfig = useAppConfig()
-const showBanner = computed(() => ENABLED_BANNER.value ?? appConfig.banner.enabled)
+const showBanner = ref(false)
+onMounted(() => {
+  if (!appConfig.banner.enabled)
+    showBanner.value = false
+  else if(!localStorage.getItem('disabled_banner')) {
+    showBanner.value = false
+  }
+})
 useStyleTag(`#__nuxt { --header-height: ${showBanner.value ? 40 + 64 : 64}px; }`)
-
 const hasFeature = computed(() => appConfig.productPinResource.enabled)
 
 const { data: pinResource } = await useAsyncData(`production-pin-resource:${appConfig.productPinResource.path}`, () => queryContent('resources').where({
@@ -132,7 +138,7 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
             </NuxtLink>
           </SNavigationMenuItem>
           <SNavigationMenuItem>
-            <NuxtLink to="https://thudomultimedia.com/" external>
+            <NuxtLink to="https://thudomultimedia.com/" external target="_blank">
               <SNavigationMenuLink class="navigation-menu-trigger">
                 About us
               </SNavigationMenuLink>
