@@ -39,10 +39,10 @@ export default defineAppConfig({
   ],
   banner: {
     enabled: true,
-    key: 'disabled_banner',
-    link: 'https://github.com/nuxt/nuxtjs.org',
-    textLink: 'Register now',
-    text: 'Now Available: Product Porfolio Management Solution',
+    key: 'TTest_new_message',
+    link: 'https://dev-streaming.gviet.vn:8783/portal/auth/login',
+    textLink: 'Check redirect to portal',
+    text: 'TTest_new_message',
   },
   productPinResource: {
     enabled: true,
