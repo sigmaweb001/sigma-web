@@ -165,6 +165,13 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
             </SNavigationMenuLink>
           </NuxtLink>
         </div>
+        <SNavigationMenuItem>
+          <NuxtLink to="https://portal.sigmaott.com/auth/login?redirect=/apps" external target="_blank">
+            <SButton :variant="'gradient'">
+              Start free trial
+            </SButton>
+          </NuxtLink>
+        </SNavigationMenuItem>
       </div>
     </SNavigationMenu>
   </div>
