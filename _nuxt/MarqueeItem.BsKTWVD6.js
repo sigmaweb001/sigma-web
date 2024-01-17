@@ -1,1 +1,0 @@
-import{_ as n}from"./nuxt-img.am-yxiOY.js";import{d as c,ab as a,b as m,B as r,C as p}from"./entry.v00nqOow.js";import"./vue.f36acd1f.aXuOPGlI.js";const l=c({__name:"MarqueeItem",props:{img:{}},setup(o){const e=o,{img:t}=a(e);return(_,u)=>{const s=n;return m(),r(s,{src:p(t),class:"object-scale-down max-h-64px mx-24px my-24px"},null,8,["src"])}}});export{l as default};
