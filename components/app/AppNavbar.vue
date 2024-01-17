@@ -10,7 +10,7 @@ onMounted(() => {
     showBanner.value = true
 })
 
-const _style = computed(() => `#__nuxt { --header-height: ${showBanner.value ? 40 + 64 : 64}px; }`)
+const _style = computed(() => `:root { --header-height: ${showBanner.value ? 40 + 64 : 64}px; }`)
 
 useStyleTag(_style)
 const hasFeature = computed(() => appConfig.productPinResource.enabled)
