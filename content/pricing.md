@@ -198,3 +198,39 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
     ::
   ::
 ::
+
+
+::section-collapse{left}
+#title
+FAQs
+#default
+
+::collapse-item
+#title
+What is a Machine?
+#subtitle
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+::
+
+::collapse-item
+#title
+What is a Machine?
+#subtitle
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+::
+
+::collapse-item
+#title
+What is a Machine?
+#subtitle
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+::
+
+::collapse-item
+#title
+What is a Machine?
+#subtitle
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+::
+
+::

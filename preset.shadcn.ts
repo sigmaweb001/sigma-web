@@ -40,18 +40,18 @@ export function presetShadcn(options: PresetShadcnOptions = {}): Preset<Theme> {
     ],
     // variants: [variantGroupDataAttribute.match],
     rules: [
-      // [
-      //   'accordion-down',
-      //   {
-      //     animation: 'shadcn-down 0.2s ease-out',
-      //   },
-      // ],
-      // [
-      //   'accordion-up',
-      //   {
-      //     animation: 'shadcn-up 0.2s ease-out',
-      //   },
-      // ],
+      [
+        'accordion-down',
+        {
+          animation: 'shadcn-down 0.2s ease-out',
+        },
+      ],
+      [
+        'accordion-up',
+        {
+          animation: 'shadcn-up 0.2s ease-out',
+        },
+      ],
       [
         'animate-in',
         {
