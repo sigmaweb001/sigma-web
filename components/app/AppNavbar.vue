@@ -4,7 +4,7 @@ const showBanner = ref(false)
 onMounted(() => {
   if (!appConfig.banner.enabled)
     showBanner.value = false
-  else if (localStorage.getItem(appConfig.banner.key!)) 
+  else if (localStorage.getItem(appConfig.banner.key!))
     showBanner.value = false
   else
     showBanner.value = true
@@ -134,13 +134,7 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
               </ul>
             </SNavigationMenuContent>
           </SNavigationMenuItem>
-          <SNavigationMenuItem>
-            <NuxtLink :to="appConfig.docsLink" external>
-              <SNavigationMenuLink class="navigation-menu-trigger">
-                Documentation
-              </SNavigationMenuLink>
-            </NuxtLink>
-          </SNavigationMenuItem>
+
           <SNavigationMenuItem>
             <NuxtLink to="https://thudomultimedia.com/" external target="_blank">
               <SNavigationMenuLink class="navigation-menu-trigger">
@@ -148,6 +142,14 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
               </SNavigationMenuLink>
             </NuxtLink>
 
+          </SNavigationMenuItem>
+
+          <SNavigationMenuItem>
+            <NuxtLink :to="'/pricing'">
+              <SNavigationMenuLink class="navigation-menu-trigger">
+                Pricing
+              </SNavigationMenuLink>
+            </NuxtLink>
           </SNavigationMenuItem>
         </SNavigationMenuList>
       </div>

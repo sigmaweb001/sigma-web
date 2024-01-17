@@ -21,7 +21,7 @@ defineSlots<{
       class="mt-3 max-w-2xl text-3xl font-bold leading-snug tracking-tight text-gray-800 lg:text-4xl lg:leading-tight dark:text-white">
       <ContentSlot :use="$slots.title" unwrap="p" />
     </h2>
-    <div class="max-w-2xl py-2 text-start text-lg prose prose-gray lg:text-xl xl:text-xl">
+    <div class="max-w-2xl py-2 text-start text-lg prose prose-trueGray dark:prose-invert lg:text-xl xl:text-xl">
       <slot />
     </div>
   </div>
