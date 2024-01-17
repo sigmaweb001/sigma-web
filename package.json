@@ -26,6 +26,7 @@
     "class-variance-authority": "^0.7.0",
     "echarts": "^5.4.3",
     "eslint": "^8.56.0",
+    "libphonenumber-js": "^1.10.53",
     "nuxt": "^3.9.1",
     "nuxt-icon": "^0.6.8",
     "remark-reading-time": "^2.0.1",
@@ -35,7 +36,11 @@
     "vue-json-pretty": "^2.3.0"
   },
   "dependencies": {
+    "@vee-validate/zod": "^4.12.4",
     "radix-vue": "^1.2.6",
-    "vue3-marquee": "^4.1.0"
+    "recaptcha-v3": "^1.10.0",
+    "vee-validate": "^4.12.4",
+    "vue3-marquee": "^4.1.0",
+    "zod": "^3.22.4"
   }
 }
