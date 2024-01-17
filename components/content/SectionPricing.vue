@@ -15,7 +15,7 @@ provide('full', full)
 </script>
 
 <template>
-  <div :class="[full ? '' : 'sticky top-0 z-50 bg-background']">
+  <div :class="[full ? '' : 'z-50 bg-background']">
     <section>
       <div ref="targetRef"
         :style="{ '--col': col ?? 4, '--gap': gap ? gap + 'px' : '24px', '--padding': padding ? padding + 'px' : '0px' }"
