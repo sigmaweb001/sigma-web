@@ -58,7 +58,7 @@ export function install({ app }: any) {
 
   // app.config.globalProperties.$recaptchaLoaded = recaptchaLoaded(isLoaded)
   const options = {
-    siteKey: '6Lejt7ElAAAAALNFyfDMb8_dlRbbi7EMCJEK_tT2',
+    siteKey: useRuntimeConfig().public.recaptchaSiteKey,
     loaderOptions: {
       autoHideBadge: false,
       useEnterprise: true,
