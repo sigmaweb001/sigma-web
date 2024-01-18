@@ -152,11 +152,11 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
         Go to shopping
       </ButtonLink>
     </div>
-    <div :class="[isEmpty ? 'hidden' : 'block']" class="">
+    <div :class="[isEmpty ? 'hidden' : 'block']" class="mt-15">
       <div
         class="flex items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base px-10">
         <div
-          class="flex md:w-full items-center sm:after:content-[''] after:w-full after:h-1px after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
+          class="flex cursor-pointer md:w-full items-center sm:after:content-[''] after:w-full after:h-1px after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
           <span :class="[step >= 1 ? 'text-primary dark:text-primary' : '']"
             class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
             <span class="me-2 rounded-full h-6 w-6 flex-center p-1  "
@@ -165,7 +165,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
           </span>
         </div>
         <div
-          class="flex md:w-full items-center after:content-[''] after:w-full after:h-1px after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
+          class="flex cursor-pointer md:w-full items-center after:content-[''] after:w-full after:h-1px after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
           <span :class="[step >= 2 ? 'text-primary dark:text-primary' : '']"
             class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
             <span class="me-2 rounded-full h-6 w-6 flex-center p-1"
@@ -173,7 +173,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
             Payment <span class="hidden sm:inline-flex sm:ms-1">Options</span>
           </span>
         </div>
-        <div class="flex items-center" :class="[step >= 3 ? 'text-primary dark:text-primary' : '']">
+        <div class="flex cursor-pointer items-center" :class="[step >= 3 ? 'text-primary dark:text-primary' : '']">
           <span class="me-2" :class="[step === 3 ? 'bg-primary text-white' : '']">3</span>
           Order <span class="hidden sm:inline-flex sm:ms-1">Received</span>
         </div>
@@ -260,7 +260,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
             <div class="mt-4">
               <form class="w-full space-y-6">
                 <FormField v-slot="{ componentField }" name="name">
-                  <SFormItem v-auto-animate>
+                  <SFormItem>
                     <SFormLabel :class="'text-2xl'">Name</SFormLabel>
                     <SFormControl>
                       <SInputText type="text" placeholder="" v-bind="componentField" />
@@ -269,7 +269,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
                   </SFormItem>
                 </FormField>
                 <FormField v-slot="{ componentField }" name="email">
-                  <SFormItem v-auto-animate>
+                  <SFormItem>
                     <SFormLabel>Email</SFormLabel>
                     <SFormControl>
                       <SInputText type="text" placeholder="" v-bind="componentField" />
@@ -278,11 +278,11 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
                   </SFormItem>
                 </FormField>
                 <FormField v-slot="{ componentField }" name="phone">
-                  <SFormItem v-auto-animate>
+                  <SFormItem>
                     <SFormLabel>Phone number</SFormLabel>
                     <div class="flex items-center gap-2">
                       <FormField v-slot="{ componentField }" name="countryCode">
-                        <SFormItem v-auto-animate>
+                        <SFormItem>
                           <SFormControl>
                             <SSelect v-bind="componentField" :default-value="form.values.countryCode" :options="options"
                               class="w-150px!" />
@@ -298,7 +298,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
                   </SFormItem>
                 </FormField>
                 <FormField v-slot="{ componentField }" name="company">
-                  <SFormItem v-auto-animate>
+                  <SFormItem>
                     <SFormLabel>Company</SFormLabel>
                     <SFormControl>
                       <SInputText type="text" placeholder="" v-bind="componentField" />
@@ -307,8 +307,8 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
                   </SFormItem>
                 </FormField>
 
-                <FormField v-slot="{ componentField }" name="note">
-                  <SFormItem v-auto-animate>
+                <FormField v-slot="{ componentField }" name="address">
+                  <SFormItem>
                     <SFormLabel>Address</SFormLabel>
                     <SFormControl>
                       <STextArea placeholder="" v-bind="componentField" />
@@ -317,6 +317,15 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
                   </SFormItem>
                 </FormField>
 
+                <FormField v-slot="{ componentField }" name="note">
+                  <SFormItem>
+                    <SFormLabel>Order notes</SFormLabel>
+                    <SFormControl>
+                      <STextArea placeholder="" v-bind="componentField" />
+                    </SFormControl>
+                    <SFormMessage />
+                  </SFormItem>
+                </FormField>
 
               </form>
             </div>
