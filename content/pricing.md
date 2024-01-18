@@ -55,7 +55,7 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
 ::pricing-table
   ::table-row
     ::table-col
-    _Engine Server 2_
+    _Engine Server 1_
     ::
     ::table-col
     ::
@@ -185,6 +185,80 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
     ::
 
     ::table-col
+    ::button-link{href="#" rounded size=sm}
+    New
+    ::
+    ::
+
+    ::table-col
+    ::button-link{href="#" rounded size=sm white}
+    Coming soon
+    ::
+    ::
+  ::
+::
+
+
+::pricing-table
+  ::table-row
+    ::table-col
+    _Engine Server 3_
+    ::
+    ::table-col
+    ::
+    ::table-col
+    ::
+    ::table-col
+    ::
+  ::
+
+  ::table-row
+    ::table-col
+    Machine
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" check}
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" check}
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" check}
+    ::
+  ::
+
+
+  ::table-row
+    ::table-col
+    Machine
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" }
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill"}
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill"}
+    ::
+  ::
+
+  ::table-row
+    ::table-col
+    Machine
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" check}
+    ::
+
+    ::table-col
     ::button-link{href="/" rounded size=sm}
     New
     ::
@@ -198,6 +272,224 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
   ::
 ::
 
+::pricing-table
+  ::table-row
+    ::table-col
+    _Engine Server 4_
+    ::
+    ::table-col
+    ::
+    ::table-col
+    ::
+    ::table-col
+    ::
+  ::
+
+  ::table-row
+    ::table-col
+    Machine
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" check}
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" check}
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" check}
+    ::
+  ::
+
+
+  ::table-row
+    ::table-col
+    Machine
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" }
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill"}
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill"}
+    ::
+  ::
+
+  ::table-row
+    ::table-col
+    Machine
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" check}
+    ::
+
+    ::table-col
+    ::button-link{href="/" rounded size=sm}
+    New
+    ::
+    ::
+
+    ::table-col
+    ::button-link{href="/" rounded size=sm white}
+    Coming soon
+    ::
+    ::
+  ::
+::
+
+::pricing-table
+  ::table-row
+    ::table-col
+    _Engine Server 5_
+    ::
+    ::table-col
+    ::
+    ::table-col
+    ::
+    ::table-col
+    ::
+  ::
+
+  ::table-row
+    ::table-col
+    Machine
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" check}
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" check}
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" check}
+    ::
+  ::
+
+
+  ::table-row
+    ::table-col
+    Machine
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" }
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill"}
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill"}
+    ::
+  ::
+
+  ::table-row
+    ::table-col
+    Machine
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" check}
+    ::
+
+    ::table-col
+    ::button-link{href="/" rounded size=sm}
+    New
+    ::
+    ::
+
+    ::table-col
+    ::button-link{href="/" rounded size=sm white}
+    Coming soon
+    ::
+    ::
+  ::
+::
+
+::pricing-table
+  ::table-row
+    ::table-col
+    _Engine Server 6_
+    ::
+    ::table-col
+    ::
+    ::table-col
+    ::
+    ::table-col
+    ::
+  ::
+
+  ::table-row
+    ::table-col
+    Machine
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" check}
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" check}
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" check}
+    ::
+  ::
+
+
+  ::table-row
+    ::table-col
+    Machine
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" }
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill"}
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill"}
+    ::
+  ::
+
+  ::table-row
+    ::table-col
+    Machine
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" check}
+    ::
+
+    ::table-col
+    ::button-link{href="/" rounded size=sm}
+    New
+    ::
+    ::
+
+    ::table-col
+    ::button-link{href="/" rounded size=sm white}
+    Coming soon
+    ::
+    ::
+  ::
+::
 
 ::pricing-table
   ::table-row
