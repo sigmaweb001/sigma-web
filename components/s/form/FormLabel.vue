@@ -13,7 +13,7 @@ const { class: className, ...rest } = useAttrs()
 
 <template>
   <Label
-    class="block text-xl tracking-tight font-medium text-foreground text-left"
+    class="block text-base tracking-tight font-medium text-foreground text-left w-250px"
     :class="[className,{'text-destructive': !!error}]"
     :for="formItemId"
     v-bind="rest"
