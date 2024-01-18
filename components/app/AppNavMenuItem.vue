@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const props = defineProps<{
-  title: string
-  _path: string
-  icon: string
+  title?: string
+  _path?: string
+  icon?: string
   description?: string
   new?: boolean
 }>()

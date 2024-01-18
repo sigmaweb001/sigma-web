@@ -199,6 +199,31 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
   ::
 ::
 
+::pricing-table
+  ::table-row{noBorder}
+    ::table-col
+    ::
+
+    ::table-col{noBg}
+    ::button-link{href="/cart?product=Sigma_Streaming_Basic&price=39" size=default white}
+    Add to cart
+    ::
+    ::
+
+    ::table-col{noBg}
+    ::button-link{href="/cart?product=Sigma_Streaming_Pro&price=49" size=default white}
+    Add to cart
+    ::
+    ::
+
+    ::table-col{noBg}
+    ::button-link{href="/cart?product=Sigma_Streaming_Enterprise&price=59" size=default white}
+    Add to cart
+    ::
+    ::
+  ::
+::
+
 
 ::section-collapse{left}
 #title

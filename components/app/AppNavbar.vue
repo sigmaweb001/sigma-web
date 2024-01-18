@@ -151,10 +151,17 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
               </SNavigationMenuLink>
             </NuxtLink>
           </SNavigationMenuItem>
+          <SNavigationMenuItem>
+            <NuxtLink :to="'/cart'">
+              <SNavigationMenuLink class="navigation-menu-trigger">
+                Shopping cart
+              </SNavigationMenuLink>
+            </NuxtLink>
+          </SNavigationMenuItem>
         </SNavigationMenuList>
       </div>
-      <div class="hidden justify-self-end gap-3 lg:flex">
-        <div class="lg:flex items-center">
+      <div class="hidden justify-self-end gap-3 xl:flex">
+        <div class="2xl:block hidden items-center">
           <NuxtLink to="https://portal.sigmaott.com/" external>
             <SNavigationMenuLink class="navigation-menu-trigger">
               Login
