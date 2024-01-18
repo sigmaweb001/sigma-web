@@ -26,7 +26,15 @@ export default defineNuxtConfig({
           src: '//fw-cdn.com/11186380/3902989.js',
           async: true,
           defer: true,
-        }
+        },
+        {
+          src: 'https://js.appointlet.com/',
+          async: true,
+          defer: true,
+        },
+      ],
+      link: [
+        { rel: "stylesheet", href: "https://js.appointlet.com/styles.css" }
       ]
     }
   },
@@ -69,4 +77,9 @@ export default defineNuxtConfig({
       'vue-json-pretty/lib/styles.css',
     ]
   },
+  runtimeConfig: {
+    public: {
+      recaptchaSiteKey: process.env.NUXT_PUBLIC_RECAPTCHA_SITE_KEY
+    }
+  }
 })

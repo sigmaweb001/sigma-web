@@ -162,17 +162,21 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
       </div>
       <div class="hidden justify-self-end gap-3 xl:flex">
         <div class="2xl:flex hidden items-center">
-          <NuxtLink to="https://portal.sigmaott.com/" external>
-            <SNavigationMenuLink class="navigation-menu-trigger">
-              Login
-            </SNavigationMenuLink>
-          </NuxtLink>
+          <SNavigationMenuItem>
+            <NuxtLink to="https://portal.sigmaott.com/" external>
+              <SNavigationMenuLink class="navigation-menu-trigger">
+                Login
+              </SNavigationMenuLink>
+            </NuxtLink>
+          </SNavigationMenuItem>
           <div class="h-30px border-l-1"/>
-          <NuxtLink to="https://appt.link/meet-with-sigma-team" external target="_blank">
-            <SNavigationMenuLink class="navigation-menu-trigger text-primary">
-              View demo
-            </SNavigationMenuLink>
-          </NuxtLink>
+          <SNavigationMenuItem>
+            <NuxtLink to="https://appt.link/meet-with-sigma-team" data-appointlet-modal>
+              <SNavigationMenuLink class="navigation-menu-trigger text-primary">
+                View demo
+              </SNavigationMenuLink>
+            </NuxtLink>
+          </SNavigationMenuItem>
         </div>
         <SNavigationMenuItem class="hidden xl:block">
           <NuxtLink to="https://portal.sigmaott.com/auth/login?redirect=/apps" external target="_blank">
