@@ -77,4 +77,9 @@ export default defineNuxtConfig({
       'vue-json-pretty/lib/styles.css',
     ]
   },
+  runtimeConfig: {
+    public: {
+      recaptchaSiteKey: process.env.NUXT_PUBLIC_RECAPTCHA_SITE_KEY
+    }
+  }
 })
