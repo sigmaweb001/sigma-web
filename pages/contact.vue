@@ -47,6 +47,7 @@ const form = useForm({
 })
 
 const { recaptchaLoaded, executeRecaptcha } = useReCaptcha()
+const success = ref(false)
 
 async function recaptcha() {
   await recaptchaLoaded()
@@ -65,6 +66,7 @@ const onSubmit = form.handleSubmit(async (values) => {
       Recaptcha: await recaptcha()
     }
   })
+  success.value = true
 })
 
 const content = [
@@ -173,7 +175,24 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
 
 <template>
   <NuxtLayout name="default">
-    <div class="flex justify-items-center pb-20 pt-10 container">
+    <div v-if="success" class="flex-col flex gap-3 pb-20 pt-20 container items-center justify-center m-auto">
+      <div class="flex gap-2 items-center">
+        <Icon name="i-carbon:checkmark-filled"
+          class="h-10 w-10 p-2 flex-center rounded-full flex-shrink-0 bg-primary/20 text-primary">
+        </Icon>
+        <h2 class="text-2xl text-center font-semibold">Success! We Have Received Your Information</h2>
+      </div>
+      <img src="/image_78.png" alt="logo" class="mr-8px h-263px w-263px">
+      <div class="text-base font-500">
+        Thank you for contacting us. We will get back to you soon.
+      </div>
+      <NuxtLink to="/">
+        <SButton class="flex-shrink-0" variant="gradient">
+          Go to Home
+        </SButton>
+      </NuxtLink>
+    </div>
+    <div class="flex justify-items-center pb-20 pt-10 container" v-else>
       <div class="w-full bg-primary/20 py-10 px-8 rounded-sm max-w-xl hidden" lg="block">
         <h1 class="text-2xl font-bold leading-snug tracking-tight text-gray-800 text-center" lg="text-2xl leading-tight"
           xl="text-2xl leading-tight" dark="text-black">
