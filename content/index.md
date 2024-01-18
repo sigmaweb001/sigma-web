@@ -21,7 +21,7 @@ Get Demo
 ::
 
 ::button-link{href="/contact" white}
-Contact us
+Contact Us
 ::
 
 #extra

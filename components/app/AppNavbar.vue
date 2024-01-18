@@ -138,7 +138,7 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
           <SNavigationMenuItem>
             <NuxtLink to="https://thudomultimedia.com/" external target="_blank">
               <SNavigationMenuLink class="navigation-menu-trigger">
-                About us
+                About Us
               </SNavigationMenuLink>
             </NuxtLink>
 
