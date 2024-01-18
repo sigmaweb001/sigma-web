@@ -8,13 +8,12 @@ import example from 'libphonenumber-js/examples.mobile.json'
 
 const formSchema = toTypedSchema(
   z.object({
+    title: z.string(),
     name: z.string({ required_error: 'This is required' }).min(1, { message: 'This is required' }).max(50, { message: 'Must contain at most 50 character(s)' }),
     email: z.string({ required_error: 'This is required' }).email(),
     countryCode: z.string(),
-    // phone: z.custom((val) => {
-    //   const parsePhone = parsePhoneNumberFromString(val as string || '', form.values.countryCode || 'VN')
-    //   return parsePhone && parsePhone?.isValid()
-    // }, 'Invalid phone number for the selected country')
+    company: z.string().max(50, { message: 'Must contain at most 50 character(s)' }).optional(),
+    note: z.string().max(300, { message: 'Must contain at most 300 character(s)' }).optional(),
     phone: z.string({ required_error: 'This is required' }).superRefine((val, ctx) => {
       const parsePhone = parsePhoneNumberFromString(val as string || '', form.values.countryCode || 'VN')
       const numberRegex = /^\d+$/
@@ -42,7 +41,8 @@ const formSchema = toTypedSchema(
 const form = useForm({
   validationSchema: formSchema,
   initialValues: {
-    countryCode: 'VN'
+    countryCode: 'VN',
+    title: 'Mr.'
   }
 })
 
@@ -50,7 +50,7 @@ const { recaptchaLoaded, executeRecaptcha } = useReCaptcha()
 
 async function recaptcha() {
   await recaptchaLoaded()
-  const token = await executeRecaptcha('submit')
+  const token = await executeRecaptcha('contact_us')
   return token
 }
 
@@ -87,6 +87,28 @@ const content = [
     title: 'Elevate your content',
     description: 'Elevate your content effortlessly and leave a lasting impression',
     icon: 'carbon:content-view',
+  },
+]
+const optionsTitle: { value:string, label: string }[] = [
+  {
+    value: 'Mr.',
+    label: 'Mr.',
+  },
+  {
+    value: 'Mrs.',
+    label: 'Mrs.',
+  },
+  {
+    value: 'Miss',
+    label: 'Miss',
+  },
+  {
+    value: 'Ms.',
+    label: 'Ms.',
+  },
+  {
+    value: 'Prof.',
+    label: 'Prof.',
   },
 ]
 
@@ -131,14 +153,12 @@ const options = getCountries().map((countryCode) => {
   }
 
   function getFlag(countryCode) {
-    // Calculate the Unicode value of the first character of the flag emoji
     const offset = 127397
     const unicode = countryCode
       .toUpperCase()
       .split('')
       .map(char => char.charCodeAt() + offset)
       .join('-')
-    // Return the flag emoji as a string
     return String.fromCodePoint(...unicode.split('-'))
   }
 
@@ -153,11 +173,10 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
 
 <template>
   <NuxtLayout name="default">
-    <pre>{{ form.values }}</pre>
-    <div class="flex justify-items-center py-20 container ">
+    <div class="flex justify-items-center pb-20 pt-10 container">
       <div class="w-full bg-primary/20 py-10 px-8 rounded-sm max-w-xl hidden" lg="block">
-        <h1 class="text-3xl font-bold leading-snug tracking-tight text-gray-800 text-center" lg="text-3xl leading-tight"
-          xl="text-3xl leading-tight" dark="text-black">
+        <h1 class="text-2xl font-bold leading-snug tracking-tight text-gray-800 text-center" lg="text-2xl leading-tight"
+          xl="text-2xl leading-tight" dark="text-black">
           WHY SIGMA STREAMING
         </h1>
         <p class="text-base text-gray-500 dark:text-gray-300">
@@ -184,79 +203,102 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
           </Slot>
         </div>
       </div>
-      <div class="w-full ">
-        <h2 class="text-3xl text-center font-semibold">Fill up the below form and one of our experts will contact you shortly</h2>
-        <form class="w-full space-y-6 px-20 py-10" @submit="onSubmit">
+      <div class="w-full">
+        <h2 class="text-2xl text-center font-semibold">Fill up the below form and one of our experts will contact you shortly</h2>
+        <form class="w-full space-y-2 xl:space-y-6 pl-20 py-10" @submit="onSubmit">
+          <FormField v-slot="{ componentField }" name="title">
+            <SFormItem v-auto-animate class="flex flex-col xl:flex-row gap-2">
+              <SFormLabel>Title</SFormLabel>
+              <div class="w-full">
+                <SFormControl>
+                  <SSelect v-bind="componentField" :options="optionsTitle" :default-value="form.values.title"/>
+                </SFormControl>
+                <SFormMessage />
+              </div>
+            </SFormItem>
+          </FormField>
           <FormField v-slot="{ componentField }" name="name">
-            <SFormItem v-auto-animate>
-              <SFormLabel :class="'text-2xl'">Name</SFormLabel>
-              <SFormControl>
-                <SInputText type="text" placeholder="" v-bind="componentField" />
-              </SFormControl>
-              <SFormMessage />
+            <SFormItem v-auto-animate class="flex flex-col xl:flex-row gap-2">
+              <SFormLabel>Name</SFormLabel>
+              <div class="w-full">
+                <SFormControl>
+                  <SInputText type="text" placeholder="" v-bind="componentField" />
+                </SFormControl>
+                <SFormMessage />
+              </div>
             </SFormItem>
           </FormField>
           <FormField v-slot="{ componentField }" name="email">
-            <SFormItem v-auto-animate>
+            <SFormItem v-auto-animate class="flex flex-col xl:flex-row gap-2">
               <SFormLabel>Email</SFormLabel>
-              <SFormControl>
-                <SInputText type="text" placeholder="" v-bind="componentField" />
-              </SFormControl>
-              <SFormMessage />
+              <div class="w-full">
+                <SFormControl>
+                  <SInputText type="text" placeholder="" v-bind="componentField" />
+                </SFormControl>
+                <SFormMessage />
+              </div>
             </SFormItem>
           </FormField>
           <FormField v-slot="{ componentField }" name="phone">
-            <SFormItem v-auto-animate >
+            <SFormItem v-auto-animate class="flex flex-col xl:flex-row gap-2">
               <SFormLabel>Phone number</SFormLabel>
-              <div class="flex items-center gap-2">
-                <FormField v-slot="{ componentField }" name="countryCode">
-                  <SFormItem v-auto-animate>
-                    <SFormControl>
-                      <SSelect v-bind="componentField" :default-value="form.values.countryCode" :options="options" class="w-150px!"/>
-                    </SFormControl>
-                  </SFormItem>
-                </FormField>
-                <SFormControl>
-                  <SInputText type="text" :placeholder="`(+ ${phonePrefix}) ${phoneHint}`" v-bind="componentField" />
-                </SFormControl>
+              <div class="w-full">
+                <div class="flex items-center gap-2">
+                  <FormField v-slot="{ componentField }" name="countryCode">
+                    <SFormItem v-auto-animate>
+                      <SFormControl>
+                        <SSelect v-bind="componentField" :default-value="form.values.countryCode" :options="options" class="w-150px!"/>
+                      </SFormControl>
+                    </SFormItem>
+                  </FormField>
+                  <SFormControl>
+                    <SInputText type="text" :placeholder="`(+ ${phonePrefix}) ${phoneHint}`" v-bind="componentField" />
+                  </SFormControl>
+                </div>
+                <SFormMessage />
               </div>
-              <SFormMessage />
             </SFormItem>
           </FormField>
           <FormField v-slot="{ componentField }" name="company">
-            <SFormItem v-auto-animate>
+            <SFormItem v-auto-animate class="flex flex-col xl:flex-row gap-2">
               <SFormLabel>Company</SFormLabel>
-              <SFormControl>
-                <SInputText type="text" placeholder="" v-bind="componentField" />
-              </SFormControl>
-              <SFormMessage />
+              <div class="w-full">
+                <SFormControl>
+                  <SInputText type="text" placeholder="" v-bind="componentField" />
+                </SFormControl>
+                <SFormMessage />
+              </div>
             </SFormItem>
           </FormField>
           <FormField name="items1">
-            <SFormItem>
+            <SFormItem v-auto-animate class="flex flex-col xl:flex-row gap-2">
               <SFormLabel>Requirements</SFormLabel>
-              <FormField v-for="item in products" v-slot="{ value, handleChange }" :key="item.id" type="checkbox" :value="item.id" :unchecked-value="false" name="requirements">
-                <SFormItem class="flex items-center space-x-3 space-y-0">
-                  <SFormControl>
-                    <SCheckbox
-                      :checked="value?.includes(item.id)"
-                      @update:checked="handleChange"
-                    />
-                  </SFormControl>
-                  <SFormLabel class="font-normal! text-lg!">
-                    {{ item.label }}
-                  </SFormLabel>
-                </SFormItem>
-              </FormField>
+              <div class="w-full">
+                <FormField v-for="item in products" v-slot="{ value, handleChange }" :key="item.id" type="checkbox" :value="item.id" :unchecked-value="false" name="requirements">
+                  <SFormItem class="flex items-center space-x-3 space-y-1">
+                    <SFormControl>
+                      <SCheckbox
+                        :checked="value?.includes(item.id)"
+                        @update:checked="handleChange"
+                      />
+                    </SFormControl>
+                    <SFormLabel class="font-normal! text-sm!">
+                      {{ item.label }}
+                    </SFormLabel>
+                  </SFormItem>
+                </FormField>
+              </div>
             </SFormItem>
           </FormField>
           <FormField v-slot="{ componentField }" name="note">
-            <SFormItem v-auto-animate>
+            <SFormItem v-auto-animate class="flex flex-col xl:flex-row gap-2">
               <SFormLabel>Additional Information</SFormLabel>
-              <SFormControl>
-                <STextArea placeholder="" v-bind="componentField" />
-              </SFormControl>
-              <SFormMessage />
+              <div class="w-full">
+                <SFormControl>
+                  <STextArea placeholder="" v-bind="componentField" />
+                </SFormControl>
+                <SFormMessage />
+              </div>
             </SFormItem>
           </FormField>
 
@@ -265,6 +307,11 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
           </SButton>
         </form>
       </div>
-  </div>
+    </div>
   </NuxtLayout>
 </template>
+<style scoped>
+p {
+  @apply my-0!
+}
+</style>
