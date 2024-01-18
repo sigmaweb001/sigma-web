@@ -55,7 +55,80 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
 ::pricing-table
   ::table-row
     ::table-col
-    _Engine Server_
+    _Engine Server 2_
+    ::
+    ::table-col
+    ::
+    ::table-col
+    ::
+    ::table-col
+    ::
+  ::
+
+  ::table-row
+    ::table-col
+    Machine
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" check}
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" check}
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" check}
+    ::
+  ::
+
+
+  ::table-row
+    ::table-col
+    Machine
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" }
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill"}
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill"}
+    ::
+  ::
+
+  ::table-row
+    ::table-col
+    Machine
+    ::
+
+    ::table-col
+    :icon{name="ri:checkbox-circle-fill" check}
+    ::
+
+    ::table-col
+    ::button-link{href="/" rounded size=sm}
+    New
+    ::
+    ::
+
+    ::table-col
+    ::button-link{href="/" rounded size=sm white}
+    Coming soon
+    ::
+    ::
+  ::
+::
+
+::pricing-table
+  ::table-row
+    ::table-col
+    _Engine Server 2_
     ::
     ::table-col
     ::
@@ -195,31 +268,6 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
     ::table-col{span=3}
     From $0.0035 per minute
     :icon{name="ri:information-line"}
-    ::
-  ::
-::
-
-::pricing-table
-  ::table-row{noBorder}
-    ::table-col
-    ::
-
-    ::table-col{noBg}
-    ::button-link{href="/cart?product=Sigma_Streaming_Basic&price=39" size=default white}
-    Add to cart
-    ::
-    ::
-
-    ::table-col{noBg}
-    ::button-link{href="/cart?product=Sigma_Streaming_Pro&price=49" size=default white}
-    Add to cart
-    ::
-    ::
-
-    ::table-col{noBg}
-    ::button-link{href="/cart?product=Sigma_Streaming_Enterprise&price=59" size=default white}
-    Add to cart
-    ::
     ::
   ::
 ::
