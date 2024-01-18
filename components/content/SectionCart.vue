@@ -46,23 +46,22 @@ const form = useForm({
 const { query } = useRoute()
 const router = useRouter()
 const carts = useState('carts', () => [
-  {
-    product: 'A',
-    price: 39,
-    qty: 1,
-  },
-  {
-    product: 'B',
-    price: 49,
-    qty: 1,
-  },
-  {
-    product: 'C',
-    price: 59,
-    qty: 1,
-  }
+  // {
+  //   product: 'A',
+  //   price: 39,
+  //   qty: 1,
+  // },
+  // {
+  //   product: 'B',
+  //   price: 49,
+  //   qty: 1,
+  // },
+  // {
+  //   product: 'C',
+  //   price: 59,
+  //   qty: 1,
+  // }
 ])
-console.log('[LOG] ~ carts:', carts)
 
 onMounted(() => {
   if (query.product && query.price) {
@@ -91,15 +90,16 @@ function remove(item: any) {
 
 const total = computed(() => carts.value.reduce((total, item) => total + item.price * item.qty, 0))
 
-const step = ref(2)
+const step = ref(1)
 
 function goToPayment() {
   step.value = 2
 }
+
 const submitOrder = form.handleSubmit(async (values) => {
   step.value = 3
-
 })
+
 const options = getCountries().map((countryCode) => {
   function getCountryName(countryCode: string) {
     try {
@@ -132,17 +132,20 @@ const options = getCountries().map((countryCode) => {
 const phonePrefix = computed(() => getCountryCallingCode(form.values.countryCode || 'VN'))
 const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN', example)?.formatNational().slice(1))
 
+const formattedDate = useDateFormat(Date.now(), 'YYYY-MM-DD HH:mm:ss')
+const paymentMethod = ref('1')
+const agree = ref(false)
 </script>
 
 <template>
   <section>
     <div class="flex-col items-center gap-5 py-10" :class="[isEmpty ? 'flex' : 'hidden']">
-      <div class="i-ri:shopping-cart-2-line text-primary h-20 w-20" />
+      <div class="i-ri:shopping-cart-2-line text-primary size-20" />
       <div class="text-2xl font-semibold">
         <ContentSlot :use="$slots.empty" unwrap="p" />
       </div>
       <ButtonLink href="/pricing" rounded>
-        Go to shopping
+        {{ $t('cart.go_to_shopping') }}
       </ButtonLink>
     </div>
     <div :class="[isEmpty ? 'hidden' : 'block']" class="mt-15">
@@ -152,7 +155,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
           class="flex cursor-pointer md:w-full items-center sm:after:content-[''] after:w-full after:h-1px after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
           <span :class="[step >= 1 ? 'text-primary dark:text-primary' : '']"
             class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
-            <span class="me-2 rounded-full h-6 w-6 flex-center p-1  "
+            <span class="me-2 rounded-full h-6 w-6 flex-center p-1"
               :class="[step >= 1 ? 'bg-primary text-white' : '']">1</span>
             Shopping <span class="hidden sm:inline-flex sm:ms-1">Cart</span>
           </span>
@@ -167,14 +170,15 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
           </span>
         </div>
         <div class="flex cursor-pointer items-center" :class="[step >= 3 ? 'text-primary dark:text-primary' : '']">
-          <span class="me-2" :class="[step === 3 ? 'bg-primary text-white' : '']">3</span>
+          <span class="me-2 rounded-full h-6 w-6 flex-center p-1"
+            :class="[step === 3 ? 'bg-primary text-white' : '']">3</span>
           Order <span class="hidden sm:inline-flex sm:ms-1">Received</span>
         </div>
       </div>
 
 
       <template v-if="step === 1">
-        <div class="relative overflow-x-auto mt-10">
+        <div class="relative overflow-x-auto mt-10 max-w-screen-lg mx-auto">
           <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-sm text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
               <tr>
@@ -237,7 +241,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
             </NuxtLink>
           </SButton>
 
-          <SButton @click="goToPayment">
+          <SButton variant="gradient" @click="goToPayment">
             Payment
           </SButton>
         </div>
@@ -318,7 +322,6 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
                     <SFormMessage />
                   </SFormItem>
                 </FormField>
-
               </form>
             </div>
           </div>
@@ -358,13 +361,11 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
               <h6 class="text-base font-bold uppercase">
                 Payment
               </h6>
-
               <div class="mt-4">
 
                 <div class="flex">
                   <div class="flex items-center h-5">
-                    <input id="helper-radio-1" aria-describedby="helper-radio-text" name="default-radio" type="radio"
-                      value=""
+                    <input v-model="paymentMethod" id="helper-radio-1" name="default-radio" type="radio" value="1"
                       class="w-4 h-4 text-primary bg-gray-100 border-gray-300 focus:ring-primary dark:focus:ring-primary dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600 focus:outline-none">
                   </div>
                   <div class="ms-2 text-sm">
@@ -377,8 +378,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
 
                 <div class="flex mt-2">
                   <div class="flex items-center h-5">
-                    <input id="helper-radio-2" aria-describedby="helper-radio-text" name="default-radio" type="radio"
-                      value=""
+                    <input v-model="paymentMethod" id="helper-radio-2" name="default-radio" type="radio" value="2"
                       class="w-4 h-4 text-primary bg-gray-100 border-gray-300 focus:ring-primary dark:focus:ring-primary focus:outline-none dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600">
                   </div>
                   <div class="ms-2 text-sm">
@@ -391,26 +391,118 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
 
                 <div class="mt-4 text-sm italic">
                   Your personal information will be used to process orders, enhance your website experience, and for other
-                  specific purposes described in our <NuxtLink>
+                  specific purposes described in our
+                  <NuxtLink class="text-primary underline hover:font-bold" to="/privacy">
                     privacy policy
                   </NuxtLink>.
                 </div>
 
                 <div class="flex items-center mb-4 mt-4">
-                  <input id="default-checkbox" type="checkbox" value=""
+                  <input v-model="agree" id="default-checkbox" type="checkbox" value=""
                     class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary dark:focus:ring-primary dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                   <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I have
-                    read and agree to the website's <NuxtLink to="/terms">
-                      terms and conditions
-                    </NuxtLink> *</label>
+                    read and agree to the website's
+                    <NuxtLink class="text-primary underline hover:font-bold" to="/terms">
+                      terms and conditions *
+                    </NuxtLink>
+                  </label>
                 </div>
               </div>
 
               <div class="flex justify-end mt-4">
-                <SButton class="flex-shrink-0" variant="outline" type="submit" @click="submitOrder">
-                  Submit
+                <SButton :disabled="!agree" variant="gradient" class="flex-shrink-0" type="submit" @click="submitOrder">
+                  Order
                 </SButton>
               </div>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <template v-if="step === 3">
+        <div class="gap-5 py-10 ">
+          <div class="flex-center flex-col gap-2">
+            <div class="i-ri:checkbox-circle-fill text-primary size-20" />
+            <div class="font-bold text-xl">
+              Thank you. Your order has been received.
+            </div>
+          </div>
+
+          <div class="mx-auto max-w-screen-lg">
+            <h6 class="text-lg font-bold uppercase mt-10 text-center mb-2">
+              Order details
+            </h6>
+            <div class="grid text-sm grid-cols-4 gap-4 bg-gray-200 dark:bg-trueGray-700 rounded-8px px-4 py-3">
+              <h6 class="text-sm font-bold uppercase">
+                Order number
+              </h6>
+              <h6 class="text-sm font-bold uppercase">
+                Date
+              </h6>
+              <h6 class="text-sm font-bold uppercase">
+                Total
+              </h6>
+
+              <h6 class="text-sm font-bold uppercase">
+                Payment method
+              </h6>
+
+              <div>
+                11341172024
+              </div>
+
+              <div>
+                {{ formattedDate }}
+              </div>
+
+              <div>
+                ${{ total }}
+              </div>
+
+              <div>
+                {{ paymentMethod === '1' ? 'Bank transfer' : 'Payment via VNPAY' }}
+              </div>
+            </div>
+
+
+            <div class="relative overflow-x-auto mt-10">
+              <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-sm text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                    <th scope="col" class="px-6 py-3">
+                      Product
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-center">
+                      Price
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-center">
+                      Total
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="item in carts" class="bg-white dark:bg-gray-800 border-b dark:border-gray-700">
+                    <th scope="row" class="px-10 py-4 font-medium text-gray-800 whitespace-nowrap dark:text-white">
+                      {{ item.product }}
+                    </th>
+                    <td class="px-6 py-4 text-center">
+                      ${{ item.price }}
+                    </td>
+
+                    <td class="px-6 py-4 text-center">
+                      ${{ item.price * item.qty }}
+                    </td>
+                  </tr>
+
+                </tbody>
+                <tfoot>
+                  <tr class="font-semibold text-trueGray-800 dark:text-white">
+                    <th scope="row" class="px-6 py-3 text-base">Total</th>
+                    <td class="px-6 py-3 text-center"></td>
+                    <td class="px-6 py-3 text-center">${{ total }}</td>
+                  </tr>
+                </tfoot>
+              </table>
             </div>
           </div>
         </div>

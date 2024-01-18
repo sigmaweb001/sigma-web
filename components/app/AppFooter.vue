@@ -99,7 +99,7 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
           <div class="flex gap-3">
             <AppSocialIcons />
           </div>
-          <AppDarkSwitch />
+          <AppDarkSwitch class="hidden" />
         </div>
 
         <div class="mt-8px text-13px text-gray-500">
