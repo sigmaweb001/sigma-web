@@ -11,10 +11,6 @@ const formSchema = toTypedSchema(
     name: z.string({ required_error: 'This is required' }).min(1, { message: 'This is required' }).max(50, { message: 'Must contain at most 50 character(s)' }),
     email: z.string({ required_error: 'This is required' }).email(),
     countryCode: z.string(),
-    // phone: z.custom((val) => {
-    //   const parsePhone = parsePhoneNumberFromString(val as string || '', form.values.countryCode || 'VN')
-    //   return parsePhone && parsePhone?.isValid()
-    // }, 'Invalid phone number for the selected country')
     phone: z.string({ required_error: 'This is required' }).superRefine((val, ctx) => {
       const parsePhone = parsePhoneNumberFromString(val as string || '', form.values.countryCode || 'VN')
       const numberRegex = /^\d+$/
@@ -45,9 +41,6 @@ const form = useForm({
     countryCode: 'VN'
   }
 })
-
-
-
 
 
 const { query } = useRoute()
@@ -290,8 +283,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
                         </SFormItem>
                       </FormField>
                       <SFormControl>
-                        <SInputText type="text" :placeholder="`(+ ${phonePrefix}) ${phoneHint}`"
-                          v-bind="componentField" />
+                        <SInputText type="text" :placeholder="`(+${phonePrefix}) ${phoneHint}`" v-bind="componentField" />
                       </SFormControl>
                     </div>
                     <SFormMessage />
@@ -331,42 +323,94 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
             </div>
           </div>
 
-          <div class="border-1px border-border rounded-4px px-3 py-3">
-            <h6 class="text-base font-bold uppercase">
-              Your order
-            </h6>
-            <div class="grid grid-cols-[auto-fit,1fr] gap-2">
-              <template v-for="(item, i) in carts" :key="i">
-                <div>
-                  <span>{{ item.product }}</span>
-                  x
-                  <span>{{ item.qty }}</span>
+          <div>
+            <div class="border-1px  border-border rounded-4px px-3 py-3">
+              <h6 class="text-base font-bold uppercase">
+                Your order
+              </h6>
+              <div class="flex mt-4 flex-col divide-dashed divide-y divide-border">
+                <div class="flex gap-2 pl-6 pr-3 py-2 items-center" v-for="(item, i) in carts" :key="i">
+                  <div class="flex-1">
+                    <span>{{ item.product }}</span>
+                    x
+                    <span>{{ item.qty }}</span>
+                  </div>
+                  <div class="w-70px">
+                    ${{ item.price * item.qty }}
+                  </div>
                 </div>
-                <div>
-                  ${{ item.price * item.qty }}
-                </div>
-              </template>
 
-              <div>
-                Total
+                <div class="flex gap-2 py-2 pl-6 pr-3 items-center">
+                  <div class="flex-1 font-bold">
+                    Total
+                  </div>
+                  <div class="w-70px">
+                    ${{ total }}
+                  </div>
+                </div>
+
               </div>
-              <div>
-                ${{ total }}
-              </div>
+
+
             </div>
 
-            <h6 class="text-base font-bold uppercase">
-              Payment
-            </h6>
+            <div class="border-1px mt-2  border-border rounded-4px px-3 py-3">
+              <h6 class="text-base font-bold uppercase">
+                Payment
+              </h6>
 
-            <div>
+              <div class="mt-4">
 
-            </div>
+                <div class="flex">
+                  <div class="flex items-center h-5">
+                    <input id="helper-radio-1" aria-describedby="helper-radio-text" name="default-radio" type="radio"
+                      value=""
+                      class="w-4 h-4 text-primary bg-gray-100 border-gray-300 focus:ring-primary dark:focus:ring-primary dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600 focus:outline-none">
+                  </div>
+                  <div class="ms-2 text-sm">
+                    <label for="helper-radio-1" class="font-medium text-gray-900 dark:text-gray-300">Bank transfer</label>
+                    <div id="helper-radio-text" class="text-xs font-normal text-gray-500 dark:text-gray-300">Make payments
+                      right into our bank account. Please use your OrderID in the Checkout text section. The order will be
+                      delivered after the money has been transferred.</div>
+                  </div>
+                </div>
 
-            <div>
-              <SButton class="flex-shrink-0 float-right" variant="outline" type="submit" @click="submitOrder">
-                Submit
-              </SButton>
+                <div class="flex mt-2">
+                  <div class="flex items-center h-5">
+                    <input id="helper-radio-2" aria-describedby="helper-radio-text" name="default-radio" type="radio"
+                      value=""
+                      class="w-4 h-4 text-primary bg-gray-100 border-gray-300 focus:ring-primary dark:focus:ring-primary focus:outline-none dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600">
+                  </div>
+                  <div class="ms-2 text-sm">
+                    <label for="helper-radio-2" class="font-medium text-gray-900 dark:text-gray-300">Payment via
+                      VNPAY</label>
+                    <div id="helper-radio-text" class="text-xs font-normal text-gray-500 dark:text-gray-300">Pay online
+                      via VNPAY</div>
+                  </div>
+                </div>
+
+                <div class="mt-4 text-sm italic">
+                  Your personal information will be used to process orders, enhance your website experience, and for other
+                  specific purposes described in our <NuxtLink>
+                    privacy policy
+                  </NuxtLink>.
+                </div>
+
+                <div class="flex items-center mb-4 mt-4">
+                  <input id="default-checkbox" type="checkbox" value=""
+                    class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary dark:focus:ring-primary dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                  <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I have
+                    read and agree to the website's <NuxtLink to="/terms">
+                      terms and conditions
+                    </NuxtLink> *</label>
+                </div>
+              </div>
+
+              <div class="flex justify-end mt-4">
+                <SButton class="flex-shrink-0" variant="outline" type="submit" @click="submitOrder">
+                  Submit
+                </SButton>
+              </div>
             </div>
           </div>
         </div>
