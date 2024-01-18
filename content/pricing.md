@@ -14,7 +14,7 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
   #subtitle
   The customer support plan for individuals, startups, and small businesses
   #cta
-  ::button-link{href="/" rounded outline}
+  ::button-link{href="https://portal.sigmaott.com/auth/login?redirect=/apps" target='_blank'  rounded outline}
   Start free trial
   ::
   ::
@@ -29,10 +29,10 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
   #subtitle
   The customer support plan for individuals, startups, and small businesses lorem ipsum dolor sit amet, consectetur adipiscing elit
   #cta
-  ::button-link{href="/" rounded}
+  ::button-link{href="https://portal.sigmaott.com/auth/login?redirect=/apps" target='_blank' rounded}
   Start free trial
   ::
-  ::button-link{href="/" rounded link}
+  ::button-link{href="https://appt.link/meet-with-sigma-team"  target='_blank' rounded link}
   View demo
   ::
   ::
@@ -47,7 +47,7 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
   #subtitle
   The customer support plan for individuals, startups, and small businesses lorem ipsum dolor sit amet, consectetur adipiscing elit
   #cta
-  ::button-link{href="/" rounded outline}
+  ::button-link{href="https://appt.link/meet-with-sigma-team" target='_blank' rounded outline}
   Start free trial
   ::
 ::
