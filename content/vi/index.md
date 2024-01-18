@@ -20,8 +20,8 @@ Unlocking business value with reliable streaming from a trusted partner
 Get Demo
 ::
 
-::button-link{href="/get-in-touch" white}
-Contact us
+::button-link{href="/contact" white}
+Contact Us
 ::
 
 #extra
