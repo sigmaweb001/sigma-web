@@ -227,7 +227,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
         <form class="w-full space-y-2 xl:space-y-6 pl-20 py-10" @submit="onSubmit">
           <FormField v-slot="{ componentField }" name="title">
             <SFormItem v-auto-animate class="flex flex-col xl:flex-row gap-2">
-              <SFormLabel>Title</SFormLabel>
+              <SFormLabel>Title <span class="text-red-500">*</span></SFormLabel>
               <div class="w-full">
                 <SFormControl>
                   <SSelect v-bind="componentField" :options="optionsTitle" :default-value="form.values.title"/>
@@ -238,7 +238,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
           </FormField>
           <FormField v-slot="{ componentField }" name="name">
             <SFormItem v-auto-animate class="flex flex-col xl:flex-row gap-2">
-              <SFormLabel>Name</SFormLabel>
+              <SFormLabel>Name <span class="text-red-500">*</span></SFormLabel>
               <div class="w-full">
                 <SFormControl>
                   <SInputText type="text" placeholder="" v-bind="componentField" />
@@ -249,7 +249,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
           </FormField>
           <FormField v-slot="{ componentField }" name="email">
             <SFormItem v-auto-animate class="flex flex-col xl:flex-row gap-2">
-              <SFormLabel>Email</SFormLabel>
+              <SFormLabel>Email <span class="text-red-500">*</span></SFormLabel>
               <div class="w-full">
                 <SFormControl>
                   <SInputText type="text" placeholder="" v-bind="componentField" />
@@ -260,7 +260,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
           </FormField>
           <FormField v-slot="{ componentField }" name="phone">
             <SFormItem v-auto-animate class="flex flex-col xl:flex-row gap-2">
-              <SFormLabel>Phone number</SFormLabel>
+              <SFormLabel>Phone number <span class="text-red-500">*</span></SFormLabel>
               <div class="w-full">
                 <div class="flex items-center gap-2">
                   <FormField v-slot="{ componentField }" name="countryCode">
@@ -321,7 +321,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
             </SFormItem>
           </FormField>
 
-          <SButton class="flex-shrink-0 float-right" variant="outline" type="submit" @click="onSubmit">
+          <SButton class="flex-shrink-0 float-right" variant="gradient" type="submit" @click="onSubmit">
             Submit
           </SButton>
         </form>
@@ -331,6 +331,6 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
 </template>
 <style scoped>
 p {
-  @apply my-0!
+  @apply my-1!
 }
 </style>

@@ -60,7 +60,7 @@ export function install({ app }: any) {
   const options = {
     siteKey: '6Lejt7ElAAAAALNFyfDMb8_dlRbbi7EMCJEK_tT2',
     loaderOptions: {
-      autoHideBadge: true,
+      autoHideBadge: false,
       useEnterprise: true,
     },
   } as IReCaptchaOptions
