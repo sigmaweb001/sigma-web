@@ -11,20 +11,22 @@ export default defineAppConfig({
     twitter: '_larbish'
   },
   docsLink: 'https://github.com/docs',
-  authors: [
-    {
-      slug: 'antfu',
-      name: 'Ant',
-      title: 'Creator',
-      avatar: 'https://unavatar.io/antfu',
-    },
-    {
-      slug: 'two',
-      name: 'Two',
-      title: 'SE',
-      avatar: 'https://unavatar.io/antfu',
-    }
-  ],
+  authors: [{
+    slug: 'antfu',
+    name: 'Ant',
+    title: 'Creator',
+    avatar: 'https://unavatar.io/antfu'
+  }, {
+    slug: 'two',
+    name: 'Two',
+    title: 'SE',
+    avatar: 'https://unavatar.io/antfu'
+  }, {
+    slug: 'linhvtm',
+    name: 'linhvtm',
+    title: 'Creator',
+    avatar: 'https://unavatar.io/antfu'
+  }],
   tags: [
     {
       slug: 'tag 1',
