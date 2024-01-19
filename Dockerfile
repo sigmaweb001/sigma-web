@@ -11,7 +11,7 @@ COPY . .
 
 RUN pnpm install -r --prefer-offline --frozen-lockfile
 
-RUN pnpm generate
+RUN env NODE_OPTIONS="--max_old_space_size=4096" pnpm generate
 
 FROM registry.gviet.vn:5000/library/nginx:stable-alpine as production-stage
 COPY --from=build-stage /app/.output/public /usr/share/nginx/html
