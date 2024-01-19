@@ -11,7 +11,7 @@ defineSlots<{
 </script>
 
 <template>
-  <div class="" :class="`container flex w-full flex-col mt-10 ${left ? '' : 'items-center justify-center text-center'}`">
+  <div class="" :class="`container flex w-full flex-col my-10 ${left ? '' : 'items-center justify-center text-center'}`">
     <div class="text-lg font-bold tracking-wider uppercase text-primary">
       <ContentSlot :use="$slots.subtitle" unwrap="p" />
     </div>
