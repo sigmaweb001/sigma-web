@@ -1,0 +1,23 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: docs-site-ir
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    app: docs-site
+    group: {{ .Release.Name }}
+    {{- if .Values.commonLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+    {{- end }}
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`{{ .Values.doc.ingressroute.host }}`) && PathPrefix(`{{ .Values.doc.ingressroute.pathPrefix }}`)
+      services:
+        - kind: Service
+          name: docs-site-svc
+          port: 80
+          strategy: RoundRobin

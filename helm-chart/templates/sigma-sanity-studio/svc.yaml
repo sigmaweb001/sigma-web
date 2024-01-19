@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sanity-studio
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    app: sanity-studio
+    group: {{ .Release.Name }}
+    {{- if .Values.commonLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+    {{- end }}
+spec:
+  type: ClusterIP
+  ports:
+  - name: rest
+    port: 80
+    # targetPort: 8080
+    protocol: TCP 
+  # - name: grpc
+  #   port: 50051
+  #   protocol: TCP 
+  selector:
+    app: sanity-studio
+    group: {{ .Release.Name }}
+    {{- if .Values.commonLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+    {{- end }}

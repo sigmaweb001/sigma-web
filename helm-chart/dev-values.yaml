@@ -1,0 +1,89 @@
+# Default values for helm-example.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+
+## @param global.imageRegistry Global Docker image registry
+## @param global.imagePullSecrets Global Docker registry secret names as an array
+## @param global.storageClass Global StorageClass for Persistent Volume(s)
+##
+global:
+  imageRegistry: "registry.gviet.vn:5000"
+  image:
+    pullPolicy: IfNotPresent
+    imageTag: 1.2.3
+
+  imagePullSecrets:
+    - name: gviet
+    
+  storageClass: ""
+
+  podSecurityContext: {}
+    # fsGroup: 2000
+
+  securityContext: {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+
+  affinity: {}
+  ## @param nodeSelector Node labels for pod assignment
+  ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+  ##
+  nodeSelector: 
+    # node-role.sigmaott.com/sigma-dai: "true"
+
+  ## @param tolerations Tolerations for pod assignment
+  ## Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+  ##
+  tolerations: []
+  ## @param topologySpreadConstraints Topology Spread Constraints for pod assignment spread across your cluster among failure-domains. Evaluated as a template
+  ## Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/#spread-constraints-for-pods
+  ##
+  nameOverride: ""
+  ## @param fullnameOverride String to fully override common.names.fullname
+  ##
+  fullnameOverride: ""
+  ## @param clusterDomain Default Kubernetes cluster domain
+  ##
+  clusterDomain: cluster.local
+  ## @param commonLabels Labels to add to all deployed objects
+  ##
+  commonLabels: {}
+  ## @param commonAnnotations Annotations to add to all deployed objects
+  ##
+  commonAnnotations: {}
+  ## @param extraDeploy Array of extra objects to deploy with the release
+  ##
+
+# configuration for Sigma Live Stream Api Service
+studio:
+  enabled: true
+  replicaCount: 1
+
+  image:
+    pullPolicy: IfNotPresent
+    repository: sigma-livestream/sanity-studio
+    imageTag: b1b04ba0
+
+
+web:
+  enabled: true
+  replicaCount: 1
+
+  image:
+    pullPolicy: IfNotPresent
+    repository: sigma-livestream/sigma-streaming-platform-website
+    imageTag: 537841f9
+
+doc:
+  enabled: true
+  replicaCount: 1
+
+  image:
+    pullPolicy: IfNotPresent
+    repository: sigma-livestream/sigma-streaming-platform-docs
+    imageTag: 537841f9
