@@ -43,7 +43,7 @@ const localePath = useLocalePath()
       <AppHeaderDrawer />
     </div>
 
-    <SNavigationMenu class="hidden w-full" md="grid w-full grid-cols-3 items-center container h-64px xl:px-5 mx-auto">
+    <SNavigationMenu class="hidden w-full" md="grid w-full grid-cols-[1fr_auto_1fr] items-center h-64px xl:px-5 mx-auto">
       <div class="flex flex-wrap items-center justify-between lg:w-auto flex-shrink-0">
         <NuxtLink to="/" class="flex items-end gap-x-2 text-primary " dark="text-primary">
           <span>

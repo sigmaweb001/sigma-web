@@ -9,7 +9,7 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
   ]
 }).find())
 
-const options = [{ value: 'en', label: 'English' }, { value: 'vi', label: 'Vietnamese' }]
+const options = [{ value: 'en', label: 'English' }, { value: 'vi', label: 'Tiếng Việt' }]
 const { locale } = useI18n()
 
 </script>
