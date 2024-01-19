@@ -5,17 +5,18 @@ const { col } = definePropsRefs<{
   padding?: number
 }>()
 const targetRef = ref(null)
-const full = ref()
+const full = ref(true)
+const appConfig = useAppConfig()
 
 useIntersectionObserver(targetRef, ([{ isIntersecting }]) => {
   full.value = isIntersecting
-}, { threshold: 1, rootMargin: '-104px 0px 0px 0px' })
+}, { threshold: 1, rootMargin: appConfig.banner.enabled ? '-104px 0px 0px 0px': '-64px 0px 0px 0px' })
 
 provide('full', full)
 </script>
 
 <template>
-  <div :class="[full ? '' : 'z-50 bg-background']">
+  <div :class="[full ? '' : 'z-100 bg-background top-0']">
     <section>
       <div ref="targetRef"
         :style="{ '--col': col ?? 4, '--gap': gap ? gap + 'px' : '24px', '--padding': padding ? padding + 'px' : '0px' }"

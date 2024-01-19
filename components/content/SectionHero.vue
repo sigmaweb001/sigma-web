@@ -10,9 +10,9 @@
           xl="text-50px leading-tight" dark="text-white">
           <ContentSlot :use="$slots.title" unwrap="p" />
         </h1>
-        <h2 v-if="$slots.subtitle" class="pt-5 text-20px leading-normal text-gray-500 lg:text-xl xl:text-2xl dark:text-gray-300">
+        <div v-if="$slots.subtitle" class="pt-5 text-20px text-pretty leading-normal text-gray-500 lg:text-20px xl:text-20px dark:text-gray-300">
           <ContentSlot :use="$slots.subtitle" unwrap="p" />
-        </h2>
+        </div>
         <slot />
         <div v-if="$slots.cta" class="flex gap-2">
           <ContentSlot :use="$slots.cta" unwrap="p" />
