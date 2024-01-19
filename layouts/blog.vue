@@ -52,7 +52,7 @@ const links = computed(() => item.value?.body.toc.links)
     </div>
 
     <div class="relative z-0 mx-auto aspect-video max-w-screen-lg overflow-hidden lg:rounded-lg">
-      <NuxtImg v-if="item.thumbnail" :src="item?.thumbnail" :alt="item?.thumbnail || 'Thumbnail'"
+      <img v-if="item.thumbnail" :src="item?.thumbnail" :alt="item?.thumbnail || 'Thumbnail'"
         class="absolute inset-0 h-full w-full object-cover" />
     </div>
 
