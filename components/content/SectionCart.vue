@@ -157,7 +157,7 @@ const agree = ref(false)
             class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
             <span class="me-2 rounded-full h-6 w-6 flex-center p-1"
               :class="[step >= 1 ? 'bg-primary text-white' : '']">1</span>
-            Shopping <span class="hidden sm:inline-flex sm:ms-1">Cart</span>
+            Shopping Cart
           </span>
         </div>
         <div
@@ -166,13 +166,13 @@ const agree = ref(false)
             class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
             <span class="me-2 rounded-full h-6 w-6 flex-center p-1"
               :class="[step >= 2 ? 'bg-primary text-white' : '']">2</span>
-            Payment <span class="hidden sm:inline-flex sm:ms-1">Options</span>
+            Payment Options
           </span>
         </div>
         <div class="flex cursor-pointer items-center" :class="[step >= 3 ? 'text-primary dark:text-primary' : '']">
           <span class="me-2 rounded-full h-6 w-6 flex-center p-1"
             :class="[step === 3 ? 'bg-primary text-white' : '']">3</span>
-          Order <span class="hidden sm:inline-flex sm:ms-1">Received</span>
+          Order Received
         </div>
       </div>
 

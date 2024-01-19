@@ -102,7 +102,7 @@ const { locale } = useI18n()
           <div class="flex gap-3">
             <AppSocialIcons />
           </div>
-          <SSelect v-model="locale" :options="options" class="w-140px! h-36px" />
+          <LangSelect v-model="locale" :options="options" class="w-140px! h-36px" />
           <!-- <AppDarkSwitch class="hidden!" /> -->
         </div>
 
