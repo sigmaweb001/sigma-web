@@ -42,7 +42,10 @@ const form = useForm({
   validationSchema: formSchema,
   initialValues: {
     countryCode: 'VN',
-    title: 'Mr.'
+    title: 'Mr.',
+    requirements: [],
+    note: '',
+    company: '',
   }
 })
 
@@ -194,8 +197,8 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
     </div>
     <div class="flex justify-items-center pb-20 pt-10 container" v-else>
       <div class="w-full bg-primary/20 py-10 px-8 rounded-sm max-w-xl hidden" lg="block">
-        <h1 class="text-2xl font-bold leading-snug tracking-tight text-gray-800 text-center" lg="text-2xl leading-tight"
-          xl="text-2xl leading-tight" dark="text-black">
+        <h1 class="text-4xl font-bold leading-snug tracking-tight text-gray-800 text-center" lg="text-4xl leading-tight"
+          xl="text-4xl leading-tight" dark="text-black">
           WHY SIGMA STREAMING
         </h1>
         <p class="text-base text-gray-500 dark:text-gray-300">
@@ -224,7 +227,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
       </div>
       <div class="w-full">
         <h2 class="text-2xl text-center font-semibold">Fill up the below form and one of our experts will contact you shortly</h2>
-        <form class="w-full space-y-2 xl:space-y-6 pl-20 py-10" @submit="onSubmit">
+        <form class="w-full space-y-2 xl:space-y-6 pl-20 py-10 custom-form" @submit="onSubmit">
           <FormField v-slot="{ componentField }" name="title">
             <SFormItem v-auto-animate class="flex flex-col xl:flex-row gap-2">
               <SFormLabel>Title <span class="text-red-500">*</span></SFormLabel>
@@ -330,7 +333,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
   </NuxtLayout>
 </template>
 <style scoped>
-p {
+.custom-form p {
   @apply my-1!
 }
 </style>
