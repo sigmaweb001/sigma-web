@@ -226,7 +226,7 @@ Try our product for Free and start streaming today
 ::button-link{href="https://appt.link/meet-with-sigma-team" data-appointlet-modal}
   View demo
 ::
-::button-link{href="/contact" white}
+::button-link{href="/get-in-touch" white}
   Talk to Our Expert
 ::
 ::

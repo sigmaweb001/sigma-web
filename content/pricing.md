@@ -17,6 +17,9 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
   ::button-link{href="https://portal.sigmaott.com/auth/login?redirect=/apps" target='_blank'  rounded outline}
   Start free trial
   ::
+  ::button-link{href="/cart" data-appointlet-modal rounded link}
+  Add to cart
+  ::
   ::
 
   ::pricing-item{recommended}
@@ -565,32 +568,6 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
 ::
 
 
-::pricing-table
-  ::table-row{noBorder}
-    ::table-col
-    ::
-
-    ::table-col{noBg}
-    ::button-link{href="/cart?product=Sigma_Streaming_Basic&price=39" rounded size=default white}
-    Add to cart
-    ::
-    ::
-
-    ::table-col{noBg}
-    ::button-link{href="/cart?product=Sigma_Streaming_Basic2&price=49" rounded size=default white}
-    Add to cart
-    ::
-    ::
-
-    ::table-col{noBg}
-    ::button-link{href="/cart?product=Sigma_Streaming_Basic3&price=59" rounded size=default white}
-    Add to cart
-    ::
-    ::
-  ::
-::
-
-
 ::section-collapse{left}
 #title
 FAQs
@@ -624,4 +601,16 @@ What is a Machine?
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
 ::
 
+::
+
+
+::section-cta
+#title
+More information about pricing
+#subtitle
+We’re more than happy to help you and answer your questions.
+#default
+::button-link{href="/contact" white}
+  Contact us
+::
 ::
