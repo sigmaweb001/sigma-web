@@ -60,7 +60,7 @@ export function install({ app }: any) {
   const options = {
     siteKey: useRuntimeConfig().public.recaptchaSiteKey,
     loaderOptions: {
-      autoHideBadge: false,
+      autoHideBadge: true,
       useEnterprise: true,
     },
   } as IReCaptchaOptions
