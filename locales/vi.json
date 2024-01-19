@@ -1,5 +1,6 @@
 {
   "cart": {
-    "go_to_shopping": "Đi mua sắm"
+    "go_to_shopping": "Đi mua sắm",
+    "there_are_no_product_in_your_cart": "Không có sản phẩm nào trong giỏ hàng của bạn."
   }
 }

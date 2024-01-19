@@ -8,6 +8,9 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
     { _dir: { $eq: '' } }
   ]
 }).find())
+
+const options = [{ value: 'en', label: 'English' }, { value: 'vi', label: 'Vietnamese' }]
+const { locale } = useI18n()
 </script>
 
 <template>
@@ -99,7 +102,8 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
           <div class="flex gap-3">
             <AppSocialIcons />
           </div>
-          <AppDarkSwitch class="hidden" />
+          <SSelect v-model="locale" :options="options" class="w-140px! h-36px" />
+          <!-- <AppDarkSwitch class="hidden!" /> -->
         </div>
 
         <div class="mt-8px text-13px text-gray-500">

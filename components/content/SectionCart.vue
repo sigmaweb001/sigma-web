@@ -142,7 +142,7 @@ const agree = ref(false)
     <div class="flex-col items-center gap-5 py-10" :class="[isEmpty ? 'flex' : 'hidden']">
       <div class="i-ri:shopping-cart-2-line text-primary size-20" />
       <div class="text-2xl font-semibold">
-        <ContentSlot :use="$slots.empty" unwrap="p" />
+        {{ $t('cart.there_are_no_product_in_your_cart') }}
       </div>
       <ButtonLink href="/pricing" rounded>
         {{ $t('cart.go_to_shopping') }}

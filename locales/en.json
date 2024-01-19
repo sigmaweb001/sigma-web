@@ -1,5 +1,6 @@
 {
   "cart": {
-    "go_to_shopping": "Go to shopping"
+    "go_to_shopping": "Go to shopping",
+    "there_are_no_product_in_your_cart": "There are no product in your cart."
   }
 }

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
-import { ref } from 'vue'
 import {
   SelectContent,
   SelectGroup,
@@ -39,11 +37,10 @@ const { class: className } = useAttrs()
   <SelectRoot v-model="modelValue" >
     <SelectTrigger
       :class="className"
-      class="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 whitespace-nowrap [&>span]:truncate [&>span]:min-w-0"
-      aria-label="Customise options"
+      class="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 whitespace-nowrap [&>span]:truncate [&>span]:min-w-0"
     >
       <SelectValue placeholder="" />
-      <Icon icon="radix-icons:chevron-down" class="h-3.5 w-3.5" />
+      <Icon name="radix-icons:chevron-down" class="h-3.5 w-3.5" />
     </SelectTrigger>
 
     <SelectPortal>
@@ -52,13 +49,10 @@ const { class: className } = useAttrs()
         :side-offset="2"
       >
         <SelectScrollUpButton class="flex items-center justify-center h-[25px] bg-white text-violet11 cursor-default">
-          <Icon icon="radix-icons:chevron-up" />
+          <Icon name="radix-icons:chevron-up" />
         </SelectScrollUpButton>
 
         <SelectViewport class="p-[5px]">
-          <!-- <SelectLabel class="px-[25px] text-xs leading-[25px] text-mauve11">
-            Fruits
-          </SelectLabel> -->
           <SelectGroup>
             <SelectItem
               v-for="(option, index) in options"
@@ -67,7 +61,7 @@ const { class: className } = useAttrs()
               :value="option.value"
             >
               <SelectItemIndicator class="absolute left-0 w-[25px] inline-flex items-center justify-center">
-                <Icon icon="radix-icons:check" />
+                <Icon name="ri:check-line" />
               </SelectItemIndicator>
               <SelectItemText>
                 {{ option.label }}
@@ -77,7 +71,7 @@ const { class: className } = useAttrs()
         </SelectViewport>
 
         <SelectScrollDownButton class="flex items-center justify-center h-[25px] bg-white text-violet11 cursor-default">
-          <Icon icon="radix-icons:chevron-down" />
+          <Icon name="radix-icons:chevron-down" />
         </SelectScrollDownButton>
       </SelectContent>
     </SelectPortal>
