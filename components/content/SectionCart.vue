@@ -46,21 +46,21 @@ const form = useForm({
 const { query } = useRoute()
 const router = useRouter()
 const carts = useState('carts', () => [
-  {
-    product: 'A',
-    price: 39,
-    qty: 1,
-  },
-  {
-    product: 'B',
-    price: 49,
-    qty: 1,
-  },
-  {
-    product: 'C',
-    price: 59,
-    qty: 1,
-  }
+  // {
+  //   product: 'A',
+  //   price: 39,
+  //   qty: 1,
+  // },
+  // {
+  //   product: 'B',
+  //   price: 49,
+  //   qty: 1,
+  // },
+  // {
+  //   product: 'C',
+  //   price: 59,
+  //   qty: 1,
+  // }
 ])
 
 onMounted(() => {
