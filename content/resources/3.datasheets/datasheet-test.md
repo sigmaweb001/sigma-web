@@ -4,5 +4,5 @@ media: vtvhub_um.pdf
 type: resource
 description: 'A datasheet for TESTTTTT'
 thumbnail: /image_26.png
-tags: tag 2
+tags: test-2
 ---
