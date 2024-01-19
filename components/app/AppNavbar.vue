@@ -45,7 +45,7 @@ const localePath = useLocalePath()
 
     <SNavigationMenu class="hidden w-full" md="grid w-full grid-cols-[1fr_auto_1fr] items-center h-64px xl:px-5 mx-auto">
       <div class="flex flex-wrap items-center justify-between lg:w-auto flex-shrink-0">
-        <NuxtLink to="/" class="flex items-end gap-x-2 text-primary " dark="text-primary">
+        <NuxtLink :to="localePath('/')" class="flex items-end gap-x-2 text-primary " dark="text-primary">
           <span>
             <img src="/logo_sigma.png" alt="LS" class="h-10 w-10">
           </span>
