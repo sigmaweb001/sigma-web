@@ -93,15 +93,15 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
     ::
 
     ::table-col
-    :icon{name="ri:checkbox-circle-fill" }
+    :icon{name="iconamoon:sign-minus-circle" }
     ::
 
     ::table-col
-    :icon{name="ri:checkbox-circle-fill"}
+    :icon{name="iconamoon:sign-minus-circle"}
     ::
 
     ::table-col
-    :icon{name="ri:checkbox-circle-fill"}
+    :icon{name="iconamoon:sign-minus-circle"}
     ::
   ::
 
@@ -115,13 +115,13 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
     ::
 
     ::table-col
-    ::button-link{href="/" rounded size=sm}
+    ::button-link{href="#" rounded size=sm}
     New
     ::
     ::
 
     ::table-col
-    ::button-link{href="/" rounded size=sm white}
+    ::button-link{href="#" rounded size=sm white}
     Coming soon
     ::
     ::
@@ -166,15 +166,15 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
     ::
 
     ::table-col
-    :icon{name="ri:checkbox-circle-fill" }
+    :icon{name="iconamoon:sign-minus-circle" }
     ::
 
     ::table-col
-    :icon{name="ri:checkbox-circle-fill"}
+    :icon{name="iconamoon:sign-minus-circle"}
     ::
 
     ::table-col
-    :icon{name="ri:checkbox-circle-fill"}
+    :icon{name="iconamoon:sign-minus-circle"}
     ::
   ::
 
@@ -240,15 +240,15 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
     ::
 
     ::table-col
-    :icon{name="ri:checkbox-circle-fill" }
+    :icon{name="iconamoon:sign-minus-circle" }
     ::
 
     ::table-col
-    :icon{name="ri:checkbox-circle-fill"}
+    :icon{name="iconamoon:sign-minus-circle"}
     ::
 
     ::table-col
-    :icon{name="ri:checkbox-circle-fill"}
+    :icon{name="iconamoon:sign-minus-circle"}
     ::
   ::
 
@@ -262,13 +262,13 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
     ::
 
     ::table-col
-    ::button-link{href="/" rounded size=sm}
+    ::button-link{href="#" rounded size=sm}
     New
     ::
     ::
 
     ::table-col
-    ::button-link{href="/" rounded size=sm white}
+    ::button-link{href="#" rounded size=sm white}
     Coming soon
     ::
     ::
@@ -313,15 +313,15 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
     ::
 
     ::table-col
-    :icon{name="ri:checkbox-circle-fill" }
+    :icon{name="iconamoon:sign-minus-circle" }
     ::
 
     ::table-col
-    :icon{name="ri:checkbox-circle-fill"}
+    :icon{name="iconamoon:sign-minus-circle"}
     ::
 
     ::table-col
-    :icon{name="ri:checkbox-circle-fill"}
+    :icon{name="iconamoon:sign-minus-circle"}
     ::
   ::
 
@@ -335,13 +335,13 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
     ::
 
     ::table-col
-    ::button-link{href="/" rounded size=sm}
+    ::button-link{href="#" rounded size=sm}
     New
     ::
     ::
 
     ::table-col
-    ::button-link{href="/" rounded size=sm white}
+    ::button-link{href="#" rounded size=sm white}
     Coming soon
     ::
     ::
@@ -386,15 +386,15 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
     ::
 
     ::table-col
-    :icon{name="ri:checkbox-circle-fill" }
+    :icon{name="iconamoon:sign-minus-circle" }
     ::
 
     ::table-col
-    :icon{name="ri:checkbox-circle-fill"}
+    :icon{name="iconamoon:sign-minus-circle"}
     ::
 
     ::table-col
-    :icon{name="ri:checkbox-circle-fill"}
+    :icon{name="iconamoon:sign-minus-circle"}
     ::
   ::
 
@@ -408,13 +408,13 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
     ::
 
     ::table-col
-    ::button-link{href="/" rounded size=sm}
+    ::button-link{href="#" rounded size=sm}
     New
     ::
     ::
 
     ::table-col
-    ::button-link{href="/" rounded size=sm white}
+    ::button-link{href="#" rounded size=sm white}
     Coming soon
     ::
     ::
@@ -459,15 +459,15 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
     ::
 
     ::table-col
-    :icon{name="ri:checkbox-circle-fill" }
+    :icon{name="iconamoon:sign-minus-circle" }
     ::
 
     ::table-col
-    :icon{name="ri:checkbox-circle-fill"}
+    :icon{name="iconamoon:sign-minus-circle"}
     ::
 
     ::table-col
-    :icon{name="ri:checkbox-circle-fill"}
+    :icon{name="iconamoon:sign-minus-circle"}
     ::
   ::
 
@@ -481,13 +481,13 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
     ::
 
     ::table-col
-    ::button-link{href="/" rounded size=sm}
+    ::button-link{href="#" rounded size=sm}
     New
     ::
     ::
 
     ::table-col
-    ::button-link{href="/" rounded size=sm white}
+    ::button-link{href="#" rounded size=sm white}
     Coming soon
     ::
     ::
@@ -532,15 +532,15 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
     ::
 
     ::table-col
-    :icon{name="ri:checkbox-circle-fill" }
+    :icon{name="iconamoon:sign-minus-circle" }
     ::
 
     ::table-col
-    :icon{name="ri:checkbox-circle-fill"}
+    :icon{name="iconamoon:sign-minus-circle"}
     ::
 
     ::table-col
-    :icon{name="ri:checkbox-circle-fill"}
+    :icon{name="iconamoon:sign-minus-circle"}
     ::
   ::
 
