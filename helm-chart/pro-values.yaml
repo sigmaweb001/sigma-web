@@ -1,3 +1,9 @@
+project: 'sigma-helm'
+image:
+  repository: event-hub
+  tag: 
+  pullPolicy: Always
+  imagePullSecrets: my-registry
 
 
 
