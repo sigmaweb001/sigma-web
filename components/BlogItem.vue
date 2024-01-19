@@ -10,17 +10,17 @@ const author = computed(() => appConfig.authors.find(a => a.slug === item.value.
 
 <template>
   <div class="group bg-gray-100/75 dark:bg-gray-900/75">
-    <div
+    <NuxtLink :to="item._path"
       class="overflow-hidden relative aspect-16/9 block rounded-md transition-all duration-300 hover:scale-105 dark:bg-gray-800">
       <template v-if="item?.thumbnail">
-        <NuxtImg :src="item.thumbnail" class="absolute size-full inset-0 object-cover" />
+        <img :src="item.thumbnail" class="absolute size-full inset-0 object-cover" />
       </template>
       <template v-else>
         <div class="flex-center size-full inset-0 absolute">
           <Icon :name="item.icon ?? 'i-ri:image-fill'" class="w-50% h-50% text-primary/75" />
         </div>
       </template>
-    </div>
+    </NuxtLink>
 
     <div>
       <div class="p-2">
