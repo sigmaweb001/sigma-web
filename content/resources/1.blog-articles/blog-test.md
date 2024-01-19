@@ -3,7 +3,7 @@ title: 'Blog Test'
 author: linhvtm
 date: 2024-01-01
 thumbnail: /image_26.png
-tags: tag 1, tag 2
+tags: tag 1, tag 2, test-1
 ---
 # New Blog Test
 

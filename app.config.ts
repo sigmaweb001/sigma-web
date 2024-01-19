@@ -27,18 +27,23 @@ export default defineAppConfig({
     title: 'Creator',
     avatar: 'https://unavatar.io/antfu'
   }],
-  tags: [
-    {
-      slug: 'tag 1',
-      name: 'Tag 1',
-      color: '#35c796',
-    },
-    {
-      slug: 'tag 2',
-      name: 'Tag 2',
-      color: '#bac71a',
-    }
-  ],
+  tags: [{
+    slug: 'tag 1',
+    name: 'Tag 1',
+    color: '#35c796'
+  }, {
+    slug: 'tag 2',
+    name: 'Tag 2',
+    color: '#bac71a'
+  }, {
+    slug: 'test-1',
+    name: 'test-1',
+    color: '#707070'
+  }, {
+    slug: 'test-2',
+    name: 'test-2',
+    color: '#FF7C25'
+  }],
   banner: {
     enabled: true,
     key: 'TTest_new_message',
