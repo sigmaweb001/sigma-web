@@ -1,8 +1,8 @@
 ---
 title: 'Blog Test'
-author: antfu
+author: linhvtm
 date: 2024-01-01
-thumbnail: /Media%20Live/Group%2048096806.png
+thumbnail: /image_26.png
 tags: tag 1, tag 2
 ---
 # New Blog Test
@@ -15,14 +15,24 @@ Sigma Streaming Platform có mọi thứ bạn cần để khởi chạy, vận 
 
 This is where the main content of my blog post will go. I'll break it up into headings and paragraphs to make it easy to read.
 
-### Subsection
+![image_26.png](/image_26.png)
+#### Subsection
 
 Breaking the post into subsections helps organize the content.
 
-### Another Subsection
+#### Another Subsection
 
 I can have as many subsections as I need to discuss the various topics.
 
 ## Conclusion
 
 This concludes my new blog post. I can summarize key points and takeaways for the reader here.
+
+- Các nút khác
+
+| Tên nút             | Chức năng                                                    |
+| ------------------- | ------------------------------------------------------------ |
+| **Icon đồng bộ**    | Góc phải bên dưới giao diện, luôn thực hiện đồng bộ hệ thống liên tục trong 10s |
+| Icon **Phân trang** | Bao gồm các thông tin: Tổng số trang, lựa chọn số items/1 trang (mặc định 10 items/1 trang), trang hiện tại, nhảy tới trang mong muốn tìm kiếm. |
+| **Quick filter**    | Bộ lọc nhanh hỗ trợ tìm kiếm thông tin |
+| Nút **Lọc**         | Thực hiện lọc các thông tin chi tiết hơn.                    |
