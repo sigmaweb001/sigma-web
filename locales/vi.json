@@ -35,5 +35,21 @@
     "date": "Ngày",
     "payment_method": "Phương thức thanh toán",
     "product": "Sản phẩm"
+  },
+  "contact": {
+    "title": "Tiêu đề",
+    "form_title": "Điền vào mẫu dưới đây và chuyên gia của chúng tôi sẽ liên hệ với bạn",
+    "name": "Tên",
+    "requirements": "Yêu cầu",
+    "additional-information": "Thông tin thêm",
+    "submit": "Xác nhận",
+    "success": "Thành công! \nChúng tôi đã nhận được thông tin của bạn",
+    "thanks": "Cám ơn bạn đã liên lạc với chúng tôi. \nChúng tôi sẽ lấy lại cho bạn sớm.",
+    "go-to-home": "Đi về nhà",
+    "max-300-characters": "Phải chứa tối đa 300 ký tự",
+    "max-50-characters": "Phải chứa tối đa 50 ký tự",
+    "required": "Điều này là bắt buộc",
+    "invalid-phone-number": "Số điện thoại không hợp lệ",
+    "invalid-phone-number-for-the-selected-country": "Số điện thoại không hợp lệ cho quốc gia đã chọn"
   }
 }
