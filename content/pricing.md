@@ -23,7 +23,7 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
   #title
   Pro
   #price
-  $39
+  $49
   #subprice
   per seat/mo
   #subtitle
@@ -41,7 +41,7 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
   #title
   Enterprise
   #price
-  $39
+  $59
   #subprice
   per seat/mo
   #subtitle
@@ -583,7 +583,7 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
     ::
 
     ::table-col{noBg}
-    ::button-link{href="/cart?product=Enterpris&price=39" rounded size=default white}
+    ::button-link{href="/cart?product=Enterprise&price=39" rounded size=default white}
     Add to cart
     ::
     ::
