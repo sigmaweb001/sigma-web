@@ -17,9 +17,6 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
   ::button-link{href="https://portal.sigmaott.com/auth/login?redirect=/apps" target='_blank'  rounded outline}
   Start free trial
   ::
-  ::button-link{href="/cart" data-appointlet-modal rounded link}
-  Add to cart
-  ::
   ::
 
   ::pricing-item{recommended}
