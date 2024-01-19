@@ -11,6 +11,7 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
 
 const options = [{ value: 'en', label: 'English' }, { value: 'vi', label: 'Vietnamese' }]
 const { locale } = useI18n()
+
 </script>
 
 <template>
@@ -98,7 +99,7 @@ const { locale } = useI18n()
       </div>
 
       <div class="justify-self-end">
-        <div class="flex justify-between py-3">
+        <div class="flex justify-between items-center py-3">
           <div class="flex gap-3">
             <AppSocialIcons />
           </div>

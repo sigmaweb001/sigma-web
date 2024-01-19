@@ -2,6 +2,7 @@
 const { item } = definePropsRefs<{
   item: any
 }>()
+
 </script>
 
 <template>
