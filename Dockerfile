@@ -1,8 +1,7 @@
 FROM registry.gviet.vn:5000/library/node:18-alpine as build-stage
 
 WORKDIR /app
-RUN corepack enable
-RUN corepack prepare pnpm@8.14.0 --activate
+RUN npm install -g pnpm@8.14.0
 
 COPY .npmrc pnpm-lock.yaml ./
 
