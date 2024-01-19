@@ -1,8 +1,9 @@
 <script lang="ts" setup>
+import { ensurePrefix } from '@antfu/utils'
 const { item } = definePropsRefs<{
   item: any
 }>()
-
+const media = computed(() => ensurePrefix('/', item.value.media))
 </script>
 
 <template>
@@ -22,7 +23,7 @@ const { item } = definePropsRefs<{
       <!-- TODO: tags -->
       <!-- <BlogsTagsLabel :categories="item.tags" path-prefix="/resources/category" /> -->
       <div class="flex justify-between">
-        <NuxtLink :to="item.media" external target="_blank"
+        <NuxtLink :to="media" external target="_blank"
           class="flex-1 mt-2 dark:text-white text-lg font-semibold leading-snug tracking-tight">
           <span
             class="line-clamp-2 transition-[background_size] cursor-default bg-[length:0px_10px] from-primary-300 to-primary-200 bg-gradient-to-r bg-left-bottom bg-no-repeat duration-500 hover:bg-[length:100%_10px] hover:bg-[length:100%_3px] dark:from-primary-600 dark:to-primary-700">
@@ -30,7 +31,7 @@ const { item } = definePropsRefs<{
           </span>
         </NuxtLink>
         <SButton class="flex-shrink-0" variant="outline" size="icon">
-          <a class="i-ri:download-line text-14px" :download="item.media" :href="`${item.media}`" />
+          <a class="i-ri:download-line text-14px" :download="media" :href="`${media}`" />
         </SButton>
       </div>
       <p v-if="item.description">
