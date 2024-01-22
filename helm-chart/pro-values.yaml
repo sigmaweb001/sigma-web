@@ -121,7 +121,7 @@ web:
 doc:
   enabled: false
   replicaCount: 1
-
+  imageTag:
   ingressroute:
     host: "docs.sigma.video"
     pathPrefix: "/"

@@ -34,7 +34,7 @@ spec:
         - name: docs-site
           securityContext:
             {{- toYaml .Values.doc.securityContext | nindent 12 }}
-          image: {{ .Values.global.imageRegistry }}/{{ .Values.doc.image.repository }}:{{ if .Values.doc.image.imageTag }}{{ .Values.doc.image.imageTag }}{{ else }}{{ .Values.global.image.imageTag }}{{ end }}
+          image: {{.Values.doc.image.repository }}: {{ .Values.global.image.imageTag }}
           imagePullPolicy: Always
           ports:
             - name: http

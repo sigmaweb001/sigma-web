@@ -14,7 +14,7 @@ pipeline {
         APP_NAME = "${GIT_URL.replaceAll('.*/([^/]+/[^/]+)\\.git', '$1').tokenize('/').pop()}"
         APP_PROJECT = "default"
         HELM_VERSION = "0.${BUILD_NUMBER}.0"
-        APP_NAMESPACE = "website"
+        APP_NAMESPACE = "sigma-web"
         K8S_SERVER = "https://kubernetes.default.svc"
         URL_HELM_PUSH = "oci://hub.spilot.io:8843/${HARBOR_PROJECT}"
         PATH_WORKDIR = "helm-chart"
