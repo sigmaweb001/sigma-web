@@ -7,6 +7,19 @@ const appConfig = useAppConfig()
 
 const author = computed(() => appConfig.authors.find(a => a.slug === item.value.author))
 const localePath = useLocalePath()
+
+const tags = computed(() => {
+  const _tags = appConfig.tags
+  const itemTags = item.value.tags.split(',').map(item => item.trim())
+
+  return itemTags.map(tag => {
+    const tagItem = _tags.find(item => item.slug === tag)
+    if (tagItem) {
+      return tagItem
+    }
+    return undefined
+  }).filter(Boolean)
+})
 </script>
 
 <template>
@@ -25,8 +38,11 @@ const localePath = useLocalePath()
 
     <div>
       <div class="p-2">
-        <!-- TODO: tags -->
-        <!-- <BlogsTagsLabel :categories="item.tags" /> -->
+        <div v-if="tags?.length" class="mt-1 flex flex-wrap gap-2">
+          <TagItem v-for="(item, index) in tags" :color="item.color" :key="index">
+            {{ item.name }}
+          </TagItem>
+        </div>
         <NuxtLink class="text-lg font-semibold leading-snug tracking-tight dark:text-white" :class="{
         }" :to="item._path">
           <span

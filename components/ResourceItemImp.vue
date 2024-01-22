@@ -4,6 +4,20 @@ const { item } = definePropsRefs<{
   item: any
 }>()
 const media = computed(() => ensurePrefix('/', item.value.media))
+
+const appConfig = useAppConfig()
+const tags = computed(() =>  {
+  const _tags =appConfig.tags
+  const itemTags = item.value.tags.split(',').map(item => item.trim())
+
+  return itemTags.map(tag => {
+    const tagItem = _tags.find(item => item.slug === tag)
+    if (tagItem) {
+      return tagItem
+    }
+    return undefined
+  }).filter(Boolean)
+})
 </script>
 
 <template>
@@ -20,8 +34,11 @@ const media = computed(() => ensurePrefix('/', item.value.media))
     </div>
 
     <div class="px-3 mt-2">
-      <!-- TODO: tags -->
-      <!-- <BlogsTagsLabel :categories="item.tags" path-prefix="/resources/category" /> -->
+      <div v-if="tags?.length" class="mt-1 flex flex-wrap gap-2">
+        <TagItem v-for="(item, index) in tags" :color="item.color" :key="index" >
+          {{ item.name }}
+        </TagItem>
+      </div>
       <div class="flex justify-between">
         <NuxtLink :to="media" external target="_blank"
           class="flex-1 mt-2 dark:text-white text-lg font-semibold leading-snug tracking-tight">
