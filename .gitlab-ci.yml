@@ -66,6 +66,8 @@ docker-build-landing-page-production:
   stage: build-image
   tags:
     - dind
+  before_script:
+    - docker login -u $HARBOR_USERNAME -p $HARBOR_PASSWORD $REGISTRY
   script:
     - docker build -t $HARBOR_IMAGE_TAG:$CI_COMMIT_TAG --build-arg PACKAGE=$PACKAGE .
   variables:
