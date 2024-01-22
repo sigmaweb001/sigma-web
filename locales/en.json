@@ -34,7 +34,8 @@
     "order_number": "Order number",
     "date": "Date",
     "payment_method": "Payment method",
-    "product": "Product"
+    "product": "Product",
+    "are_you_sure_you_want_to_remove_this_product_from_your_cart": "Are you sure you want to remove this product from your cart?"
   },
   "contact": {
     "title": "Title",

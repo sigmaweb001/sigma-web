@@ -84,11 +84,14 @@ onMounted(() => {
 })
 
 const isEmpty = computed(() => carts.value?.length === 0)
-
+const { t: $t } = useI18n()
 function remove(item: any) {
-  const index = carts.value.indexOf(item)
-  if (index > -1) {
-    carts.value.splice(index, 1)
+  const result = confirm($t('cart.are_you_sure_you_want_to_remove_this_product_from_your_cart'))
+  if (result) {
+    const index = carts.value.indexOf(item)
+    if (index > -1) {
+      carts.value.splice(index, 1)
+    }
   }
 }
 
