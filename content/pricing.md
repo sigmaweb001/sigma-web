@@ -590,6 +590,9 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
   ::
 ::
 
+:section-pricing-end
+
+
 ::section-collapse{left}
 #subtitle
 FAQs

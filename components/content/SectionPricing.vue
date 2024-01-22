@@ -13,6 +13,21 @@ useIntersectionObserver(targetRef, ([{ isIntersecting }]) => {
 }, { threshold: 1, rootMargin: appConfig.banner.enabled ? '-104px 0px 0px 0px' : '-64px 0px 0px 0px' })
 
 provide('full', full)
+
+const stop = usePricingStop()
+const hPricing = useHeightPricing()
+const targetRef2 = ref()
+const { height } = useElementBounding(targetRef2)
+
+watchOnce(height, () => {
+  if (height.value === 0) {
+    hPricing.value = 0
+  } else {
+    hPricing.value = height.value
+  }
+})
+
+
 </script>
 
 <template>
@@ -44,7 +59,7 @@ provide('full', full)
         </div>
       </div>
     </section>
-    <div :class="[full ? 'hidden' : 'block z-100 fixed pt-5 w-screen top-0 bg-background']">
+    <div ref="targetRef2" :class="[full || stop ? 'hidden' : 'block z-100 fixed pt-5 pb-5 w-screen top-0 bg-background']">
       <div class="container mx-auto">
         <div
           :style="{ '--col': col ?? 4, '--gap': gap ? gap + 'px' : '24px', '--padding': padding ? padding + 'px' : '0px' }"
