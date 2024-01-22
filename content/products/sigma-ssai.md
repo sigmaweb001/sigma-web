@@ -7,7 +7,7 @@ comingsoon: false
 
 ::section-hero{}
 #title
-Enable _ADS_ Insertion Everywhere
+Enable _ADS_ Insertion Everywh
 #subtitle
 Dynamic Ad Insertion – also known as Server-side ad insertion (SSAI) – enables the seamless delivery of video ads into content streamed on internet-enabled devices.
 #default
@@ -140,8 +140,7 @@ HIGHLIGHTS FEATURES
   #title
   Analytics Tool
   #default
-  Tracks Content Popularrity, Viewer Engagement, Ad
-perforrmance Service Monitorring 24/7.
+  Tracks Content Popularrity, Viewer Engagement, Ad perforrmance Service Monitorring 24/7.
   ::
 ::
 
