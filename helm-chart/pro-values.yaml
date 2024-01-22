@@ -99,7 +99,7 @@ web:
   image:
     pullPolicy: IfNotPresent
     repository: sigma-livestream/sigma-streaming-platform-website
-    imageTag: '1.0.0'
+    imageTag: '2.0.0'
   livenessProbe:
     httpGet:
       path: /api/livestream/health
@@ -116,22 +116,6 @@ web:
     requests:
       cpu: 100m
       memory: 128Mi
-
-
-doc:
-  enabled: true
-  replicaCount: 1
-
-  ingressroute:
-    host: "docs.sigma.video"
-    pathPrefix: "/"
-
-  image:
-    pullPolicy: IfNotPresent
-    repository: sigma-livestream/sigma-streaming-platform-docs
-
-image:
-  pullPolicy: IfNotPresent
 ##### config value #####
 # =================================================================
 # Database Configuration
