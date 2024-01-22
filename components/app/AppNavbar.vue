@@ -187,7 +187,7 @@ const localePath = useLocalePath()
         </div>
         <SNavigationMenuItem class="hidden xl:block">
           <NuxtLink to="https://portal.sigmaott.com/auth/login?redirect=/apps" external target="_blank">
-            <SButton :variant="'gradient'">
+            <SButton :variant="'gradient'" class="text-sm w-125px">
               Start free trial
             </SButton>
           </NuxtLink>
