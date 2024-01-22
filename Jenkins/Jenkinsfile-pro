@@ -24,7 +24,9 @@ pipeline {
     stages {
         stage("echo"){
             steps {
+                sh'''
                 echo $CHART_REPO
+                '''
             }
         }
         // stage("registry-login") {
