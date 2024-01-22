@@ -3,7 +3,7 @@ import tinycolor from 'tinycolor2'
 
 const { color } = definePropsRefs<{
   color: string
-  to: string
+  to?: string
 }>()
 
 const hslColor = computed(() => tinycolor(color.value).toHsl())
