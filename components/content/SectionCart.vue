@@ -410,7 +410,7 @@ const agree = ref(false)
                 <div class="mt-4 text-sm italic">
                   <i18n-t tag="p" keypath="cart.your_personal_information_will_be_used_to_process_orders">
                     <template #privacy>
-                      <NuxtLink class="text-primary underline hover:font-bold" to="/privacy">
+                      <NuxtLink target="__blank" class="text-primary underline hover:font-bold" to="/privacy">
                         {{ $t('cart.privacy_policy') }}
                       </NuxtLink>
                     </template>
@@ -423,7 +423,7 @@ const agree = ref(false)
                   <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                     <i18n-t tag="p" keypath="cart.i_have_read_and_agree_to_the_websites_terms">
                       <template #term>
-                        <NuxtLink class="text-primary underline hover:font-bold" to="/terms">
+                        <NuxtLink target="__blank" class="text-primary underline hover:font-bold" to="/terms">
                           {{ $t('cart.terms_and_conditions') }}
                         </NuxtLink>
                       </template>
