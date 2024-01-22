@@ -1,5 +1,5 @@
 ---
-title: 'Blog Red'
+title: 'Benefits, Examples, and Essential Tips)'
 author: antfu
 date: 2024-01-10
 thumbnail: /logo_red.png
