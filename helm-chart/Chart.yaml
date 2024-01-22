@@ -1,5 +1,5 @@
 apiVersion: v2
-name: sigma-web
+name: sigma-streaming-platform-website
 description: A Helm chart for Kubernetes of Sigma Billing System
 
 # A chart can be either an 'application' or a 'library' chart.
