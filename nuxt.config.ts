@@ -86,5 +86,8 @@ export default defineNuxtConfig({
     public: {
       recaptchaSiteKey: process.env.NUXT_PUBLIC_RECAPTCHA_SITE_KEY
     }
+  },
+  routeRules: {
+    '/resources**': { prerender: false },
   }
 })

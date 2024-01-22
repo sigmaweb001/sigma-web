@@ -14,7 +14,7 @@
           <ContentSlot :use="$slots.subtitle" unwrap="p" />
         </div>
         <slot />
-        <div v-if="$slots.cta" class="flex gap-2">
+        <div v-if="$slots.cta" class="flex gap-2 mt-4">
           <ContentSlot :use="$slots.cta" unwrap="p" />
         </div>
         <Slot v-if="$slots.extra" class="text-sm text-gray-500 dark:text-gray-300">
