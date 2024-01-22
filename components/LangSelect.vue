@@ -33,8 +33,9 @@ const { class: className } = useAttrs()
 const switchLocalePath = useSwitchLocalePath()
 
 
-watch(modelValue, () => {
-  navigateTo(switchLocalePath(modelValue.value.value))
+watch(modelValue, async () => {
+  await navigateTo(switchLocalePath(modelValue.value.value))
+  window.location.reload()
 })
 </script>
 
