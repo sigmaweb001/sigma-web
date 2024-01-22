@@ -43,6 +43,26 @@ export default defineAppConfig({
     slug: 'test-2',
     name: 'test-2',
     color: '#FF7C25'
+  }, {
+    slug: 'test-3',
+    name: 'test-3',
+    color: '#FF7C25'
+  }, {
+    slug: '50kitu',
+    name: '50kitu50kitu50kitu50kitu50kitu50kitu50kitu50kitu50',
+    color: '#FF0D0D'
+  }, {
+    slug: '30kitu',
+    name: '30kitu30kitu30kitu30kitu30kitu',
+    color: '#0553C9'
+  }, {
+    slug: '100kitu',
+    name: '100kitu100kitu100kitu100kitu100kitu100kitu100kitu100kitu100kitu100kitu100kitu100kitu100kitu100kitu10',
+    color: '#35c796'
+  }, {
+    slug: 'paragraph',
+    name: 'Ever wondered why some companies seem to move forward easily while others struggle to keep up? Chances are that the leading companies have figured out how to implement cross-functional teamwork.',
+    color: '#35c796'
   }],
   banner: {
     enabled: false,
