@@ -45,6 +45,14 @@ Strength
 
   ::list-item
   #image
+  ![ssai-strength-1.png](/ssai/ssai-strength-1.png)
+  #title
+  **Managing a large number of viewers simultaneously**
+  #subtitle
+  Use a cloud solution that is easy to scale, ensuring high performance and a smooth user experience.
+  ::
+  ::list-item
+  #image
   ![ssai-strength-2.png](/ssai/ssai-strength-2.png)
   #title
   **Integration**
@@ -172,9 +180,9 @@ Trusted by 2000+ customers
 :marquee-item
 ![vt.png](/testimonial/vt.png)
 :marquee-item
-![vtc.png](/testimonial/vtc.png)
+![vtv-digital.png](/testimonial/vtv-digital.png)
 :marquee-item
-![vtv.png](/testimonial/vtv.png)
+![vtc.png](/testimonial/vtc.png)
 :marquee-item
 ![vtvc.png](/testimonial/vtvc.png)
 :marquee-item
