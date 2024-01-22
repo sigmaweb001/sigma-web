@@ -2,7 +2,6 @@ pipeline {
     agent any
     environment {
         CHART_REPO = "${GIT_URL.replaceAll('.*/([^/]+/[^/]+)\\.git', '$1').tokenize('/').pop()}"
-        imageTag = sh(script: "cat ${env.WORKSPACE}/helm-chart/${VALUES_HELM} | grep 'tag:' | awk '{print \$2}'", returnStdout: true).trim()
         DOCKER_IMAGE = "hub.spilot.io:8843/${HARBOR_PROJECT}/${CHART_REPO}"
         DOCKER_TAG = "${imageTag}-${GIT_COMMIT.substring(0,7)}"
         COMMIT = "${GIT_COMMIT.substring(0,7)}"
@@ -27,6 +26,7 @@ pipeline {
         stage("echo"){
             steps {
                 echo $APP_VER
+                echo $DOCKER_IMAGE
             }
         }
         // stage("registry-login") {
