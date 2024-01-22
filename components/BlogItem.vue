@@ -39,7 +39,7 @@ const tags = computed(() => {
 
     <div>
       <div class="p-2">
-        <div v-if="tags?.length" class="mt-1 flex flex-wrap gap-2">
+        <div v-if="tags?.length" class="mt-1 mb-1 flex flex-wrap gap-2">
           <TagItem v-for="(item, index) in tags" :color="item.color" :key="index">
             {{ item.name }}
           </TagItem>
@@ -47,7 +47,7 @@ const tags = computed(() => {
         <NuxtLink class="text-lg font-semibold leading-snug tracking-tight dark:text-white" :class="{
         }" :to="item._path">
           <span
-            class="transition-[background-size] cursor-default bg-[length:0px_10px] from-primary-300 to-primary-200 bg-gradient-to-r bg-left-bottom bg-no-repeat duration-500 hover:bg-[length:100%_10px] hover:bg-[length:100%_3px] dark:from-primary-600 dark:to-primary-700">
+            class="transition-[background-size] cursor-pointer bg-[length:0px_10px] from-primary-300 to-primary-200 bg-gradient-to-r bg-left-bottom bg-no-repeat duration-500 hover:bg-[length:100%_10px] hover:bg-[length:100%_3px] dark:from-primary-600 dark:to-primary-700">
             {{ item.title }}
           </span>
         </NuxtLink>
