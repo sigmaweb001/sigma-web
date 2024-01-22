@@ -6,7 +6,6 @@ const { data: item } = await useAsyncData('resource-content-blog' + slug.value, 
     $eq: '/' + slug.value
   }
 }).findOne())
-console.log('[LOG] ~ item:', item)
 
 const appConfig = useAppConfig()
 const date = computed(() => item.value.date ? useDateFormat(item.value.date, 'MMMM D, YYYY', { locales: 'en' }).value : '')
