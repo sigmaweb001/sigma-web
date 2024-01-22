@@ -16,7 +16,7 @@ const small = computed(() => size.value === 'small')
     </div>
     <div v-else-if="icon"
       class="mt-1 size-70px flex flex-shrink-0 items-center justify-center rounded-full bg-primary/20" :class="small && 'size-45px!'">
-      <Icon :name="icon ?? 'i-ri:article-line'" class="h-48px w-48px text-primary" :class="small && 'h-10! w-10!'" />
+      <Icon :name="icon ?? 'i-ri:article-line'" class="h-48px w-48px text-primary" :class="small && 'h-10! w-10! p-1.5!'" />
     </div>
 
     <div>
