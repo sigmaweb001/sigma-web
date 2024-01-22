@@ -112,16 +112,20 @@ DAI Resources
 :resource-item{path="/resources/datasheets/datasheet-1"}
 ::
 
-::section-marquee
+::section-marquee{}
 #subtitle
-Trusted by 2000+ customers
-
+TRUSTED BY 2000+ CUSTOMERS
 #default
 :marquee-item
 ![vt.png](/testimonial/vt.png)
 :marquee-item
 ![vtc.png](/testimonial/vtc.png)
-:marquee-item{img="https://sponsors.vuejs.org/images/dronahq.avif"}
+:marquee-item
+![vtv-digital.png](/testimonial/vtv-digital.png)
+:marquee-item
+![vtvc.png](/testimonial/vtvc.png)
+:marquee-item
+![vng.png](/testimonial/vng.png)
 ::
 
 
