@@ -1,12 +1,3 @@
-project: 'sigma-helm'
-image:
-  repository: event-hub
-  tag: 
-  pullPolicy: Always
-  imagePullSecrets: my-registry
-
-
-
 # Default values for helm-example.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -70,7 +61,7 @@ global:
 
 # configuration for Sigma Live Stream Api Service
 studio:
-  enabled: true
+  enabled: false
   replicaCount: 1
 
 
@@ -100,6 +91,7 @@ studio:
       memory: 128Mi
 
 web:
+  tag: "1.0.0"
   enabled: true
   replicaCount: 1
   ingressroute:
@@ -127,7 +119,7 @@ web:
 
 
 doc:
-  enabled: true
+  enabled: false
   replicaCount: 1
 
   ingressroute:
