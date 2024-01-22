@@ -1,9 +1,9 @@
 pipeline {
     agent any
     environment {
-        CHART_REPO = "${GIT_URL.replaceAll('.*/([^/]+/[^/]+)\\.git', '$1').tokenize('/').pop()}"
+        CHART_REPO = "${GIT_URL.replaceAll('.*/([^/]+/[^/]+)\\.git', '$1').tokenize('/').pop().tokenize('-').pop()}"
         DOCKER_IMAGE = "hub.spilot.io:8843/${HARBOR_PROJECT}/${CHART_REPO}"
-        DOCKER_TAG = "${imageTag}-${GIT_COMMIT.substring(0,7)}"
+        DOCKER_TAG = "${GIT_BRANCH.tokenize('/').pop().tokenize('v').pop()}"
         COMMIT = "${GIT_COMMIT.substring(0,7)}"
         URL_REGISTRY = "https://hub.spilot.io:8843"
         URL_ARGOCD_STG = "10.10.99.50:31808"
@@ -19,8 +19,7 @@ pipeline {
         URL_HELM_PUSH = "oci://hub.spilot.io:8843/${HARBOR_PROJECT}"
         PATH_WORKDIR = "helm-chart"
         VALUES_HELM = "pro-values.yaml"
-        HARBOR_PROJECT = "sigma-helm"
-        TAG_EV = "${GIT_BRANCH.tokenize('/').pop().tokenize('v').pop()}"
+        HARBOR_PROJECT = "sigma-streaming"
     }
     stages {
         stage("echo"){
@@ -28,6 +27,7 @@ pipeline {
                 sh'''
                 echo $CHART_REPO
                 echo $TAG_EV
+                echo $DOCKER_IMAGE
                 '''
             }
         }
