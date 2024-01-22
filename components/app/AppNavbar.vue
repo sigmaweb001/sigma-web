@@ -152,7 +152,7 @@ const localePath = useLocalePath()
           </SNavigationMenuItem>
 
           <SNavigationMenuItem>
-            <NuxtLink :to="localePath('/pricing')">
+            <NuxtLink exact-active-class="text-primary" :to="localePath('/pricing')">
               <SNavigationMenuLink class="navigation-menu-trigger">
                 Pricing
               </SNavigationMenuLink>
