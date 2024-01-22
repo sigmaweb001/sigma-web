@@ -23,7 +23,7 @@ const tags = computed(() => {
 
 <template>
   <div class="group flex flex-col gap-2 bg-gray-100/75 dark:bg-gray-900/75">
-    <div class="relative aspect-16/9 of-hidden block rounded-md hover:scale-105 transition-all duration-300">
+    <NuxtLink :to="media" target="_blank" class="relative aspect-16/9 of-hidden block rounded-md hover:scale-105 transition-all duration-300">
       <template v-if="item?.thumbnail">
         <img :src="item.thumbnail" class="absolute size-full inset-0 object-cover" />
       </template>
@@ -32,7 +32,7 @@ const tags = computed(() => {
           <Icon :name="item.icon ?? 'i-ri:image-fill'" class="w-50% h-50% text-primary/75" />
         </div>
       </template>
-    </div>
+    </NuxtLink>
 
     <div class="px-3 mt-2">
       <div v-if="tags?.length" class="mt-1 mb-1 flex flex-wrap gap-2">
