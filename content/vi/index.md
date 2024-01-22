@@ -1,116 +1,33 @@
 ---
-title: Home
-description: 'Sigma Streaming Home'
+title: 'Sigma interactive'
+icon: ri:advertisement-line
+comingsoon: false
 ---
-::section-hero
-#title
-Powering The _Streaming Experience_
-#subtitle
-Unlocking business value with reliable streaming from a trusted partner
-#image
-![Group_1321314848.png](/Group_1321314848.png)
 
+::section-hero{}
+#title
+Seamless _Interactive_, Endless Choices
+#subtitle
+The intermediary channel system helps manage interactions.
 #default
-- Stream **seamlessly**. Interact and Monetize. Elevate your content.
-- Unlock potential: Secure hosting, flawless events, API integration. Revenue awaits.
-- Empower your stream: Transcode, Interact, Monetize. Experience the future.
+- We integrate from many different sources.
+- Many forms of interactive implementation.
+- Compatible with multiple platforms.
 
 #cta
-::button-link{href="/get-in-touch"}
-Get Demo
+::button-link{href="https://dev-streaming.gviet.vn:8783/portal/auth/login" data-appointlet-modal}
+Start free trial
 ::
 
 ::button-link{href="/contact" white}
 Contact Us
 ::
 
-#extra
-No credit card required
+#image
+![ssai-hero.png](/ssai/ssai-hero.png)
+
 ::
 
-
-::section-grid{col=2}
-#title
-Unleashing the Potential in Sigma Streaming Platform
-#subtitle
-CORE COMPONENTS
-
-#default
-::grid-item
-  ![Capture_170819.png](/Capture_170819.png)
-::
-
-::grid-item
-  ::list-item{icon="material-symbols:camera"}
-  #title
-  Ingest
-  #subtitle
-  Secure video hosting with an all-in-one streaming platform
-  ::
-
-  ::list-item{icon="material-symbols:pallet-outline"}
-  #title
-  Transcoder
-  #subtitle
-  Converts original audio, video and image signals into suitable, compatible formats to play on different receivers.
-  ::
-
-  ::list-item{icon="material-symbols:package-2-outline"}
-  #title
-  Packager
-  #subtitle
-  Data encapsulation and encryption enables service providers to secure content through digital rights management.
-  ::
-
-  ::list-item{icon="material-symbols:home-storage-outline"}
-  #title
-  Origin
-  #subtitle
-  Perform transport of manifest and segment files using ABR technologies, such as Apple HLS and MPEG, DASH.
-  ::
-::
-::
-
-::section-title{left}
-#title
-Products
-::
-
-::section-grid{col=2}
-  ::grid-item
-  ::list-item{icon="material-symbols:data-table-outline"}
-  #title
-  Transcode Live
-  #subtitle
-  Convert the original audio, video and image signals into suitable, compatible formats that can be played on different receivers for live streaming content.
-  ::
-
-  ::list-item{icon="material-symbols:sensors"}
-  #title
-  Interactive
-  #subtitle
-  The audience can interact, participate, or influence the streaming experience in some way that encourage real-time exchanges, creating deeper connections and driving revenue opportunities.
-  ::
-
-  ::list-item{icon="material-symbols:ads-click"}
-  #title
-  SSAI
-  #subtitle
-  A combination of manifest manipulation, ad server communication, and ad bitrate and resolution normalization, all of which happens on the server-side before presenting a manifest to clients.
-  ::
-
-  ::list-item{icon="material-symbols:phonelink-ring-outline"}
-  #title
-  Livestream
-  #subtitle
-  Allows to receive and broadcast (distribute) multiple streams of live radio and television events.
-  ::
-  ::
-
-   ::grid-item
-    ![Capture_170819.png](/Capture_170819.png)
-  ::
-::
 
 ::section-grid{col=3}
 #title
@@ -118,104 +35,95 @@ What's included
 #subtitle
 HIGHLIGHTS FEATURES
 #default
-  ::grid-card{icon="material-symbols:audio-video-receiver-outline" left}
+  ::grid-card
+  #image
+  ![ssai-feature-1.png](/ssai/ssai-feature-1.png)
   #title
-  Secure Video Hosting
-  #subtitle
-  Secure video hosting with an all-in-one streaming platform
+  Content interaction system
+  #default
+  - Livestream
+  - Television 
   ::
 
-  ::grid-card{icon="material-symbols:celebration-outline" left}
+  ::grid-card
+  #image
+  ![ssai-feature-2.png](/ssai/ssai-feature-2.png)
   #title
-  Stream Live Events
-  #subtitle
-  Reliable, flawless live event streaming with top-tier CDNs.
+  Supports many types of interactive components
+  #default
+  - Overlay: Poll/ prediction, trivia/ quiz, lower third, raffle
+  - Panel: chat panel, iframe panel, leaderboard panel, multi question panel, custom panel
   ::
 
-  ::grid-card{icon="material-symbols:important-devices-outline" left}
+  ::grid-card
+  #image
+  ![ssai-feature-3.png](/ssai/ssai-feature-3.png)
   #title
-  VOD | OTT Platform
-  #subtitle
-  Integrate live video & VODS with our APIs with no difficulty.
+  Supports many types of content and optional scenarios.
+  #default
+  Fast development of overlays on all platforms with corresponding scenario options.
   ::
 
-  ::grid-card{icon="material-symbols:display-settings-outline" left}
+  ::grid-card
+  #image
+  ![ssai-feature-4.png](/ssai/ssai-feature-4.png)
   #title
-  Integrated Interactive TV
-  #subtitle
-  Boost your revenue by monetizing video with us.
+  Collect data and analyze user behavior.
+  #default
+  Full statistics, aggregated points and user interaction time.
   ::
 
-  ::grid-card{icon="material-symbols-light:slow-motion-video" left}
+  ::grid-card
+  #image
+  ![ssai-feature-5.png](/ssai/ssai-feature-5.png)
   #title
-  Low Latency Streaming
-  #subtitle
-  Livestream with low latency, optimal experience.
+  Full support for cross platforms
+  #default
+  Including platforms such as Web, Mobile, SmartTV (Android TV, Tizen, WebOS).
   ::
 
-  ::grid-card{icon="material-symbols:support-agent" left}
+  ::grid-card
+  #image
+  ![ssai-feature-6.png](/ssai/ssai-feature-6.png)
   #title
-  24/7 Customer Support
-  #subtitle
-  Connect with our support starting when become our partner.
+  Supports external channel integration
+  #default
+  Takes content from an external source and integrates it into your channel, allowing you to livestream or present content from that source on your channel.
   ::
 ::
 
-::section-grid{bg padding=16}
+::section-normal
 #title
-Why customers love us?
+How it works?
 #subtitle
-TESTIMONIALS
+system architecture
 #default
-  ::grid-item{icon="material-symbols:sensors"}
-  #subtitle
-  We’re inspired by our customers’s ideas and are fun to work with
-  ::
+![ssai-how-it-work-1.png](/ssai/ssai-how-it-work-1.png)
+#default
+By integrating content and ads into one continuous stream, SSAI provides a seamless viewing experience, similar to a traditional advertising break. We offers SSAI technology that makes it possible to exchange and insert TV spots on the fly, so broadcasters can increase yield from linear streams within OTT and web environments.
 
-  ::grid-item{icon="material-symbols:sensors"}
-  #subtitle
-  Our video cloud platform is designed for unlimited scale
-  ::
-
-  ::grid-item{icon="material-symbols:sensors"}
-  #subtitle
-  We have the broadest video technology stack: Real-time, Live, VOD
-  ::
-
-  ::grid-item{icon="material-symbols:sensors"}
-  #subtitle
-  Our accessible products drive engagement and interactivity for all
-  ::
-
-  ::grid-item{icon="material-symbols:sensors"}
-  #subtitle
-  We build everything on our video APIs, and many tech companies use them too
-  ::
-
-  ::grid-item{icon="material-symbols:sensors"}
-  #subtitle
-  Our products are loved by customers and easy to use
-  ::
-::
-
-
-::section-title
+::section-resource
 #title
-Frequently Asked Questions
-#subtitle
-FAQ
+DAI Resources
 #default
-Answer your customers possible questions here, it will increase the conversion rate as well as support or chat requests.
+:resource-item{path="/resources/blog-articles/blog-ssai"}
+:resource-item{path="/resources/guides/guide-1"}
+:resource-item{path="/resources/datasheets/datasheet-1"}
+:resource-item{path="/resources/datasheets/datasheet-1"}
 ::
 
 ::section-marquee
-#title
-Image Marquee
+#subtitle
+Trusted by 2000+ customers
+
 #default
-:marquee-item{img="https://sponsors.vuejs.org/images/vueschool.avif"}
-:marquee-item{img="https://sponsors.vuejs.org/images/vehikl.avif"}
+:marquee-item
+![vt.png](/testimonial/vt.png)
+:marquee-item
+![vtc.png](/testimonial/vtc.png)
 :marquee-item{img="https://sponsors.vuejs.org/images/dronahq.avif"}
 ::
+
 
 ::section-cta
 #title
@@ -223,9 +131,11 @@ Ready to Get Started?
 #subtitle
 Try our product for Free and start streaming today
 #default
+#default
 ::button-link{href="https://appt.link/meet-with-sigma-team" data-appointlet-modal}
-  View demo
+View demo
 ::
+
 ::button-link{href="/contact" white}
   Talk to Our Expert
 ::

@@ -1,5 +1,5 @@
 ---
-title: 'Sigma Linear Rights Management'
+title: 'Sigma LRM'
 description: 'Distribute VOD and Live content to distributors'
 icon: ri:advertisement-line
 comingsoon: false
@@ -7,7 +7,7 @@ comingsoon: false
 
 ::section-hero{}
 #title
-Sigma Linear Rights Management
+Accurately distribute rights and content using _Sigma LRM_
 #subtitle
 Control your live or VOD content, delivering it to the right customers at the right time.
 #default
@@ -141,7 +141,7 @@ Receiving signals from content providers, we manage, schedule, and insert signal
 
 ::section-resource
 #title
-DAI Resources
+LRM Resources
 #default
 :resource-item{path="/resources/blog-articles/blog-ssai"}
 :resource-item{path="/resources/guides/guide-1"}
@@ -156,8 +156,16 @@ Trusted by 2000+ customers
 #default
 :marquee-item
 ![vt.png](/testimonial/vt.png)
-:marquee-item{img="https://sponsors.vuejs.org/images/vehikl.avif"}
-:marquee-item{img="https://sponsors.vuejs.org/images/dronahq.avif"}
+:marquee-item
+![vtc.png](/testimonial/vtc.png)
+:marquee-item
+![vtv.png](/testimonial/vtv.png)
+:marquee-item
+![vtvc.png](/testimonial/vtvc.png)
+:marquee-item
+![vng.png](/testimonial/vng.png)
+<!-- :marquee-item{img="https://sponsors.vuejs.org/images/vehikl.avif"}
+:marquee-item{img="https://sponsors.vuejs.org/images/dronahq.avif"} -->
 ::
 
 
