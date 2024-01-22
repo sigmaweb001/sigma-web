@@ -1,14 +1,15 @@
 <script lang="ts" setup>
 const { params } = useRoute()
 const slug = computed(() => params.slug.join('/'))
-const { data: item } = await useAsyncData('resource-content-blog', () => queryContent('resources').where({
+const { data: item } = await useAsyncData('resource-content-blog' + slug.value, () => queryContent('resources').where({
   _path: {
     $eq: '/' + slug.value
   }
 }).findOne())
+console.log('[LOG] ~ item:', item)
 
 const appConfig = useAppConfig()
-const date = computed(() => item.date ? useDateFormat(item.date, 'MMMM D, YYYY') : '')
+const date = computed(() => item.value.date ? useDateFormat(item.value.date, 'MMMM D, YYYY').value : '')
 const author = computed(() => appConfig.authors.find(a => a.slug === item.value.author))
 
 const links = computed(() => item.value?.body.toc.links)
@@ -36,16 +37,23 @@ const links = computed(() => item.value?.body.toc.links)
                 class="absolute inset-0 h-full w-full rounded-full object-cover" />
             </template>
           </div>
-          <div>
+          <div class="flex items-center text-sm gap-2">
             <div class="text-gray-800 dark:text-gray-400">
-              {{ author?.name }}
+              by {{ author?.name }}
             </div>
-            <div class="flex items-center text-sm space-x-2">
-              <time v-if="date" class="text-gray-500 dark:text-gray-400">
-                {{ date }}
-              </time>
-              <span>{{ item?.readingTime?.text }}</span>
-            </div>
+            <div class="w-1px h-14px bg-border" />
+            <span class="text-sm">{{ item?.readingTime?.text }}</span>
+            <template v-if="date">
+              <div class="w-1px h-14px bg-border" />
+              <div>
+                Update on:
+                <time class="text-gray-500 ml-1 dark:text-gray-400">
+                  {{ date }}
+                </time>
+              </div>
+            </template>
+
+
           </div>
         </div>
       </div>
