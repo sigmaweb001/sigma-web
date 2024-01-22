@@ -139,12 +139,12 @@ h6 {
   @apply text-lg lg:text-xl;
 }
 
-p, ul, ol, pre {
+p, pre {
   @apply my-1em mx-0 leading-[1.75];
 }
 
 li, dd {
-  @apply list-disc list-inside my-0.2em;
+  @apply list-disc list-inside my-0.2em text-pretty;
   @apply marker:(text-primary font-bold);
 }
 

@@ -20,10 +20,10 @@ defineProps<{
         <Icon :name="icon ?? 'i-ri:article-line'" class="h-48px w-48px text-primary" />
       </div>
     </div>
-    <div class="font-medium text-gray-800 dark:text-gray-200" :class="[left ? '' : 'text-center text-balance']">
+    <div v-if="$slots.title" class="font-medium text-gray-800 dark:text-gray-200" :class="[left ? '' : 'text-center text-balance']">
       <ContentSlot :use="$slots.title" unwrap="p" />
     </div>
-    <div :class="[left ? '' : 'text-balance text-center']">
+    <div v-if="$slots.subtitle" :class="[left ? '' : 'text-balance text-center']">
       <ContentSlot :use="$slots.subtitle" unwrap="p" />
     </div>
     <div v-if="$slots.default">
