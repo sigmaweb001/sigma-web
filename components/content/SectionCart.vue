@@ -50,23 +50,23 @@ const router = useRouter()
 const carts = useState('carts', () => [])
 
 if (process.dev) {
-  carts.value = [
-    {
-      product: 'A',
-      price: 39,
-      qty: 1,
-    },
-    {
-      product: 'B',
-      price: 49,
-      qty: 1,
-    },
-    {
-      product: 'C',
-      price: 59,
-      qty: 1,
-    }
-  ]
+  // carts.value = [
+  //   {
+  //     product: 'A',
+  //     price: 39,
+  //     qty: 1,
+  //   },
+  //   {
+  //     product: 'B',
+  //     price: 49,
+  //     qty: 1,
+  //   },
+  //   {
+  //     product: 'C',
+  //     price: 59,
+  //     qty: 1,
+  //   }
+  // ]
 }
 
 onMounted(() => {
@@ -84,6 +84,8 @@ onMounted(() => {
     })
   }
 })
+
+
 
 const isEmpty = computed(() => carts.value?.length === 0)
 const { t: $t } = useI18n()
@@ -107,6 +109,12 @@ function goToPayment() {
 
 const submitOrder = form.handleSubmit(async (values) => {
   step.value = 3
+})
+
+onBeforeUnmount(() => {
+  if (step.value === 3) {
+    carts.value = []
+  }
 })
 
 const options = getCountries().map((countryCode) => {
