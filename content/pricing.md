@@ -23,7 +23,7 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
   #title
   Pro
   #price
-  $39
+  $49
   #subprice
   per seat/mo
   #subtitle
@@ -41,7 +41,7 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
   #title
   Enterprise
   #price
-  $39
+  $59
   #subprice
   per seat/mo
   #subtitle
@@ -577,13 +577,13 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
     ::
 
     ::table-col{noBg}
-    ::button-link{href="/cart?product=Pro&price=39" rounded size=default white}
+    ::button-link{href="/cart?product=Pro&price=49" rounded size=default white}
     Add to cart
     ::
     ::
 
     ::table-col{noBg}
-    ::button-link{href="/cart?product=Enterpris&price=39" rounded size=default white}
+    ::button-link{href="/cart?product=Enterprise&price=59" rounded size=default white}
     Add to cart
     ::
     ::
@@ -621,6 +621,22 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 What is a Machine?
 #subtitle
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+::
+
+::collapse-item
+#title
+TESTTTTTT 1?
+#subtitle
+Information for test.... Information for test....
+Information for test.... Information for test....Information for test....Information for test....Information for test....Information for test....
+::
+
+::collapse-item
+#title
+TESTTTTTT 2?
+#subtitle
+Information for test.... Information for test....
+Information for test.... Information for test....Information for test....Information for test....Information for test....Information for test....
 ::
 
 ::
