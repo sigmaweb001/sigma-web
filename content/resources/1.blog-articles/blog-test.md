@@ -1,5 +1,5 @@
 ---
-title: 'Blog Test'
+title: 'What Are Cross-Functional Teams? (Benefits, Examples, and Essential Tips)'
 author: linhvtm
 date: 2024-01-01
 thumbnail: /image_26.png
