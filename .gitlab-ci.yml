@@ -5,7 +5,7 @@
 # multiple node versions to work with it. They come from the docker
 # repo.
 # Uses NodeJS V 9.4.0
-image: docker:stable
+image: registry.gviet.vn:5000/library/docker:stable
 
 # cache:
 #   untracked: true
