@@ -6,7 +6,7 @@ pipeline {
         DOCKER_TAG = "${GIT_BRANCH.tokenize('/').pop().tokenize('v').pop()}"
         COMMIT = "${GIT_COMMIT.substring(0,7)}"
         URL_REGISTRY = "https://hub.spilot.io:8843"
-        URL_ARGOCD_STG = "10.10.99.50:31808"
+        URL_ARGOCD_STG = "171.244.194.220:1808"
         ACCOUNT_ARGO_STG = "sigma-argocd"
         HELM_REPO = "hub.spilot.io:8843/${HARBOR_PROJECT}"
         ACCOUNT_HARBOR = "sigma-harbor"
