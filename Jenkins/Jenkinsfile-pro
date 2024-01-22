@@ -20,12 +20,14 @@ pipeline {
         PATH_WORKDIR = "helm-chart"
         VALUES_HELM = "pro-values.yaml"
         HARBOR_PROJECT = "sigma-helm"
+        TAG_EV = "${GIT_BRANCH.tokenize('/').pop().tokenize('v').pop()}"
     }
     stages {
         stage("echo"){
             steps {
                 sh'''
                 echo $CHART_REPO
+                echo $TAG_EV
                 '''
             }
         }
