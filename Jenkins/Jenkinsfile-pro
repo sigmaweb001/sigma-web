@@ -20,13 +20,11 @@ pipeline {
         PATH_WORKDIR = "helm-chart"
         VALUES_HELM = "pro-values.yaml"
         HARBOR_PROJECT = "sigma-helm"
-        APP_VER = "${GIT_BRANCH.tokenize('/').pop()}"
     }
     stages {
         stage("echo"){
             steps {
-                echo $APP_VER
-                echo $DOCKER_IMAGE
+                echo $CHART_REPO
             }
         }
         // stage("registry-login") {
