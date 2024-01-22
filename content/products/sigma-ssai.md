@@ -167,10 +167,18 @@ DAI Resources
 ::section-marquee
 #subtitle
 Trusted by 2000+ customers
+
 #default
-:marquee-item{img="https://sponsors.vuejs.org/images/vueschool.avif"}
-:marquee-item{img="https://sponsors.vuejs.org/images/vehikl.avif"}
-:marquee-item{img="https://sponsors.vuejs.org/images/dronahq.avif"}
+:marquee-item
+![vt.png](/testimonial/vt.png)
+:marquee-item
+![vtc.png](/testimonial/vtc.png)
+:marquee-item
+![vtv.png](/testimonial/vtv.png)
+:marquee-item
+![vtvc.png](/testimonial/vtvc.png)
+:marquee-item
+![vng.png](/testimonial/vng.png)
 ::
 
 ::section-cta
