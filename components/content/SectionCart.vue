@@ -10,6 +10,7 @@ const formSchema = toTypedSchema(
   z.object({
     name: z.string({ required_error: 'This is required' }).min(1, { message: 'This is required' }).max(50, { message: 'Must contain at most 50 character(s)' }),
     email: z.string({ required_error: 'This is required' }).email(),
+    address: z.string().min(1, 'This is required'),
     countryCode: z.string(),
     phone: z.string({ required_error: 'This is required' }).superRefine((val, ctx) => {
       const parsePhone = parsePhoneNumberFromString(val as string || '', form.values.countryCode || 'VN')
@@ -38,7 +39,8 @@ const formSchema = toTypedSchema(
 const form = useForm({
   validationSchema: formSchema,
   initialValues: {
-    countryCode: 'VN'
+    countryCode: 'VN',
+    address: ''
   }
 })
 
@@ -266,7 +268,7 @@ const agree = ref(false)
               <form class="w-full space-y-6">
                 <FormField v-slot="{ componentField }" name="name">
                   <SFormItem>
-                    <SFormLabel :class="'text-2xl'">{{ $t('cart.name') }}</SFormLabel>
+                    <SFormLabel :class="'text-2xl'">{{ $t('cart.name') }}<span class="text-red-500">*</span></SFormLabel>
                     <SFormControl>
                       <SInputText type="text" placeholder="" v-bind="componentField" />
                     </SFormControl>
@@ -275,7 +277,7 @@ const agree = ref(false)
                 </FormField>
                 <FormField v-slot="{ componentField }" name="email">
                   <SFormItem>
-                    <SFormLabel>{{ $t('cart.email') }}</SFormLabel>
+                    <SFormLabel>{{ $t('cart.email') }}<span class="text-red-500">*</span></SFormLabel>
                     <SFormControl>
                       <SInputText type="text" placeholder="" v-bind="componentField" />
                     </SFormControl>
@@ -284,7 +286,7 @@ const agree = ref(false)
                 </FormField>
                 <FormField v-slot="{ componentField }" name="phone">
                   <SFormItem>
-                    <SFormLabel>{{ $t('cart.phone_number') }}</SFormLabel>
+                    <SFormLabel>{{ $t('cart.phone_number') }}<span class="text-red-500">*</span></SFormLabel>
                     <div class="flex items-center gap-2">
                       <FormField v-slot="{ componentField }" name="countryCode">
                         <SFormItem>
@@ -313,7 +315,7 @@ const agree = ref(false)
 
                 <FormField v-slot="{ componentField }" name="address">
                   <SFormItem>
-                    <SFormLabel>{{ $t('cart.address') }}</SFormLabel>
+                    <SFormLabel>{{ $t('cart.address') }}<span class="text-red-500">*</span></SFormLabel>
                     <SFormControl>
                       <STextArea placeholder="" v-bind="componentField" />
                     </SFormControl>
