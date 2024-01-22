@@ -199,7 +199,16 @@ Interactive Resources
 :resource-item{path="/resources/guides/guide-1"}
 ::
 
-::section-marquee{}
+::section-marquee
+#subtitle
+Trusted by 2000+ customers
+
+#default
+:marquee-item{img="https://sponsors.vuejs.org/images/vueschool.avif"}
+:marquee-item{img="https://sponsors.vuejs.org/images/vehikl.avif"}
+:marquee-item{img="https://sponsors.vuejs.org/images/dronahq.avif"}
+::
+<!-- ::section-marquee{}
 #subtitle
 TRUSTED BY 2000+ CUSTOMERS
 #default
@@ -213,7 +222,7 @@ TRUSTED BY 2000+ CUSTOMERS
 ![vtvc.png](/testimonial/vtvc.png)
 :marquee-item
 ![vng.png](/testimonial/vng.png)
-::
+:: -->
 
 ::section-cta
 #title
