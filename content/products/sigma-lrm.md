@@ -97,7 +97,7 @@ Key FEATURES
   #default
   The comprehensive channel list from many partners makes it easy to manage and receive notifications about detailed events within it.
   ::
-  
+
   ::grid-card
   #image
   ![lrm-feature-2.png](/lrm/lrm-feature-2.png)
@@ -106,7 +106,7 @@ Key FEATURES
   #default
   Allows you to 'set a schedule' to review previously broadcast programs, without being limited by a fixed broadcast schedule.
   ::
-  
+
   ::grid-card
   #image
   ![lrm-feature-3.png](/lrm/lrm-feature-3.png)
@@ -115,7 +115,7 @@ Key FEATURES
   #default
   Blackout and replace program contents on both linear and catch-up streams.
   ::
-  
+
   ::grid-card
   #image
   ![lrm-feature-4.png](/lrm/lrm-feature-4.png)
@@ -135,7 +135,6 @@ How it works?
 system architecture
 #default
 ![lrm-how-it-work.png](/lrm/lrm-how-it-work.png)
-#default
 Receiving signals from content providers, we manage, schedule, and insert signals based on EPG and API through Sigma LRM. After completing the process of copying and replacing live and catch-up content, the new content is distributed to broadcasters and content distribution partners.
 ::
 
@@ -164,8 +163,6 @@ Trusted by 2000+ customers
 ![vtvc.png](/testimonial/vtvc.png)
 :marquee-item
 ![vng.png](/testimonial/vng.png)
-<!-- :marquee-item{img="https://sponsors.vuejs.org/images/vehikl.avif"}
-:marquee-item{img="https://sponsors.vuejs.org/images/dronahq.avif"} -->
 ::
 
 
@@ -175,7 +172,6 @@ Ready to Get Started?
 #subtitle
 Try our product for Free and start streaming today
 #default
-#default
 ::button-link{href="https://appt.link/meet-with-sigma-team" data-appointlet-modal}
 View demo
 ::
@@ -184,4 +180,3 @@ View demo
   Talk to Our Expert
 ::
 ::
-
