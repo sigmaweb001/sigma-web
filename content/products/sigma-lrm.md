@@ -1,8 +1,7 @@
 ---
-title: 'Sigma LRM'
+title: Sigma LRM
 description: 'Distribute VOD and Live content to distributors'
 icon: ri:advertisement-line
-comingsoon: false
 ---
 
 ::section-hero{}
@@ -16,7 +15,7 @@ Control your live or VOD content, delivering it to the right customers at the ri
 - API-driven content event ingest and SCTE 224 normalization.
 
 #cta
-::button-link{href="https://dev-streaming.gviet.vn:8783/portal/auth/login" data-appointlet-modal}
+::button-link{href="https://portal.sigmaott.com/auth/login?redirect=/apps" target='_blank'}
 Start free trial
 ::
 
@@ -24,9 +23,11 @@ Start free trial
 Contact Us
 ::
 
+#extra
+No credit card required
+
 #image
 ![lrm-hero.png](/lrm/lrm-hero.png)
-
 ::
 
 ::section-grid{}
@@ -35,6 +36,7 @@ Outstanding advantages of Sigma Linear Rights Management
 #subtitle
 Strength
 
+
 #default
 ::grid-item{}
 ![lrm-grid.png](/lrm/lrm-grid.png)
@@ -42,12 +44,11 @@ Strength
 
 ::grid-item{}
 
-
   ::list-item
   #image
   ![lrm-strength-1.png](/lrm/lrm-strength-1.png)
   #title
-  Alternative content options
+  **Alternative content options**
   #subtitle
   Provides alternative content options in the cases of signal loss, content loss, and device restrictions.
   ::
@@ -55,8 +56,9 @@ Strength
   ::list-item
   #image
   ![lrm-feature-2.png](/lrm/lrm-feature-2.png)
+
   #title
-  Manage all event data
+  **Manage all event data**
   #subtitle
   Identify programming gaps, edit/expand events in real-time, and verify appropriate replacement content options.
   ::
@@ -65,17 +67,15 @@ Strength
   #image
   ![lrm-strength-3.png](/lrm/lrm-strength-3.png)
   #title
-  Manage distribution channels for partners
+  **Manage distribution channels for partners**
   #subtitle
-  Manage channel settings by editing channels and monitoring ongoing events.
-Configure timeshift content replacement for seamless programming.
+  Manage channel settings by editing channels and monitoring ongoing events. Configure timeshift content replacement for seamless programming.
   ::
-
   ::list-item
   #image
   ![lrm-strength-4.png](/lrm/lrm-strength-4.png)
   #title
-  StartOver option
+  **StartOver option**
   #subtitle
   Flexible viewing time for content creates a flexible viewing experience; viewers are not required to watch content at a fixed time.
   ::
@@ -93,7 +93,7 @@ Key FEATURES
   #image
   ![lrm-feature-1.png](/lrm/lrm-feature-1.png)
   #title
-  Manage and distribute waves to receiving partners
+  **Manage and distribute waves to receiving partners**
   #default
   The comprehensive channel list from many partners makes it easy to manage and receive notifications about detailed events within it.
   ::
@@ -102,7 +102,7 @@ Key FEATURES
   #image
   ![lrm-feature-2.png](/lrm/lrm-feature-2.png)
   #title
-  Schedule content replacement
+  **Schedule content replacement**
   #default
   Allows you to 'set a schedule' to review previously broadcast programs, without being limited by a fixed broadcast schedule.
   ::
@@ -111,7 +111,7 @@ Key FEATURES
   #image
   ![lrm-feature-3.png](/lrm/lrm-feature-3.png)
   #title
-  Replace content
+  **Replace content**
   #default
   Blackout and replace program contents on both linear and catch-up streams.
   ::
@@ -120,11 +120,10 @@ Key FEATURES
   #image
   ![lrm-feature-4.png](/lrm/lrm-feature-4.png)
   #title
-  Management and scheduling of SCTE-35 advertising signal insertion
+  **Management and scheduling of SCTE-35 advertising signal insertion**
   #default
   Supporting signal insertion via API or EPG. Schedule the insertion of overlay linear ads and screen shrink ads.
   ::
-
 
 ::
 
@@ -132,17 +131,19 @@ Key FEATURES
 #title
 How it works?
 #subtitle
-system architecture
+System architecture
+#default
 #default
 ![lrm-how-it-work.png](/lrm/lrm-how-it-work.png)
 Receiving signals from content providers, we manage, schedule, and insert signals based on EPG and API through Sigma LRM. After completing the process of copying and replacing live and catch-up content, the new content is distributed to broadcasters and content distribution partners.
 ::
 
+
 ::section-resource
 #title
 LRM Resources
 #default
-:resource-item{path="/resources/blog-articles/blog-ssai"}
+:resource-item{path="/resources/blog-articles/blog-1"}
 :resource-item{path="/resources/guides/guide-1"}
 :resource-item{path="/resources/datasheets/datasheet-1"}
 :resource-item{path="/resources/datasheets/datasheet-1"}
@@ -169,5 +170,4 @@ View demo
 
 ::button-link{href="/contact" white}
   Talk to Our Expert
-::
 ::
