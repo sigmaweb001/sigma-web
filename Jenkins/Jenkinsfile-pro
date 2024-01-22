@@ -21,12 +21,12 @@ pipeline {
         PATH_WORKDIR = "helm-chart"
         VALUES_HELM = "pro-values.yaml"
         HARBOR_PROJECT = "sigma-helm"
-        ENV_TAGS= "${GIT_URL.replaceAll('.*/([^/]+/[^/]+)\\.git', '$1').tokenize('/').pop()}"
+        APP_VER = "${GIT_BRANCH.tokenize('/').pop()}"
     }
     stages {
         stage("echo"){
             steps {
-                echo $ENV_TAGS
+                echo $APP_VER
             }
         }
         // stage("registry-login") {
