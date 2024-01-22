@@ -9,7 +9,7 @@ const { data: item } = await useAsyncData('resource-content-blog' + slug.value, 
 console.log('[LOG] ~ item:', item)
 
 const appConfig = useAppConfig()
-const date = computed(() => item.value.date ? useDateFormat(item.value.date, 'MMMM D, YYYY').value : '')
+const date = computed(() => item.value.date ? useDateFormat(item.value.date, 'MMMM D, YYYY', { locales: 'en' }).value : '')
 const author = computed(() => appConfig.authors.find(a => a.slug === item.value.author))
 
 const links = computed(() => item.value?.body.toc.links)
@@ -41,8 +41,8 @@ const links = computed(() => item.value?.body.toc.links)
             <div class="text-gray-800 dark:text-gray-400">
               by {{ author?.name }}
             </div>
-            <div class="w-1px h-14px bg-border" />
-            <span class="text-sm">{{ item?.readingTime?.text }}</span>
+            <!-- <div class="w-1px h-14px bg-border" /> -->
+            <!-- <span class="text-sm">{{ item?.readingTime?.text }}</span> -->
             <template v-if="date">
               <div class="w-1px h-14px bg-border" />
               <div>
@@ -69,12 +69,7 @@ const links = computed(() => item.value?.body.toc.links)
         <div class="mx-auto my-3 max-w-85ch prose prose-trueGray dark:prose-invert">
           <slot />
         </div>
-        <!-- <div class="mb-7 mt-7 flex justify-center">
-            <Link href="/" class="bg-brand-secondary/20 rounded-full px-5 py-2 text-sm text-blue-600 dark:text-blue-500">
-            ← View all items
-            </Link>
-          </div> -->
-        <BlogsAuthorCard v-if="item?.author" :author="item.author" />
+        <!-- <BlogsAuthorCard v-if="item?.author" :author="item.author" /> -->
       </article>
       <div class="sticky top-[calc(var(--header-height))] w-full self-start md:w-256px">
         <div class="mt-5 font-sans">
