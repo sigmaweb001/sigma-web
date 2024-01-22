@@ -46,21 +46,21 @@ const form = useForm({
 const { query } = useRoute()
 const router = useRouter()
 const carts = useState('carts', () => [
-  // {
-  //   product: 'A',
-  //   price: 39,
-  //   qty: 1,
-  // },
-  // {
-  //   product: 'B',
-  //   price: 49,
-  //   qty: 1,
-  // },
-  // {
-  //   product: 'C',
-  //   price: 59,
-  //   qty: 1,
-  // }
+  {
+    product: 'A',
+    price: 39,
+    qty: 1,
+  },
+  {
+    product: 'B',
+    price: 49,
+    qty: 1,
+  },
+  {
+    product: 'C',
+    price: 59,
+    qty: 1,
+  }
 ])
 
 onMounted(() => {
@@ -152,9 +152,9 @@ const agree = ref(false)
       <div
         class="flex items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base px-10">
         <div
-          class="flex cursor-pointer md:w-full items-center sm:after:content-[''] after:w-full after:h-1px after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
+          class="flex cursor-pointer md:w-full items-center sm:after:content-[''] after:w-full after:(h-1px border-b border-gray-200 border-1 hidden mx-6) sm:after:inline-block dark:after:border-gray-700">
           <span :class="[step >= 1 ? 'text-primary dark:text-primary' : '']"
-            class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
+            class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500 flex-shrink-0 ">
             <span class="me-2 rounded-full h-6 w-6 flex-shrink-0 flex-center p-1"
               :class="[step >= 1 ? 'bg-primary text-white' : '']">1</span>
             {{ $t('cart.shopping_cart') }}
@@ -163,13 +163,14 @@ const agree = ref(false)
         <div
           class="flex cursor-pointer md:w-full items-center after:content-[''] after:w-full after:h-1px after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
           <span :class="[step >= 2 ? 'text-primary dark:text-primary' : '']"
-            class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
+            class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500 flex-shrink-0">
             <span class="me-2 rounded-full h-6 w-6 flex-shrink-0 flex-center p-1"
               :class="[step >= 2 ? 'bg-primary text-white' : '']">2</span>
             {{ $t('cart.payment_options') }}
           </span>
         </div>
-        <div class="flex cursor-pointer items-center" :class="[step >= 3 ? 'text-primary dark:text-primary' : '']">
+        <div class="flex cursor-pointer items-center flex-shrink-0"
+          :class="[step >= 3 ? 'text-primary dark:text-primary ' : '']">
           <span class="me-2 rounded-full h-6 w-6 flex-shrink-0 flex-center p-1"
             :class="[step === 3 ? 'bg-primary text-white' : '']">3</span>
           {{ $t('cart.order_received') }}
@@ -515,3 +516,10 @@ const agree = ref(false)
     </div>
   </section>
 </template>
+
+<style>
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+</style>
