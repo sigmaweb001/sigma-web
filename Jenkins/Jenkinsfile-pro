@@ -13,7 +13,6 @@ pipeline {
         ACCOUNT_ADD_REPO = "sigma-harbor"
         APP_NAME = "${GIT_URL.replaceAll('.*/([^/]+/[^/]+)\\.git', '$1').tokenize('/').pop()}"
         APP_PROJECT = "default"
-        HELM_VERSION = "0.${BUILD_NUMBER}.0"
         APP_NAMESPACE = "sigma-web"
         K8S_SERVER = "https://kubernetes.default.svc"
         URL_HELM_PUSH = "oci://hub.spilot.io:8843/${HARBOR_PROJECT}"
@@ -35,9 +34,9 @@ pipeline {
             steps {
                     sh '''
                     export HELM_EXPERIMENTAL_OCI=1
-                    helm package ./${PATH_WORKDIR} --version 0.${BUILD_NUMBER}.0
-                    helm push ${APP_NAME}-0.${BUILD_NUMBER}.0.tgz ${URL_HELM_PUSH}
-                    rm -rf ${APP_NAME}-0.${BUILD_NUMBER}.0.tgz
+                    helm package ./${PATH_WORKDIR} --version ${DOCKER_TAG}
+                    helm push ${APP_NAME}-${DOCKER_TAG}.tgz ${URL_HELM_PUSH}
+                    rm -rf ${APP_NAME}-${DOCKER_TAG}.tgz
                     '''
             }
         }
@@ -83,7 +82,7 @@ pipeline {
         stage("deploy-app") {
             steps {
                 sh '''
-                argocd app create ${APP_NAME} --repo ${HELM_REPO} --project ${APP_PROJECT} --values ${VALUES_HELM} --revision ${HELM_VERSION} --helm-chart ${CHART_REPO} --dest-namespace ${APP_NAMESPACE} --helm-set web.tag=${DOCKER_TAG} --dest-server ${K8S_SERVER} --sync-policy automated --auto-prune --self-heal --upsert
+                argocd app create ${APP_NAME} --repo ${HELM_REPO} --project ${APP_PROJECT} --values ${VALUES_HELM} --revision ${DOCKER_TAG} --helm-chart ${CHART_REPO} --dest-namespace ${APP_NAMESPACE}  --dest-server ${K8S_SERVER} --helm-set web.image.imageTag=${DOCKER_TAG} --sync-policy automated --auto-prune --self-heal --upsert
                 '''
             }
         }

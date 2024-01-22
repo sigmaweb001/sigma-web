@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sanity-studio
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    app: sanity-studio
+    group: {{ .Release.Name }}
+    {{- if .Values.commonLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+    {{- end }}
+spec:
+  replicas: {{ .Values.studio.replicaCount }}
+  selector:
+    matchLabels:
+      app: sanity-studio
+      group: {{ .Release.Name }}
+  template:
+    metadata:
+      labels: {{- include "common.labels.matchLabels" . | nindent 8 }}
+        app: sanity-studio
+        group: {{ .Release.Name }}
+        {{- if .Values.commonLabels }}
+        {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 8 }}
+        {{- end }}
+    spec:
+    {{- with .Values.global.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      securityContext:
+        {{- toYaml .Values.studio.podSecurityContext | nindent 8 }}
+      containers:
+        - name: sanity-studio
+          securityContext:
+            {{- toYaml .Values.studio.securityContext | nindent 12 }}
+          image: "{{ .Values.global.imageRegistry }}/{{ .Values.studio.image.repository }}:{{ if .Values.studio.image.imageTag }}{{ .Values.studio.image.imageTag }}{{ else }}{{ .Values.global.image.imageTag }}{{ end }}"
+          imagePullPolicy: {{ .Values.studio.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+            # - name: grpc
+            #   containerPort: 50051
+            #   protocol: TCP
+          # livenessProbe:
+          #   httpGet:
+          #     path: {{ .Values.studio.livenessProbe.httpGet.path }}
+          #     port: {{ .Values.studio.livenessProbe.httpGet.port }}
+          #   initialDelaySeconds: {{ .Values.studio.livenessProbe.initialDelaySeconds }}
+          #   timeoutSeconds: {{ .Values.studio.livenessProbe.timeoutSeconds }}
+          # readinessProbe:
+          #   httpGet:
+          #     path: {{ .Values.studio.readinessProbe.httpGet.path }}
+          #     port: {{ .Values.studio.readinessProbe.httpGet.port }}
+          #   initialDelaySeconds: {{ .Values.studio.readinessProbe.initialDelaySeconds }}
+          #   timeoutSeconds: {{ .Values.studio.readinessProbe.timeoutSeconds }}
+          # resources:
+          #   limits:
+          #     cpu: {{ .Values.studio.resources.limits.cpu}}
+          #     memory: {{ .Values.studio.resources.limits.memory }}
+          #   requests:
+          #     cpu: {{ .Values.studio.resources.requests.cpu }}
+          #     memory: {{ .Values.studio.resources.requests.memory }}
+      {{- if .Values.studio.nodeSelector }}
+      nodeSelector: {{- include "common.tplvalues.render" (dict "value" .Values.studio.nodeSelector "context" $) | nindent 8 }}
+      {{ else if .Values.global.nodeSelector }}
+      nodeSelector: {{- include "common.tplvalues.render" (dict "value" .Values.global.nodeSelector "context" $) | nindent 8 }}
+      {{- end }}
+      {{- with .Values.studio.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.studio.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+

@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docs-site
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    app: docs-site
+    group: {{ .Release.Name }}
+    {{- if .Values.commonLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+    {{- end }}
+spec:
+  replicas: {{ .Values.doc.replicaCount }}
+  selector:
+    matchLabels:
+      app: docs-site
+      group: {{ .Release.Name }}
+  template:
+    metadata:
+      labels: {{- include "common.labels.matchLabels" . | nindent 8 }}
+        app: docs-site
+        group: {{ .Release.Name }}
+        {{- if .Values.commonLabels }}
+        {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 8 }}
+        {{- end }}
+    spec:
+    {{- with .Values.global.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      securityContext:
+        {{- toYaml .Values.doc.podSecurityContext | nindent 8 }}
+      containers:
+        - name: docs-site
+          securityContext:
+            {{- toYaml .Values.doc.securityContext | nindent 12 }}
+          image: "{{ .Values.global.imageRegistry }}/{{ .Values.doc.image.repository }}:{{ if .Values.doc.image.imageTag }}{{ .Values.doc.image.imageTag }}{{ else }}{{ .Values.global.image.imageTag }}{{ end }}"
+          imagePullPolicy: {{ .Values.doc.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          # livenessProbe:
+          #   httpGet:
+          #     path: {{ .Values.studio.livenessProbe.httpGet.path }}
+          #     port: {{ .Values.studio.livenessProbe.httpGet.port }}
+          #   initialDelaySeconds: {{ .Values.studio.livenessProbe.initialDelaySeconds }}
+          #   timeoutSeconds: {{ .Values.studio.livenessProbe.timeoutSeconds }}
+          # readinessProbe:
+          #   httpGet:
+          #     path: {{ .Values.studio.readinessProbe.httpGet.path }}
+          #     port: {{ .Values.studio.readinessProbe.httpGet.port }}
+          #   initialDelaySeconds: {{ .Values.studio.readinessProbe.initialDelaySeconds }}
+          #   timeoutSeconds: {{ .Values.studio.readinessProbe.timeoutSeconds }}
+          # resources:
+          #   limits:
+          #     cpu: {{ .Values.studio.resources.limits.cpu}}
+          #     memory: {{ .Values.studio.resources.limits.memory }}
+          #   requests:
+          #     cpu: {{ .Values.studio.resources.requests.cpu }}
+          #     memory: {{ .Values.studio.resources.requests.memory }}
+      {{- if .Values.doc.nodeSelector }}
+      nodeSelector: {{- include "common.tplvalues.render" (dict "value" .Values.doc.nodeSelector "context" $) | nindent 8 }}
+      {{ else if .Values.global.nodeSelector }}
+      nodeSelector: {{- include "common.tplvalues.render" (dict "value" .Values.global.nodeSelector "context" $) | nindent 8 }}
+      {{- end }}
+      {{- with .Values.doc.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.doc.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+
