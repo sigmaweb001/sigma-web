@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        CHART_REPO = "${GIT_URL.replaceAll('.*/([^/]+/[^/]+)\\.git', '$1').tokenize('/').pop().tokenize('-').pop()}"
+        CHART_REPO = "${GIT_URL.replaceAll('.*/([^/]+/[^/]+)\\.git', '$1').tokenize('/').pop()}"
         DOCKER_IMAGE = "hub.spilot.io:8843/${HARBOR_PROJECT}/${CHART_REPO}"
         DOCKER_TAG = "${GIT_BRANCH.tokenize('/').pop().tokenize('v').pop()}"
         COMMIT = "${GIT_COMMIT.substring(0,7)}"
