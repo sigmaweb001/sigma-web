@@ -6,8 +6,9 @@ const { item } = definePropsRefs<{
 const media = computed(() => ensurePrefix('/', item.value.media))
 
 const appConfig = useAppConfig()
-const tags = computed(() =>  {
-  const _tags =appConfig.tags
+const tags = computed(() => {
+  const _tags = appConfig.tags
+  if (!item.value.tags) return []
   const itemTags = item.value.tags.split(',').map(item => item.trim())
 
   return itemTags.map(tag => {
@@ -35,7 +36,7 @@ const tags = computed(() =>  {
 
     <div class="px-3 mt-2">
       <div v-if="tags?.length" class="mt-1 flex flex-wrap gap-2">
-        <TagItem v-for="(item, index) in tags" :color="item.color" :key="index" >
+        <TagItem v-for="(item, index) in tags" :color="item.color" :key="index">
           {{ item.name }}
         </TagItem>
       </div>

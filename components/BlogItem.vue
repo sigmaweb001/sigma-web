@@ -10,6 +10,7 @@ const localePath = useLocalePath()
 
 const tags = computed(() => {
   const _tags = appConfig.tags
+  if (!item.value.tags) return []
   const itemTags = item.value.tags.split(',').map(item => item.trim())
 
   return itemTags.map(tag => {
