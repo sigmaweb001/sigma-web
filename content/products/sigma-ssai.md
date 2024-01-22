@@ -1,6 +1,7 @@
 ---
 title: Sigma DAI
-icon: Enable ADS Insertion Everywhere
+description: 'Enable ADS Insertion Everywhere'
+icon: ri:advertisement-line
 ---
 
 ::section-hero{}
