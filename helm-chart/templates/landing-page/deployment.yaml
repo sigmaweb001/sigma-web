@@ -34,7 +34,7 @@ spec:
         - name: website
           securityContext:
             {{- toYaml .Values.web.securityContext | nindent 12 }}
-          image: {{ .Values.web.repository }}: {{ .Values.web.tag }}
+          image: "{{ .Values.web.image.repository }}:{{ .Values.web.tag }}"
           imagePullPolicy: {{ .Values.web.image.pullPolicy }}
           ports:
             - name: http

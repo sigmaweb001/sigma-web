@@ -34,7 +34,7 @@ spec:
         - name: docs-site
           securityContext:
             {{- toYaml .Values.doc.securityContext | nindent 12 }}
-          image: hub.spilot.io:8843/{{ .Values.project }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
+          image: "{{ .Values.global.imageRegistry }}/{{ .Values.doc.image.repository }}:{{ if .Values.doc.image.imageTag }}{{ .Values.doc.image.imageTag }}{{ else }}{{ .Values.global.image.imageTag }}{{ end }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
