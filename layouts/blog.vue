@@ -58,10 +58,10 @@ const links = computed(() => item.value?.body.toc.links)
       </div>
     </div>
 
-    <div class="relative z-0 mx-auto aspect-video max-w-screen-lg overflow-hidden lg:rounded-lg">
+    <!-- <div class="relative z-0 mx-auto aspect-video max-w-screen-lg overflow-hidden lg:rounded-lg">
       <img v-if="item.thumbnail" :src="item?.thumbnail" :alt="item?.thumbnail || 'Thumbnail'"
         class="absolute inset-0 h-full w-full object-cover" />
-    </div>
+    </div> -->
 
     <div class="mx-auto mt-14 flex max-w-screen-xl flex-col gap-5 px-5 md:flex-row">
       <article class="flex-1">
