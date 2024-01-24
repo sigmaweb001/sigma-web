@@ -81,7 +81,7 @@ const currentIndex = computed(() => Math.round(currentTime.value / 2))
                   </template>
                 </ImgComparisonSlider>
                 <SButton variant="white" as="a" v-if="!state.playing" @click="player.play()"
-                  class="absolute z-100 top-1/2 !rounded-full left-1/2 cursor-pointer translate-x--1/2 translate-y--1/2">
+                  class="absolute z-1 top-1/2 !rounded-full left-1/2 cursor-pointer translate-x--1/2 translate-y--1/2">
                   Play video
                   <i class="i-ri:play-fill" />
                 </SButton>
