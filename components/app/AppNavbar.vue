@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+
+const { locale } = useI18n()
 const appConfig = useAppConfig()
 const showBanner = ref(false)
 onMounted(() => {
@@ -21,12 +23,15 @@ const { data: pinResource } = await useAsyncData(`production-pin-resource:${appC
   }
 }).findOne(), { immediate: appConfig.productPinResource.enabled })
 
-const { data: products } = await useAsyncData('products', () => queryContent('products').find())
-const { data: engines } = await useAsyncData('engines', () => queryContent('engines').find())
-const { data: solutions } = await useAsyncData('solutions', () => queryContent('solutions').find())
-const { data: resources } = await useAsyncData('resources', () => queryContent('resources').where({
+function withLocale(path: string) {
+  return locale.value === 'en' ? path : `${locale.value}/${path}`
+}
+const { data: products } = await useAsyncData(withLocale('products'), () => queryContent(withLocale('products')).find())
+const { data: engines } = await useAsyncData(withLocale('engines'), () => queryContent(withLocale('engines')).find())
+const { data: solutions } = await useAsyncData(withLocale('solutions'), () => queryContent(withLocale('solutions')).find())
+const { data: resources } = await useAsyncData(withLocale('resources'), () => queryContent(withLocale('resources')).where({
   $or: [
-    { _dir: { $eq: 'resources' } },
+    { _dir: { $eq: withLocale('resources') } },
     { _dir: { $eq: '' } }
   ]
 }).find())
@@ -45,7 +50,8 @@ const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigmaott
       <AppHeaderDrawer />
     </div>
 
-    <SNavigationMenu class="hidden w-full" md="grid w-full px-4 grid-cols-[1fr_auto_1fr] items-center h-64px xl:px-5 mx-auto">
+    <SNavigationMenu class="hidden w-full"
+      md="grid w-full px-4 grid-cols-[1fr_auto_1fr] items-center h-64px xl:px-5 mx-auto">
       <div class="flex flex-wrap items-center justify-between lg:w-auto flex-shrink-0">
         <NuxtLink :to="localePath('/')" class="flex items-end gap-x-2 text-primary " dark="text-primary">
           <span>
@@ -196,4 +202,5 @@ const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigmaott
         </SNavigationMenuItem>
       </div>
     </SNavigationMenu>
-</div></template>
+  </div>
+</template>
