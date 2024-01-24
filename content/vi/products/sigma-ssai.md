@@ -14,7 +14,7 @@ Dynamic Ad Insertion – also known as Server-side ad insertion (SSAI) – enabl
 - Unlock ad potential. Scale seamlessly.
 
 #cta
-::button-link{href="https://portal.sigmaott.com/auth/login?redirect=/apps" target='_blank'}
+::button-link{href="https://portal.sigma.video /auth/login?redirect=/apps" target='_blank'}
 Start free trial
 ::
 

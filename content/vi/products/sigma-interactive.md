@@ -1,5 +1,6 @@
 ---
-title: Sigma interactive
+title: 'Sigma Interactive'
+description: 'Engage with immersive content on OTT TV, interactive entertainment experience'
 icon: material-symbols:auto-videocam-outline-sharp
 ---
 

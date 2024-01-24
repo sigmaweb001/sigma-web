@@ -66,8 +66,8 @@ export default defineAppConfig({
     color: '#35c796'
   }],
   banner: {
-    enabled: false,
-    key: 'TTest_new_message',
+    enabled: true,
+    key: 'TTest_new_message_1',
     link: 'https://dev-streaming.gviet.vn:8783/portal/auth/login',
     textLink: 'Check redirect to portal',
     text: 'TTest_new_message',

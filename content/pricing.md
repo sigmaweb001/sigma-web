@@ -595,7 +595,7 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
 
 ::section-collapse{left}
 #title
-_FAQS_
+_FAQs_
 #default
 
 ::collapse-item

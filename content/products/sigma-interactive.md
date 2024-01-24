@@ -204,8 +204,7 @@ Interactive Resources
 Trusted by 2000+ customers
 
 #default
-:marquee-item
-![vt.png](/testimonial/vt.png)
+:marquee-item{img="/testimonial/vtv-digital.png"}
 :marquee-item
 ![vtv-digital.png](/testimonial/vtv-digital.png)
 :marquee-item
@@ -227,5 +226,5 @@ View demo
 ::
 
 ::button-link{href="/contact" white}
-  Contact Us
+  Talk to Our Expert
 ::
