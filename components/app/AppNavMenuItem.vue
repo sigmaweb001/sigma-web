@@ -13,7 +13,7 @@ const props = defineProps<{
   <NavigationMenuLink as-child>
     <NuxtLink :to="_path" v-bind="$attrs"
       class="group block select-none rounded-[6px] p-8px text-gray-800 no-underline outline-none transition-colors hover:bg-primary/10 dark:text-trueGray-200 hover:text-primary">
-      <div class="flex items-start gap-3">
+      <div class="flex gap-3" :class="[description ? 'items-start': 'items-center']">
         <Icon :name="icon ?? 'i-ri:article-line'"
           class="h-8 w-8 p-1 mt-1 flex-center rounded-full flex-shrink-0 bg-primary/20 text-primary">
         </Icon>

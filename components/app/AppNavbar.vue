@@ -29,6 +29,7 @@ function withLocale(path: string) {
 const { data: products } = await useAsyncData(withLocale('products'), () => queryContent(withLocale('products')).find())
 const { data: engines } = await useAsyncData(withLocale('engines'), () => queryContent(withLocale('engines')).find())
 const { data: solutions } = await useAsyncData(withLocale('solutions'), () => queryContent(withLocale('solutions')).find())
+const { data: companies } = await useAsyncData(withLocale('companies'), () => queryContent(withLocale('companies')).find())
 const { data: resources } = await useAsyncData(withLocale('resources'), () => queryContent(withLocale('resources')).where({
   $or: [
     { _dir: { $eq: withLocale('resources') } },
@@ -151,12 +152,13 @@ const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigmaott
           </SNavigationMenuItem>
 
           <SNavigationMenuItem>
-            <NuxtLink to="https://thudomultimedia.com/" external target="_blank">
-              <SNavigationMenuLink class="navigation-menu-trigger">
-                About Us
-              </SNavigationMenuLink>
-            </NuxtLink>
-
+            <SNavigationMenuTrigger>Company</SNavigationMenuTrigger>
+            <SNavigationMenuContent>
+              <ul class="grid grid-flow-row grid-cols-2 m-0 list-none gap-x-12px p-12px" md="w-500px">
+                <AppNavMenuItem v-for="item in companies" :key="item._id" :to="localePath(item._path)" v-bind="item"
+                  :icon="item.icon" />
+              </ul>
+            </SNavigationMenuContent>
           </SNavigationMenuItem>
 
           <SNavigationMenuItem>
