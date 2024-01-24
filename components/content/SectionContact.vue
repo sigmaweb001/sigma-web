@@ -45,7 +45,7 @@ const form = useForm({
   initialValues: {
     countryCode: 'VN',
     title: 'Mr.',
-    requirements: [],
+    productRequests: [],
     note: '',
     company: '',
   }
@@ -267,7 +267,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
           <SFormItem v-auto-animate class="flex flex-col xl:flex-row gap-2">
             <SFormLabel>{{ $t('contact.product_request') }}</SFormLabel>
             <div class="w-full">
-              <FormField v-for="item in products" v-slot="{ value, handleChange }" :key="item.id" type="checkbox" :value="item.id" :unchecked-value="false" name="requirements">
+              <FormField v-for="item in products" v-slot="{ value, handleChange }" :key="item.id" type="checkbox" :value="item.id" :unchecked-value="false" name="productRequests">
                 <SFormItem class="flex items-center space-x-3 space-y-1">
                   <SFormControl>
                     <SCheckbox
