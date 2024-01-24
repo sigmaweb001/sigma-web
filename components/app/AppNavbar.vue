@@ -30,6 +30,7 @@ const { data: products } = await useAsyncData(withLocale('products'), () => quer
 const { data: engines } = await useAsyncData(withLocale('engines'), () => queryContent(withLocale('engines')).find())
 const { data: solutions } = await useAsyncData(withLocale('solutions'), () => queryContent(withLocale('solutions')).find())
 const { data: companies } = await useAsyncData(withLocale('companies'), () => queryContent(withLocale('companies')).find())
+
 const { data: resources } = await useAsyncData(withLocale('resources'), () => queryContent(withLocale('resources')).where({
   $or: [
     { _dir: { $eq: withLocale('resources') } },
@@ -98,8 +99,7 @@ const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigmaott
                     </h1>
                     <div class="my-2 h-1px bg-gray-200 dark:bg-trueGray-700" />
                     <ul class="grid m-0 list-none gap-10px" xl="grid-cols-2">
-                      <AppNavMenuItem v-for="item in products" :key="item.key" :to="localePath(item._path)"
-                        v-bind="item" />
+                      <AppNavMenuItem v-for="item in products" :key="item.key" v-bind="item" />
                     </ul>
                   </div>
 
@@ -109,8 +109,7 @@ const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigmaott
                     </h1>
                     <div class="my-2 h-1px bg-gray-200 dark:bg-trueGray-700" />
                     <ul class="grid m-0 list-none gap-10px" md="grid-cols-1">
-                      <AppNavMenuItem v-for="item in engines" :key="item.key" :to="localePath(item._path)"
-                        v-bind="item" />
+                      <AppNavMenuItem v-for="item in engines" :key="item.key" v-bind="item" />
                     </ul>
                   </div>
                 </div>
@@ -133,8 +132,7 @@ const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigmaott
                     </h1>
                     <div class="my-2 h-1px bg-gray-200 dark:bg-trueGray-700" />
                     <ul class="grid m-0 list-none gap-10px" md="grid-cols-2">
-                      <AppNavMenuItem v-for="item in solutions" :key="item.key" :to="localePath(item._path)"
-                        v-bind="item" />
+                      <AppNavMenuItem v-for="item in solutions" :key="item.key" v-bind="item" />
                     </ul>
                   </div>
                 </div>
@@ -145,8 +143,7 @@ const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigmaott
             <SNavigationMenuTrigger>Resources</SNavigationMenuTrigger>
             <SNavigationMenuContent>
               <ul class="grid grid-flow-row grid-cols-2 m-0 list-none gap-x-12px p-12px" md="w-500px">
-                <AppNavMenuItem v-for="item in resources" :key="item._id" :to="localePath(item._path)" v-bind="item"
-                  :icon="item.icon" />
+                <AppNavMenuItem v-for="item in resources" :key="item._id" v-bind="item" :icon="item.icon" />
               </ul>
             </SNavigationMenuContent>
           </SNavigationMenuItem>
@@ -155,8 +152,8 @@ const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigmaott
             <SNavigationMenuTrigger>Company</SNavigationMenuTrigger>
             <SNavigationMenuContent>
               <ul class="grid grid-flow-row grid-cols-2 m-0 list-none gap-x-12px p-12px" md="w-500px">
-                <AppNavMenuItem v-for="item in companies" :key="item._id" :to="localePath(item._path)" v-bind="item"
-                  :icon="item.icon" />
+                <AppNavMenuItem v-for="item in companies" :key="item._id" v-bind="item" :icon="item.icon">
+                </AppNavMenuItem>
               </ul>
             </SNavigationMenuContent>
           </SNavigationMenuItem>
