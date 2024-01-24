@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { QueryBuilderWhere } from '@nuxt/content/dist/runtime/types';
 
 useHead({
   titleTemplate: '%s · Sigma Streaming',
@@ -8,10 +9,7 @@ useHead({
 })
 const { params } = useRoute()
 
-const slug = computed(() => {
-  const _slug = params.catalog ? ('/' + params.catalog) : ''
-  return 'resources' + _slug
-})
+const slug = computed(() => params.slug.join('/'))
 
 const { data: dataResourcesDir } = await useAsyncData('resources-list-dir', () => queryContent('resources').where({
   $or: [
@@ -32,8 +30,8 @@ const currentDir = computed(() => dataResourcesDir.value?.find(item => item._pat
 
 const tag = eagerComputed(() => useRoute().query.tag)
 
-const query = computed(() => {
-  if (!params.catalog) {
+const query = computed<QueryBuilderWhere>(() => {
+  if (params.slug.length === 1) {
     if (tag.value)
       return {
         tags: { '$contains': [tag.value] }
@@ -47,7 +45,7 @@ const query = computed(() => {
       }
   }
   return {
-    _dir: { $eq: params.catalog }
+    _dir: { $eq: params.slug[params.slug.length - 1] }
   }
 })
 
