@@ -177,5 +177,5 @@ View demo
 ::
 
 ::button-link{href="/contact" white}
-  Talk to Our Expert
+  Contact Us
 ::

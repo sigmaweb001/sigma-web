@@ -229,6 +229,6 @@ Try our product for Free and start streaming today
   View demo
 ::
 ::button-link{href="/contact" white}
-  Talk to Our Expert
+  Contact Us
 ::
 ::

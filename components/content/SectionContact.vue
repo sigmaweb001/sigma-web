@@ -122,6 +122,10 @@ const products = [
     id: 'Livestream',
     label: 'Livestream',
   },
+  {
+    id: 'Playout (Fast Channel)',
+    label: 'Playout (Fast Channel)',
+  },
 ] as const
 
 const options = getCountries().map((countryCode) => {
@@ -261,7 +265,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
         </FormField>
         <FormField name="items1">
           <SFormItem v-auto-animate class="flex flex-col xl:flex-row gap-2">
-            <SFormLabel>{{ $t('contact.requirements') }}</SFormLabel>
+            <SFormLabel>{{ $t('contact.product_request') }}</SFormLabel>
             <div class="w-full">
               <FormField v-for="item in products" v-slot="{ value, handleChange }" :key="item.id" type="checkbox" :value="item.id" :unchecked-value="false" name="requirements">
                 <SFormItem class="flex items-center space-x-3 space-y-1">
