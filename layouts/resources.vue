@@ -71,7 +71,7 @@ const tags = computed(() => appConfig.tags)
       </h3>
       <div class="grid mx--2 mt-4 gap-2">
 
-        <NuxtLink v-for="item in dataResourcesDir" :key="item.to" exact-active-class="text-primary font-bold"
+        <NuxtLink external v-for="item in dataResourcesDir" :key="item.to" exact-active-class="text-primary font-bold"
           :to="item._path"
           class="flex cursor-pointer items-center justify-between gap-2 rounded-xl px-3 py-2 hover:bg-primary/10 hover:text-primary">
           <div class="flex items-center gap-2">
