@@ -1,6 +1,6 @@
 ---
-title: 'Other'
+title: 'Developer portal'
 icon: carbon:blog
 ---
-# Other
+# Developer portal
 :icon{name="carbon:blog"}

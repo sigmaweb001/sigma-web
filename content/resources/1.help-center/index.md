@@ -1,6 +1,6 @@
 ---
-title: 'Case study'
+title: 'Help Center'
 icon: carbon:blog
 ---
-# Case study
+# Help Center
 :icon{name="carbon:blog"}
