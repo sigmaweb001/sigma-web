@@ -197,7 +197,7 @@ Interactive Resources
 :resource-item{path="/resources/datasheets/datasheet-test"}
 :resource-item{path="/resources/blog-articles/blog-test"}
 :resource-item{path="/resources/blog-articles/blog-red"}
-:resource-item{path="/resources/guides/guide-1"}
+:resource-item{path="/resources/product-updates/guide-1"}
 ::
 
 ::section-marquee
