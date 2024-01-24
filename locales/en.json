@@ -51,6 +51,7 @@
     "max-50-characters": "Must contain at most 50 character(s)",
     "max-300-characters": "Must contain at most 300 character(s)",
     "invalid-phone-number": "Invalid phone number",
-    "invalid-phone-number-for-the-selected-country": "Invalid phone number for the selected country"
+    "invalid-phone-number-for-the-selected-country": "Invalid phone number for the selected country",
+    "product_request": "Product request"
   }
 }

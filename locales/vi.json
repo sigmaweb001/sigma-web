@@ -51,6 +51,7 @@
     "max-50-characters": "Phải chứa tối đa 50 ký tự",
     "required": "Điều này là bắt buộc",
     "invalid-phone-number": "Số điện thoại không hợp lệ",
-    "invalid-phone-number-for-the-selected-country": "Số điện thoại không hợp lệ cho quốc gia đã chọn"
+    "invalid-phone-number-for-the-selected-country": "Số điện thoại không hợp lệ cho quốc gia đã chọn",
+    "product_request": "Yêu cầu sản phẩm"
   }
 }
