@@ -1,6 +1,7 @@
 ---
-title: Sigma interactive
-icon: material-symbols:auto-videocam-outline-sharp
+title: 'Sigma Interactive'
+description: 'Engage with immersive content on OTT TV, interactive entertainment experience'
+icon: ic:twotone-ads-click
 ---
 
 ::section-hero{}
@@ -14,7 +15,7 @@ The intermediary channel system helps manage interactions.
 - Compatible with multiple platforms.
 
 #cta
-::button-link{href="https://portal.sigmaott.com/auth/login?redirect=/apps" target='_blank'}
+::button-link{href="https://portal.sigma.video/auth/login?redirect=/apps" target='_blank'}
 Start free trial
 ::
 

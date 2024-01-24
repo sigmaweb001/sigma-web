@@ -1,7 +1,8 @@
 ---
-title: Sigma LRM
+title: 'Sigma LRM'
 description: 'Distribute VOD and Live content to distributors'
 icon: ri:advertisement-line
+comingsoon: false
 ---
 
 ::section-hero{}
@@ -15,7 +16,7 @@ Control your live or VOD content, delivering it to the right customers at the ri
 - API-driven content event ingest and SCTE 224 normalization.
 
 #cta
-::button-link{href="https://portal.sigmaott.com/auth/login?redirect=/apps" target='_blank'}
+::button-link{href="https://portal.sigma.video/auth/login?redirect=/apps" target='_blank'}
 Start free trial
 ::
 
