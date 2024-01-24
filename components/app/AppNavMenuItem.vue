@@ -35,7 +35,6 @@ const localePath = useLocalePath()
             {{ description }}
           </div>
         </div>
-        {{ redirect }}
       </div>
     </NuxtLink>
   </NavigationMenuLink>
