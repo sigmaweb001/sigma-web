@@ -101,8 +101,14 @@ h2,
 h3,
 h4,
 h5,
-h6, .text-h1, .text-h2, .text-h3, .text-h4, .text-h5, .text-h6 {
-  @apply leading-snug lg:leading-tight xl:!leading-tight tracking-tight;
+h6,
+.text-h1,
+.text-h2,
+.text-h3,
+.text-h4,
+.text-h5,
+.text-h6 {
+  @apply leading-snug lg:leading-tight xl: !leading-tight tracking-tight;
   @apply scroll-mt-[calc(var(--header-height)+48px)] text-balance;
 }
 
@@ -110,7 +116,12 @@ p {
   @apply text-pretty;
 }
 
-h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
+h1>a,
+h2>a,
+h3>a,
+h4>a,
+h5>a,
+h6>a {
   @apply block;
   text-decoration: none !important;
 }
@@ -139,11 +150,13 @@ h6 {
   @apply text-lg lg:text-xl;
 }
 
-p, pre {
+p,
+pre {
   @apply my-1em mx-0 leading-[1.75];
 }
 
-li, dd {
+li,
+dd {
   @apply list-disc list-inside my-0.2em text-pretty;
   @apply marker:(text-primary font-bold);
 }
@@ -154,10 +167,6 @@ em {
 
 section {
   @apply mx-auto container my-6 xl:my-8;
-}
-
-section>img {
-  @apply py-10 px-10 mx-auto;
 }
 
 [center=true] {
