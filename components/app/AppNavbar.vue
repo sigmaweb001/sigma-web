@@ -33,6 +33,8 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
 
 const localePath = useLocalePath()
 
+const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigmaott.com/')
+
 </script>
 
 <template>
@@ -170,7 +172,7 @@ const localePath = useLocalePath()
       <div class="hidden justify-self-end gap-3 xl:flex">
         <div class="2xl:flex hidden items-center">
           <SNavigationMenuItem>
-            <NuxtLink to="https://portal.sigmaott.com/" external>
+            <NuxtLink :to="loginPath" external target="_blank">
               <SNavigationMenuLink class="navigation-menu-trigger">
                 Login
               </SNavigationMenuLink>

@@ -64,6 +64,12 @@ export default defineNuxtSchema({
       description: 'Link to the documentation',
       icon: 'i-mdi-book-open-page-variant'
     }),
+    loginPath: field({
+      type:'string',
+      title: 'Login path',
+      description: 'Path to the login page',
+      icon: 'i-mdi-login'
+    }),
     authors: field({
       type: 'array',
       title: 'Authors',

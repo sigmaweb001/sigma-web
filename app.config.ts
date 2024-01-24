@@ -11,6 +11,7 @@ export default defineAppConfig({
     twitter: '_larbish'
   },
   docsLink: 'https://github.com/docs',
+  loginPath: 'https://portal.sigmaott.com/',
   authors: [{
     slug: 'antfu',
     name: 'Ant',
