@@ -5,21 +5,22 @@ import { toTypedSchema } from '@vee-validate/zod'
 import * as z from 'zod'
 import { getCountries, getCountryCallingCode, getExampleNumber, parsePhoneNumberFromString } from 'libphonenumber-js'
 import example from 'libphonenumber-js/examples.mobile.json'
+const { t: $t } = useI18n()
 
 const formSchema = toTypedSchema(
   z.object({
-    name: z.string({ required_error: 'This is required' }).min(1, { message: 'This is required' }).max(50, { message: 'Must contain at most 50 character(s)' }),
-    email: z.string({ required_error: 'This is required' }).email(),
-    address: z.string().min(1, 'This is required'),
+    name: z.string({ required_error: $t('contact.required') }).min(1, { message: $t('contact.required') }).max(50, { message: $t('contact.max-50-characters') }),
+    email: z.string({ required_error: $t('contact.required') }).email(),
+    address: z.string().min(1, $t('contact.required')),
     countryCode: z.string(),
-    phone: z.string({ required_error: 'This is required' }).superRefine((val, ctx) => {
+    phone: z.string({ required_error: $t('contact.required') }).superRefine((val, ctx) => {
       const parsePhone = parsePhoneNumberFromString(val as string || '', form.values.countryCode || 'VN')
       const numberRegex = /^\d+$/
 
       if (!numberRegex.test(val)) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
-          message: "Invalid phone number",
+          message: $t('contact.invalid-phone-number'),
           fatal: true,
         })
 
@@ -29,7 +30,7 @@ const formSchema = toTypedSchema(
       if (!parsePhone || !parsePhone.isValid()) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
-          message: "Invalid phone number for the selected country",
+          message: $t('contact.invalid-phone-number-for-the-selected-country'),
         });
       }
     })
@@ -88,7 +89,6 @@ onMounted(() => {
 
 
 const isEmpty = computed(() => carts.value?.length === 0)
-const { t: $t } = useI18n()
 function remove(item: any) {
   const result = confirm($t('cart.are_you_sure_you_want_to_remove_this_product_from_your_cart'))
   if (result) {
