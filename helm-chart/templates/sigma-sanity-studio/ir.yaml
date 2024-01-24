@@ -1,0 +1,24 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: sanity-studio
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    app: sanity-studio
+    group: {{ .Release.Name }}
+    {{- if .Values.commonLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+    {{- end }}
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`{{ .Values.studio.ingressroute.host }}`) && PathPrefix(`{{ .Values.studio.ingressroute.pathPrefix }}`)
+      services:
+        - kind: Service
+          name: sanity-studio
+          port: 80
+          strategy: RoundRobin
