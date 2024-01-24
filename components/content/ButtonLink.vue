@@ -7,7 +7,8 @@ const props = withDefaults(defineProps<{
   outline?: boolean
   link?: boolean
 }>(), {
-  size: 'lg'
+  size: 'lg',
+  rounded: true
 })
 
 const NuxtLink = resolveComponent('NuxtLink')

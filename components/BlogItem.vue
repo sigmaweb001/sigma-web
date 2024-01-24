@@ -6,30 +6,48 @@ const { item } = definePropsRefs<{
 const appConfig = useAppConfig()
 
 const author = computed(() => appConfig.authors.find(a => a.slug === item.value.author))
+const localePath = useLocalePath()
+
+const tags = computed(() => {
+  const _tags = appConfig.tags
+  if (!item.value.tags) return []
+  const itemTags = item.value.tags.split(',').map(item => item.trim())
+
+  return itemTags.map(tag => {
+    const tagItem = _tags.find(item => item.slug === tag)
+    if (tagItem) {
+      return tagItem
+    }
+    return undefined
+  }).filter(Boolean)
+})
 </script>
 
 <template>
   <div class="group bg-gray-100/75 dark:bg-gray-900/75">
-    <div
+    <NuxtLink :to="localePath(item._path)"
       class="overflow-hidden relative aspect-16/9 block rounded-md transition-all duration-300 hover:scale-105 dark:bg-gray-800">
       <template v-if="item?.thumbnail">
-        <NuxtImg :src="item.thumbnail" class="absolute size-full inset-0 object-cover" />
+        <img :src="item.thumbnail" class="absolute size-full inset-0 object-cover" />
       </template>
       <template v-else>
         <div class="flex-center size-full inset-0 absolute">
           <Icon :name="item.icon ?? 'i-ri:image-fill'" class="w-50% h-50% text-primary/75" />
         </div>
       </template>
-    </div>
+    </NuxtLink>
 
     <div>
       <div class="p-2">
-        <!-- TODO: tags -->
-        <!-- <BlogsTagsLabel :categories="item.tags" /> -->
+        <div v-if="tags?.length" class="mt-1 mb-1 flex flex-wrap gap-2">
+          <TagItem v-for="(item, index) in tags" :color="item.color" :key="index">
+            {{ item.name }}
+          </TagItem>
+        </div>
         <NuxtLink class="text-lg font-semibold leading-snug tracking-tight dark:text-white" :class="{
         }" :to="item._path">
           <span
-            class="transition-[background-size] cursor-default bg-[length:0px_10px] from-primary-300 to-primary-200 bg-gradient-to-r bg-left-bottom bg-no-repeat duration-500 hover:bg-[length:100%_10px] hover:bg-[length:100%_3px] dark:from-primary-600 dark:to-primary-700">
+            class="transition-[background-size] cursor-pointer bg-[length:0px_10px] from-primary-300 to-primary-200 bg-gradient-to-r bg-left-bottom bg-no-repeat duration-500 hover:bg-[length:100%_10px] hover:bg-[length:100%_3px] dark:from-primary-600 dark:to-primary-700">
             {{ item.title }}
           </span>
         </NuxtLink>

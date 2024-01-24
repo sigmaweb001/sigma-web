@@ -10,6 +10,7 @@ const formSchema = toTypedSchema(
   z.object({
     name: z.string({ required_error: 'This is required' }).min(1, { message: 'This is required' }).max(50, { message: 'Must contain at most 50 character(s)' }),
     email: z.string({ required_error: 'This is required' }).email(),
+    address: z.string().min(1, 'This is required'),
     countryCode: z.string(),
     phone: z.string({ required_error: 'This is required' }).superRefine((val, ctx) => {
       const parsePhone = parsePhoneNumberFromString(val as string || '', form.values.countryCode || 'VN')
@@ -38,30 +39,35 @@ const formSchema = toTypedSchema(
 const form = useForm({
   validationSchema: formSchema,
   initialValues: {
-    countryCode: 'VN'
+    countryCode: 'VN',
+    address: ''
   }
 })
 
 
 const { query } = useRoute()
 const router = useRouter()
-const carts = useState('carts', () => [
-  // {
-  //   product: 'A',
-  //   price: 39,
-  //   qty: 1,
-  // },
-  // {
-  //   product: 'B',
-  //   price: 49,
-  //   qty: 1,
-  // },
-  // {
-  //   product: 'C',
-  //   price: 59,
-  //   qty: 1,
-  // }
-])
+const carts = useState('carts', () => [])
+
+if (process.dev) {
+  // carts.value = [
+  //   {
+  //     product: 'A',
+  //     price: 39,
+  //     qty: 1,
+  //   },
+  //   {
+  //     product: 'B',
+  //     price: 49,
+  //     qty: 1,
+  //   },
+  //   {
+  //     product: 'C',
+  //     price: 59,
+  //     qty: 1,
+  //   }
+  // ]
+}
 
 onMounted(() => {
   if (query.product && query.price) {
@@ -79,12 +85,17 @@ onMounted(() => {
   }
 })
 
-const isEmpty = computed(() => carts.value?.length === 0)
 
+
+const isEmpty = computed(() => carts.value?.length === 0)
+const { t: $t } = useI18n()
 function remove(item: any) {
-  const index = carts.value.indexOf(item)
-  if (index > -1) {
-    carts.value.splice(index, 1)
+  const result = confirm($t('cart.are_you_sure_you_want_to_remove_this_product_from_your_cart'))
+  if (result) {
+    const index = carts.value.indexOf(item)
+    if (index > -1) {
+      carts.value.splice(index, 1)
+    }
   }
 }
 
@@ -98,6 +109,12 @@ function goToPayment() {
 
 const submitOrder = form.handleSubmit(async (values) => {
   step.value = 3
+})
+
+onBeforeUnmount(() => {
+  if (step.value === 3) {
+    carts.value = []
+  }
 })
 
 const options = getCountries().map((countryCode) => {
@@ -152,27 +169,28 @@ const agree = ref(false)
       <div
         class="flex items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base px-10">
         <div
-          class="flex cursor-pointer md:w-full items-center sm:after:content-[''] after:w-full after:h-1px after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
+          class="flex cursor-pointer md:w-full items-center sm:after:content-[''] after:w-full after:(h-1px border-b border-gray-200 border-1 hidden mx-6) sm:after:inline-block dark:after:border-gray-700">
           <span :class="[step >= 1 ? 'text-primary dark:text-primary' : '']"
-            class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
-            <span class="me-2 rounded-full h-6 w-6 flex-center p-1"
+            class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500 flex-shrink-0 ">
+            <span class="me-2 rounded-full h-6 w-6 flex-shrink-0 flex-center p-1"
               :class="[step >= 1 ? 'bg-primary text-white' : '']">1</span>
-            Shopping <span class="hidden sm:inline-flex sm:ms-1">Cart</span>
+            {{ $t('cart.shopping_cart') }}
           </span>
         </div>
         <div
           class="flex cursor-pointer md:w-full items-center after:content-[''] after:w-full after:h-1px after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
           <span :class="[step >= 2 ? 'text-primary dark:text-primary' : '']"
-            class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
-            <span class="me-2 rounded-full h-6 w-6 flex-center p-1"
+            class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500 flex-shrink-0">
+            <span class="me-2 rounded-full h-6 w-6 flex-shrink-0 flex-center p-1"
               :class="[step >= 2 ? 'bg-primary text-white' : '']">2</span>
-            Payment <span class="hidden sm:inline-flex sm:ms-1">Options</span>
+            {{ $t('cart.payment_options') }}
           </span>
         </div>
-        <div class="flex cursor-pointer items-center" :class="[step >= 3 ? 'text-primary dark:text-primary' : '']">
-          <span class="me-2 rounded-full h-6 w-6 flex-center p-1"
+        <div class="flex cursor-pointer items-center flex-shrink-0"
+          :class="[step >= 3 ? 'text-primary dark:text-primary ' : '']">
+          <span class="me-2 rounded-full h-6 w-6 flex-shrink-0 flex-center p-1"
             :class="[step === 3 ? 'bg-primary text-white' : '']">3</span>
-          Order <span class="hidden sm:inline-flex sm:ms-1">Received</span>
+          {{ $t('cart.order_received') }}
         </div>
       </div>
 
@@ -183,16 +201,16 @@ const agree = ref(false)
             <thead class="text-sm text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
               <tr>
                 <th scope="col" class="px-6 py-3">
-                  Product name
+                  {{ $t('cart.product_name') }}
                 </th>
                 <th scope="col" class="px-6 py-3 text-center">
-                  Price
+                  {{ $t('cart.price') }}
                 </th>
                 <th scope="col" class="px-6 py-3 text-center">
-                  Qty
+                  {{ $t('cart.qty') }}
                 </th>
                 <th scope="col" class="px-6 py-3 text-center">
-                  Total
+                  {{ $t('cart.total') }}
                 </th>
                 <th scope="col" class="px-6 py-3 text-center">
                 </th>
@@ -216,7 +234,7 @@ const agree = ref(false)
                 </td>
                 <td class="px-6 py-4 text-center">
                   <SButton class="text-sm" variant="link" @click="remove(item)">
-                    Remove
+                    {{ $t('cart.remove') }}
                   </SButton>
                 </td>
               </tr>
@@ -224,7 +242,7 @@ const agree = ref(false)
             </tbody>
             <tfoot>
               <tr class="font-semibold text-trueGray-800 dark:text-white">
-                <th scope="row" class="px-6 py-3 text-base">Total</th>
+                <th scope="row" class="px-6 py-3 text-base">{{ $t('cart.total') }}</th>
                 <td class="px-6 py-3 text-center"></td>
                 <td class="px-6 py-3 text-center"></td>
                 <td class="px-6 py-3 text-center">${{ total }}</td>
@@ -237,12 +255,12 @@ const agree = ref(false)
         <div class="flex justify-end gap-2 mt-6">
           <SButton variant="white">
             <NuxtLink to="/pricing">
-              Continue shopping
+              {{ $t('cart.continue_shopping') }}
             </NuxtLink>
           </SButton>
 
           <SButton variant="gradient" @click="goToPayment">
-            Payment
+            {{ $t('cart.payment') }}
           </SButton>
         </div>
       </template>
@@ -251,14 +269,14 @@ const agree = ref(false)
         <div class="grid grid-cols-2 gap-2 mt-10">
           <div class="border-1px border-border rounded-4px px-3 py-3">
             <h6 class="text-base font-bold uppercase">
-              Payment information
+              {{ $t('cart.payment_information') }}
             </h6>
 
             <div class="mt-4">
               <form class="w-full space-y-6">
                 <FormField v-slot="{ componentField }" name="name">
                   <SFormItem>
-                    <SFormLabel :class="'text-2xl'">Name</SFormLabel>
+                    <SFormLabel :class="'text-2xl'">{{ $t('cart.name') }}<span class="text-red-500">*</span></SFormLabel>
                     <SFormControl>
                       <SInputText type="text" placeholder="" v-bind="componentField" />
                     </SFormControl>
@@ -267,7 +285,7 @@ const agree = ref(false)
                 </FormField>
                 <FormField v-slot="{ componentField }" name="email">
                   <SFormItem>
-                    <SFormLabel>Email</SFormLabel>
+                    <SFormLabel>{{ $t('cart.email') }}<span class="text-red-500">*</span></SFormLabel>
                     <SFormControl>
                       <SInputText type="text" placeholder="" v-bind="componentField" />
                     </SFormControl>
@@ -276,7 +294,7 @@ const agree = ref(false)
                 </FormField>
                 <FormField v-slot="{ componentField }" name="phone">
                   <SFormItem>
-                    <SFormLabel>Phone number</SFormLabel>
+                    <SFormLabel>{{ $t('cart.phone_number') }}<span class="text-red-500">*</span></SFormLabel>
                     <div class="flex items-center gap-2">
                       <FormField v-slot="{ componentField }" name="countryCode">
                         <SFormItem>
@@ -295,7 +313,7 @@ const agree = ref(false)
                 </FormField>
                 <FormField v-slot="{ componentField }" name="company">
                   <SFormItem>
-                    <SFormLabel>Company</SFormLabel>
+                    <SFormLabel>{{ $t('cart.company') }}</SFormLabel>
                     <SFormControl>
                       <SInputText type="text" placeholder="" v-bind="componentField" />
                     </SFormControl>
@@ -305,7 +323,7 @@ const agree = ref(false)
 
                 <FormField v-slot="{ componentField }" name="address">
                   <SFormItem>
-                    <SFormLabel>Address</SFormLabel>
+                    <SFormLabel>{{ $t('cart.address') }}<span class="text-red-500">*</span></SFormLabel>
                     <SFormControl>
                       <STextArea placeholder="" v-bind="componentField" />
                     </SFormControl>
@@ -315,7 +333,7 @@ const agree = ref(false)
 
                 <FormField v-slot="{ componentField }" name="note">
                   <SFormItem>
-                    <SFormLabel>Order notes</SFormLabel>
+                    <SFormLabel>{{ $t('cart.order_notes') }}</SFormLabel>
                     <SFormControl>
                       <STextArea placeholder="" v-bind="componentField" />
                     </SFormControl>
@@ -329,7 +347,7 @@ const agree = ref(false)
           <div>
             <div class="border-1px  border-border rounded-4px px-3 py-3">
               <h6 class="text-base font-bold uppercase">
-                Your order
+                {{ $t('cart.your_order') }}
               </h6>
               <div class="flex mt-4 flex-col divide-dashed divide-y divide-border">
                 <div class="flex gap-2 pl-6 pr-3 py-2 items-center" v-for="(item, i) in carts" :key="i">
@@ -345,7 +363,7 @@ const agree = ref(false)
 
                 <div class="flex gap-2 py-2 pl-6 pr-3 items-center">
                   <div class="flex-1 font-bold">
-                    Total
+                    {{ $t('cart.total') }}
                   </div>
                   <div class="w-70px">
                     ${{ total }}
@@ -359,7 +377,7 @@ const agree = ref(false)
 
             <div class="border-1px mt-2  border-border rounded-4px px-3 py-3">
               <h6 class="text-base font-bold uppercase">
-                Payment
+                {{ $t('cart.payment') }}
               </h6>
               <div class="mt-4">
 
@@ -369,10 +387,10 @@ const agree = ref(false)
                       class="w-4 h-4 text-primary bg-gray-100 border-gray-300 focus:ring-primary dark:focus:ring-primary dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600 focus:outline-none">
                   </div>
                   <div class="ms-2 text-sm">
-                    <label for="helper-radio-1" class="font-medium text-gray-900 dark:text-gray-300">Bank transfer</label>
-                    <div id="helper-radio-text" class="text-xs font-normal text-gray-500 dark:text-gray-300">Make payments
-                      right into our bank account. Please use your OrderID in the Checkout text section. The order will be
-                      delivered after the money has been transferred.</div>
+                    <label for="helper-radio-1" class="font-medium text-gray-900 dark:text-gray-300">{{
+                      $t('cart.bank_transfer') }}</label>
+                    <div id="helper-radio-text" class="text-xs font-normal text-gray-500 dark:text-gray-300">{{
+                      $t('cart.make_payments_right_into_our_bank_account') }}</div>
                   </div>
                 </div>
 
@@ -382,36 +400,41 @@ const agree = ref(false)
                       class="w-4 h-4 text-primary bg-gray-100 border-gray-300 focus:ring-primary dark:focus:ring-primary focus:outline-none dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600">
                   </div>
                   <div class="ms-2 text-sm">
-                    <label for="helper-radio-2" class="font-medium text-gray-900 dark:text-gray-300">Payment via
-                      VNPAY</label>
-                    <div id="helper-radio-text" class="text-xs font-normal text-gray-500 dark:text-gray-300">Pay online
-                      via VNPAY</div>
+                    <label for="helper-radio-2" class="font-medium text-gray-900 dark:text-gray-300">{{
+                      $t('cart.payment_via_vnpay') }}</label>
+                    <div id="helper-radio-text" class="text-xs font-normal text-gray-500 dark:text-gray-300">{{
+                      $t('cart.pay_online_via_vnpay') }}</div>
                   </div>
                 </div>
 
                 <div class="mt-4 text-sm italic">
-                  Your personal information will be used to process orders, enhance your website experience, and for other
-                  specific purposes described in our
-                  <NuxtLink class="text-primary underline hover:font-bold" to="/privacy">
-                    privacy policy
-                  </NuxtLink>.
+                  <i18n-t tag="p" keypath="cart.your_personal_information_will_be_used_to_process_orders">
+                    <template #privacy>
+                      <NuxtLink target="__blank" class="text-primary underline hover:font-bold" to="/privacy">
+                        {{ $t('cart.privacy_policy') }}
+                      </NuxtLink>
+                    </template>
+                  </i18n-t>
                 </div>
 
                 <div class="flex items-center mb-4 mt-4">
                   <input v-model="agree" id="default-checkbox" type="checkbox" value=""
                     class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary dark:focus:ring-primary dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                  <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I have
-                    read and agree to the website's
-                    <NuxtLink class="text-primary underline hover:font-bold" to="/terms">
-                      terms and conditions *
-                    </NuxtLink>
+                  <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                    <i18n-t tag="p" keypath="cart.i_have_read_and_agree_to_the_websites_terms">
+                      <template #term>
+                        <NuxtLink target="__blank" class="text-primary underline hover:font-bold" to="/terms">
+                          {{ $t('cart.terms_and_conditions') }}
+                        </NuxtLink>
+                      </template>
+                    </i18n-t>
                   </label>
                 </div>
               </div>
 
               <div class="flex justify-end mt-4">
                 <SButton :disabled="!agree" variant="gradient" class="flex-shrink-0" type="submit" @click="submitOrder">
-                  Order
+                  {{ $t('cart.order') }}
                 </SButton>
               </div>
             </div>
@@ -424,27 +447,27 @@ const agree = ref(false)
           <div class="flex-center flex-col gap-2">
             <div class="i-ri:checkbox-circle-fill text-primary size-20" />
             <div class="font-bold text-xl">
-              Thank you. Your order has been received.
+              {{ $t('cart.thank_you_your_order_has_been_received') }}
             </div>
           </div>
 
           <div class="mx-auto max-w-screen-lg">
             <h6 class="text-lg font-bold uppercase mt-10 text-center mb-2">
-              Order details
+              {{ $t('cart.order_details') }}
             </h6>
-            <div class="grid text-sm grid-cols-4 gap-4 bg-gray-200 dark:bg-trueGray-700 rounded-8px px-4 py-3">
+            <div class="grid text-sm grid-cols-4 gap-4 bg-gray-200 dark:bg-trueGray-700 rounded-8px px-4 py-4">
               <h6 class="text-sm font-bold uppercase">
-                Order number
+                {{ $t('cart.order_number') }}
               </h6>
               <h6 class="text-sm font-bold uppercase">
-                Date
+                {{ $t('cart.date') }}
               </h6>
               <h6 class="text-sm font-bold uppercase">
-                Total
+                {{ $t('cart.total') }}
               </h6>
 
               <h6 class="text-sm font-bold uppercase">
-                Payment method
+                {{ $t('cart.payment_method') }}
               </h6>
 
               <div>
@@ -460,7 +483,7 @@ const agree = ref(false)
               </div>
 
               <div>
-                {{ paymentMethod === '1' ? 'Bank transfer' : 'Payment via VNPAY' }}
+                {{ paymentMethod === '1' ? $t('cart.bank_transfer') : $t('cart.payment_via_vnpay') }}
               </div>
             </div>
 
@@ -470,13 +493,13 @@ const agree = ref(false)
                 <thead class="text-sm text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
                     <th scope="col" class="px-6 py-3">
-                      Product
+                      {{ $t('cart.product') }}
                     </th>
                     <th scope="col" class="px-6 py-3 text-center">
-                      Price
+                      {{ $t('cart.price') }}
                     </th>
                     <th scope="col" class="px-6 py-3 text-center">
-                      Total
+                      {{ $t('cart.total') }}
                     </th>
                   </tr>
                 </thead>
@@ -497,7 +520,7 @@ const agree = ref(false)
                 </tbody>
                 <tfoot>
                   <tr class="font-semibold text-trueGray-800 dark:text-white">
-                    <th scope="row" class="px-6 py-3 text-base">Total</th>
+                    <th scope="row" class="px-6 py-3 text-base">{{ $t('cart.total') }}</th>
                     <td class="px-6 py-3 text-center"></td>
                     <td class="px-6 py-3 text-center">${{ total }}</td>
                   </tr>
@@ -510,3 +533,10 @@ const agree = ref(false)
     </div>
   </section>
 </template>
+
+<style>
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+</style>

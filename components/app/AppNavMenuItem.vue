@@ -5,6 +5,7 @@ const props = defineProps<{
   icon?: string
   description?: string
   new?: boolean
+  comingsoon?: boolean
 }>()
 </script>
 
@@ -19,8 +20,11 @@ const props = defineProps<{
         <div>
           <div class="flex items-center text-base font-500">
             {{ title }}
-            <span v-if="props.new" class="ml-1 rounded-lg bg-primary px-1 text-xs text-trueGray-100">
+            <span v-if="props.new" class="ml-1 rounded-lg bg-primary px-2 text-xs text-trueGray-100">
               New
+            </span>
+            <span v-if="props.comingsoon" class="ml-1 rounded-lg bg-trueGray-200 px-2 text-xs">
+              Coming soon
             </span>
           </div>
           <div v-if="description" class="text-sm font-400">

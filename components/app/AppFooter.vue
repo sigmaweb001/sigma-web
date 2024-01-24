@@ -1,16 +1,22 @@
 <script lang="ts" setup>
-const { data: products } = await useAsyncData('products', () => queryContent('products').find())
-const { data: engines } = await useAsyncData('engines', () => queryContent('engines').find())
-const { data: solutions } = await useAsyncData('solutions', () => queryContent('solutions').find())
-const { data: resources } = await useAsyncData('resources', () => queryContent('resources').where({
+const { locale } = useI18n()
+
+function withLocale(path: string) {
+  return locale.value === 'en' ? path : `${locale.value}/${path}`
+}
+
+const { data: products } = await useAsyncData(withLocale('products'), () => queryContent(withLocale('products')).find())
+const { data: engines } = await useAsyncData(withLocale('engines'), () => queryContent(withLocale('engines')).find())
+const { data: solutions } = await useAsyncData(withLocale('solutions'), () => queryContent(withLocale('solutions')).find())
+const { data: resources } = await useAsyncData(withLocale('resources'), () => queryContent(withLocale('resources')).where({
   $or: [
-    { _dir: { $eq: 'resources' } },
+    { _dir: { $eq: withLocale('resources') } },
     { _dir: { $eq: '' } }
   ]
 }).find())
 
-const options = [{ value: 'en', label: 'English' }, { value: 'vi', label: 'Vietnamese' }]
-const { locale } = useI18n()
+const options = [{ value: 'en', label: 'English' }, { value: 'vi', label: 'Tiếng Việt' }]
+
 </script>
 
 <template>
@@ -98,11 +104,11 @@ const { locale } = useI18n()
       </div>
 
       <div class="justify-self-end">
-        <div class="flex justify-between py-3">
+        <div class="flex justify-between items-center py-3">
           <div class="flex gap-3">
             <AppSocialIcons />
           </div>
-          <SSelect v-model="locale" :options="options" class="w-140px! h-36px" />
+          <LangSelect v-model="locale" :options="options" class="w-140px! h-36px" />
           <!-- <AppDarkSwitch class="hidden!" /> -->
         </div>
 

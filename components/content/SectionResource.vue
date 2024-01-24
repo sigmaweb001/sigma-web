@@ -30,7 +30,7 @@ function next() {
       </template>
     </SectionTitle>
   </section>
-  <div class="my-10 gap-24px container">
+  <div class="my-10 gap-24px container relative">
     <swiper-container ref="swiperRef" class="swiper-config" :slides-per-view="3" :space-between="spaceBetween"
       :breakpoints="{
         768: {
@@ -39,16 +39,14 @@ function next() {
       }" :free-mode="true" :loop="true">
       <ContentSlot :use="$slots.default" unwrap="p" />
     </swiper-container>
-  </div>
-  <div class="grid mx-auto container">
-    <div class="flex gap-24px">
-      <SButton variant="outline" class="flex-center rounded-full !h-40px !w-40px !p-0" @click="next">
-        <div class="i-ri:arrow-left-s-line text-24px" />
-      </SButton>
-      <SButton variant="outline" class="flex-center rounded-full !h-40px !w-40px !p-0" @click="prev();">
-        <div class="i-ri:arrow-right-s-line text-24px" />
-      </SButton>
-    </div>
+    <SButton variant="outline"
+      class="flex-center absolute left-0 top-1/2 translate-y--1/2 -translate-x-full  !rounded-full !h-40px !w-40px !p-0" @click="next">
+      <div class="i-ri:arrow-left-s-line text-24px" />
+    </SButton>
+    <SButton variant="outline"
+      class="flex-center absolute right-0 top-1/2 translate-y--1/2 translate-x-full !rounded-full !h-40px !w-40px !p-0" @click="prev();">
+      <div class="i-ri:arrow-right-s-line text-24px" />
+    </SButton>
   </div>
 </template>
 

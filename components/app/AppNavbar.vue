@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+
+const { locale } = useI18n()
 const appConfig = useAppConfig()
 const showBanner = ref(false)
 onMounted(() => {
@@ -21,28 +23,37 @@ const { data: pinResource } = await useAsyncData(`production-pin-resource:${appC
   }
 }).findOne(), { immediate: appConfig.productPinResource.enabled })
 
-const { data: products } = await useAsyncData('products', () => queryContent('products').find())
-const { data: engines } = await useAsyncData('engines', () => queryContent('engines').find())
-const { data: solutions } = await useAsyncData('solutions', () => queryContent('solutions').find())
-const { data: resources } = await useAsyncData('resources', () => queryContent('resources').where({
+function withLocale(path: string) {
+  return locale.value === 'en' ? path : `${locale.value}/${path}`
+}
+const { data: products } = await useAsyncData(withLocale('products'), () => queryContent(withLocale('products')).find())
+const { data: engines } = await useAsyncData(withLocale('engines'), () => queryContent(withLocale('engines')).find())
+const { data: solutions } = await useAsyncData(withLocale('solutions'), () => queryContent(withLocale('solutions')).find())
+const { data: resources } = await useAsyncData(withLocale('resources'), () => queryContent(withLocale('resources')).where({
   $or: [
-    { _dir: { $eq: 'resources' } },
+    { _dir: { $eq: withLocale('resources') } },
     { _dir: { $eq: '' } }
   ]
 }).find())
+
+const localePath = useLocalePath()
+
+const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigmaott.com/')
+
 </script>
 
 <template>
   <div class="sticky top-0 z-10 h-$header-height w-full bg-white shadow" dark="bg-trueGray-900">
-    <AppBanner v-if="showBanner" @close="showBanner = false"/>
+    <AppBanner v-if="showBanner" @close="showBanner = false" />
 
     <div md="hidden" class=" py-12px flex-center">
       <AppHeaderDrawer />
     </div>
 
-    <SNavigationMenu class="hidden w-full" md="grid w-full grid-cols-3 items-center container h-64px xl:px-5 mx-auto">
+    <SNavigationMenu class="hidden w-full"
+      md="grid w-full px-4 grid-cols-[1fr_auto_1fr] items-center h-64px xl:px-5 mx-auto">
       <div class="flex flex-wrap items-center justify-between lg:w-auto flex-shrink-0">
-        <NuxtLink to="/" class="flex items-end gap-x-2 text-primary " dark="text-primary">
+        <NuxtLink :to="localePath('/')" class="flex items-end gap-x-2 text-primary " dark="text-primary">
           <span>
             <img src="/logo_sigma.png" alt="LS" class="h-10 w-10">
           </span>
@@ -86,7 +97,8 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
                     </h1>
                     <div class="my-2 h-1px bg-gray-200 dark:bg-trueGray-700" />
                     <ul class="grid m-0 list-none gap-10px" xl="grid-cols-2">
-                      <AppNavMenuItem v-for="item in products" :key="item.key" :to="item._path" v-bind="item" />
+                      <AppNavMenuItem v-for="item in products" :key="item.key" :to="localePath(item._path)"
+                        v-bind="item" />
                     </ul>
                   </div>
 
@@ -96,7 +108,8 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
                     </h1>
                     <div class="my-2 h-1px bg-gray-200 dark:bg-trueGray-700" />
                     <ul class="grid m-0 list-none gap-10px" md="grid-cols-1">
-                      <AppNavMenuItem v-for="item in engines" :key="item.key" :to="item._path" v-bind="item" />
+                      <AppNavMenuItem v-for="item in engines" :key="item.key" :to="localePath(item._path)"
+                        v-bind="item" />
                     </ul>
                   </div>
                 </div>
@@ -119,7 +132,8 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
                     </h1>
                     <div class="my-2 h-1px bg-gray-200 dark:bg-trueGray-700" />
                     <ul class="grid m-0 list-none gap-10px" md="grid-cols-2">
-                      <AppNavMenuItem v-for="item in solutions" :key="item.key" :to="item._path" v-bind="item" />
+                      <AppNavMenuItem v-for="item in solutions" :key="item.key" :to="localePath(item._path)"
+                        v-bind="item" />
                     </ul>
                   </div>
                 </div>
@@ -130,7 +144,8 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
             <SNavigationMenuTrigger>Resources</SNavigationMenuTrigger>
             <SNavigationMenuContent>
               <ul class="grid grid-flow-row grid-cols-2 m-0 list-none gap-x-12px p-12px" md="w-500px">
-                <AppNavMenuItem v-for="item in resources" :key="item._id" v-bind="item" :icon="item.icon" />
+                <AppNavMenuItem v-for="item in resources" :key="item._id" :to="localePath(item._path)" v-bind="item"
+                  :icon="item.icon" />
               </ul>
             </SNavigationMenuContent>
           </SNavigationMenuItem>
@@ -145,14 +160,14 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
           </SNavigationMenuItem>
 
           <SNavigationMenuItem>
-            <NuxtLink :to="'/pricing'">
+            <NuxtLink exact-active-class="text-primary" :to="localePath('/pricing')">
               <SNavigationMenuLink class="navigation-menu-trigger">
                 Pricing
               </SNavigationMenuLink>
             </NuxtLink>
           </SNavigationMenuItem>
           <SNavigationMenuItem>
-            <NuxtLink :to="'/cart'">
+            <NuxtLink :to="localePath('/cart')">
               <SNavigationMenuLink class="navigation-menu-trigger">
                 Shopping cart
               </SNavigationMenuLink>
@@ -163,13 +178,13 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
       <div class="hidden justify-self-end gap-3 xl:flex">
         <div class="2xl:flex hidden items-center">
           <SNavigationMenuItem>
-            <NuxtLink to="https://portal.sigmaott.com/" external>
+            <NuxtLink :to="loginPath" external target="_blank">
               <SNavigationMenuLink class="navigation-menu-trigger">
                 Login
               </SNavigationMenuLink>
             </NuxtLink>
           </SNavigationMenuItem>
-          <div class="h-30px border-l-1"/>
+          <div class="h-30px border-l-1" />
           <SNavigationMenuItem>
             <NuxtLink to="https://appt.link/meet-with-sigma-team" data-appointlet-modal>
               <SNavigationMenuLink class="navigation-menu-trigger text-primary">
@@ -180,7 +195,7 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
         </div>
         <SNavigationMenuItem class="hidden xl:block">
           <NuxtLink to="https://portal.sigmaott.com/auth/login?redirect=/apps" external target="_blank">
-            <SButton :variant="'gradient'">
+            <SButton :variant="'gradient'" class="text-sm w-125px">
               Start free trial
             </SButton>
           </NuxtLink>

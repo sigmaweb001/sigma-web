@@ -1,14 +1,23 @@
 <script lang="ts" setup>
+useHead({
+  titleTemplate: '%s · Sigma Streaming',
+  meta: [
+    { name: 'twitter:card', content: 'summary_large_image' },
+  ],
+})
 const { params } = useRoute()
-const slug = computed(() => params.slug.join('/'))
-const { data: item } = await useAsyncData('resource-content-blog', () => queryContent('resources').where({
+const slug = computed(() => {
+  const _slug = params.catalog + '/' + params.slug
+  return 'resources/' + _slug
+})
+const { data: item } = await useAsyncData('resource-content-blog' + slug.value, () => queryContent('resources').where({
   _path: {
     $eq: '/' + slug.value
   }
 }).findOne())
 
 const appConfig = useAppConfig()
-const date = computed(() => item.date ? useDateFormat(item.date, 'MMMM D, YYYY') : '')
+const date = computed(() => item.value.date ? useDateFormat(item.value.date, 'MMMM D, YYYY', { locales: 'en' }).value : '')
 const author = computed(() => appConfig.authors.find(a => a.slug === item.value.author))
 
 const links = computed(() => item.value?.body.toc.links)
@@ -36,37 +45,39 @@ const links = computed(() => item.value?.body.toc.links)
                 class="absolute inset-0 h-full w-full rounded-full object-cover" />
             </template>
           </div>
-          <div>
+          <div class="flex items-center text-sm gap-2">
             <div class="text-gray-800 dark:text-gray-400">
-              {{ author?.name }}
+              by {{ author?.name }}
             </div>
-            <div class="flex items-center text-sm space-x-2">
-              <time v-if="date" class="text-gray-500 dark:text-gray-400">
-                {{ date }}
-              </time>
-              <span>{{ item?.readingTime?.text }}</span>
-            </div>
+            <!-- <div class="w-1px h-14px bg-border" /> -->
+            <!-- <span class="text-sm">{{ item?.readingTime?.text }}</span> -->
+            <template v-if="date">
+              <div class="w-1px h-14px bg-border" />
+              <div>
+                Update on:
+                <time class="text-gray-500 ml-1 dark:text-gray-400">
+                  {{ date }}
+                </time>
+              </div>
+            </template>
+
+
           </div>
         </div>
       </div>
     </div>
 
-    <div class="relative z-0 mx-auto aspect-video max-w-screen-lg overflow-hidden lg:rounded-lg">
-      <NuxtImg v-if="item.thumbnail" :src="item?.thumbnail" :alt="item?.thumbnail || 'Thumbnail'"
+    <!-- <div class="relative z-0 mx-auto aspect-video max-w-screen-lg overflow-hidden lg:rounded-lg">
+      <img v-if="item.thumbnail" :src="item?.thumbnail" :alt="item?.thumbnail || 'Thumbnail'"
         class="absolute inset-0 h-full w-full object-cover" />
-    </div>
+    </div> -->
 
     <div class="mx-auto mt-14 flex max-w-screen-xl flex-col gap-5 px-5 md:flex-row">
       <article class="flex-1">
         <div class="mx-auto my-3 max-w-85ch prose prose-trueGray dark:prose-invert">
           <slot />
         </div>
-        <!-- <div class="mb-7 mt-7 flex justify-center">
-            <Link href="/" class="bg-brand-secondary/20 rounded-full px-5 py-2 text-sm text-blue-600 dark:text-blue-500">
-            ← View all items
-            </Link>
-          </div> -->
-        <BlogsAuthorCard v-if="item?.author" :author="item.author" />
+        <!-- <BlogsAuthorCard v-if="item?.author" :author="item.author" /> -->
       </article>
       <div class="sticky top-[calc(var(--header-height))] w-full self-start md:w-256px">
         <div class="mt-5 font-sans">

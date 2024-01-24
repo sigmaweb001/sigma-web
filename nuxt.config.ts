@@ -67,6 +67,11 @@ export default defineNuxtConfig({
     lazy: true,
     langDir: 'locales',
   },
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => ['swiper-container', 'swiper-slide'].includes(tag),
+    },
+  },
   colorMode: {
     classSuffix: '',
     preference: 'light'
@@ -81,5 +86,8 @@ export default defineNuxtConfig({
     public: {
       recaptchaSiteKey: process.env.NUXT_PUBLIC_RECAPTCHA_SITE_KEY
     }
+  },
+  routeRules: {
+    '/resources**': { prerender: false },
   }
 })

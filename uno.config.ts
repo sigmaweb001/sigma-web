@@ -19,7 +19,7 @@ export default defineConfig({
   ],
   shortcuts: [
     ['flex-center', 'flex items-center justify-center'],
-    ['navigation-menu-trigger',   'inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 hover:text-primary']
+    ['navigation-menu-trigger', 'inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 hover:text-primary']
   ],
   rules: [
   ],
@@ -94,10 +94,15 @@ export default defineConfig({
         xl: '1rem',
       },
       screens: {
-        '2xl': '1400px',
       },
     },
-
+    breakpoints: {
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1280px',
+    },
     animation: {
       keyframes: {
         marquee: '{from { transform: translateX(0) } to {transform: translateX(calc(-100% - 2.5rem))}}',

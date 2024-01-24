@@ -6,11 +6,14 @@ const props = defineProps<{
   description?: string
   new?: boolean
 }>()
+
+const localePath = useLocalePath()
+
 </script>
 
 <template>
   <button class="focus:outline-primary/10">
-    <NuxtLink :to="to" v-bind="$attrs"
+    <NuxtLink :to="localePath(to)" v-bind="$attrs"
       class="group block select-none rounded-[6px] p-6px text-gray-800 no-underline outline-none transition-colors hover:bg-primary/10 dark:text-trueGray-200 hover:text-primary">
       <div class="flex items-center gap-2">
         <div class="h-7 w-7 flex-center rounded-full bg-primary/20 text-primary">
