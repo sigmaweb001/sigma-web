@@ -6,7 +6,7 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
 #default
   ::pricing-item
   #title
-  Essential
+  Free
   #price
   $39
   #subprice
@@ -24,9 +24,9 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
 
   ::pricing-item{recommended}
   #title
-  Essential
+  Pro
   #price
-  $39
+  $49
   #subprice
   per seat/mo
   #subtitle
@@ -42,9 +42,9 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
 
   ::pricing-item
   #title
-  Essential
+  Enterprise
   #price
-  $39
+  $59
   #subprice
   per seat/mo
   #subtitle
@@ -574,19 +574,19 @@ Transparency and loyalty are key values at The Sigma Streaming. We offer a varie
     ::
 
     ::table-col{noBg}
-    ::button-link{href="/cart?product=Sigma_Streaming_Basic&price=39" rounded size=default white}
+    ::button-link{href="/cart?product=Free&price=39" rounded size=default white}
     Add to cart
     ::
     ::
 
     ::table-col{noBg}
-    ::button-link{href="/cart?product=Sigma_Streaming_Basic2&price=49" rounded size=default white}
+    ::button-link{href="/cart?product=Pro&price=49" rounded size=default white}
     Add to cart
     ::
     ::
 
     ::table-col{noBg}
-    ::button-link{href="/cart?product=Sigma_Streaming_Basic3&price=59" rounded size=default white}
+    ::button-link{href="/cart?product=Enterprise&price=59" rounded size=default white}
     Add to cart
     ::
     ::
