@@ -57,10 +57,10 @@ const { data: dataResources } = await useAsyncData('resources-list-content', () 
 
 const appConfig = useAppConfig()
 const tags = computed(() => appConfig.tags)
+const localPath = useLocalePath()
 </script>
 
 <template>
-
   <AppNavbar />
   <div class="flex container">
     <div class="mt-120px w-1/4 flex-shrink-0 py-5 pr-10 sticky top-[calc(var(--header-height))]">
@@ -88,7 +88,8 @@ const tags = computed(() => appConfig.tags)
         </h3>
 
         <div v-if="tags?.length" class="mt-4 flex flex-wrap gap-2">
-          <TagItem v-for="(item, index) in tags" :color="item.color" :key="index" :to="`/resources?tag=${item.slug}`">
+          <TagItem v-for="(item, index) in tags" :color="item.color" :key="index"
+            :to="localPath(`/resources?tag=${item.slug}`)">
             {{ item.name }}
           </TagItem>
         </div>

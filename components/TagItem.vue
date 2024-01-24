@@ -17,7 +17,7 @@ const NuxtLink = resolveComponent('NuxtLink')
 </script>
 
 <template>
-  <Component :is="to ? NuxtLink: 'div'" :exact-active-class="'[--opacity:1]'" :to="to" :style="{
+  <Component :external="to ? true : false" :is="to ? NuxtLink: 'div'" :exact-active-class="'[--opacity:1]'" :to="to" :style="{
     '--color': `hsl(${hslColor.h} ${hslColor.s * 100}% ${hslColor.l * 100}% / var(--opacity, 1))`,
     '--textColor': textColor,
     '--opacity': 0.5,
