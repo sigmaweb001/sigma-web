@@ -1,0 +1,1 @@
+import{d as t,V as c,b as n,c as a,H as r}from"./entry.tOimaV4x.js";const m=["src"],i=t({__name:"MarqueeItem",props:{img:{}},setup(e){const s=e,{img:o}=c(s);return(p,_)=>(n(),a("img",{src:r(o),class:"object-scale-down max-h-64px mx-24px my-24px"},null,8,m))}});export{i as default};
