@@ -38,6 +38,9 @@ const { data: resources } = await useAsyncData(withLocale('resources'), () => qu
   ]
 }).find())
 
+console.log('[LOG] ~ resources:', resources)
+
+
 const localePath = useLocalePath()
 
 const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigmaott.com/')
@@ -99,7 +102,7 @@ const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigmaott
                     </h1>
                     <div class="my-2 h-1px bg-gray-200 dark:bg-trueGray-700" />
                     <ul class="grid m-0 list-none gap-10px" xl="grid-cols-2">
-                      <AppNavMenuItem v-for="item in products" :key="item.key" v-bind="item" />
+                      <AppNavMenuItem v-for="item in products" :key="item._id" v-bind="item" />
                     </ul>
                   </div>
 
@@ -109,7 +112,7 @@ const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigmaott
                     </h1>
                     <div class="my-2 h-1px bg-gray-200 dark:bg-trueGray-700" />
                     <ul class="grid m-0 list-none gap-10px" md="grid-cols-1">
-                      <AppNavMenuItem v-for="item in engines" :key="item.key" v-bind="item" />
+                      <AppNavMenuItem v-for="item in engines" :key="item._id" v-bind="item" />
                     </ul>
                   </div>
                 </div>
@@ -132,7 +135,7 @@ const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigmaott
                     </h1>
                     <div class="my-2 h-1px bg-gray-200 dark:bg-trueGray-700" />
                     <ul class="grid m-0 list-none gap-10px" md="grid-cols-2">
-                      <AppNavMenuItem v-for="item in solutions" :key="item.key" v-bind="item" />
+                      <AppNavMenuItem v-for="item in solutions" :key="item._id" v-bind="item" />
                     </ul>
                   </div>
                 </div>
@@ -142,9 +145,16 @@ const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigmaott
           <SNavigationMenuItem>
             <SNavigationMenuTrigger>Resources</SNavigationMenuTrigger>
             <SNavigationMenuContent>
-              <ul class="grid grid-flow-row grid-cols-2 m-0 list-none gap-x-12px p-12px" md="w-500px">
-                <AppNavMenuItem v-for="item in resources" :key="item._id" v-bind="item" :icon="item.icon" />
-              </ul>
+
+              <div class="flex" md="w-screen-md">
+                <div class="grid grid-cols-2 gap-6 px-4 w-full">
+                  <div class="col-span-2 py-4">
+                    <ul class="grid m-0 list-none gap-10px" md="grid-cols-2">
+                      <AppNavMenuItem v-for="item in resources" :key="item._id" v-bind="item" />
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </SNavigationMenuContent>
           </SNavigationMenuItem>
 
