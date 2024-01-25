@@ -15,7 +15,7 @@ const { data: resources } = await useAsyncData('resources', () => queryContent('
 <template>
   <SSheet v-model:open="showDrawer">
     <SSheetTrigger as-child>
-      <NuxtImg src="/logo_sigma.png" alt="LS" class="h-10 w-10 cursor-pointer"/>
+      <img src="/logo_sigma.png" alt="LS" class="h-10 w-10 cursor-pointer"/>
     </SSheetTrigger>
     <SSheetContent>
       <!-- <SSheetHeader>
