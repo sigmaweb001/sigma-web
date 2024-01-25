@@ -1,12 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: {
-    enabled: true
+    enabled: true,
   },
   modules: [
     '@nuxt/content',
     '@vue-macros/nuxt',
-    "@nuxt/image",
+    '@nuxt/image',
     '@unocss/nuxt',
     '@nuxtjs/google-fonts',
     '@nuxtjs/i18n',
@@ -14,8 +14,18 @@ export default defineNuxtConfig({
     '@nuxthq/studio',
     'nuxt-icon',
     '@nuxtjs/color-mode',
-    "@vueuse/nuxt"
+    '@vueuse/nuxt',
+    'nuxt-module-eslint-config',
+    "@nuxt/devtools"
   ],
+  features: {
+    // For UnoCSS
+    inlineStyles: false,
+  },
+
+  eslintConfig: {
+    setup: false,
+  },
   content: {
     markdown: { remarkPlugins: ['remark-reading-time'] },
   },
@@ -35,19 +45,19 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: "stylesheet", href: "https://js.appointlet.com/styles.css" }
-      ]
-    }
+        { rel: 'stylesheet', href: 'https://js.appointlet.com/styles.css' },
+      ],
+    },
   },
   macros: {
     betterDefine: false,
   },
   css: [
-    '@unocss/reset/tailwind.css'
+    '@unocss/reset/tailwind.css',
   ],
   googleFonts: {
     families: {
-      Inter: '100..800'
+      Inter: '100..800',
     },
     download: true,
   },
@@ -70,25 +80,25 @@ export default defineNuxtConfig({
   },
   vue: {
     compilerOptions: {
-      isCustomElement: (tag) => ['swiper-container', 'swiper-slide'].includes(tag),
+      isCustomElement: tag => ['swiper-container', 'swiper-slide'].includes(tag),
     },
   },
   colorMode: {
     classSuffix: '',
-    preference: 'light'
+    preference: 'light',
   },
 
   $development: {
     css: [
       'vue-json-pretty/lib/styles.css',
-    ]
+    ],
   },
   runtimeConfig: {
     public: {
-      recaptchaSiteKey: process.env.NUXT_PUBLIC_RECAPTCHA_SITE_KEY
-    }
+      recaptchaSiteKey: process.env.NUXT_PUBLIC_RECAPTCHA_SITE_KEY,
+    },
   },
   routeRules: {
     '/resources**': { prerender: false },
-  }
+  },
 })

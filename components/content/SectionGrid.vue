@@ -18,10 +18,11 @@ const { col } = definePropsRefs<{
         <ContentSlot :use="$slots.subtitle" unwrap="p" />
       </template>
     </SectionTitle>
-    <div :style="{ '--col': col ?? 2, '--gap': gap ? gap + 'px' : '32px', '--padding': padding ? padding + 'px' : '0px' }"
+    <div
+      :style="{ '--col': col ?? 2, '--gap': gap ? `${gap}px` : '16px', '--padding': padding ? `${padding}px` : '0px' }"
       class="grid grid-cols-[repeat(var(--col),minmax(0,1fr))] gap-[var(--gap)] p-[var(--padding)]"
-      :class="[bg ? 'bg-gray-100 dark:bg-trueGray-800 rounded-xl' : '']">
-
+      :class="[bg ? 'bg-gray-100 dark:bg-trueGray-800 rounded-xl' : '']"
+    >
       <slot />
     </div>
   </section>

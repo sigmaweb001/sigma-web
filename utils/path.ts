@@ -6,3 +6,9 @@ export function getPath(base: string, ...slugs: string[]) {
     query: useRoute().query,
   })
 }
+
+export function withLocale(path: string) {
+  const { locale } = useI18n()
+
+  return locale.value === 'en' ? path : `${locale.value}/${path}`
+}

@@ -1,10 +1,6 @@
 <script lang="ts" setup>
 const { locale } = useI18n()
 
-function withLocale(path: string) {
-  return locale.value === 'en' ? path : `${locale.value}/${path}`
-}
-
 const { data: products } = await useAsyncData(withLocale('products'), () => queryContent(withLocale('products')).find())
 const { data: engines } = await useAsyncData(withLocale('engines'), () => queryContent(withLocale('engines')).find())
 const { data: solutions } = await useAsyncData(withLocale('solutions'), () => queryContent(withLocale('solutions')).find())

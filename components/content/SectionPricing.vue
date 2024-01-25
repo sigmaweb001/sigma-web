@@ -7,10 +7,12 @@ const { col } = definePropsRefs<{
 const targetRef = ref(null)
 const full = ref(true)
 const appConfig = useAppConfig()
+const { top } = useElementBounding(targetRef)
 
-useIntersectionObserver(targetRef, ([{ isIntersecting }]) => {
-  full.value = isIntersecting
-}, { threshold: 1, rootMargin: appConfig.banner.enabled ? '-104px 0px 0px 0px' : '-64px 0px 0px 0px' })
+watch(top, () => {
+  const offset = appConfig.banner.enabled ? 104 : 64
+  full.value = top.value > offset
+})
 
 provide('full', full)
 

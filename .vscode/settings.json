@@ -40,7 +40,7 @@
     "typescriptreact",
     "vue",
     "html",
-    "markdown",
+    // "markdown",
     "json",
     "jsonc",
     "yaml",
