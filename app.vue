@@ -1,18 +1,23 @@
 <script setup lang="ts">
-
 const showDrawer = useShowDrawer()
 
 useRouter().afterEach(() => setTimeout(() => {
   showDrawer.value = false
 }, 50))
 
+const { params } = useRoute()
+const isResources = computed(() => params.slug.includes('resources'))
+const isResourcesContent = computed(() => params.slug.length === 3)
 
+const layout = computed(() => isResources.value ? isResourcesContent.value ? 'blog' : 'resources' : 'default')
 </script>
 
 <template>
   <div>
-    <NuxtLoadingIndicator />
-    <NuxtPage />
+    <NuxtLayout :name="layout">
+      <NuxtLoadingIndicator />
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>
 
@@ -24,7 +29,6 @@ body,
   font-family: 'Inter', sans-serif;
   @apply p-0 m-0 antialiased text-secondary scroll-smooth;
 }
-
 
 html.dark {
   @apply bg-background text-foreground;
@@ -116,12 +120,12 @@ p {
   @apply text-pretty;
 }
 
-h1>a,
-h2>a,
-h3>a,
-h4>a,
-h5>a,
-h6>a {
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
   @apply block;
   text-decoration: none !important;
 }
@@ -165,19 +169,24 @@ em {
   @apply text-primary not-italic;
 }
 
+b,
+strong {
+  @apply font-600;
+}
+
 section {
   @apply mx-auto container my-6 xl:my-8;
 }
 
-[center=true] {
+[center='true'] {
   @apply block text-center;
 }
 
-[left=true] {
+[left='true'] {
   @apply block text-left;
 }
 
-[right=true] {
+[right='true'] {
   @apply block text-right;
 }
 </style>

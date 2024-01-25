@@ -22,65 +22,69 @@ const targetRef2 = ref()
 const { height } = useElementBounding(targetRef2)
 
 watchOnce(height, () => {
-  if (height.value === 0) {
+  if (height.value === 0)
     hPricing.value = 0
-  } else {
+  else
     hPricing.value = height.value
-  }
 })
-
-
 </script>
 
 <template>
   <div class="" :class="[full ? '' : '']">
     <section :class="[full ? '' : 'opacity-0']">
-      <div ref="targetRef"
-        :style="{ '--col': col ?? 4, '--gap': gap ? gap + 'px' : '24px', '--padding': padding ? padding + 'px' : '0px' }"
-        class="grid xl:grid-cols-[repeat(var(--col),minmax(0,1fr))] gap-[var(--gap)] p-[var(--padding)]">
-
-        <div class="" :class="`container flex w-full flex-col mt-10`">
-
+      <div
+        ref="targetRef"
+        :style="{ '--col': col ?? 4, '--gap': gap ? `${gap}px` : '24px', '--padding': padding ? `${padding}px` : '0px' }"
+        class="grid gap-[var(--gap)] p-[var(--padding)] xl:grid-cols-[repeat(var(--col),minmax(0,1fr))]"
+      >
+        <div class="mt-10 w-full flex flex-col container">
           <h2
-            class="mt-3 max-w-2xl text-3xl font-bold leading-snug tracking-tight text-gray-800 lg:text-4xl lg:leading-tight dark:text-white">
+            class="mt-3 max-w-2xl text-3xl text-gray-800 font-bold leading-snug tracking-tight lg:text-4xl dark:text-white lg:leading-tight"
+          >
             <ContentSlot :use="$slots.title" unwrap="p" />
           </h2>
-          <div v-if="full"
-            class="py-2 text-start text-base prose prose-trueGray dark:prose-invert lg:text-base xl:text-base">
+          <div
+            v-if="full"
+            class="py-2 text-start text-base prose prose-trueGray lg:text-base xl:text-base dark:prose-invert"
+          >
             <ContentSlot :use="$slots.subtitle" unwrap="p" />
           </div>
         </div>
-        <div :style="{
-          '--col': (col ?? 4) - 1,
-          '--gap': gap ? gap + 'px' : '32px',
-          '--padding': padding ? padding + 'px' : '0px',
-          '--span': (col ?? 4) - 1
-        }"
-          class="grid col-span-[var(--span)] grid-cols-[repeat(var(--col),minmax(0,1fr))] gap-[var(--gap)] p-[var(--padding)]">
+        <div
+          :style="{
+            '--col': (col ?? 4) - 1,
+            '--gap': gap ? `${gap}px` : '32px',
+            '--padding': padding ? `${padding}px` : '0px',
+            '--span': (col ?? 4) - 1,
+          }"
+          class="grid col-span-[var(--span)] grid-cols-[repeat(var(--col),minmax(0,1fr))] gap-[var(--gap)] p-[var(--padding)]"
+        >
           <ContentSlot :use="$slots.default" unwrap="p" />
         </div>
       </div>
     </section>
     <div ref="targetRef2" :class="[full || stop ? 'hidden' : 'block z-100 fixed pt-5 pb-5 w-screen top-0 bg-background']">
-      <div class="container mx-auto">
+      <div class="mx-auto container">
         <div
-          :style="{ '--col': col ?? 4, '--gap': gap ? gap + 'px' : '24px', '--padding': padding ? padding + 'px' : '0px' }"
-          class="grid xl:grid-cols-[repeat(var(--col),minmax(0,1fr))] gap-[var(--gap)] p-[var(--padding)]">
-
-          <div class="" :class="`container flex w-full flex-col mt-10`">
-
+          :style="{ '--col': col ?? 4, '--gap': gap ? `${gap}px` : '24px', '--padding': padding ? `${padding}px` : '0px' }"
+          class="grid gap-[var(--gap)] p-[var(--padding)] xl:grid-cols-[repeat(var(--col),minmax(0,1fr))]"
+        >
+          <div class="mt-10 w-full flex flex-col container">
             <h2
-              class="mt-3 max-w-2xl text-3xl font-bold leading-snug tracking-tight text-gray-800 lg:text-4xl lg:leading-tight dark:text-white">
+              class="mt-3 max-w-2xl text-3xl text-gray-800 font-bold leading-snug tracking-tight lg:text-4xl dark:text-white lg:leading-tight"
+            >
               <ContentSlot :use="$slots.title" unwrap="p" />
             </h2>
           </div>
-          <div :style="{
-            '--col': (col ?? 4) - 1,
-            '--gap': gap ? gap + 'px' : '32px',
-            '--padding': padding ? padding + 'px' : '0px',
-            '--span': (col ?? 4) - 1
-          }"
-            class="grid col-span-[var(--span)] grid-cols-[repeat(var(--col),minmax(0,1fr))] gap-[var(--gap)] p-[var(--padding)]">
+          <div
+            :style="{
+              '--col': (col ?? 4) - 1,
+              '--gap': gap ? `${gap}px` : '32px',
+              '--padding': padding ? `${padding}px` : '0px',
+              '--span': (col ?? 4) - 1,
+            }"
+            class="grid col-span-[var(--span)] grid-cols-[repeat(var(--col),minmax(0,1fr))] gap-[var(--gap)] p-[var(--padding)]"
+          >
             <ContentSlot :use="$slots.default" unwrap="p" />
           </div>
         </div>

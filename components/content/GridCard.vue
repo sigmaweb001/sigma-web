@@ -15,6 +15,8 @@ const rowSpan = computed(() => {
     rowSpan++
   if (slot.default)
     rowSpan++
+  if (slot.cta)
+    rowSpan++
   return rowSpan
 })
 </script>
@@ -47,6 +49,9 @@ const rowSpan = computed(() => {
     </div>
     <div v-if="$slots.default" class="text-15px/22px">
       <ContentSlot :use="$slots.default" unwrap="p" />
+    </div>
+    <div v-if="$slots.cta" class="mx-auto text-15px/22px">
+      <ContentSlot :use="$slots.cta" unwrap="p" />
     </div>
   </div>
 </template>

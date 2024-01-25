@@ -39,7 +39,7 @@
     "eslint-plugin-format": "^0.1.0",
     "eslint-ts-patch": "^8.56.0-0",
     "libphonenumber-js": "^1.10.53",
-    "nuxt": "^3.9.1",
+    "nuxt": "^3.9.3",
     "nuxt-icon": "^0.6.8",
     "nuxt-module-eslint-config": "^0.1.0",
     "remark-reading-time": "^2.0.1",

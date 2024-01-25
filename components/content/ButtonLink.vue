@@ -8,7 +8,7 @@ const props = withDefaults(defineProps<{
   link?: boolean
 }>(), {
   size: 'lg',
-  rounded: true
+  rounded: true,
 })
 
 const NuxtLink = resolveComponent('NuxtLink')
@@ -18,10 +18,12 @@ const external = computed(() => props.href.startsWith('http'))
 </script>
 
 <template>
-  <SButton :external="external" class="underline-transparent hover:underline-current"
+  <SButton
+    :external="external" class="underline-transparent hover:underline-current"
     :to="external ? href : localPath(href)" :as="NuxtLink" :size="size"
     :variant="link ? 'link' : outline ? 'outline' : white ? 'white' : 'gradient'"
-    :class="[rounded ? 'rounded-full!' : '']">
+    :class="[rounded ? 'rounded-full!' : '']"
+  >
     <slot />
   </SButton>
 </template>

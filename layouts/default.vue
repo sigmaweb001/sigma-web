@@ -8,7 +8,9 @@ useHead({
 </script>
 
 <template>
-  <AppNavbar />
-  <slot />
-  <AppFooter />
+  <main>
+    <AppNavbar />
+    <slot />
+    <AppFooter />
+  </main>
 </template>
