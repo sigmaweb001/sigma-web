@@ -19,7 +19,10 @@ const links = computed(() => item.value?.body.toc.links)
     <div class="flex gap-5" xl="gap-10">
       <div class="w-256px py-10">
         <div class="flex flex-col gap-2">
-          <NuxtLink v-for="item in legal" :key="item._path" exact-active-class="text-primary" class="text-base font-500 hover:(text-primary underline)" :to="item._path">
+          <NuxtLink
+            v-for="item in legal" :key="item._path" exact-active-class="text-primary underline"
+            class="text-base font-500 hover:(text-primary underline)" :to="item._path"
+          >
             {{ item.title }}
           </NuxtLink>
         </div>
@@ -42,8 +45,12 @@ const links = computed(() => item.value?.body.toc.links)
           </div>
         </div>
       </div>
-      <div class="mx-3 mx-auto my-3 max-w-85ch flex-1 prose prose-trueGray dark:prose-invert">
+      <div class="relative mx-3 mx-auto my-3 max-w-85ch flex-1 pt-6 prose prose-trueGray dark:prose-invert">
         <slot />
+        <SButton variant="outline" class="absolute right-0 top-0 rounded-full!" @click="window.print()">
+          <Icon name="material-symbols:print-outline-rounded" class="mr-2" />
+          Print page
+        </SButton>
       </div>
     </div>
   </div>
