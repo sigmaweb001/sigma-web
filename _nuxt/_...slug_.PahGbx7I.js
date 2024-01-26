@@ -1,1 +1,0 @@
-import{b as o,c as n,g as t,w as c,G as s,H as a}from"./entry.WakF05JR.js";import{_ as r}from"./_plugin-vue_export-helper.x3n3nnut.js";const u={};function m(p,f){const _=s,e=a;return o(),n("div",null,[t(e,{name:"resources"},{default:c(()=>[t(_)]),_:1})])}const d=r(u,[["render",m]]);export{d as default};
