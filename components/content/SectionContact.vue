@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { Form, Field as FormField } from 'vee-validate'
-import { useForm } from 'vee-validate'
+import { Form, Field as FormField, useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import * as z from 'zod'
 import { getCountries, getCountryCallingCode, getExampleNumber, parsePhoneNumberFromString } from 'libphonenumber-js'
@@ -34,10 +33,10 @@ const formSchema = toTypedSchema(
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           message: t('contact.invalid-phone-number-for-the-selected-country'),
-        });
+        })
       }
-    })
-  })
+    }),
+  }),
 )
 
 const form = useForm({
@@ -48,7 +47,7 @@ const form = useForm({
     productRequests: [],
     note: '',
     company: '',
-  }
+  },
 })
 
 const { recaptchaLoaded, executeRecaptcha } = useReCaptcha()
@@ -65,16 +64,16 @@ const onSubmit = form.handleSubmit(async (values) => {
   await $fetch('https://dev-streaming.gviet.vn:8783/auth-service/v1/contact-us', {
     method: 'POST',
     body: {
-      ...form.values
+      ...form.values,
     },
     headers: {
-      Recaptcha: await recaptcha()
-    }
+      Recaptcha: await recaptcha(),
+    },
   })
   success.value = true
 })
 
-const optionsTitle: { value:string, label: string }[] = [
+const optionsTitle: { value: string, label: string }[] = [
   {
     value: 'Mr.',
     label: 'Mr.',
@@ -157,16 +156,18 @@ const options = getCountries().map((countryCode) => {
 
 const phonePrefix = computed(() => getCountryCallingCode(form.values.countryCode || 'VN'))
 const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN', example)?.formatNational().slice(1))
-
 </script>
 
 <template>
-  <div v-if="success" class="flex-col flex gap-3 pb-20 pt-20 container items-center justify-center m-auto">
-    <div class="flex gap-2 items-center">
-      <Icon name="i-carbon:checkmark-filled"
-        class="h-10 w-10 p-2 flex-center rounded-full flex-shrink-0 bg-primary/20 text-primary">
-      </Icon>
-      <h2 class="text-2xl text-center font-semibold">{{ $t('contact.success') }}</h2>
+  <div v-if="success" class="m-auto flex flex-col items-center justify-center gap-3 pb-20 pt-20 container">
+    <div class="flex items-center gap-2">
+      <Icon
+        name="i-carbon:checkmark-filled"
+        class="h-10 w-10 flex-center flex-shrink-0 rounded-full bg-primary/20 p-2 text-primary"
+      />
+      <h2 class="text-center text-2xl font-semibold">
+        {{ $t('contact.success') }}
+      </h2>
     </div>
     <img src="/image_78.png" alt="logo" class="mr-8px h-263px w-263px">
     <div class="text-base font-500">
@@ -178,40 +179,44 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
       </SButton>
     </NuxtLink>
   </div>
-  <div class="flex justify-items-center pb-20 pt-10 container" v-else>
-    <div class="w-full bg-primary/20 py-10 px-8 rounded-sm max-w-xl hidden" lg="block">
-      <h1 v-if="$slots.title" class="text-4xl font-bold leading-snug tracking-tight text-gray-800 text-center" lg="text-4xl leading-tight"
-        xl="text-4xl leading-tight" dark="text-black">
+  <div v-else class="flex justify-items-center pb-20 pt-10 container">
+    <div class="hidden max-w-xl w-full rounded-sm bg-primary/20 px-8 py-10" lg="block">
+      <h1
+        v-if="$slots.title" class="text-center text-4xl text-gray-800 font-bold leading-snug tracking-tight" lg="text-4xl leading-tight"
+        xl="text-4xl leading-tight" dark="text-black"
+      >
         <ContentSlot :use="$slots.title" unwrap="p" />
       </h1>
       <p v-if="$slots.subtitle" class="text-base text-gray-500 dark:text-gray-300">
         <ContentSlot :use="$slots.subtitle" unwrap="p" />
       </p>
-      <div class="flex flex-col pt-2 gap-1">
+      <div class="flex flex-col gap-1 pt-2">
         <ContentSlot :use="$slots.default" unwrap="ul" />
       </div>
-      <div class="relative w-full min-h-370px flex items-center justify-center">
+      <div class="relative min-h-370px w-full flex items-center justify-center">
         <Slot class="absolute inset-0 h-full w-full object-scale-down">
           <ContentSlot :use="$slots.image" unwrap="p" />
         </Slot>
       </div>
     </div>
     <div class="w-full">
-      <h2 class="text-2xl text-center font-semibold">{{ $t('contact.form_title') }}</h2>
-      <form class="w-full space-y-2 xl:space-y-6 pl-20 py-10 custom-form" @submit="onSubmit">
+      <h2 class="text-center text-2xl font-semibold">
+        {{ $t('contact.form_title') }}
+      </h2>
+      <form class="custom-form w-full py-10 pl-20 space-y-2 xl:space-y-6" @submit="onSubmit">
         <FormField v-slot="{ componentField }" name="title">
-          <SFormItem v-auto-animate class="flex flex-col xl:flex-row gap-2">
+          <SFormItem class="flex flex-col gap-2 xl:flex-row">
             <SFormLabel>{{ $t('contact.title') }} <span class="text-red-500">*</span></SFormLabel>
             <div class="w-full">
               <SFormControl>
-                <SSelect v-bind="componentField" :options="optionsTitle" :default-value="form.values.title"/>
+                <SSelect v-bind="componentField" :options="optionsTitle" :default-value="form.values.title" />
               </SFormControl>
               <SFormMessage />
             </div>
           </SFormItem>
         </FormField>
         <FormField v-slot="{ componentField }" name="name">
-          <SFormItem v-auto-animate class="flex flex-col xl:flex-row gap-2">
+          <SFormItem class="flex flex-col gap-2 xl:flex-row">
             <SFormLabel>{{ $t('contact.name') }} <span class="text-red-500">*</span></SFormLabel>
             <div class="w-full">
               <SFormControl>
@@ -222,7 +227,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
           </SFormItem>
         </FormField>
         <FormField v-slot="{ componentField }" name="email">
-          <SFormItem v-auto-animate class="flex flex-col xl:flex-row gap-2">
+          <SFormItem class="flex flex-col gap-2 xl:flex-row">
             <SFormLabel>Email <span class="text-red-500">*</span></SFormLabel>
             <div class="w-full">
               <SFormControl>
@@ -233,14 +238,14 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
           </SFormItem>
         </FormField>
         <FormField v-slot="{ componentField }" name="phone">
-          <SFormItem v-auto-animate class="flex flex-col xl:flex-row gap-2">
+          <SFormItem class="flex flex-col gap-2 xl:flex-row">
             <SFormLabel>{{ $t('cart.phone_number') }} <span class="text-red-500">*</span></SFormLabel>
             <div class="w-full">
               <div class="flex items-center gap-2">
                 <FormField v-slot="{ componentField }" name="countryCode">
-                  <SFormItem v-auto-animate>
+                  <SFormItem>
                     <SFormControl>
-                      <SSelect v-bind="componentField" :default-value="form.values.countryCode" :options="options" class="w-150px!"/>
+                      <SSelect v-bind="componentField" :default-value="form.values.countryCode" :options="options" class="w-150px!" />
                     </SFormControl>
                   </SFormItem>
                 </FormField>
@@ -253,7 +258,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
           </SFormItem>
         </FormField>
         <FormField v-slot="{ componentField }" name="company">
-          <SFormItem v-auto-animate class="flex flex-col xl:flex-row gap-2">
+          <SFormItem class="flex flex-col gap-2 xl:flex-row">
             <SFormLabel>{{ $t('cart.company') }}</SFormLabel>
             <div class="w-full">
               <SFormControl>
@@ -264,7 +269,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
           </SFormItem>
         </FormField>
         <FormField name="items1">
-          <SFormItem v-auto-animate class="flex flex-col xl:flex-row gap-2">
+          <SFormItem class="flex flex-col gap-2 xl:flex-row">
             <SFormLabel>{{ $t('contact.product_request') }}</SFormLabel>
             <div class="w-full">
               <FormField v-for="item in products" v-slot="{ value, handleChange }" :key="item.id" type="checkbox" :value="item.id" :unchecked-value="false" name="productRequests">
@@ -275,7 +280,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
                       @update:checked="handleChange"
                     />
                   </SFormControl>
-                  <SFormLabel class="font-normal! text-sm!">
+                  <SFormLabel class="text-sm! font-normal!">
                     {{ item.label }}
                   </SFormLabel>
                 </SFormItem>
@@ -284,7 +289,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
           </SFormItem>
         </FormField>
         <FormField v-slot="{ componentField }" name="note">
-          <SFormItem v-auto-animate class="flex flex-col xl:flex-row gap-2">
+          <SFormItem class="flex flex-col gap-2 xl:flex-row">
             <SFormLabel>{{ $t('contact.additional-information') }}</SFormLabel>
             <div class="w-full">
               <SFormControl>
@@ -295,15 +300,16 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
           </SFormItem>
         </FormField>
 
-        <SButton class="flex-shrink-0 float-right" variant="gradient" type="submit" @click="onSubmit">
+        <SButton class="float-right flex-shrink-0" variant="gradient" type="submit" @click="onSubmit">
           {{ $t('contact.submit') }}
         </SButton>
       </form>
     </div>
   </div>
 </template>
+
 <style scoped>
 .custom-form p {
-  @apply my-1!
+  @apply my-1!;
 }
 </style>

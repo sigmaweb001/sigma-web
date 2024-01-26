@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: {
-    enabled: false,
+    enabled: true,
   },
   modules: [
     '@nuxt/content',
@@ -30,24 +30,24 @@ export default defineNuxtConfig({
     markdown: { remarkPlugins: ['remark-reading-time'] },
   },
   app: {
-    // head: {
-    //   script: [
-    //     {
-    //       src: '//fw-cdn.com/11186380/3902989.js',
-    //       async: true,
-    //       defer: true,
-    //     },
-    //     {
-    //       src: 'https://js.appointlet.com/',
-    //       async: true,
-    //       defer: true,
-    //     },
-    //   ],
-    //   link: [
-    //     { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-    //     { rel: 'stylesheet', href: 'https://js.appointlet.com/styles.css' },
-    //   ],
-    // },
+    head: {
+      script: [
+        {
+          src: '//fw-cdn.com/11186380/3902989.js',
+          async: true,
+          defer: true,
+        },
+        {
+          src: 'https://js.appointlet.com/',
+          async: true,
+          defer: true,
+        },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'stylesheet', href: 'https://js.appointlet.com/styles.css' },
+      ],
+    },
   },
   macros: {
     betterDefine: false,
@@ -97,8 +97,5 @@ export default defineNuxtConfig({
     public: {
       recaptchaSiteKey: process.env.NUXT_PUBLIC_RECAPTCHA_SITE_KEY,
     },
-  },
-  routeRules: {
-    '/resources**': { prerender: false },
   },
 })
