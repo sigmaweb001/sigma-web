@@ -8,10 +8,12 @@ useRouter().afterEach(() => setTimeout(() => {
 
 <template>
   <div>
-    <NuxtLayout>
-      <NuxtLoadingIndicator />
-      <NuxtPage />
-    </NuxtLayout>
+    <STooltipProvider :delay-duration="300" :skip-delay-duration="200">
+      <NuxtLayout>
+        <NuxtLoadingIndicator />
+        <NuxtPage />
+      </NuxtLayout>
+    </STooltipProvider>
   </div>
 </template>
 
