@@ -40,7 +40,7 @@ const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigmaott
 </script>
 
 <template>
-  <div class="sticky top-0 z-10 h-$header-height w-full bg-white shadow" dark="bg-trueGray-900">
+  <div class="sticky top-0 z-10 h-$header-height w-full bg-white shadow print:hidden" dark="bg-trueGray-900">
     <AppBanner v-if="showBanner" @close="showBanner = false" />
 
     <div md="hidden" class="flex-center py-12px">

@@ -9,6 +9,10 @@ const { data: item } = await useAsyncData(`legal-content-item${slug.value}`, () 
 }).findOne(), { watch: [slug] })
 
 const links = computed(() => item.value?.body.toc.links)
+
+function printContent() {
+  window.print()
+}
 </script>
 
 <template>
@@ -17,7 +21,7 @@ const links = computed(() => item.value?.body.toc.links)
       Terms & Policies
     </h2>
     <div class="flex gap-5" xl="gap-10">
-      <div class="w-256px py-10">
+      <div class="w-256px py-10 print:hidden">
         <div class="flex flex-col gap-2">
           <NuxtLink
             v-for="item in legal" :key="item._path" exact-active-class="text-primary underline"
@@ -47,8 +51,8 @@ const links = computed(() => item.value?.body.toc.links)
       </div>
       <div class="relative mx-3 mx-auto my-3 max-w-85ch flex-1 pt-6 prose prose-trueGray dark:prose-invert">
         <slot />
-        <SButton variant="outline" class="absolute right-0 top-0 rounded-full!" @click="window.print()">
-          <Icon name="material-symbols:print-outline-rounded" class="mr-2" />
+        <SButton variant="outline" class="absolute right-0 top-0 print:hidden rounded-full!" @click="printContent">
+          <Icon name="material-symbols:print-outline-rounded" class="mr-2 size-5" />
           Print page
         </SButton>
       </div>

@@ -29,7 +29,7 @@ const localPath = useLocalePath()
       {{ item.title }}
     </NuxtLink>
   </DefineTemplate>
-  <div class="mt-20 border-b border-t border-gray-200 dark:border-trueGray-700">
+  <div class="mt-20 border-b border-t border-gray-200 print:hidden dark:border-trueGray-700">
     <footer class="grid grid-cols-3 gap-10 px-10 py-10 text-15px container lg:grid-cols-5">
       <div class="flex flex-col gap-8px">
         <div class="mb-8px cursor-default text-primary font-500">
@@ -68,7 +68,7 @@ const localPath = useLocalePath()
       </div>
     </footer>
   </div>
-  <div class="py-10">
+  <div class="py-10 print:hidden">
     <footer class="grid grid-cols-2 items-end gap-10 container">
       <div class="left">
         <div>
