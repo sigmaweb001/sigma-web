@@ -4,77 +4,68 @@ const { locale } = useI18n()
 const { data: products } = await useAsyncData(withLocale('products'), () => queryContent(withLocale('products')).find())
 const { data: engines } = await useAsyncData(withLocale('engines'), () => queryContent(withLocale('engines')).find())
 const { data: solutions } = await useAsyncData(withLocale('solutions'), () => queryContent(withLocale('solutions')).find())
+const { data: companies } = await useAsyncData(withLocale('companies'), () => queryContent(withLocale('companies')).find())
+const { data: legal } = await useAsyncData(withLocale('legal'), () => queryContent(withLocale('legal')).find())
+
 const { data: resources } = await useAsyncData(withLocale('resources'), () => queryContent(withLocale('resources')).where({
   $or: [
     { _dir: { $eq: withLocale('resources') } },
-    { _dir: { $eq: '' } }
-  ]
+    { _dir: { $eq: '' } },
+  ],
 }).find())
 
 const options = [{ value: 'en', label: 'English' }, { value: 'vi', label: 'Tiếng Việt' }]
+const [DefineTemplate, ReuseTemplate] = createReusableTemplate<{ items: any[] }>()
 
+const localPath = useLocalePath()
 </script>
 
 <template>
+  <DefineTemplate v-slot="{ items }">
+    <NuxtLink
+      v-for="item in items" :key="item._path" hover="underline underline-primary text-primary"
+      :to="localPath(item._path)"
+    >
+      {{ item.title }}
+    </NuxtLink>
+  </DefineTemplate>
   <div class="mt-20 border-b border-t border-gray-200 dark:border-trueGray-700">
-    <footer class="grid grid-cols-3 lg:grid-cols-5 gap-10 px-10 py-10 text-15px container">
-
+    <footer class="grid grid-cols-3 gap-10 px-10 py-10 text-15px container lg:grid-cols-5">
       <div class="flex flex-col gap-8px">
-        <div class="mb-8px cursor-default font-500 text-primary">
+        <div class="mb-8px cursor-default text-primary font-500">
           Products
         </div>
-
-        <NuxtLink v-for="item in products" :key="item._path" hover="underline underline-primary text-primary"
-          :to="item._path">
-          {{ item.title }}
-        </NuxtLink>
+        <ReuseTemplate :items="products" />
       </div>
 
       <div class="flex flex-col gap-8px">
-        <div class="mb-8px cursor-default font-500 text-primary">
+        <div class="mb-8px cursor-default text-primary font-500">
           Engines
         </div>
-
-        <NuxtLink v-for="item in engines" :key="item._path" hover="underline underline-primary text-primary"
-          :to="item._path">
-          {{ item.title }}
-        </NuxtLink>
+        <ReuseTemplate :items="engines" />
       </div>
 
       <div class="flex flex-col gap-8px">
-        <div class="mb-8px cursor-default font-500 text-primary">
+        <div class="mb-8px cursor-default text-primary font-500">
           Solutions
         </div>
-
-        <NuxtLink v-for="item in solutions" :key="item._path" hover="underline underline-primary text-primary"
-          :to="item._path">
-          {{ item.title }}
-        </NuxtLink>
+        <ReuseTemplate :items="solutions" />
       </div>
 
       <div class="flex flex-col gap-8px">
-        <div class="mb-8px cursor-default font-500 text-primary">
+        <div class="mb-8px cursor-default text-primary font-500">
           Resources
         </div>
-        <NuxtLink v-for="item in resources" :key="item._path" hover="underline underline-primary text-primary"
-          :to="item._path">
-          {{ item.title }}
-        </NuxtLink>
+        <ReuseTemplate :items="resources" />
       </div>
 
       <div class="flex flex-col gap-8px">
-        <div class="mb-8px cursor-default font-500 text-primary">
+        <div class="mb-8px cursor-default text-primary font-500">
           Company
         </div>
-        <NuxtLink hover="underline underline-primary text-primary" to="https://thudomultimedia.com/" target="_blank">
-          About Us
-        </NuxtLink>
-        <NuxtLink hover="underline underline-primary text-primary" to="/contact">
-          Contact Us
-        </NuxtLink>
+        <ReuseTemplate :items="companies" />
+        <ReuseTemplate :items="legal" />
       </div>
-
-
     </footer>
   </div>
   <div class="py-10">
@@ -83,7 +74,7 @@ const options = [{ value: 'en', label: 'English' }, { value: 'vi', label: 'Tiế
         <div>
           <a rel="noopener" target="_blank" class="max-w-250px flex">
             <img src="/thudo_logo.png" alt="logo" class="mr-8px h-50px w-100px">
-            <div class="select-none text-13px font-600 text-gray-400 hover:text-primary">
+            <div class="select-none text-13px text-gray-400 font-600 hover:text-primary">
               Thu Do Multimedia Communications Joint Stock Company
             </div>
           </a>
@@ -100,11 +91,11 @@ const options = [{ value: 'en', label: 'English' }, { value: 'vi', label: 'Tiế
       </div>
 
       <div class="justify-self-end">
-        <div class="flex justify-between items-center py-3">
+        <div class="flex items-center justify-between py-3">
           <div class="flex gap-3">
             <AppSocialIcons />
           </div>
-          <LangSelect v-model="locale" :options="options" class="w-140px! h-36px" />
+          <LangSelect v-model="locale" :options="options" class="h-36px w-140px!" />
           <!-- <AppDarkSwitch class="hidden!" /> -->
         </div>
 

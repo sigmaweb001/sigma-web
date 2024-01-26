@@ -1,0 +1,50 @@
+<script lang="ts" setup>
+const { data: legal } = await useAsyncData(withLocale('legal'), () => queryContent(withLocale('legal')).find())
+const route = useRoute()
+const slug = computed(() => `/legal/${route.params.slug}`)
+const { data: item } = await useAsyncData(`legal-content-item${slug.value}`, () => queryContent('legal').where({
+  _path: {
+    $eq: slug.value,
+  },
+}).findOne(), { watch: [slug] })
+
+const links = computed(() => item.value?.body.toc.links)
+</script>
+
+<template>
+  <div class="mx-auto container">
+    <h2 class="pb-6 pt-10 font-700">
+      Terms & Policies
+    </h2>
+    <div class="flex gap-5" xl="gap-10">
+      <div class="w-256px py-10">
+        <div class="flex flex-col gap-2">
+          <NuxtLink v-for="item in legal" :key="item._path" exact-active-class="text-primary" class="text-base font-500 hover:(text-primary underline)" :to="item._path">
+            {{ item.title }}
+          </NuxtLink>
+        </div>
+        <div class="mx-1 mt-3 h-1px bg-gray-200 dark:bg-trueGray-700" />
+        <div class="sticky top-[calc(var(--header-height))] w-full self-start">
+          <div class="pt-3 font-sans">
+            <Toc class="border-border rounded-xl bg-background text-sm">
+              <template #title>
+                <div class="text-base font-semibold">
+                  Table of Contents
+                </div>
+              </template>
+
+              <TocLinks v-slot="{ link }" class="ml-4" :links="links">
+                <div class="my-2 block hover:underline">
+                  {{ link.text }}
+                </div>
+              </TocLinks>
+            </Toc>
+          </div>
+        </div>
+      </div>
+      <div class="mx-3 mx-auto my-3 max-w-85ch flex-1 prose prose-trueGray dark:prose-invert">
+        <slot />
+      </div>
+    </div>
+  </div>
+</template>
