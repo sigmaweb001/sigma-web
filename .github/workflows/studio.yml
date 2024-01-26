@@ -71,10 +71,6 @@ jobs:
         env:
           NUXT_PUBLIC_STUDIO_API_URL: https://api.nuxt.studio
           NUXT_PUBLIC_STUDIO_TOKENS: becda5b40e556bf680ed17443ab2bdeaad9a91e2a808c8456f621847ff131c6e
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-          AWS_S3_ENDPOINT: ${{ secrets.AWS_S3_ENDPOINT }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           NUXT_PUBLIC_RECAPTCHA_SITE_KEY: ${{ secrets.NUXT_PUBLIC_RECAPTCHA_SITE_KEY }}
 
       # Deployment job
