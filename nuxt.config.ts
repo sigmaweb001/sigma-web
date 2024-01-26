@@ -57,7 +57,7 @@ export default defineNuxtConfig({
   ],
   googleFonts: {
     families: {
-      Inter: '100..800',
+      'DM Sans': '100..800',
     },
     download: true,
   },

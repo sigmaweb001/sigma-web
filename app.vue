@@ -22,7 +22,7 @@ html,
 body,
 #__nuxt {
   height: 100dvh;
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   @apply p-0 m-0 antialiased text-secondary scroll-smooth;
 }
 
