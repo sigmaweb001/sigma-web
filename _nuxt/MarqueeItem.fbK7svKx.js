@@ -1,1 +1,0 @@
-import{d as t,O as c,b as n,c as a,D as r}from"./entry.0mhtedj_.js";const m=["src"],i=t({__name:"MarqueeItem",props:{img:{}},setup(e){const s=e,{img:o}=c(s);return(p,_)=>(n(),a("img",{src:r(o),class:"object-scale-down max-h-64px mx-24px my-24px"},null,8,m))}});export{i as default};
