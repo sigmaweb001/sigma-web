@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-const { params } = useRoute()
-const slug = computed(() => params.slug.join('/'))
+const route = useRoute()
+const slug = computed(() => `/resources/blogs/${route.params.slug}`)
 const { data: item } = await useAsyncData(`resource-content-blog${slug.value}`, () => queryContent('resources').where({
   _path: {
-    $eq: `/${slug.value}`,
+    $eq: slug.value,
   },
 }).findOne())
 
@@ -16,12 +16,11 @@ const links = computed(() => item.value?.body.toc.links)
 
 <template>
   <main>
-    <AppNavbar />
     <div class="mx-auto container">
       <div class="max-w-screen-xl py-5 container lg:py-8">
         <div class="flex justify-center">
         <!-- TODO: tag -->
-        <!-- <BlogsTagsLabel :categories="post?.tags" /> -->
+          <!-- <BlogsTagsLabel :categories="post?.tags" /> -->
         </div>
 
         <h1
@@ -70,7 +69,7 @@ const links = computed(() => item.value?.body.toc.links)
           <div class="mx-auto my-3 max-w-85ch prose prose-trueGray dark:prose-invert">
             <slot />
           </div>
-        <!-- <BlogsAuthorCard v-if="item?.author" :author="item.author" /> -->
+          <!-- <BlogsAuthorCard v-if="item?.author" :author="item.author" /> -->
         </article>
         <div class="sticky top-[calc(var(--header-height))] w-full self-start md:w-256px">
           <div class="mt-5 font-sans">
@@ -91,6 +90,5 @@ const links = computed(() => item.value?.body.toc.links)
         </div>
       </div>
     </div>
-    <AppFooter />
   </main>
 </template>

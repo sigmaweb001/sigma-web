@@ -195,8 +195,8 @@ System architecture
 Interactive Resources
 #default
 :resource-item{path="/resources/datasheets/datasheet-test"}
-:resource-item{path="/resources/blog-articles/blog-test"}
-:resource-item{path="/resources/blog-articles/blog-red"}
+:resource-item{path="/resources/blogs/blog-test"}
+:resource-item{path="/resources/blogs/blog-red"}
 :resource-item{path="/resources/product-updates/guide-1"}
 ::
 

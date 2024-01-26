@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { Form, Field as FormField } from 'vee-validate'
-import { useForm } from 'vee-validate'
+import { Form, Field as FormField, useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import * as z from 'zod'
 import { getCountries, getCountryCallingCode, getExampleNumber, parsePhoneNumberFromString } from 'libphonenumber-js'
 import example from 'libphonenumber-js/examples.mobile.json'
+
 const { t: $t } = useI18n()
 
 const formSchema = toTypedSchema(
@@ -31,26 +31,25 @@ const formSchema = toTypedSchema(
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           message: $t('contact.invalid-phone-number-for-the-selected-country'),
-        });
+        })
       }
-    })
-  })
+    }),
+  }),
 )
 
 const form = useForm({
   validationSchema: formSchema,
   initialValues: {
     countryCode: 'VN',
-    address: ''
-  }
+    address: '',
+  },
 })
 
-
-const { query } = useRoute()
+const route = useRoute()
 const router = useRouter()
 const carts = useState('carts', () => [])
 
-if (process.dev) {
+if (import.meta.dev) {
   // carts.value = [
   //   {
   //     product: 'A',
@@ -71,31 +70,29 @@ if (process.dev) {
 }
 
 onMounted(() => {
+  const query = route.query
   if (query.product && query.price) {
     const product = query.product as string
     const price = Number(query.price as string)
     const cart = carts.value.find(item => item.product === product)
-    if (cart) {
+    if (cart)
       cart.price = price
-    } else {
+    else
       carts.value.push({ product, price, qty: 1 })
-    }
+
     router.replace({
       query: {},
     })
   }
 })
 
-
-
 const isEmpty = computed(() => carts.value?.length === 0)
 function remove(item: any) {
   const result = confirm($t('cart.are_you_sure_you_want_to_remove_this_product_from_your_cart'))
   if (result) {
     const index = carts.value.indexOf(item)
-    if (index > -1) {
+    if (index > -1)
       carts.value.splice(index, 1)
-    }
   }
 }
 
@@ -112,9 +109,8 @@ const submitOrder = form.handleSubmit(async (values) => {
 })
 
 onBeforeUnmount(() => {
-  if (step.value === 3) {
+  if (step.value === 3)
     carts.value = []
-  }
 })
 
 const options = getCountries().map((countryCode) => {
@@ -157,7 +153,7 @@ const agree = ref(false)
 <template>
   <section>
     <div class="flex-col items-center gap-5 py-10" :class="[isEmpty ? 'flex' : 'hidden']">
-      <div class="i-ri:shopping-cart-2-line text-primary size-20" />
+      <div class="i-ri:shopping-cart-2-line size-20 text-primary" />
       <div class="text-2xl font-semibold">
         {{ $t('cart.there_are_no_product_in_your_cart') }}
       </div>
@@ -167,38 +163,52 @@ const agree = ref(false)
     </div>
     <div :class="[isEmpty ? 'hidden' : 'block']" class="mt-15">
       <div
-        class="flex items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base px-10">
+        class="w-full flex items-center px-10 text-center text-sm text-gray-500 font-medium sm:text-base dark:text-gray-400"
+      >
         <div
-          class="flex cursor-pointer md:w-full items-center sm:after:content-[''] after:w-full after:(h-1px border-b border-gray-200 border-1 hidden mx-6) sm:after:inline-block dark:after:border-gray-700">
-          <span :class="[step >= 1 ? 'text-primary dark:text-primary' : '']"
-            class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500 flex-shrink-0 ">
-            <span class="me-2 rounded-full h-6 w-6 flex-shrink-0 flex-center p-1"
-              :class="[step >= 1 ? 'bg-primary text-white' : '']">1</span>
+          class="flex cursor-pointer items-center after:(mx-6 hidden h-1px w-full border-1 border-b border-gray-200) md:w-full sm:after:inline-block dark:after:border-gray-700 sm:after:content-['']"
+        >
+          <span
+            :class="[step >= 1 ? 'text-primary dark:text-primary' : '']"
+            class="flex flex-shrink-0 items-center after:mx-2 after:text-gray-200 after:content-['/'] sm:after:hidden dark:after:text-gray-500"
+          >
+            <span
+              class="me-2 h-6 w-6 flex-center flex-shrink-0 rounded-full p-1"
+              :class="[step >= 1 ? 'bg-primary text-white' : '']"
+            >1</span>
             {{ $t('cart.shopping_cart') }}
           </span>
         </div>
         <div
-          class="flex cursor-pointer md:w-full items-center after:content-[''] after:w-full after:h-1px after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
-          <span :class="[step >= 2 ? 'text-primary dark:text-primary' : '']"
-            class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500 flex-shrink-0">
-            <span class="me-2 rounded-full h-6 w-6 flex-shrink-0 flex-center p-1"
-              :class="[step >= 2 ? 'bg-primary text-white' : '']">2</span>
+          class="flex cursor-pointer items-center after:mx-6 after:hidden after:h-1px after:w-full md:w-full after:border-1 after:border-b after:border-gray-200 after:content-[''] xl:after:mx-10 sm:after:inline-block dark:after:border-gray-700"
+        >
+          <span
+            :class="[step >= 2 ? 'text-primary dark:text-primary' : '']"
+            class="flex flex-shrink-0 items-center after:mx-2 after:text-gray-200 after:content-['/'] sm:after:hidden dark:after:text-gray-500"
+          >
+            <span
+              class="me-2 h-6 w-6 flex-center flex-shrink-0 rounded-full p-1"
+              :class="[step >= 2 ? 'bg-primary text-white' : '']"
+            >2</span>
             {{ $t('cart.payment_options') }}
           </span>
         </div>
-        <div class="flex cursor-pointer items-center flex-shrink-0"
-          :class="[step >= 3 ? 'text-primary dark:text-primary ' : '']">
-          <span class="me-2 rounded-full h-6 w-6 flex-shrink-0 flex-center p-1"
-            :class="[step === 3 ? 'bg-primary text-white' : '']">3</span>
+        <div
+          class="flex flex-shrink-0 cursor-pointer items-center"
+          :class="[step >= 3 ? 'text-primary dark:text-primary ' : '']"
+        >
+          <span
+            class="me-2 h-6 w-6 flex-center flex-shrink-0 rounded-full p-1"
+            :class="[step === 3 ? 'bg-primary text-white' : '']"
+          >3</span>
           {{ $t('cart.order_received') }}
         </div>
       </div>
 
-
       <template v-if="step === 1">
-        <div class="relative overflow-x-auto mt-10 max-w-screen-lg mx-auto">
-          <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-sm text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+        <div class="relative mx-auto mt-10 max-w-screen-lg overflow-x-auto">
+          <table class="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
+            <thead class="bg-gray-100 text-sm text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400">
               <tr>
                 <th scope="col" class="px-6 py-3">
                   {{ $t('cart.product_name') }}
@@ -212,22 +222,23 @@ const agree = ref(false)
                 <th scope="col" class="px-6 py-3 text-center">
                   {{ $t('cart.total') }}
                 </th>
-                <th scope="col" class="px-6 py-3 text-center">
-                </th>
+                <th scope="col" class="px-6 py-3 text-center" />
               </tr>
             </thead>
             <tbody>
-              <tr v-for="item in carts" class="bg-white dark:bg-gray-800 border-b dark:border-gray-700">
-                <th scope="row" class="px-10 py-4 font-medium text-gray-800 whitespace-nowrap dark:text-white">
+              <tr v-for="item in carts" class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
+                <th scope="row" class="whitespace-nowrap px-10 py-4 text-gray-800 font-medium dark:text-white">
                   {{ item.product }}
                 </th>
                 <td class="px-6 py-4 text-center">
                   ${{ item.price }}
                 </td>
-                <td class="px-6 py-4 text-center flex-center">
-                  <input type="number" v-model="item.qty"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-primary focus:border-primary block w-70px p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary text-center"
-                    placeholder="">
+                <td class="flex-center px-6 py-4 text-center">
+                  <input
+                    v-model="item.qty" type="number"
+                    class="block w-70px border border-gray-300 rounded-lg bg-gray-50 p-2.5 text-center text-sm text-gray-900 dark:border-gray-600 focus:border-primary dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-primary dark:focus:border-primary dark:focus:ring-primary dark:placeholder-gray-400"
+                    placeholder=""
+                  >
                 </td>
                 <td class="px-6 py-4 text-center">
                   ${{ item.price * item.qty }}
@@ -238,21 +249,23 @@ const agree = ref(false)
                   </SButton>
                 </td>
               </tr>
-
             </tbody>
             <tfoot>
-              <tr class="font-semibold text-trueGray-800 dark:text-white">
-                <th scope="row" class="px-6 py-3 text-base">{{ $t('cart.total') }}</th>
-                <td class="px-6 py-3 text-center"></td>
-                <td class="px-6 py-3 text-center"></td>
-                <td class="px-6 py-3 text-center">${{ total }}</td>
+              <tr class="text-trueGray-800 font-semibold dark:text-white">
+                <th scope="row" class="px-6 py-3 text-base">
+                  {{ $t('cart.total') }}
+                </th>
+                <td class="px-6 py-3 text-center" />
+                <td class="px-6 py-3 text-center" />
+                <td class="px-6 py-3 text-center">
+                  ${{ total }}
+                </td>
               </tr>
             </tfoot>
           </table>
         </div>
 
-
-        <div class="flex justify-end gap-2 mt-6">
+        <div class="mt-6 flex justify-end gap-2">
           <SButton variant="white">
             <NuxtLink to="/pricing">
               {{ $t('cart.continue_shopping') }}
@@ -266,7 +279,7 @@ const agree = ref(false)
       </template>
 
       <template v-if="step === 2">
-        <div class="grid grid-cols-2 gap-2 mt-10">
+        <div class="grid grid-cols-2 mt-10 gap-2">
           <div class="border-1px border-border rounded-4px px-3 py-3">
             <h6 class="text-base font-bold uppercase">
               {{ $t('cart.payment_information') }}
@@ -276,7 +289,9 @@ const agree = ref(false)
               <form class="w-full space-y-6">
                 <FormField v-slot="{ componentField }" name="name">
                   <SFormItem>
-                    <SFormLabel :class="'text-2xl'">{{ $t('cart.name') }}<span class="text-red-500">*</span></SFormLabel>
+                    <SFormLabel class="text-2xl">
+                      {{ $t('cart.name') }}<span class="text-red-500">*</span>
+                    </SFormLabel>
                     <SFormControl>
                       <SInputText type="text" placeholder="" v-bind="componentField" />
                     </SFormControl>
@@ -299,8 +314,10 @@ const agree = ref(false)
                       <FormField v-slot="{ componentField }" name="countryCode">
                         <SFormItem>
                           <SFormControl>
-                            <SSelect v-bind="componentField" :default-value="form.values.countryCode" :options="options"
-                              class="w-150px!" />
+                            <SSelect
+                              v-bind="componentField" :default-value="form.values.countryCode" :options="options"
+                              class="w-150px!"
+                            />
                           </SFormControl>
                         </SFormItem>
                       </FormField>
@@ -345,12 +362,12 @@ const agree = ref(false)
           </div>
 
           <div>
-            <div class="border-1px  border-border rounded-4px px-3 py-3">
+            <div class="border-1px border-border rounded-4px px-3 py-3">
               <h6 class="text-base font-bold uppercase">
                 {{ $t('cart.your_order') }}
               </h6>
-              <div class="flex mt-4 flex-col divide-dashed divide-y divide-border">
-                <div class="flex gap-2 pl-6 pr-3 py-2 items-center" v-for="(item, i) in carts" :key="i">
+              <div class="mt-4 flex flex-col divide-y divide-border divide-dashed">
+                <div v-for="(item, i) in carts" :key="i" class="flex items-center gap-2 py-2 pl-6 pr-3">
                   <div class="flex-1">
                     <span>{{ item.product }}</span>
                     x
@@ -361,7 +378,7 @@ const agree = ref(false)
                   </div>
                 </div>
 
-                <div class="flex gap-2 py-2 pl-6 pr-3 items-center">
+                <div class="flex items-center gap-2 py-2 pl-6 pr-3">
                   <div class="flex-1 font-bold">
                     {{ $t('cart.total') }}
                   </div>
@@ -369,41 +386,45 @@ const agree = ref(false)
                     ${{ total }}
                   </div>
                 </div>
-
               </div>
-
-
             </div>
 
-            <div class="border-1px mt-2  border-border rounded-4px px-3 py-3">
+            <div class="mt-2 border-1px border-border rounded-4px px-3 py-3">
               <h6 class="text-base font-bold uppercase">
                 {{ $t('cart.payment') }}
               </h6>
               <div class="mt-4">
-
                 <div class="flex">
-                  <div class="flex items-center h-5">
-                    <input v-model="paymentMethod" id="helper-radio-1" name="default-radio" type="radio" value="1"
-                      class="w-4 h-4 text-primary bg-gray-100 border-gray-300 focus:ring-primary dark:focus:ring-primary dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600 focus:outline-none">
+                  <div class="h-5 flex items-center">
+                    <input
+                      id="helper-radio-1" v-model="paymentMethod" name="default-radio" type="radio" value="1"
+                      class="h-4 w-4 border-gray-300 bg-gray-100 text-primary dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-primary dark:ring-offset-gray-800 dark:focus:ring-primary"
+                    >
                   </div>
                   <div class="ms-2 text-sm">
-                    <label for="helper-radio-1" class="font-medium text-gray-900 dark:text-gray-300">{{
+                    <label for="helper-radio-1" class="text-gray-900 font-medium dark:text-gray-300">{{
                       $t('cart.bank_transfer') }}</label>
-                    <div id="helper-radio-text" class="text-xs font-normal text-gray-500 dark:text-gray-300">{{
-                      $t('cart.make_payments_right_into_our_bank_account') }}</div>
+                    <div id="helper-radio-text" class="text-xs text-gray-500 font-normal dark:text-gray-300">
+                      {{
+                        $t('cart.make_payments_right_into_our_bank_account') }}
+                    </div>
                   </div>
                 </div>
 
-                <div class="flex mt-2">
-                  <div class="flex items-center h-5">
-                    <input v-model="paymentMethod" id="helper-radio-2" name="default-radio" type="radio" value="2"
-                      class="w-4 h-4 text-primary bg-gray-100 border-gray-300 focus:ring-primary dark:focus:ring-primary focus:outline-none dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600">
+                <div class="mt-2 flex">
+                  <div class="h-5 flex items-center">
+                    <input
+                      id="helper-radio-2" v-model="paymentMethod" name="default-radio" type="radio" value="2"
+                      class="h-4 w-4 border-gray-300 bg-gray-100 text-primary dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-primary dark:ring-offset-gray-800 dark:focus:ring-primary"
+                    >
                   </div>
                   <div class="ms-2 text-sm">
-                    <label for="helper-radio-2" class="font-medium text-gray-900 dark:text-gray-300">{{
+                    <label for="helper-radio-2" class="text-gray-900 font-medium dark:text-gray-300">{{
                       $t('cart.payment_via_vnpay') }}</label>
-                    <div id="helper-radio-text" class="text-xs font-normal text-gray-500 dark:text-gray-300">{{
-                      $t('cart.pay_online_via_vnpay') }}</div>
+                    <div id="helper-radio-text" class="text-xs text-gray-500 font-normal dark:text-gray-300">
+                      {{
+                        $t('cart.pay_online_via_vnpay') }}
+                    </div>
                   </div>
                 </div>
 
@@ -417,10 +438,12 @@ const agree = ref(false)
                   </i18n-t>
                 </div>
 
-                <div class="flex items-center mb-4 mt-4">
-                  <input v-model="agree" id="default-checkbox" type="checkbox" value=""
-                    class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary dark:focus:ring-primary dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                  <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                <div class="mb-4 mt-4 flex items-center">
+                  <input
+                    id="default-checkbox" v-model="agree" type="checkbox" value=""
+                    class="h-4 w-4 border-gray-300 rounded bg-gray-100 text-primary dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-primary dark:ring-offset-gray-800 dark:focus:ring-primary"
+                  >
+                  <label for="default-checkbox" class="ms-2 text-sm text-gray-900 font-medium dark:text-gray-300">
                     <i18n-t tag="p" keypath="cart.i_have_read_and_agree_to_the_websites_terms">
                       <template #term>
                         <NuxtLink target="__blank" class="text-primary underline hover:font-bold" to="/terms">
@@ -432,7 +455,7 @@ const agree = ref(false)
                 </div>
               </div>
 
-              <div class="flex justify-end mt-4">
+              <div class="mt-4 flex justify-end">
                 <SButton :disabled="!agree" variant="gradient" class="flex-shrink-0" type="submit" @click="submitOrder">
                   {{ $t('cart.order') }}
                 </SButton>
@@ -443,19 +466,19 @@ const agree = ref(false)
       </template>
 
       <template v-if="step === 3">
-        <div class="gap-5 py-10 ">
+        <div class="gap-5 py-10">
           <div class="flex-center flex-col gap-2">
-            <div class="i-ri:checkbox-circle-fill text-primary size-20" />
-            <div class="font-bold text-xl">
+            <div class="i-ri:checkbox-circle-fill size-20 text-primary" />
+            <div class="text-xl font-bold">
               {{ $t('cart.thank_you_your_order_has_been_received') }}
             </div>
           </div>
 
           <div class="mx-auto max-w-screen-lg">
-            <h6 class="text-lg font-bold uppercase mt-10 text-center mb-2">
+            <h6 class="mb-2 mt-10 text-center text-lg font-bold uppercase">
               {{ $t('cart.order_details') }}
             </h6>
-            <div class="grid text-sm grid-cols-4 gap-4 bg-gray-200 dark:bg-trueGray-700 rounded-8px px-4 py-4">
+            <div class="grid grid-cols-4 gap-4 rounded-8px bg-gray-200 px-4 py-4 text-sm dark:bg-trueGray-700">
               <h6 class="text-sm font-bold uppercase">
                 {{ $t('cart.order_number') }}
               </h6>
@@ -487,10 +510,9 @@ const agree = ref(false)
               </div>
             </div>
 
-
-            <div class="relative overflow-x-auto mt-10">
-              <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-sm text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+            <div class="relative mt-10 overflow-x-auto">
+              <table class="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
+                <thead class="bg-gray-100 text-sm text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400">
                   <tr>
                     <th scope="col" class="px-6 py-3">
                       {{ $t('cart.product') }}
@@ -504,8 +526,8 @@ const agree = ref(false)
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="item in carts" class="bg-white dark:bg-gray-800 border-b dark:border-gray-700">
-                    <th scope="row" class="px-10 py-4 font-medium text-gray-800 whitespace-nowrap dark:text-white">
+                  <tr v-for="item in carts" class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
+                    <th scope="row" class="whitespace-nowrap px-10 py-4 text-gray-800 font-medium dark:text-white">
                       {{ item.product }}
                     </th>
                     <td class="px-6 py-4 text-center">
@@ -516,13 +538,16 @@ const agree = ref(false)
                       ${{ item.price * item.qty }}
                     </td>
                   </tr>
-
                 </tbody>
                 <tfoot>
-                  <tr class="font-semibold text-trueGray-800 dark:text-white">
-                    <th scope="row" class="px-6 py-3 text-base">{{ $t('cart.total') }}</th>
-                    <td class="px-6 py-3 text-center"></td>
-                    <td class="px-6 py-3 text-center">${{ total }}</td>
+                  <tr class="text-trueGray-800 font-semibold dark:text-white">
+                    <th scope="row" class="px-6 py-3 text-base">
+                      {{ $t('cart.total') }}
+                    </th>
+                    <td class="px-6 py-3 text-center" />
+                    <td class="px-6 py-3 text-center">
+                      ${{ total }}
+                    </td>
                   </tr>
                 </tfoot>
               </table>
@@ -535,8 +560,8 @@ const agree = ref(false)
 </template>
 
 <style>
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
   opacity: 1;
 }
 </style>

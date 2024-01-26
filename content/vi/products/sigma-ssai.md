@@ -166,7 +166,7 @@ Users stream video or OTT content on internet-enabled devices via content delive
 #title
 DAI Resources
 #default
-:resource-item{path="/resources/blog-articles/blog-1"}
+:resource-item{path="/resources/blogs/blog-1"}
 :resource-item{path="/resources/product-updates/guide-1"}
 :resource-item{path="/resources/datasheets/datasheet-1"}
 :resource-item{path="/resources/datasheets/datasheet-1"}

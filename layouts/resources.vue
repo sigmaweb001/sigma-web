@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { QueryBuilderWhere } from '@nuxt/content/dist/runtime/types'
 
 useHead({
@@ -7,10 +7,13 @@ useHead({
     { name: 'twitter:card', content: 'summary_large_image' },
   ],
 })
-const { params } = useRoute()
+const route = useRoute()
 
-const slug = computed(() => params.slug.join('/'))
-
+const slug = computed(() => {
+  const params = route.params
+  const path = typeof params.slug === 'string' ? params.slug : params.slug?.join('/')
+  return path || ''
+})
 const { data: dataResourcesDir } = await useAsyncData('resources-list-dir', () => queryContent('resources').where({
   $or: [
     {
@@ -28,10 +31,10 @@ const { data: dataResourcesDir } = await useAsyncData('resources-list-dir', () =
 
 const currentDir = computed(() => dataResourcesDir.value?.find(item => item._path === `/${slug.value}`))
 
-const tag = eagerComputed(() => useRoute().query.tag)
+const tag = computed(() => useRoute().query.tag)
 
 const query = computed<QueryBuilderWhere>(() => {
-  if (params.slug.length === 1) {
+  if (!slug.value) {
     if (tag.value) {
       return {
         tags: { $contains: [tag.value] },
@@ -47,12 +50,12 @@ const query = computed<QueryBuilderWhere>(() => {
     }
   }
   return {
-    _dir: { $eq: params.slug[params.slug.length - 1] },
+    _dir: { $eq: slug.value },
   }
 })
 
-const { data: dataResources } = await useAsyncData('resources-list-content', () => queryContent('resources')
-  .where(query.value).find(), { watch: [tag] })
+const { data: dataResources } = await useAsyncData(`resources-list-content:${route.params.slug || 'root'}`, () => queryContent('resources')
+  .where(query.value).find(), { watch: [tag, () => route.params.slug] })
 
 const appConfig = useAppConfig()
 const tags = computed(() => appConfig.tags)
@@ -61,7 +64,6 @@ const localPath = useLocalePath()
 
 <template>
   <main>
-    <AppNavbar />
     <div class="flex container">
       <div class="sticky top-[calc(var(--header-height))] mt-120px w-1/4 flex-shrink-0 py-5 pr-10">
         <h3 class="text-lg font-600">
@@ -69,7 +71,7 @@ const localPath = useLocalePath()
         </h3>
         <div class="grid mx--2 mt-4 gap-2">
           <NuxtLink
-            v-for="item in dataResourcesDir" :key="item.to" external exact-active-class="text-primary font-bold"
+            v-for="item in dataResourcesDir" :key="item.to" exact-active-class="text-primary font-bold"
             :to="item.redirect || localePath(item._path)" v-bind="$attrs"
             :target="item.redirect?.startsWith('https://') ? '_blank' : '_self'"
             class="flex cursor-pointer items-center justify-between gap-2 rounded-xl px-3 py-2 hover:bg-primary/10 hover:text-primary"
@@ -99,6 +101,7 @@ const localPath = useLocalePath()
           </div>
         </template>
       </div>
+
       <div class="flex-1">
         <h1 class="py-10 text-center text-4xl font-bold dark:text-white">
           {{ currentDir?.title }} <span v-if="tag">({{ tag }})</span>
@@ -121,6 +124,6 @@ const localPath = useLocalePath()
         </div>
       </div>
     </div>
-    <AppFooter />
+    <slot />
   </main>
 </template>

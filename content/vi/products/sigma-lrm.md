@@ -144,7 +144,7 @@ Receiving signals from content providers, we manage, schedule, and insert signal
 #title
 LRM Resources
 #default
-:resource-item{path="/resources/blog-articles/blog-1"}
+:resource-item{path="/resources/blogs/blog-1"}
 :resource-item{path="/resources/product-updates/guide-1"}
 :resource-item{path="/resources/datasheets/datasheet-1"}
 :resource-item{path="/resources/datasheets/datasheet-1"}
