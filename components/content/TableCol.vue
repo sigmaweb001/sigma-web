@@ -18,7 +18,7 @@ const [DefineTemplate, ReuseTemplate] = createReusableTemplate()
       ]"
     >
       <ContentSlot :use="$slots.default" unwrap="p" />
-      <div v-if="$slots.description">
+      <div v-if="$slots.description" class="text-pretty text-sm font-400 leading-snug">
         <ContentSlot :use="$slots.description" unwrap="p" />
       </div>
     </div>
