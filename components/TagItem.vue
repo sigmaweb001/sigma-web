@@ -13,16 +13,17 @@ const textColor = computed(() => {
 })
 
 const NuxtLink = resolveComponent('NuxtLink')
-
 </script>
 
 <template>
-  <Component :external="to ? true : false" :is="to ? NuxtLink: 'div'" :exact-active-class="'[--opacity:1]'" :to="to" :style="{
-    '--color': `hsl(${hslColor.h} ${hslColor.s * 100}% ${hslColor.l * 100}% / var(--opacity, 1))`,
-    '--textColor': textColor,
-    '--opacity': 0.5,
-  }"
-    class="inline-block max-w-100px truncate bg-[var(--color)] rounded font-medium tracking-wider uppercase text-10px px-1 py-1">
+  <Component
+    :is="to ? NuxtLink : 'div'" exact-active-class="[--opacity:1]" :to="to" :style="{
+      '--color': `hsl(${hslColor.h} ${hslColor.s * 100}% ${hslColor.l * 100}% / var(--opacity, 1))`,
+      '--textColor': textColor,
+      '--opacity': 0.5,
+    }"
+    class="inline-block max-w-100px truncate rounded bg-[var(--color)] px-1 py-1 text-10px font-medium tracking-wider uppercase"
+  >
     <slot />
   </Component>
 </template>
