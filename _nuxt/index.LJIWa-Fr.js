@@ -1,0 +1,1 @@
+import{b as o,c as _,g as e,w as c,G as a,H as s}from"./entry.GsdKPzkG.js";import{_ as r}from"./_plugin-vue_export-helper.x3n3nnut.js";const m={};function u(p,x){const t=a,n=s;return o(),_("div",null,[e(n,{name:"resources"},{default:c(()=>[e(t)]),_:1})])}const i=r(m,[["render",u]]);export{i as default};
