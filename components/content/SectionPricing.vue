@@ -27,6 +27,8 @@ watchOnce(height, () => {
   else
     hPricing.value = height.value
 })
+
+const keyFeature = useKeyFeature()
 </script>
 
 <template>
@@ -37,7 +39,7 @@ watchOnce(height, () => {
         :style="{ '--col': col ?? 4, '--gap': gap ? `${gap}px` : '24px', '--padding': padding ? `${padding}px` : '0px' }"
         class="grid gap-[var(--gap)] p-[var(--padding)] xl:grid-cols-[repeat(var(--col),minmax(0,1fr))]"
       >
-        <div class="mt-10 w-full flex flex-col container">
+        <div lt-xl="container" class="mt-10 w-full flex flex-col">
           <h2
             class="mt-3 max-w-2xl text-3xl text-gray-800 font-bold leading-snug tracking-tight lg:text-4xl dark:text-white lg:leading-tight"
           >
@@ -48,6 +50,14 @@ watchOnce(height, () => {
             class="py-2 text-start text-base prose prose-trueGray lg:text-base xl:text-base dark:prose-invert"
           >
             <ContentSlot :use="$slots.subtitle" unwrap="p" />
+          </div>
+          <div class="grid grid-cols-2 border border-border rounded-16px px-2 py-2">
+            <SButton class="px-2.5 rounded-full!" :variant="keyFeature ? 'gradient' : 'ghost'" @click="keyFeature = true">
+              Key features
+            </SButton>
+            <SButton class="px-2.5 rounded-full!" :variant="!keyFeature ? 'gradient' : 'ghost'" @click="keyFeature = false">
+              All features
+            </SButton>
           </div>
         </div>
         <div
@@ -69,12 +79,20 @@ watchOnce(height, () => {
           :style="{ '--col': col ?? 4, '--gap': gap ? `${gap}px` : '24px', '--padding': padding ? `${padding}px` : '0px' }"
           class="grid gap-[var(--gap)] p-[var(--padding)] xl:grid-cols-[repeat(var(--col),minmax(0,1fr))]"
         >
-          <div class="mt-10 w-full flex flex-col container">
+          <div lt-xl="container" class="mt-10 w-full flex flex-col">
             <h2
               class="mt-3 max-w-2xl text-3xl text-gray-800 font-bold leading-snug tracking-tight lg:text-4xl dark:text-white lg:leading-tight"
             >
               <ContentSlot :use="$slots.title" unwrap="p" />
             </h2>
+            <div class="grid grid-cols-2 mt-2 border border-border rounded-16px px-2 py-2">
+              <SButton class="px-2.5 rounded-full!" :variant="keyFeature ? 'gradient' : 'ghost'" @click="keyFeature = true">
+                Key features
+              </SButton>
+              <SButton class="px-2.5 rounded-full!" :variant="!keyFeature ? 'gradient' : 'ghost'" @click="keyFeature = false">
+                All features
+              </SButton>
+            </div>
           </div>
           <div
             :style="{

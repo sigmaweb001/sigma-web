@@ -20,32 +20,24 @@ const NuxtLink = resolveComponent('NuxtLink')
 const localPath = useLocalePath()
 
 const external = computed(() => props.href.startsWith('http'))
+const [DefineTemplate, ReuseTemplate] = createReusableTemplate()
 </script>
 
 <template>
-  <SButton
-    v-if="!block"
-    v-bind="$attrs"
-    :external="external" class="underline-transparent hover:underline-current"
-    :to="external ? href : localPath(href)" :as="NuxtLink" :size="size"
-    :variant="link ? 'link' : outline ? 'outline' : white ? 'white' : 'gradient'" :class="[
-      rounded ? 'rounded-full!' : '',
-    ]"
-  >
-    <slot />
-  </SButton>
-  <div v-else>
+  <DefineTemplate>
     <SButton
-      v-bind="$attrs"
-      :external="external" class="underline-transparent hover:underline-current"
+      v-bind="$attrs" :external="external" class="underline-transparent hover:underline-current"
       :to="external ? href : localPath(href)" :as="NuxtLink" :size="size"
-      :variant="link ? 'link' : outline ? 'outline' : white ? 'white' : 'gradient'"
-      :class="[
+      :variant="link ? 'link' : outline ? 'outline' : white ? 'white' : 'gradient'" :class="[
         rounded ? 'rounded-full!' : '',
         block && link ? 'px-0!' : '',
       ]"
     >
       <slot />
     </SButton>
+  </DefineTemplate>
+  <ReuseTemplate v-if="!block" />
+  <div v-else>
+    <ReuseTemplate />
   </div>
 </template>

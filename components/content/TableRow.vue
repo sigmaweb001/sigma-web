@@ -5,11 +5,14 @@ const { col } = definePropsRefs<{
   gap?: number
   padding?: number
   noBorder?: boolean
+  feat?: boolean
 }>()
+const keyFeature = useKeyFeature()
 </script>
 
 <template>
   <div
+    v-if="!keyFeature ? true : !!feat"
     :style="{ '--col': col ?? 4, '--gap': gap ? `${gap}px` : '24px', '--padding': padding ? `${padding}px` : '0px' }"
     class="grid gap-[var(--gap)] border-l-2px p-[var(--padding)] xl:grid-cols-[repeat(var(--col),minmax(0,1fr))] first:border-l-transparent not-first:border-l-primary"
     :class="[
