@@ -29,7 +29,7 @@ const { data: dataResourcesDir } = await useAsyncData('resources-list-dir', () =
   ],
 }).find())
 
-const currentDir = computed(() => dataResourcesDir.value?.find(item => item._path === `/${slug.value}`))
+const currentDir = computed(() => dataResourcesDir.value?.find(item => item._path === route.path))
 
 const tag = computed(() => useRoute().query.tag)
 
