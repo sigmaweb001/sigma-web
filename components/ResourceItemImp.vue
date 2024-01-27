@@ -22,7 +22,7 @@ const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, (
 </script>
 
 <template>
-  <div class="group grid grid-row-[span_5] grid-rows-subgrid gap-2 of-hidden rounded-12px bg-gray-100/75 dark:bg-gray-900/75">
+  <div class="grid gap-2 of-hidden rounded-12px bg-gray-100/75 dark:bg-gray-900/75">
     <NuxtLink :to="media" target="_blank" class="relative block aspect-16/9 of-hidden rounded-12px bg-gray-200 transition-all duration-300 hover:scale-105">
       <template v-if="item?.thumbnail">
         <img :src="item.thumbnail" class="absolute inset-0 size-full object-cover">
@@ -39,7 +39,7 @@ const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, (
         {{ dataDir?.title }}
       </span>
     </div>
-    <div class="flex justify-between px-3">
+    <div class="px-3">
       <NuxtLink
         :to="media" external target="_blank"
         class="flex-1 text-lg font-semibold leading-snug tracking-tight dark:text-white"

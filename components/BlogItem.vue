@@ -6,7 +6,6 @@ const { item } = definePropsRefs<{
 const appConfig = useAppConfig()
 
 const author = computed(() => appConfig.authors.find(a => a.slug === item.value.author))
-const localePath = useLocalePath()
 const dirPath = computed(() => {
   const pathArr = item.value._path.split('/')
   return pathArr.slice(0, pathArr.length - 1).join('/')
@@ -21,14 +20,13 @@ const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, (
     },
   ],
 }).findOne(), { watch: [dirPath] })
+
+const NuxtLink = resolveComponent('NuxtLink')
 </script>
 
 <template>
-  <div class="group bg-gray-100/75 dark:bg-gray-900/75">
-    <NuxtLink
-      :to="localePath(item._path)"
-      class="relative block aspect-16/9 overflow-hidden rounded-md transition-all duration-300 hover:scale-105 dark:bg-gray-800"
-    >
+  <div class="grid gap-2 of-hidden bg-gray-100/75 dark:bg-gray-900/75">
+    <NuxtLink :to="media" target="_blank" class="relative block aspect-16/9 of-hidden rounded-12px bg-gray-200 transition-all duration-300 hover:scale-105">
       <template v-if="item?.thumbnail">
         <img :src="item.thumbnail" class="absolute inset-0 size-full object-cover">
       </template>
@@ -38,51 +36,54 @@ const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, (
         </div>
       </template>
     </NuxtLink>
+    <div class="px-3">
+      <span class="inline rounded-xl bg-gray-200 px-2 py-1 text-xs font-500">
+        {{ dataDir?.title }}
+      </span>
+    </div>
 
-    <div>
-      <div class="p-2">
-        <div v-if="tags?.length" class="mb-1 mt-1 flex flex-wrap gap-2">
-          <TagItem v-for="(item, index) in tags" :key="index" :color="item.color">
-            {{ item.name }}
-          </TagItem>
-        </div>
-        <NuxtLink
-          class="text-lg font-semibold leading-snug tracking-tight dark:text-white" :class="{
-          }" :to="item._path"
+    <div class="px-3">
+      <NuxtLink
+        :to="media" external target="_blank"
+        class="flex-1 text-lg font-semibold leading-snug tracking-tight dark:text-white"
+      >
+        <span
+          class="transition-[background_size] line-clamp-1 cursor-pointer bg-[length:0px_10px] bg-gradient-to-r bg-left-bottom bg-no-repeat duration-500 hover:(text-primary underline)"
         >
-          <span
-            class="transition-[background-size] cursor-pointer bg-[length:0px_10px] from-primary-300 to-primary-200 bg-gradient-to-r bg-left-bottom bg-no-repeat duration-500 hover:bg-[length:100%_10px] hover:bg-[length:100%_3px] dark:from-primary-600 dark:to-primary-700"
-          >
-            {{ item.title }}
-          </span>
-        </NuxtLink>
+          {{ item.title }}
+        </span>
+      </NuxtLink>
+    </div>
 
-        <div class="mb-2 mt-3 flex items-center text-gray-500 space-x-3 dark:text-gray-400">
-          <div v-if="author" class="flex items-center gap-3">
-            <div class="relative h-32px w-32px flex-shrink-0">
-              <NuxtImg
-                class="absolute inset-0 h-full w-full rounded-full object-cover" :src="author.avatar"
-                :alt="author.slug"
-              />
-            </div>
-            <div>
-              <span class="truncate text-sm">
-                {{ author.name }}
+    <div v-if="item.description" class="px-3">
+      <span class="line-clamp-3 text-sm">
+        {{ item.description }}
+      </span>
+    </div>
 
-              </span>
-              <template v-if="author.title">
-                <p class="my-0 text-xs">
-                  {{ author.title }}
-                </p>
-              </template>
-            </div>
-          </div>
-          <!-- <span class="text-xs text-gray-300 dark:text-gray-600">
-            &bull;
+    <div class="mb-2 flex items-end justify-between px-3">
+      <SButton :as="NuxtLink" variant="link" class="p-0!" :to="item._path">
+        Read more
+        <div class="i-ri:arrow-right-line ml-1 size-16px!" />
+      </SButton>
+
+      <div v-if="author" class="flex items-center gap-3">
+        <div class="relative h-32px w-32px flex-shrink-0">
+          <NuxtImg
+            class="absolute inset-0 h-full w-full rounded-full object-cover" :src="author.avatar"
+            :alt="author.slug"
+          />
+        </div>
+        <div>
+          <span class="truncate text-sm">
+            {{ author.name }}
+
           </span>
-          <time class="truncate text-sm" :datetime="item?.publishedAt || item._createdAt">
-            {{ useDateFormat(item?.publishedAt || item._createdAt, 'MMMM D, YYYY').value }}
-          </time> -->
+          <template v-if="author.title">
+            <p class="my-0 text-xs">
+              {{ author.title }}
+            </p>
+          </template>
         </div>
       </div>
     </div>
