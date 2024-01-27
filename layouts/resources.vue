@@ -10,8 +10,7 @@ useHead({
 const route = useRoute()
 
 const slug = computed(() => {
-  const params = route.params
-  const path = typeof params.slug === 'string' ? params.slug : params.slug?.join('/')
+  const path = route.path
   return path || ''
 })
 const { data: dataResourcesDir } = await useAsyncData('resources-list-dir', () => queryContent('resources').where({
@@ -34,27 +33,22 @@ const currentDir = computed(() => dataResourcesDir.value?.find(item => item._pat
 const tag = computed(() => useRoute().query.tag)
 
 const query = computed<QueryBuilderWhere>(() => {
-  if (!slug.value) {
-    if (tag.value) {
-      return {
-        tags: { $contains: [tag.value] },
-      }
-    }
-    else {
-      return {
-        $and: [
-          { _dir: { $ne: 'resources' } },
-          { _dir: { $ne: '' } },
-        ],
-      }
+  if (tag.value) {
+    return {
+      tags: { $contains: [tag.value] },
     }
   }
-  return {
-    _dir: { $eq: slug.value },
+  else {
+    return {
+      $and: [
+        { _dir: { $ne: 'resources' } },
+        { _dir: { $ne: '' } },
+      ],
+    }
   }
 })
 
-const { data: dataResources } = await useAsyncData(`resources-list-content:${route.params.slug || 'root'}`, () => queryContent('resources')
+const { data: dataResources } = await useAsyncData(`resources-list-content:${route.params.slug || 'root'}`, () => queryContent(slug.value)
   .where(query.value).find(), { watch: [tag, () => route.params.slug] })
 
 const appConfig = useAppConfig()
