@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-const { locale } = useI18n()
 const appConfig = useAppConfig()
 const showBanner = ref(false)
 onMounted(() => {

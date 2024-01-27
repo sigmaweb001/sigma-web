@@ -3,7 +3,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectItemIndicator,
   SelectItemText,
   SelectPortal,
   SelectRoot,
@@ -14,51 +13,35 @@ import {
   SelectViewport,
 } from 'radix-vue'
 
-const props = defineProps<{
-  defaultValue?: string
-  modelValue?: string
-  options: { value: string, label: string }[]
-}>()
+const { locale, setLocale } = useI18n()
 
-const emits = defineEmits<{
-  (e: 'update:modelValue', payload: string | number): void
-}>()
-
-const modelValue = useVModel(props, 'modelValue', emits, {
-  passive: true,
-  defaultValue: props.defaultValue,
-})
-const { class: className } = useAttrs()
-
-const switchLocalePath = useSwitchLocalePath()
-
-
-watch(modelValue, async () => {
-  await navigateTo(switchLocalePath(modelValue.value.value))
-  window.location.reload()
-})
+const options = [{ value: 'en', label: 'English' }, { value: 'vi', label: 'Tiếng Việt' }]
 </script>
 
 <template>
-  <SelectRoot v-model="modelValue">
-    <SelectTrigger :class="className"
-      class="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 whitespace-nowrap [&>span]:truncate [&>span]:min-w-0">
+  <SelectRoot :model-value="locale" @update:model-value="setLocale">
+    <SelectTrigger
+      class="h-36px w-140px flex items-center justify-between whitespace-nowrap border border-input rounded-md bg-background px-3 py-2 text-sm ring-offset-background [&>span]:min-w-0 disabled:cursor-not-allowed [&>span]:truncate placeholder:text-muted-foreground disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+    >
       <SelectValue placeholder="" />
     </SelectTrigger>
 
     <SelectPortal>
       <SelectContent
-        class="min-w-[160px] bg-white rounded shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] will-change-[opacity,transform] data-[side=top]:animate-slideDownAndFade data-[side=right]:animate-slideLeftAndFade data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade z-[100]"
-        :side-offset="2">
-        <SelectScrollUpButton class="flex items-center justify-center h-[25px] bg-white cursor-default">
+        class="will-change-[opacity,transform] data-[side=top]:animate-slideDownAndFade data-[side=right]:animate-slideLeftAndFade data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade z-[100] min-w-[160px] rounded bg-white shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)]"
+        :side-offset="2"
+      >
+        <SelectScrollUpButton class="h-[25px] flex cursor-default items-center justify-center bg-white">
           <Icon name="radix-icons:chevron-up" />
         </SelectScrollUpButton>
 
         <SelectViewport class="p-4px">
           <SelectGroup>
-            <SelectItem as-child v-for="(option, index) in options" :key="index"
-              class="text-sm leading-none rounded-[3px] flex items-center h-[25px] pr-[35px] pl-[25px] relative select-none data-[disabled]:pointer-events-none data-[highlighted]:outline-none data-[highlighted]:bg-primary data-[highlighted]:text-green1"
-              :value="option.value">
+            <SelectItem
+              v-for="(option, index) in options" :key="index" as-child
+              class="relative h-[25px] flex select-none items-center rounded-[3px] pl-[25px] pr-[35px] text-sm leading-none data-[disabled]:pointer-events-none data-[highlighted]:bg-primary data-[highlighted]:text-green1 data-[highlighted]:outline-none"
+              :value="option.value"
+            >
               <SelectItemText>
                 {{ option.label }}
               </SelectItemText>
@@ -66,7 +49,7 @@ watch(modelValue, async () => {
           </SelectGroup>
         </SelectViewport>
 
-        <SelectScrollDownButton class="flex items-center justify-center h-[25px] bg-white cursor-default">
+        <SelectScrollDownButton class="h-[25px] flex cursor-default items-center justify-center bg-white">
           <Icon name="radix-icons:chevron-down" />
         </SelectScrollDownButton>
       </SelectContent>

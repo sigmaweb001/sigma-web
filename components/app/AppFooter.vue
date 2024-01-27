@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-const { locale } = useI18n()
-
 const { data: products } = await useAsyncData(withLocale('products'), () => queryContent(withLocale('products')).find())
 const { data: engines } = await useAsyncData(withLocale('engines'), () => queryContent(withLocale('engines')).find())
 const { data: solutions } = await useAsyncData(withLocale('solutions'), () => queryContent(withLocale('solutions')).find())
@@ -14,7 +12,6 @@ const { data: resources } = await useAsyncData(withLocale('resources'), () => qu
   ],
 }).find())
 
-const options = [{ value: 'en', label: 'English' }, { value: 'vi', label: 'Tiếng Việt' }]
 const [DefineTemplate, ReuseTemplate] = createReusableTemplate<{ items: any[] }>()
 
 const localPath = useLocalePath()
@@ -95,7 +92,7 @@ const localPath = useLocalePath()
           <div class="flex gap-3">
             <AppSocialIcons />
           </div>
-          <LangSelect v-model="locale" :options="options" class="h-36px w-140px!" />
+          <LangSelect />
           <!-- <AppDarkSwitch class="hidden!" /> -->
         </div>
 
