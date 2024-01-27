@@ -65,7 +65,7 @@ const localPath = useLocalePath()
 <template>
   <main>
     <div class="flex container">
-      <div class="sticky top-[calc(var(--header-height))] mt-120px w-1/4 flex-shrink-0 py-5 pr-10">
+      <div class="sticky top-[calc(var(--header-height))] mt-120px w-240px py-5 pr-10">
         <h3 class="text-lg font-600">
           Categories
         </h3>
