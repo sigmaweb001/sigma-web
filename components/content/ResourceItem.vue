@@ -2,10 +2,9 @@
 const { path } = definePropsRefs<{ path: string }>()
 const { data: item } = await useAsyncData(`section-resource-item:${path.value}`, () => queryContent('resources').where({
   _path: {
-    $eq: path.value
-  }
+    $eq: path.value,
+  },
 }).findOne())
-
 </script>
 
 <template>

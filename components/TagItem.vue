@@ -22,7 +22,7 @@ const NuxtLink = resolveComponent('NuxtLink')
       '--textColor': textColor,
       '--opacity': 0.5,
     }"
-    class="inline-block max-w-100px truncate rounded bg-[var(--color)] px-1 py-1 text-10px font-medium tracking-wider uppercase"
+    class="inline-block max-w-100px truncate border-1 border-$color rounded px-1 py-1 text-12px/12px text-$color font-medium tracking-wider uppercase"
   >
     <slot />
   </Component>

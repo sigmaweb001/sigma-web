@@ -7,21 +7,20 @@ const appConfig = useAppConfig()
 
 const author = computed(() => appConfig.authors.find(a => a.slug === item.value.author))
 const localePath = useLocalePath()
-
-const tags = computed(() => {
-  const _tags = appConfig.tags
-  if (!item.value.tags)
-    return []
-  const itemTags = item.value.tags.split(',').map(item => item.trim())
-
-  return itemTags.map((tag) => {
-    const tagItem = _tags.find(item => item.slug === tag)
-    if (tagItem)
-      return tagItem
-
-    return undefined
-  }).filter(Boolean)
+const dirPath = computed(() => {
+  const pathArr = item.value._path.split('/')
+  return pathArr.slice(0, pathArr.length - 1).join('/')
 })
+
+const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, () => queryContent('resources').where({
+  $or: [
+    {
+      _path: {
+        $eq: dirPath.value,
+      },
+    },
+  ],
+}).findOne(), { watch: [dirPath] })
 </script>
 
 <template>
