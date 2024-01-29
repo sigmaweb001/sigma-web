@@ -50,7 +50,7 @@ const NuxtLink = resolveComponent('NuxtLink')
         class="flex-1 text-lg font-semibold leading-snug tracking-tight dark:text-white"
       >
         <span
-          class="transition-[background_size] line-clamp-1 cursor-pointer bg-[length:0px_10px] bg-gradient-to-r bg-left-bottom bg-no-repeat duration-500 hover:(text-primary underline)"
+          class="transition-[background_size] line-clamp-2 cursor-pointer bg-[length:0px_10px] bg-gradient-to-r bg-left-bottom bg-no-repeat duration-500 hover:(text-primary underline)"
         >
           {{ item.title }}
         </span>
