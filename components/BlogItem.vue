@@ -38,7 +38,7 @@ const NuxtLink = resolveComponent('NuxtLink')
         </div>
       </template>
     </NuxtLink>
-    <div v-if="hideDir" class="px-3">
+    <div v-if="!hideDir" class="px-3">
       <span class="inline rounded-xl bg-gray-200 px-2 py-1 text-xs font-500">
         {{ dataDir?.title }}
       </span>

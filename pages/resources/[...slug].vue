@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import type { QueryBuilderWhere } from '@nuxt/content/dist/runtime/types'
+import { joinURL } from 'ufo'
 
 const route = useRoute()
 
 const slug = computed(() => {
-  const path = route.path
+  const path = joinURL(`/resources`, ...route.params.slug)
   return path || ''
 })
 

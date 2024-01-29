@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import type { QueryBuilderWhere } from '@nuxt/content/dist/runtime/types'
+import { joinURL } from 'ufo'
 
 const route = useRoute()
 
 const slug = computed(() => {
-  const path = route.path
+  const path = joinURL(`/resources`, 'blogs')
   return path || ''
 })
 
@@ -41,6 +42,12 @@ const { data: dataResources } = await useAsyncData(`resources-list-content:${rou
 
 <template>
   <div>
+    <DevOnly>
+      <details open>
+        <summary>slug</summary>
+        <pre>{{ JSON.stringify(slug, null, 2) }}</pre>
+      </details>
+    </DevOnly>
     <NuxtLayout name="resources">
       <h1 class="py-10 text-center text-4xl font-bold dark:text-white">
         {{ dataDir?.title }} <span v-if="tag">({{ tag }})</span>
