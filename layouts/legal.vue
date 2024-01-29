@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { data: legal } = await useAsyncData(withLocale('legal'), () => queryContent(withLocale('legal')).find())
+const { data: legal } = await useAsyncData(withLocale('legal'), () => queryContent('legal').find())
 const route = useRoute()
 const slug = computed(() => `/legal/${route.params.slug}`)
 const { data: item } = await useAsyncData(`legal-content-item${slug.value}`, () => queryContent('legal').where({

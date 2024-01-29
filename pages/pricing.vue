@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-const { data: pricing } = await useAsyncData(withLocale('pricing'), () => queryContent(withLocale('pricing')).findOne())
+const { data: pricing } = await useAsyncData(withLocale('pricing'), () => queryContent('pricing').findOne())
 
-const { data: pricings } = await useAsyncData(withLocale('pricings'), () => queryContent(withLocale('pricing')).where({
+const { data: pricings } = await useAsyncData(withLocale('pricings'), () => queryContent('pricing').where({
   _dir: { $eq: withLocale('pricing') },
 }).find())
 

@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-const { data: products } = await useAsyncData(withLocale('products'), () => queryContent(withLocale('products')).find())
-const { data: engines } = await useAsyncData(withLocale('engines'), () => queryContent(withLocale('engines')).find())
-const { data: solutions } = await useAsyncData(withLocale('solutions'), () => queryContent(withLocale('solutions')).find())
-const { data: companies } = await useAsyncData(withLocale('companies'), () => queryContent(withLocale('companies')).find())
-const { data: legal } = await useAsyncData(withLocale('legal'), () => queryContent(withLocale('legal')).find())
+const { data: products } = await useAsyncData(withLocale('products'), () => queryContent('products').find())
+const { data: engines } = await useAsyncData(withLocale('engines'), () => queryContent('engines').find())
+const { data: solutions } = await useAsyncData(withLocale('solutions'), () => queryContent('solutions').find())
+const { data: companies } = await useAsyncData(withLocale('companies'), () => queryContent('companies').find())
+const { data: legal } = await useAsyncData(withLocale('legal'), () => queryContent('legal').find())
 
-const { data: resources } = await useAsyncData(withLocale('resources'), () => queryContent(withLocale('resources')).where({
+const { data: resources } = await useAsyncData(withLocale('resources'), () => queryContent('resources').where({
   $or: [
     { _dir: { $eq: withLocale('resources') } },
     { _dir: { $eq: '' } },
@@ -61,6 +61,7 @@ const localPath = useLocalePath()
           Company
         </div>
         <ReuseTemplate :items="companies" />
+
         <ReuseTemplate :items="legal" />
       </div>
     </footer>

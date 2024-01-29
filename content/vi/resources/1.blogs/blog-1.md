@@ -1,5 +1,6 @@
 ---
 title: 'Blog 1'
+description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
 author: antfu
 date: 2024-01-10
 thumbnail: /Capture_170819.png
