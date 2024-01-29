@@ -20,6 +20,20 @@ const { data: pinResource } = await useAsyncData(`production-pin-resource:${appC
     $eq: appConfig.productPinResource.path,
   },
 }).findOne(), { immediate: appConfig.productPinResource.enabled })
+const dirPath = computed(() => {
+  const pathArr = pinResource.value._path.split('/')
+  return pathArr.slice(0, pathArr.length - 1).join('/')
+})
+
+const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, () => queryContent('resources').where({
+  $or: [
+    {
+      _path: {
+        $eq: dirPath.value,
+      },
+    },
+  ],
+}).findOne(), { watch: [dirPath] })
 
 const { data: products } = await useAsyncData(withLocale('products'), () => queryContent(withLocale('products')).find())
 const { data: engines } = await useAsyncData(withLocale('engines'), () => queryContent(withLocale('engines')).find())
@@ -116,12 +130,15 @@ const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigmaott
                     </ul>
                   </div>
                 </div>
-                <div
-                  v-if="hasFeature && pinResource"
-                  class="min-w-0 w-1/4 flex-center border-l-1px border-gray-200 p-1 dark:border-trueGray-700"
-                >
-                  <ResourceItemImp v-if="pinResource.type === 'resource'" class="h-full" :item="pinResource" />
-                  <BlogItem v-else class="h-full" :item="pinResource" />
+                <div v-if="hasFeature && pinResource" class="w-1/4 px-3 pt-5 bg-resource">
+                  <div>
+                    <h1 class="text-lg font-600">
+                      {{ dataDir?.title }}
+                    </h1>
+                    <div class="my-2 h-1px bg-gray-200 dark:bg-trueGray-700" />
+                    <ResourceItemImp v-if="pinResource.type === 'resource'" hide-dir class="h-full" :item="pinResource" />
+                    <BlogItem v-else hide-dir hide-author class="h-full" :item="pinResource" />
+                  </div>
                 </div>
               </div>
             </SNavigationMenuContent>

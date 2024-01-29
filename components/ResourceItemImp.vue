@@ -3,6 +3,7 @@ import { ensurePrefix } from '@antfu/utils'
 
 const { item } = definePropsRefs<{
   item: any
+  hideDir?: boolean
 }>()
 const media = computed(() => ensurePrefix('/', item.value.media))
 const dirPath = computed(() => {
@@ -22,7 +23,7 @@ const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, (
 </script>
 
 <template>
-  <div class="grid gap-2 of-hidden rounded-12px bg-gray-100/75 dark:bg-gray-900/75">
+  <div class="grid gap-2 of-hidden rounded-12px bg-resource">
     <NuxtLink :to="media" target="_blank" class="relative block aspect-16/9 of-hidden rounded-12px bg-gray-200 transition-all duration-300 hover:scale-105">
       <template v-if="item?.thumbnail">
         <img :src="item.thumbnail" class="absolute inset-0 size-full object-cover">
@@ -34,7 +35,7 @@ const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, (
       </template>
     </NuxtLink>
 
-    <div class="px-3">
+    <div v-if="!hideDir" class="px-3">
       <span class="inline rounded-xl bg-gray-200 px-2 py-1 text-xs font-500">
         {{ dataDir?.title }}
       </span>

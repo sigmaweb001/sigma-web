@@ -9,17 +9,17 @@ import {
 } from 'unocss'
 import { presetShadcn } from './preset.shadcn'
 
-
 const colors = ['primary', 'secondary', 'destructive', 'muted', 'accent']
 const align = ['center']
 export default defineConfig({
   safelist: [
-    ...colors.map((item) => `text-${item}`),
-    ...align.map((item) => `text-${item}`),
+    ...colors.map(item => `text-${item}`),
+    ...align.map(item => `text-${item}`),
   ],
   shortcuts: [
     ['flex-center', 'flex items-center justify-center'],
-    ['navigation-menu-trigger', 'inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 hover:text-primary']
+    ['navigation-menu-trigger', 'inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 hover:text-primary'],
+    ['bg-resource', 'bg-gray-100/75 dark:bg-trueGray-900/75'],
   ],
   rules: [
   ],
