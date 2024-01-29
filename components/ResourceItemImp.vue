@@ -57,7 +57,7 @@ const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, (
         {{ item.description }}
       </span>
     </div>
-    <div class="mb-2 px-3">
+    <div class="mb-2 mt--2 px-3">
       <SButton as="a" variant="link" class="text-sm p-0!" :download="media" :href="`${media}`">
         Download
         <div class="i-ri:arrow-right-line ml-1 size-16px!" />

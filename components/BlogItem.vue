@@ -62,26 +62,23 @@ const NuxtLink = resolveComponent('NuxtLink')
         {{ item.description }}
       </span>
     </div>
-    <div v-if="author && !hideAuthor" class="flex items-center gap-3 px-3">
-      <div class="relative h-32px w-32px flex-shrink-0">
-        <NuxtImg
-          class="absolute inset-0 h-full w-full rounded-full object-cover" :src="author.avatar"
-          :alt="author.slug"
-        />
-      </div>
-      <div>
-        <span class="truncate text-sm">
+    <div v-if="author && !hideAuthor" class="w-full flex items-center justify-between gap-3 px-3">
+      <div class="flex flex-grow items-center gap-2">
+        <div class="relative h-32px w-32px flex-shrink-0">
+          <NuxtImg
+            class="absolute inset-0 h-full w-full rounded-full object-cover" :src="author.avatar"
+            :alt="author.slug"
+          />
+        </div>
+        <span class="line-clamp-1 max-w-1/2 min-w-0 text-sm">
           {{ author.name }}
-
         </span>
-        <template v-if="author.title">
-          <p class="my-0 text-xs">
-            {{ author.title }}
-          </p>
-        </template>
       </div>
+      <p v-if="author.title" class="line-clamp-1 my-0 max-w-1/4 min-w-0 text-xs">
+        {{ author.title }}
+      </p>
     </div>
-    <div class="mb-2 flex items-end justify-between px-3">
+    <div class="mb-2 mt--2 flex items-end justify-between px-3">
       <SButton :as="NuxtLink" variant="link" class="text-sm p-0!" :to="item._path">
         Read more
         <div class="i-ri:arrow-right-line ml-1 size-16px!" />
