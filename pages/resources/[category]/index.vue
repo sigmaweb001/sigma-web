@@ -5,7 +5,7 @@ import { joinURL } from 'ufo'
 const route = useRoute()
 
 const slug = computed(() => {
-  const path = joinURL(`/resources`, ...route.params.slug)
+  const path = joinURL(`/resources`, route.params.category)
   return path || ''
 })
 
