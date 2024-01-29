@@ -1,6 +1,8 @@
 <script lang="ts" setup>
+import { joinURL } from 'ufo'
+
 const route = useRoute()
-const slug = computed(() => `/resources/blogs/${route.params.slug}`)
+const slug = computed(() => joinURL('/resources', route.params.category ?? '', ...route.params.slug))
 const { data: item } = await useAsyncData(`resource-content-blog${slug.value}`, () => queryContent('resources').where({
   _path: {
     $eq: slug.value,
@@ -12,22 +14,45 @@ const date = computed(() => item.value.date ? useDateFormat(item.value.date, 'MM
 const author = computed(() => appConfig.authors.find(a => a.slug === item.value.author))
 
 const links = computed(() => item.value?.body.toc.links)
+
+const tags = computed(() => {
+  if (!item.value)
+    return []
+  const _tags = appConfig.tags
+  if (!item.value.tags)
+    return []
+  const itemTags = item.value.tags.split(',').map(item => item.trim())
+
+  return itemTags.map((tag) => {
+    const tagItem = _tags.find(item => item.slug === tag)
+    if (tagItem)
+      return tagItem
+
+    return undefined
+  }).filter(Boolean)
+})
 </script>
 
 <template>
   <main>
     <div class="mx-auto container">
       <div class="max-w-screen-xl py-5 container lg:py-8">
-        <div class="flex justify-center">
-        <!-- TODO: tag -->
-          <!-- <BlogsTagsLabel :categories="post?.tags" /> -->
-        </div>
-
         <h1
           class="text-brand-primary mb-3 mt-2 text-center text-3xl font-semibold tracking-tight lg:text-4xl dark:text-white lg:leading-snug"
         >
           {{ item?.title }}
         </h1>
+
+        <div class="flex justify-center">
+          <div v-if="tags?.length" class="mt-4 flex flex-wrap gap-2">
+            <TagItem
+              v-for="(item, index) in tags" :key="index" :color="item.color"
+              :to="localePath(`/resources?tag=${item.slug}`)"
+            >
+              {{ item.name }}
+            </TagItem>
+          </div>
+        </div>
 
         <div class="mt-3 flex justify-center text-gray-500 space-x-3">
           <div class="flex items-center gap-3">
@@ -43,8 +68,8 @@ const links = computed(() => item.value?.body.toc.links)
               <div class="text-gray-800 dark:text-gray-400">
                 by {{ author?.name }}
               </div>
-              <!-- <div class="w-1px h-14px bg-border" /> -->
-              <!-- <span class="text-sm">{{ item?.readingTime?.text }}</span> -->
+              <div class="h-14px w-1px bg-border" />
+              <span class="text-sm">{{ item?.readingTime?.text }}</span>
               <template v-if="date">
                 <div class="h-14px w-1px bg-border" />
                 <div>
@@ -59,17 +84,11 @@ const links = computed(() => item.value?.body.toc.links)
         </div>
       </div>
 
-      <!-- <div class="relative z-0 mx-auto aspect-video max-w-screen-lg overflow-hidden lg:rounded-lg">
-      <img v-if="item.thumbnail" :src="item?.thumbnail" :alt="item?.thumbnail || 'Thumbnail'"
-        class="absolute inset-0 h-full w-full object-cover" />
-    </div> -->
-
       <div class="mx-auto mt-14 max-w-screen-xl flex flex-col gap-5 px-5 md:flex-row">
         <article class="flex-1">
           <div class="mx-auto my-3 max-w-85ch prose prose-trueGray dark:prose-invert">
             <slot />
           </div>
-          <!-- <BlogsAuthorCard v-if="item?.author" :author="item.author" /> -->
         </article>
         <div class="sticky top-[calc(var(--header-height))] w-full self-start md:w-256px">
           <div class="mt-5 font-sans">
