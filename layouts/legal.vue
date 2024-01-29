@@ -1,18 +1,12 @@
 <script lang="ts" setup>
 const { data: legal } = await useAsyncData(withLocale('legal'), () => queryContent('legal').find())
-const route = useRoute()
-const slug = computed(() => `/legal/${route.params.slug}`)
-const { data: item } = await useAsyncData(`legal-content-item${slug.value}`, () => queryContent('legal').where({
-  _path: {
-    $eq: slug.value,
-  },
-}).findOne(), { watch: [slug] })
-
-const links = computed(() => item.value?.body.toc.links)
 
 function printContent() {
   window.print()
 }
+
+const localPath = useLocalePath()
+const legelLinks = useLegalLinks()
 </script>
 
 <template>
@@ -24,10 +18,10 @@ function printContent() {
       <div class="w-256px py-10 print:hidden">
         <div class="flex flex-col gap-2">
           <NuxtLink
-            v-for="item in legal" :key="item._path" exact-active-class="text-primary underline"
-            class="text-base font-500 hover:(text-primary underline)" :to="item._path"
+            v-for="itemL in legal" :key="localPath(itemL._path)" exact-active-class="text-primary underline"
+            class="text-base font-500 hover:(text-primary underline)" :to="itemL._path"
           >
-            {{ item.title }}
+            {{ itemL.title }}
           </NuxtLink>
         </div>
         <div class="mx-1 mt-3 h-1px bg-gray-200 dark:bg-trueGray-700" />
@@ -40,7 +34,7 @@ function printContent() {
                 </div>
               </template>
 
-              <TocLinks v-slot="{ link }" class="ml-4" :links="links">
+              <TocLinks v-slot="{ link }" class="ml-4" :links="legelLinks">
                 <div class="my-2 block hover:underline">
                   {{ link.text }}
                 </div>
