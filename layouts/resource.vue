@@ -24,6 +24,8 @@ const { data: dataResourcesDir } = await useAsyncData('resources-list-dir', () =
 const appConfig = useAppConfig()
 const tags = computed(() => appConfig.tags)
 const localePath = useLocalePath()
+
+const tag = computed(() => useRoute().query.tag)
 </script>
 
 <template>
@@ -57,7 +59,8 @@ const localePath = useLocalePath()
 
           <div v-if="tags?.length" class="mt-4 flex flex-wrap gap-2">
             <TagItem
-              v-for="(item, index) in tags" :key="index" :color="item.color"
+              v-for="(item, index) in tags"
+              :key="index" :active="tag === item.slug" :color="item.color"
               :to="localePath(`/resources?tag=${item.slug}`)"
             >
               {{ item.name }}

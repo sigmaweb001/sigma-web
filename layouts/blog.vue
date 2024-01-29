@@ -31,6 +31,8 @@ const tags = computed(() => {
     return undefined
   }).filter(Boolean)
 })
+
+const localePath = useLocalePath()
 </script>
 
 <template>

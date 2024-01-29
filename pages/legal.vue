@@ -3,7 +3,9 @@
 </script>
 
 <template>
-  <NuxtLayout name="legal">
-    <NuxtPage />
-  </NuxtLayout>
+  <div>
+    <NuxtLayout name="legal">
+      <NuxtPage />
+    </NuxtLayout>
+  </div>
 </template>

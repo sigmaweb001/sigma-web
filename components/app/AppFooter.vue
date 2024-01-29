@@ -20,7 +20,8 @@ const localPath = useLocalePath()
 <template>
   <DefineTemplate v-slot="{ items }">
     <NuxtLink
-      v-for="item in items" :key="item._path" hover="underline underline-primary text-primary"
+      v-for="item in items"
+      :key="item._path" exact-active-class="text-primary" hover="underline underline-primary text-primary"
       :to="localPath(item._path)"
     >
       {{ item.title }}
@@ -29,35 +30,35 @@ const localPath = useLocalePath()
   <div class="mt-20 border-b border-t border-gray-200 print:hidden dark:border-trueGray-700">
     <footer class="grid grid-cols-3 gap-10 px-10 py-10 text-15px container lg:grid-cols-5">
       <div class="flex flex-col gap-8px">
-        <div class="mb-8px cursor-default text-primary font-500">
+        <div class="mb-8px cursor-default text-primary font-600">
           Products
         </div>
         <ReuseTemplate :items="products" />
       </div>
 
       <div class="flex flex-col gap-8px">
-        <div class="mb-8px cursor-default text-primary font-500">
+        <div class="mb-8px cursor-default text-primary font-600">
           Engines
         </div>
         <ReuseTemplate :items="engines" />
       </div>
 
       <div class="flex flex-col gap-8px">
-        <div class="mb-8px cursor-default text-primary font-500">
+        <div class="mb-8px cursor-default text-primary font-600">
           Solutions
         </div>
         <ReuseTemplate :items="solutions" />
       </div>
 
       <div class="flex flex-col gap-8px">
-        <div class="mb-8px cursor-default text-primary font-500">
+        <div class="mb-8px cursor-default text-primary font-600">
           Resources
         </div>
         <ReuseTemplate :items="resources" />
       </div>
 
       <div class="flex flex-col gap-8px">
-        <div class="mb-8px cursor-default text-primary font-500">
+        <div class="mb-8px cursor-default text-primary font-600">
           Company
         </div>
         <ReuseTemplate :items="companies" />
