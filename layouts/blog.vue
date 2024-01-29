@@ -2,7 +2,7 @@
 import { joinURL } from 'ufo'
 
 const route = useRoute()
-const slug = computed(() => joinURL('/resources', route.params.category ?? 'blogs', ...route.params.slug))
+const slug = computed(() => joinURL('/resources', route.params.category ?? '', ...route.params.slug))
 const { data: item } = await useAsyncData(`resource-content-blog${slug.value}`, () => queryContent('resources').where({
   _path: {
     $eq: slug.value,
