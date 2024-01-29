@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const { item } = definePropsRefs<{
   item: any
+  hideAuthor?: boolean
 }>()
 
 const appConfig = useAppConfig()
@@ -26,7 +27,7 @@ const NuxtLink = resolveComponent('NuxtLink')
 
 <template>
   <div class="grid gap-2 of-hidden bg-gray-100/75 dark:bg-gray-900/75">
-    <NuxtLink :to="media" target="_blank" class="relative block aspect-16/9 of-hidden rounded-12px bg-gray-200 transition-all duration-300 hover:scale-105">
+    <NuxtLink :to="item._path" target="_blank" class="relative block aspect-16/9 of-hidden rounded-12px bg-gray-200 transition-all duration-300 hover:scale-105">
       <template v-if="item?.thumbnail">
         <img :src="item.thumbnail" class="absolute inset-0 size-full object-cover">
       </template>
@@ -44,7 +45,7 @@ const NuxtLink = resolveComponent('NuxtLink')
 
     <div class="px-3">
       <NuxtLink
-        :to="media" external target="_blank"
+        :to="item._path" external target="_blank"
         class="flex-1 text-lg font-semibold leading-snug tracking-tight dark:text-white"
       >
         <span
@@ -60,14 +61,8 @@ const NuxtLink = resolveComponent('NuxtLink')
         {{ item.description }}
       </span>
     </div>
-
     <div class="mb-2 flex items-end justify-between px-3">
-      <SButton :as="NuxtLink" variant="link" class="p-0!" :to="item._path">
-        Read more
-        <div class="i-ri:arrow-right-line ml-1 size-16px!" />
-      </SButton>
-
-      <div v-if="author" class="flex items-center gap-3">
+      <div v-if="author && !hideAuthor" class="flex items-center gap-3">
         <div class="relative h-32px w-32px flex-shrink-0">
           <NuxtImg
             class="absolute inset-0 h-full w-full rounded-full object-cover" :src="author.avatar"
@@ -86,6 +81,12 @@ const NuxtLink = resolveComponent('NuxtLink')
           </template>
         </div>
       </div>
+    </div>
+    <div class="mb-2 flex items-end justify-between px-3">
+      <SButton :as="NuxtLink" variant="link" class="text-sm p-0!" :to="item._path">
+        Read more
+        <div class="i-ri:arrow-right-line ml-1 size-16px!" />
+      </SButton>
     </div>
   </div>
 </template>

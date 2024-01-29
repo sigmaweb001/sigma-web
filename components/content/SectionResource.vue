@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { register } from 'swiper/element/bundle'
+
 definePropsRefs<{
   left?: boolean
 }>()
@@ -30,21 +31,27 @@ function next() {
       </template>
     </SectionTitle>
   </section>
-  <div class="my-10 gap-24px container relative">
-    <swiper-container ref="swiperRef" class="swiper-config px-20" :slides-per-view="3" :space-between="spaceBetween"
+  <div class="relative my-10 gap-24px container">
+    <swiper-container
+      ref="swiperRef" class="swiper-config px-20" :slides-per-view="3" :space-between="spaceBetween"
       :breakpoints="{
         768: {
           slidesPerView: 3,
         },
-      }" :free-mode="true" :loop="true">
+      }" :free-mode="true" :loop="true"
+    >
       <ContentSlot :use="$slots.default" unwrap="p" />
     </swiper-container>
-    <SButton variant="outline"
-      class="flex-center absolute left-16px z-10 top-1/2 translate-y--1/2 !rounded-full !h-40px !w-40px !p-0" @click="next">
+    <SButton
+      variant="outline"
+      class="absolute left-16px top-1/2 z-10 flex-center translate-y--1/2 !h-40px !w-40px !rounded-full !p-0" @click="next"
+    >
       <div class="i-ri:arrow-left-s-line text-24px" />
     </SButton>
-    <SButton variant="outline"
-      class="flex-center absolute right-16px z-10 top-1/2 translate-y--1/2 !rounded-full !h-40px !w-40px !p-0" @click="prev();">
+    <SButton
+      variant="outline"
+      class="absolute right-16px top-1/2 z-10 flex-center translate-y--1/2 !h-40px !w-40px !rounded-full !p-0" @click="prev();"
+    >
       <div class="i-ri:arrow-right-s-line text-24px" />
     </SButton>
   </div>
