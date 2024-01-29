@@ -1,1 +1,0 @@
-import{b as o,D as n,w as _,g as a,E as c,G as s}from"./entry.-UzwwWEY.js";import{_ as r}from"./_plugin-vue_export-helper.x3n3nnut.js";const m={};function p(u,f){const t=c,e=s;return o(),n(e,{name:"legal"},{default:_(()=>[a(t)]),_:1})}const d=r(m,[["render",p]]);export{d as default};
