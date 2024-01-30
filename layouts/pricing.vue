@@ -5,7 +5,7 @@ const slug = computed(() => route.params.slug)
 const { data: pricing } = await useAsyncData(`${withLocale('pricing')}_${slug.value}`, () => queryContent('pricing').findOne())
 
 const { data: pricings } = await useAsyncData(`${withLocale('pricings')}_${slug.value}`, () => queryContent('pricing').where({
-  _dir: { $eq: withLocale('pricing') },
+  _dir: { $eq: 'pricing' },
 }).find())
 
 const localePath = useLocalePath()
