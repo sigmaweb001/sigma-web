@@ -26,7 +26,7 @@ const query = computed<QueryBuilderWhere>(() => {
     }
   }
 })
-const { data: dataDir } = await useAsyncData('resources-dir', () => queryContent('resources').where({
+const { data: dataDir } = await useAsyncData(`resources-dir-${slug.value}`, () => queryContent('resources').where({
   $or: [
     {
       _path: {
