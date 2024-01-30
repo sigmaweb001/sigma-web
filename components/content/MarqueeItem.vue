@@ -5,5 +5,5 @@ const { img } = definePropsRefs<{
 </script>
 
 <template>
-  <img :src="img" class="object-scale-down max-h-64px mx-24px my-24px" />
+  <img v-if="img" :src="img" class="mx-24px my-24px max-h-64px object-scale-down">
 </template>
