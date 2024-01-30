@@ -3,5 +3,9 @@
 </script>
 
 <template>
-  <ContentDoc />
+  <div>
+    <NuxtLayout name="pricing">
+      <ContentDoc />
+    </NuxtLayout>
+  </div>
 </template>

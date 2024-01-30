@@ -228,5 +228,7 @@ const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigmaott
         </SNavigationMenuItem>
       </div>
     </SNavigationMenu>
+    <NuxtLink class="invisible hidden" :to="localePath('/pricing/premise')" />
+    <NuxtLink class="invisible hidden" :to="localePath('/pricing/cloud')" />
   </div>
 </template>
