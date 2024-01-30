@@ -57,7 +57,7 @@ export default defineNuxtConfig({
   ],
   googleFonts: {
     families: {
-      'DM Sans': '100..800',
+      'Lexend Deca': '100..800',
     },
     download: true,
   },
