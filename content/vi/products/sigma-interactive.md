@@ -202,19 +202,13 @@ Interactive Resources
 
 ::section-marquee
 #subtitle
-Trusted by 2000+ customers
-
+TRUSTED BY 2000+ CUSTOMERS
 #default
-:marquee-item
-![vt.png](/testimonial/vt.png)
-:marquee-item
-![vtv-digital.png](/testimonial/vtv-digital.png)
-:marquee-item
-![vtc.png](/testimonial/vtc.png)
-:marquee-item
-![vtvc.png](/testimonial/vtvc.png)
-:marquee-item
-![vng.png](/testimonial/vng.png)
+:marquee-item{img="/testimonial/vt.png"}
+:marquee-item{img="/testimonial/vtv-digital.png"}
+:marquee-item{img="/testimonial/vtc.png"}
+:marquee-item{img="/testimonial/vtvc.png"}
+:marquee-item{img="/testimonial/vng.png"}
 ::
 
 ::section-cta
