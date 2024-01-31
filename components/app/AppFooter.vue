@@ -20,9 +20,8 @@ const localPath = useLocalePath()
 <template>
   <DefineTemplate v-slot="{ items }">
     <NuxtLink
-      v-for="item in items"
-      :key="item._path" exact-active-class="text-primary" hover="underline underline-primary text-primary"
-      :to="localPath(item._path)"
+      v-for="item in items" :key="item._path" exact-active-class="text-primary"
+      hover="underline underline-primary text-primary" :to="localPath(item._path)"
     >
       {{ item.title }}
     </NuxtLink>
@@ -63,7 +62,12 @@ const localPath = useLocalePath()
         </div>
         <ReuseTemplate :items="companies" />
 
-        <ReuseTemplate :items="legal" />
+        <NuxtLink
+          exact-active-class="text-primary"
+          hover="underline underline-primary text-primary" :to="localPath('/legal/terms-of-service')"
+        >
+          Terms & Policies
+        </NuxtLink>
       </div>
     </footer>
   </div>
