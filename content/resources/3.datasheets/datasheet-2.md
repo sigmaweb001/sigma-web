@@ -1,6 +1,6 @@
 ---
 title: Datasheet 2 Datasheet 2 Datasheet 2 Datasheet 2 Datasheet 2 Datasheet 2 Datasheet 2 Datasheet 2
-media: /VTVHub_HD.pdf
+media: /datasheet/sigma-streaming-datasheet.pdf
 thumbnail: /Capture_170819.png
 type: resource
 description: 'A datasheet for the VTVHub'
