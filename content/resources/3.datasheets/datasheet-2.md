@@ -1,9 +1,9 @@
 ---
-title: Datasheet 2 Datasheet 2 Datasheet 2 Datasheet 2 Datasheet 2 Datasheet 2 Datasheet 2 Datasheet 2
-media: /datasheet/sigma-streaming-datasheet.pdf
-thumbnail: /Capture_170819.png
+title: 'Sigma Media VOD Datasheet'
+media: /datasheet/sigma-media-vod-datasheet.pdf
+thumbnail: /datasheet/sigma-media-vod-datasheet-thumb.jpg
 type: resource
-description: 'A datasheet for the VTVHub'
+description: 'A datasheet for Sigma Media VOD'
 tags: tag 1
 ---
 # Datasheet 2
