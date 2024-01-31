@@ -209,8 +209,8 @@ Answer your customers possible questions here, it will increase the conversion r
 ::
 
 ::section-marquee
-#title
-Image Marquee
+#subtitle
+TRUSTED BY 2000+ CUSTOMERS
 #default
 :marquee-item{img="/testimonial/vt.png"}
 :marquee-item{img="/testimonial/vtv-digital.png"}
