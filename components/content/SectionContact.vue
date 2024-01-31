@@ -11,7 +11,7 @@ const formSchema = toTypedSchema(
   z.object({
     title: z.string(),
     name: z.string({ required_error: t('contact.required') }).min(1, { message: t('contact.required') }).max(50, { message: t('contact.max-50-characters') }),
-    email: z.string({ required_error: t('contact.required') }).email(),
+    email: z.string({ required_error: t('contact.required') }).email(t('contact.invalid_email')),
     countryCode: z.string(),
     company: z.string().max(50, { message: t('contact.max-50-characters') }).optional(),
     note: z.string().max(300, { message: t('contact.max-300-characters') }).optional(),
