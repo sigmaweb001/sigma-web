@@ -10,7 +10,7 @@ const { t: $t } = useI18n()
 const formSchema = toTypedSchema(
   z.object({
     name: z.string({ required_error: $t('contact.required') }).min(1, { message: $t('contact.required') }).max(50, { message: $t('contact.max-50-characters') }),
-    email: z.string({ required_error: $t('contact.required') }).email(),
+    email: z.string({ required_error: $t('contact.required') }).email($t('contact.invalid_email')),
     address: z.string().min(1, $t('contact.required')),
     countryCode: z.string(),
     phone: z.string({ required_error: $t('contact.required') }).superRefine((val, ctx) => {
@@ -226,7 +226,10 @@ const agree = ref(false)
               </tr>
             </thead>
             <tbody>
-              <tr v-for="item in carts" class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
+              <tr
+                v-for="item in carts" :key="item.product"
+                class="border-b bg-white dark:border-gray-700 dark:bg-gray-800"
+              >
                 <th scope="row" class="whitespace-nowrap px-10 py-4 text-gray-800 font-medium dark:text-white">
                   {{ item.product }}
                 </th>

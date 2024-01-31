@@ -52,6 +52,7 @@
     "required": "Trường này là bắt buộc",
     "invalid-phone-number": "Số điện thoại không hợp lệ",
     "invalid-phone-number-for-the-selected-country": "Số điện thoại không hợp lệ cho quốc gia đã chọn",
-    "product_request": "Yêu cầu sản phẩm"
+    "product_request": "Yêu cầu sản phẩm",
+    "invalid_email": "Email không hợp lệ"
   }
 }
