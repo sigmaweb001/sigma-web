@@ -9,7 +9,7 @@
     <div class="w-full flex items-center" lg="w-3/5" xl="w-1/2">
       <div class="grid mx-auto mb-8 justify-items-center" lg="max-w-2xl justify-items-start">
         <h1
-          v-if="$slots.title" class="pt-5 text-center text-40px text-gray-800 font-bold leading-snug tracking-tight" lg="text-50px leading-tight"
+          v-if="$slots.title" class="pt-5 text-center text-40px text-gray-800 font-bold leading-snug tracking-tight" lg="text-50px leading-tight text-left"
           xl="text-50px leading-tight" dark="text-white"
         >
           <ContentSlot :use="$slots.title" unwrap="p" />
@@ -26,7 +26,7 @@
         </Slot>
       </div>
     </div>
-    <div class="relative min-h-370px w-full flex items-center justify-center" xl="w-1/2" lg="block w-2/5">
+    <div class="relative min-h-270px w-full flex items-center justify-center" xl="w-1/2" lg="block w-2/5">
       <Slot v-if="$slots.image" class="absolute inset-0 h-full w-full object-scale-down">
         <ContentSlot :use="$slots.image" unwrap="p" />
       </Slot>
