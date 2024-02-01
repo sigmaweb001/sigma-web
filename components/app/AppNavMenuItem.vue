@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   title?: string
   _path?: string
   icon?: string
@@ -7,7 +7,10 @@ const props = defineProps<{
   new?: boolean
   comingsoon?: boolean
   redirect?: string
-}>()
+  navigation?: boolean
+}>(), {
+  navigation: true,
+})
 
 const localePath = useLocalePath()
 const target = computed(() => props.redirect?.startsWith('https://') ? '_blank' : '_self')
@@ -15,7 +18,7 @@ const _redirect = computed(() => props.redirect?.startsWith('https://') ? props.
 </script>
 
 <template>
-  <NavigationMenuLink as-child>
+  <NavigationMenuLink v-if="props.navigation" as-child>
     <NuxtLink
       :to="redirect ? _redirect : localePath(_path)" :external="!!redirect" v-bind="$attrs" :target="target"
       class="group block select-none rounded-[6px] p-8px text-gray-800 no-underline outline-none transition-colors hover:bg-primary/10 dark:text-trueGray-200 hover:text-primary"
