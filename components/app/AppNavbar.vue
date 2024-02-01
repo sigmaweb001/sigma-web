@@ -42,7 +42,7 @@ const { data: companies } = await useAsyncData(withLocale('companies'), () => qu
 
 const { data: resources } = await useAsyncData(withLocale('resources'), () => queryContent('resources').where({
   $or: [
-    { _dir: { $eq: withLocale('resources') } },
+    { _dir: { $eq: 'resources' } },
     { _dir: { $eq: '' } },
   ],
 }).find())
