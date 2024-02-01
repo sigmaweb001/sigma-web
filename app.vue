@@ -22,7 +22,7 @@ html,
 body,
 #__nuxt {
   height: 100dvh;
-  font-family: 'Lexend Deca', sans-serif;
+  font-family: 'Noto Sans', sans-serif;
   @apply p-0 m-0 antialiased text-secondary scroll-smooth;
 }
 

@@ -57,7 +57,7 @@ export default defineNuxtConfig({
   ],
   googleFonts: {
     families: {
-      'Lexend Deca': '100..800',
+      'Noto Sans': '100..800',
     },
     download: true,
   },
