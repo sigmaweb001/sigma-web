@@ -185,4 +185,8 @@ section {
 [right='true'] {
   @apply block text-right;
 }
+
+.fc_frame {
+  @print:hidden;
+}
 </style>
