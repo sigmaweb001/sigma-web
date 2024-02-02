@@ -93,7 +93,7 @@ const localePath = useLocalePath()
           </div>
         </article>
         <div class="sticky top-[calc(var(--header-height))] w-full self-start md:w-256px">
-          <div class="mt-5 font-sans">
+          <div class="mt-5">
             <Toc class="border-border rounded-xl bg-background p-4 text-sm">
               <template #title>
                 <div class="mx-4 mb-4 text-lg font-semibold">

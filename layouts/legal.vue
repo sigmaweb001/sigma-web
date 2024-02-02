@@ -26,7 +26,7 @@ const legelLinks = useLegalLinks()
         </div>
         <div class="mx-1 mt-3 h-1px bg-gray-200 dark:bg-trueGray-700" />
         <div class="sticky top-[calc(var(--header-height))] w-full self-start">
-          <div class="pt-3 font-sans">
+          <div class="pt-3">
             <Toc class="border-border rounded-xl bg-background text-sm">
               <template #title>
                 <div class="text-base font-semibold">
