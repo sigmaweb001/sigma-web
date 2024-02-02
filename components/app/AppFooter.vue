@@ -14,14 +14,27 @@ const { data: resources } = await useAsyncData(withLocale('resources'), () => qu
 
 const [DefineTemplate, ReuseTemplate] = createReusableTemplate<{ items: any[] }>()
 
-const localPath = useLocalePath()
+const localePath = useLocalePath()
+
+function getTarget(item: any) {
+  const target = item.redirect?.startsWith('https://') ? '_blank' : '_self'
+  return target
+}
+function getPath(item: any) {
+  if (item.redirect) {
+    const path = item.redirect?.startsWith('https://') ? item.redirect : localePath(item.redirect)
+    return path
+  }
+  return localePath(item._path)
+}
 </script>
 
 <template>
   <DefineTemplate v-slot="{ items }">
     <NuxtLink
       v-for="item in items" :key="item._path" exact-active-class="text-primary"
-      hover="underline underline-primary text-primary" :to="localPath(item._path)"
+      hover="underline underline-primary text-primary" :to="getPath(item)"
+      :target="getTarget(item)"
     >
       {{ item.title }}
     </NuxtLink>
@@ -61,17 +74,20 @@ const localPath = useLocalePath()
           Company
         </div>
         <ReuseTemplate :items="companies" />
-
-        <NuxtLink
-          exact-active-class="text-primary"
-          hover="underline underline-primary text-primary" :to="localPath('/legal/terms-of-service')"
-        >
-          Terms & Policies
-        </NuxtLink>
       </div>
     </footer>
   </div>
-  <div class="py-10 print:hidden">
+  <div class="bg-gray-100 py-10 print:hidden dark:bg-trueGray-700">
+    <div class="grid grid-cols-3 mb-6 gap-2 px-10 container lg:grid-cols-5">
+      <NuxtLink
+        v-for="item in legal"
+        :key="item._path" class="text-center text-sm font-500" exact-active-class="text-primary"
+        hover="underline underline-primary text-primary" :to="getPath(item)"
+        :target="getTarget(item)"
+      >
+        {{ item.title }}
+      </NuxtLink>
+    </div>
     <footer class="grid grid-cols-2 items-end gap-10 container">
       <div class="left">
         <div>
