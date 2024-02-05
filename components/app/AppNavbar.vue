@@ -201,11 +201,11 @@ const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigmaott
           </SNavigationMenuItem>
         </SNavigationMenuList>
       </div>
-      <div class="hidden justify-self-end gap-3 xl:flex">
+      <div class="hidden justify-self-end gap-0 xl:flex">
         <div class="hidden items-center 2xl:flex">
           <SNavigationMenuItem>
             <NuxtLink :to="loginPath" external target="_blank">
-              <SNavigationMenuLink class="navigation-menu-trigger">
+              <SNavigationMenuLink class="navigation-menu-trigger px-2!">
                 Login
               </SNavigationMenuLink>
             </NuxtLink>
@@ -213,18 +213,16 @@ const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigmaott
           <div class="h-30px border-l-1" />
           <SNavigationMenuItem>
             <NuxtLink to="https://appt.link/meet-with-sigma-team" data-appointlet-modal>
-              <SNavigationMenuLink class="text-primary navigation-menu-trigger">
+              <SNavigationMenuLink class="text-primary navigation-menu-trigger px-2!">
                 View demo
               </SNavigationMenuLink>
             </NuxtLink>
           </SNavigationMenuItem>
         </div>
-        <SNavigationMenuItem class="hidden xl:block">
-          <NuxtLink to="https://portal.sigmaott.com/auth/login?redirect=/apps" external target="_blank">
-            <SButton variant="gradient" class="w-125px text-sm">
-              Start free trial
-            </SButton>
-          </NuxtLink>
+        <SNavigationMenuItem class="hidden flex-shrink-0 xl:block">
+          <SButton :as="NuxtLink" variant="gradient" class="0 text-sm" to="https://portal.sigmaott.com/auth/login?redirect=/apps" external target="_blank">
+            Start free trial
+          </SButton>
         </SNavigationMenuItem>
       </div>
     </SNavigationMenu>
