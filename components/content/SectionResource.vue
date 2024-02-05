@@ -17,7 +17,7 @@ const spaceBetween = 24
       </template>
     </SectionTitle>
   </section>
-  <div class="relative my-10 gap-24px px-20 container">
+  <div class="relative my-10 gap-24px container">
     <SCarousel
       class="relative w-full" :opts="{ align: 'start' }"
     >

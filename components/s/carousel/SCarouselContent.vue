@@ -17,8 +17,7 @@ const { carouselRef, orientation } = useCarousel()
       class="flex" :class="[
         orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col',
         props.class,
-      ]"
-      v-bind="$attrs"
+      ]" v-bind="$attrs"
     >
       <slot />
     </div>

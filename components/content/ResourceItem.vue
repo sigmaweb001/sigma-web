@@ -9,7 +9,7 @@ const { data: item } = await useAsyncData(`section-resource-item:${path.value}`,
 
 <template>
   <SCarouselItem v-if="item" class="lg:basis-1/4 md:basis-1/3">
-    <ResourceItemImp v-if="item.type === 'resource'" :item="item" />
-    <BlogItem v-else hide-author :item="item" />
+    <ResourceItemImp v-if="item.type === 'resource'" class="h-full" :item="item" />
+    <BlogItem v-else hide-author :item="item" class="h-full" />
   </SCarouselItem>
 </template>

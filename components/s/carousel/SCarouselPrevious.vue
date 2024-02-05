@@ -11,8 +11,8 @@ const { orientation, canScrollPrev, scrollPrev } = useCarousel()
   <SButton
     :disabled="!canScrollPrev" class="absolute flex-center touch-manipulation size-40px! rounded-full! p-0!" :class="[
       orientation === 'horizontal'
-        ? '-left-12 top-1/2 -translate-y-1/2'
-        : '-top-12 left-1/2 -translate-x-1/2 rotate-90']" variant="outline" @click="scrollPrev"
+        ? '-left-16 top-1/2 -translate-y-1/2'
+        : '-top-16 left-1/2 -translate-x-1/2 rotate-90']" variant="outline" @click="scrollPrev"
   >
     <slot>
       <div class="i-ri:arrow-left-s-line text-24px" />
