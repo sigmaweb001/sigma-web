@@ -8,6 +8,15 @@ dependencies:
   '@vee-validate/zod':
     specifier: ^4.12.4
     version: 4.12.5(vue@3.4.15)
+  embla-carousel:
+    specifier: ^8.0.0-rc22
+    version: 8.0.0-rc22
+  embla-carousel-autoplay:
+    specifier: ^8.0.0-rc22
+    version: 8.0.0-rc22(embla-carousel@8.0.0-rc22)
+  embla-carousel-vue:
+    specifier: ^8.0.0-rc22
+    version: 8.0.0-rc22(vue@3.4.15)
   radix-vue:
     specifier: ^1.3.2
     version: 1.3.2(vue@3.4.15)
@@ -34,6 +43,9 @@ devDependencies:
   '@iconify-json/fa-brands':
     specifier: ^1.1.8
     version: 1.1.8
+  '@iconify-json/lucide':
+    specifier: ^1.1.162
+    version: 1.1.162
   '@iconify-json/ri':
     specifier: ^1.1.19
     version: 1.1.19
@@ -106,9 +118,6 @@ devDependencies:
   remark-reading-time:
     specifier: ^2.0.1
     version: 2.0.1
-  swiper:
-    specifier: ^11.0.5
-    version: 11.0.5
   tinycolor2:
     specifier: ^1.6.0
     version: 1.6.0
@@ -1171,6 +1180,12 @@ packages:
 
   /@iconify-json/fa-brands@1.1.8:
     resolution: {integrity: sha512-0HVT1+7hDww2vTtGyX4maUyiEXDYd6CK57bOGJ3hc3fjmXpMI9QKdej21pPSv1jBZ2nGzTlg8WJ2yNtN88/lFQ==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-json/lucide@1.1.162:
+    resolution: {integrity: sha512-qmyZP9dTKN1J+ZNxzpqery29qysl9507tPqkGhRUjIJT/AhVxPZ1EY29ISg+jqqoCOhMvl+mR56z5LFb6KH37w==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
@@ -4689,6 +4704,7 @@ packages:
 
   /color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
+    requiresBuild: true
     dev: true
 
   /color-string@1.9.1:
@@ -5177,6 +5193,36 @@ packages:
   /electron-to-chromium@1.4.653:
     resolution: {integrity: sha512-wA2A2LQCqnEwQAvwADQq3KpMpNwgAUBnRmrFgRzHnPhbQUFArTR32Ab46f4p0MovDLcg4uqd4nCsN2hTltslpA==}
     dev: true
+
+  /embla-carousel-autoplay@8.0.0-rc22(embla-carousel@8.0.0-rc22):
+    resolution: {integrity: sha512-UFR9ocKapxuYwcAOv8mb6Rmy7TENpzzHTymKADzB1L5dAJJxjUtOci/OpE3KrZedQaniLMz3HIO9hHqgj1h/3w==}
+    peerDependencies:
+      embla-carousel: 8.0.0-rc22
+    dependencies:
+      embla-carousel: 8.0.0-rc22
+    dev: false
+
+  /embla-carousel-reactive-utils@8.0.0-rc22(embla-carousel@8.0.0-rc22):
+    resolution: {integrity: sha512-K4b8QhQGXYW5wr4l+U6XryhafsFV5c/IyohDnZN3MGoYIB9xY7qpjUWAcs5bTDjAD+qCZPOuXre0D3IVa28mqw==}
+    peerDependencies:
+      embla-carousel: 8.0.0-rc22
+    dependencies:
+      embla-carousel: 8.0.0-rc22
+    dev: false
+
+  /embla-carousel-vue@8.0.0-rc22(vue@3.4.15):
+    resolution: {integrity: sha512-QTMZ/q987KNc8yCSHs+q8hVa/c65yD/m04vHY5BkU5yqLTAde0jmisNVRAZhiLKin5U7CJKkd+vVIZvQIfBggQ==}
+    peerDependencies:
+      vue: ^3.2.37
+    dependencies:
+      embla-carousel: 8.0.0-rc22
+      embla-carousel-reactive-utils: 8.0.0-rc22(embla-carousel@8.0.0-rc22)
+      vue: 3.4.15(typescript@5.3.3)
+    dev: false
+
+  /embla-carousel@8.0.0-rc22:
+    resolution: {integrity: sha512-MeXnPT1LShfgAu8qXj3CskayV0R6OkHx7w3cPTx+Q5ZWKyShKpIuu7qVQJ5BoFegalE4n6yxqoQaRuGFbK9pYw==}
+    dev: false
 
   /emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -7464,6 +7510,7 @@ packages:
 
   /mdn-data@2.0.30:
     resolution: {integrity: sha512-GaqWWShW4kv/G9IEucWScBx9G1/vsFZZJUO+tD26M8J8z3Kw5RDQjaoZe03YAClgeS/SWPOcb4nkFBTEi5DUEA==}
+    requiresBuild: true
     dev: true
 
   /mdurl@2.0.0:
@@ -10078,11 +10125,6 @@ packages:
       css-what: 6.1.0
       csso: 5.0.5
       picocolors: 1.0.0
-    dev: true
-
-  /swiper@11.0.5:
-    resolution: {integrity: sha512-rhCwupqSyRnWrtNzWzemnBLMoyYuoDgGgspAm/8iBD3jCvAWycPLH4Z3TB0O5520DHLzMx94yUMH/B9Efpa48w==}
-    engines: {node: '>= 4.7.0'}
     dev: true
 
   /synckit@0.6.2:
