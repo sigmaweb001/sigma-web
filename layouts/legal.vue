@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { data: legal } = await useAsyncData(withLocale('legal'), () => queryContent('legal').find())
+const { data: legal } = await useAsyncData(withLocale('legal'), () => queryContent(withLocale('legal')).find())
 
 function printContent() {
   window.print()
