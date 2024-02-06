@@ -7,8 +7,6 @@ export function getPath(base: string, ...slugs: string[]) {
   })
 }
 
-export function withLocale(path: string) {
-  const { locale } = useI18n()
-
+export function withLocale(path: string, locale: Ref<string> = ref('en')) {
   return locale.value === 'en' ? path : `${locale.value}/${path}`
 }
