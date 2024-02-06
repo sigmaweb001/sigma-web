@@ -76,7 +76,7 @@ const localePath = useLocalePath()
             {{ author.name }}
           </span>
         </div>
-        <p v-if="author.title" class="line-clamp-1 my-0 max-w-1/4 min-w-0 text-xs italic">
+        <p v-if="author.title" class="line-clamp-1 my-0 max-w-1/4 min-w-0 text-xs">
           {{ author.title }}
         </p>
       </div>
