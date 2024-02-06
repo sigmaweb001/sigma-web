@@ -44,7 +44,7 @@ const { data: companies } = await useAsyncData('companies', () => queryContent(w
 
 const { data: resources } = await useAsyncData('resources', () => queryContent(withLocale('resources', locale)).where({
   $or: [
-    { _dir: { $eq: withLocale('resources', locale) } },
+    { _dir: { $eq: 'resources' } },
     { _dir: { $eq: '' } },
   ],
 }).find(), { watch: [locale] })
