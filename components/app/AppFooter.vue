@@ -91,7 +91,7 @@ function getPath(item: any) {
     <footer class="grid grid-cols-2 items-end gap-10 container">
       <div class="left">
         <div>
-          <a rel="noopener" target="_blank" class="max-w-250px flex">
+          <a rel="noopener" target="_blank" class="max-w-320px flex">
             <img src="/thudo_logo.png" alt="logo" class="mr-8px h-50px w-100px">
             <div class="select-none text-13px text-gray-400 font-600 hover:text-primary">
               {{ $t('thu_do_multimedia_communications_joint_stock_company') }}
