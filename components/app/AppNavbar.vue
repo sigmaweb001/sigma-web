@@ -50,6 +50,8 @@ const { data: resources } = await useAsyncData(withLocale('resources'), () => qu
 const localePath = useLocalePath()
 
 const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigmaott.com/')
+
+const NuxtLink = resolveComponent('NuxtLink')
 </script>
 
 <template>
