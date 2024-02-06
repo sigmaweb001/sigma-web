@@ -94,16 +94,16 @@ function getPath(item: any) {
           <a rel="noopener" target="_blank" class="max-w-250px flex">
             <img src="/thudo_logo.png" alt="logo" class="mr-8px h-50px w-100px">
             <div class="select-none text-13px text-gray-400 font-600 hover:text-primary">
-              Thu Do Multimedia Communications Joint Stock Company
+              {{ $t('thu_do_multimedia_communications_joint_stock_company') }}
             </div>
           </a>
 
           <div class="mt-8px text-13px text-gray-500">
             <div>
-              10th floor, No 48 Le Van Luong
+              {{ $t('10th_floor_no_48_le_van_luong') }}
             </div>
             <div>
-              N1 New Urban, Nhan Chinh Ward, Thanh Xuan District, Hanoi, Vietnam
+              {{ $t('n1_new_urban_nhan_chinh_ward_thanh_xuan_district_hanoi_vietnam') }}
             </div>
           </div>
         </div>
