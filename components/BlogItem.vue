@@ -58,13 +58,13 @@ const localePath = useLocalePath()
       </NuxtLink>
     </div>
 
-    <div v-if="item.description" class="px-3">
-      <span class="line-clamp-3 text-sm">
+    <div class="h-40px px-3">
+      <span class="line-clamp-2 text-sm">
         {{ item.description }}
       </span>
     </div>
     <div class="flex flex-1 flex-col justify-end">
-      <div v-if="author && !hideAuthor" class="w-full flex items-center justify-between gap-3 px-3">
+      <div v-if="author && !hideAuthor" class="mb-2 w-full flex items-center justify-between gap-3 px-3">
         <div class="flex flex-grow items-center gap-2">
           <div class="relative h-32px w-32px flex-shrink-0">
             <NuxtImg
@@ -76,11 +76,11 @@ const localePath = useLocalePath()
             {{ author.name }}
           </span>
         </div>
-        <p v-if="author.title" class="line-clamp-1 my-0 max-w-1/4 min-w-0 text-xs">
+        <p v-if="author.title" class="line-clamp-1 my-0 max-w-1/4 min-w-0 text-xs italic">
           {{ author.title }}
         </p>
       </div>
-      <div class="mb-2 mt--2 flex items-end justify-between px-3">
+      <div v-if="hideAuthor" class="mb-2 mt--2 flex items-end justify-between px-3">
         <SButton :as="NuxtLink" variant="link" class="text-sm p-0!" :to="localePath(item._path)">
           Read more
           <div class="i-ri:arrow-right-line ml-1 size-16px!" />

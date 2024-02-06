@@ -35,12 +35,12 @@ const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, (
       </template>
     </NuxtLink>
 
-    <div v-if="!hideDir" class="h-50px px-3">
+    <div v-if="!hideDir" class="px-3">
       <span class="inline rounded-xl bg-gray-200 px-2 py-1 text-xs font-500">
         {{ dataDir?.title }}
       </span>
     </div>
-    <div class="px-3">
+    <div class="h-50px px-3">
       <NuxtLink
         :to="media" external target="_blank"
         class="flex-1 text-lg font-semibold leading-snug tracking-tight dark:text-white"
@@ -52,12 +52,13 @@ const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, (
         </span>
       </NuxtLink>
     </div>
+    <div v-if="item.description" class="h-40px px-3">
+      <span class="line-clamp-2 text-sm">
+        {{ item.description }}
+      </span>
+    </div>
+
     <div class="flex flex-1 flex-col justify-end">
-      <div v-if="item.description" class="px-3">
-        <span class="line-clamp-3 text-sm">
-          {{ item.description }}
-        </span>
-      </div>
       <div class="mb-2 mt--2 px-3">
         <SButton as="a" variant="link" class="text-sm p-0!" :download="media" :href="`${media}`">
           Download
