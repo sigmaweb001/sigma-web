@@ -35,17 +35,19 @@ const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, (
   ],
 }).findOne(), { watch: [dirPath] })
 
-const { data: products } = await useAsyncData(withLocale('products'), () => queryContent('products').find())
-const { data: engines } = await useAsyncData(withLocale('engines'), () => queryContent('engines').find())
-const { data: solutions } = await useAsyncData(withLocale('solutions'), () => queryContent('solutions').find())
-const { data: companies } = await useAsyncData(withLocale('companies'), () => queryContent('companies').find())
+const { locale } = useI18n()
 
-const { data: resources } = await useAsyncData(withLocale('resources'), () => queryContent('resources').where({
+const { data: products } = await useAsyncData('products', () => queryContent(withLocale('products', locale)).find(), { watch: [locale] })
+const { data: engines } = await useAsyncData('engines', () => queryContent(withLocale('engines', locale)).find(), { watch: [locale] })
+const { data: solutions } = await useAsyncData('solutions', () => queryContent(withLocale('solutions', locale)).find(), { watch: [locale] })
+const { data: companies } = await useAsyncData('companies', () => queryContent(withLocale('companies', locale)).find(), { watch: [locale] })
+
+const { data: resources } = await useAsyncData('resources', () => queryContent(withLocale('resources', locale)).where({
   $or: [
-    { _dir: { $eq: 'resources' } },
+    { _dir: { $eq: withLocale('resources', locale) } },
     { _dir: { $eq: '' } },
   ],
-}).find())
+}).find(), { watch: [locale] })
 
 const localePath = useLocalePath()
 

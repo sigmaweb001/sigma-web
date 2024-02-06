@@ -8,5 +8,5 @@ export function getPath(base: string, ...slugs: string[]) {
 }
 
 export function withLocale(path: string, locale: Ref<string> = ref('en')) {
-  return locale.value === 'en' ? path : `${locale.value}/${path}`
+  return locale.value === 'en' ? path : joinURL(locale.value, path)
 }
