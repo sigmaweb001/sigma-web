@@ -4,7 +4,7 @@ const { data: products } = await useAsyncData(withLocale('products'), () => quer
 const { data: engines } = await useAsyncData(withLocale('engines'), () => queryContent('engines').find())
 const { data: solutions } = await useAsyncData(withLocale('solutions'), () => queryContent('solutions').find())
 const { data: companies } = await useAsyncData(withLocale('companies'), () => queryContent('companies').find())
-const { data: legal } = await useAsyncData('legal', () => queryContent(withLocale('legal')).find(), { watch: [locale] })
+const { data: legal } = await useAsyncData(withLocale('legal'), () => queryContent(withLocale('legal')).find(), { watch: [locale] })
 const { data: resources } = await useAsyncData(withLocale('resources'), () => queryContent('resources').where({
   $or: [
     { _dir: { $eq: withLocale('resources') } },
