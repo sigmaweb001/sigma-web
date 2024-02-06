@@ -23,7 +23,7 @@ const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, (
 </script>
 
 <template>
-  <div class="grid gap-2 of-hidden rounded-12px bg-resource">
+  <div class="flex flex-col gap-2 of-hidden rounded-12px bg-resource">
     <NuxtLink :to="media" target="_blank" class="relative block aspect-16/9 of-hidden rounded-12px bg-gray-200 transition-all duration-300 hover:scale-105">
       <template v-if="item?.thumbnail">
         <img :src="item.thumbnail" class="absolute inset-0 size-full object-cover">
@@ -35,7 +35,7 @@ const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, (
       </template>
     </NuxtLink>
 
-    <div v-if="!hideDir" class="px-3">
+    <div v-if="!hideDir" class="h-50px px-3">
       <span class="inline rounded-xl bg-gray-200 px-2 py-1 text-xs font-500">
         {{ dataDir?.title }}
       </span>
@@ -52,16 +52,18 @@ const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, (
         </span>
       </NuxtLink>
     </div>
-    <div v-if="item.description" class="px-3">
-      <span class="line-clamp-3 text-sm">
-        {{ item.description }}
-      </span>
-    </div>
-    <div class="mb-2 mt--2 px-3">
-      <SButton as="a" variant="link" class="text-sm p-0!" :download="media" :href="`${media}`">
-        Download
-        <div class="i-ri:arrow-right-line ml-1 size-16px!" />
-      </SButton>
+    <div class="flex flex-1 flex-col justify-end">
+      <div v-if="item.description" class="px-3">
+        <span class="line-clamp-3 text-sm">
+          {{ item.description }}
+        </span>
+      </div>
+      <div class="mb-2 mt--2 px-3">
+        <SButton as="a" variant="link" class="text-sm p-0!" :download="media" :href="`${media}`">
+          Download
+          <div class="i-ri:arrow-right-line ml-1 size-16px!" />
+        </SButton>
+      </div>
     </div>
   </div>
 </template>

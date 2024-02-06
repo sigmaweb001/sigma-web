@@ -52,7 +52,8 @@ const { data: dataResources } = await useAsyncData(`resources-list-content:${slu
       </h2>
     </div>
   </template>
-  <div v-else class="mt-5 gap-6 px-6 lg:columns-2 xl:columns-3 lg:gap-4 xl:gap-6">
+  <!-- <div v-else class="mt-5 gap-6 px-6 lg:columns-2 xl:columns-3 lg:gap-4 xl:gap-6"> -->
+  <div v-else class="grid-cols-3 mt-5 gap-6 gap-6 px-6 xl:grid">
     <template v-for=" item in dataResources " :key="item._path">
       <ResourceItemImp v-if="item.type === 'resource'" class="mb-6" :item="item" />
       <BlogItem v-else class="mb-6" :item="item" />

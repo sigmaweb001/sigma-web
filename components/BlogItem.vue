@@ -28,7 +28,7 @@ const localePath = useLocalePath()
 </script>
 
 <template>
-  <div class="grid gap-2 of-hidden bg-resource">
+  <div class="flex flex-col gap-2 of-hidden bg-resource">
     <NuxtLink
       :to="localePath(item._path)"
       class="relative block aspect-16/9 of-hidden rounded-12px bg-gray-200 transition-all duration-300 hover:scale-105"
@@ -48,7 +48,7 @@ const localePath = useLocalePath()
       </span>
     </div>
 
-    <div class="px-3">
+    <div class="h-50px px-3">
       <NuxtLink :to="localePath(item._path)" class="flex-1 text-lg font-semibold leading-snug tracking-tight dark:text-white">
         <span
           class="transition-[background_size] line-clamp-2 cursor-pointer bg-[length:0px_10px] bg-gradient-to-r bg-left-bottom bg-no-repeat duration-500 hover:(text-primary underline)"
@@ -63,27 +63,29 @@ const localePath = useLocalePath()
         {{ item.description }}
       </span>
     </div>
-    <div v-if="author && !hideAuthor" class="w-full flex items-center justify-between gap-3 px-3">
-      <div class="flex flex-grow items-center gap-2">
-        <div class="relative h-32px w-32px flex-shrink-0">
-          <NuxtImg
-            class="absolute inset-0 h-full w-full rounded-full object-cover" :src="author.avatar"
-            :alt="author.slug"
-          />
+    <div class="flex flex-1 flex-col justify-end">
+      <div v-if="author && !hideAuthor" class="w-full flex items-center justify-between gap-3 px-3">
+        <div class="flex flex-grow items-center gap-2">
+          <div class="relative h-32px w-32px flex-shrink-0">
+            <NuxtImg
+              class="absolute inset-0 h-full w-full rounded-full object-cover" :src="author.avatar"
+              :alt="author.slug"
+            />
+          </div>
+          <span class="line-clamp-1 max-w-1/2 min-w-0 text-sm">
+            {{ author.name }}
+          </span>
         </div>
-        <span class="line-clamp-1 max-w-1/2 min-w-0 text-sm">
-          {{ author.name }}
-        </span>
+        <p v-if="author.title" class="line-clamp-1 my-0 max-w-1/4 min-w-0 text-xs">
+          {{ author.title }}
+        </p>
       </div>
-      <p v-if="author.title" class="line-clamp-1 my-0 max-w-1/4 min-w-0 text-xs">
-        {{ author.title }}
-      </p>
-    </div>
-    <div class="mb-2 mt--2 flex items-end justify-between px-3">
-      <SButton :as="NuxtLink" variant="link" class="text-sm p-0!" :to="localePath(item._path)">
-        Read more
-        <div class="i-ri:arrow-right-line ml-1 size-16px!" />
-      </SButton>
+      <div class="mb-2 mt--2 flex items-end justify-between px-3">
+        <SButton :as="NuxtLink" variant="link" class="text-sm p-0!" :to="localePath(item._path)">
+          Read more
+          <div class="i-ri:arrow-right-line ml-1 size-16px!" />
+        </SButton>
+      </div>
     </div>
   </div>
 </template>
