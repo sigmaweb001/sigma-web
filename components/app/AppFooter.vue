@@ -1,10 +1,10 @@
 <script lang="ts" setup>
+const { locale } = useI18n()
 const { data: products } = await useAsyncData(withLocale('products'), () => queryContent('products').find())
 const { data: engines } = await useAsyncData(withLocale('engines'), () => queryContent('engines').find())
 const { data: solutions } = await useAsyncData(withLocale('solutions'), () => queryContent('solutions').find())
 const { data: companies } = await useAsyncData(withLocale('companies'), () => queryContent('companies').find())
-const { data: legal } = await useAsyncData(withLocale('legal'), () => queryContent(withLocale('legal')).find())
-
+const { data: legal } = await useAsyncData('legal', () => queryContent(withLocale('legal')).find(), { watch: [locale] })
 const { data: resources } = await useAsyncData(withLocale('resources'), () => queryContent('resources').where({
   $or: [
     { _dir: { $eq: withLocale('resources') } },
@@ -33,8 +33,7 @@ function getPath(item: any) {
   <DefineTemplate v-slot="{ items }">
     <NuxtLink
       v-for="item in items" :key="item._path" exact-active-class="text-primary"
-      hover="underline underline-primary text-primary" :to="getPath(item)"
-      :target="getTarget(item)"
+      hover="underline underline-primary text-primary" :to="getPath(item)" :target="getTarget(item)"
     >
       {{ item.title }}
     </NuxtLink>
@@ -80,9 +79,8 @@ function getPath(item: any) {
   <div class="bg-gray-100 py-10 print:hidden dark:bg-trueGray-700">
     <div class="grid grid-cols-3 mb-6 gap-2 px-10 container lg:grid-cols-5">
       <NuxtLink
-        v-for="item in legal"
-        :key="item._path" class="text-center text-pretty text-sm font-500" exact-active-class="text-primary"
-        hover="underline underline-primary text-primary" :to="getPath(item)"
+        v-for="item in legal" :key="item._path" class="text-center text-pretty text-sm font-500"
+        exact-active-class="text-primary" hover="underline underline-primary text-primary" :to="getPath(item)"
         :target="getTarget(item)"
       >
         {{ item.title }}

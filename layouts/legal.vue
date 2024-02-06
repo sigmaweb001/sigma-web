@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-const { data: legal } = await useAsyncData(withLocale('legal'), () => queryContent(withLocale('legal')).find())
+const { locale } = useI18n()
+const { data: legal } = await useAsyncData('legal', () => queryContent(withLocale('legal')).find(), { watch: [locale] })
 
 function printContent() {
   window.print()
