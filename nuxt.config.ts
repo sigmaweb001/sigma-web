@@ -77,6 +77,7 @@ export default defineNuxtConfig({
     ],
     lazy: true,
     langDir: 'locales',
+    detectBrowserLanguage: false,
   },
   colorMode: {
     classSuffix: '',
