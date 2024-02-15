@@ -104,6 +104,10 @@ function getPath(item: any) {
             <div>
               {{ $t('n1_new_urban_nhan_chinh_ward_thanh_xuan_district_hanoi_vietnam') }}
             </div>
+
+            <div>
+              {{ $t('giay_chung_nhan_dang_ky_kinh_doanh_so_0104560888_cap_ngay_29_3_2010_tai_ha_noi') }}
+            </div>
           </div>
         </div>
       </div>
