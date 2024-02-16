@@ -2,11 +2,12 @@
 const route = useRoute()
 
 const slug = computed(() => route.params.slug)
-const { data: pricing } = await useAsyncData(`${withLocale('pricing')}_${slug.value}`, () => queryContent('pricing').findOne())
+const { locale } = useI18n()
+const { data: pricing } = await useAsyncData('pricing', () => queryContent(withLocale('pricing', locale)).findOne(), { watch: [locale] })
 
-const { data: pricings } = await useAsyncData(`${withLocale('pricings')}_${slug.value}`, () => queryContent('pricing').where({
+const { data: pricings } = await useAsyncData(`pricings_${slug.value}`, () => queryContent(withLocale('pricing', locale)).where({
   _dir: { $eq: 'pricing' },
-}).find())
+}).find(), { watch: [locale] })
 
 const localePath = useLocalePath()
 </script>
