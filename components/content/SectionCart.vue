@@ -50,23 +50,23 @@ const router = useRouter()
 const carts = useState('carts', () => [])
 
 if (import.meta.dev) {
-  // carts.value = [
-  //   {
-  //     product: 'A',
-  //     price: 39,
-  //     qty: 1,
-  //   },
-  //   {
-  //     product: 'B',
-  //     price: 49,
-  //     qty: 1,
-  //   },
-  //   {
-  //     product: 'C',
-  //     price: 59,
-  //     qty: 1,
-  //   }
-  // ]
+  carts.value = [
+    {
+      product: 'A',
+      price: 39,
+      qty: 1,
+    },
+    {
+      product: 'B',
+      price: 49,
+      qty: 1,
+    },
+    {
+      product: 'C',
+      price: 59,
+      qty: 1,
+    },
+  ]
 }
 
 onMounted(() => {
@@ -214,13 +214,13 @@ const agree = ref(false)
                   {{ $t('cart.product_name') }}
                 </th>
                 <th scope="col" class="px-6 py-3 text-center">
-                  {{ $t('cart.price') }}
+                  {{ $t('cart.price') }} ({{ $t('currency') }})
                 </th>
                 <th scope="col" class="px-6 py-3 text-center">
                   {{ $t('cart.qty') }}
                 </th>
                 <th scope="col" class="px-6 py-3 text-center">
-                  {{ $t('cart.total') }}
+                  {{ $t('cart.total') }} ({{ $t('currency') }})
                 </th>
                 <th scope="col" class="px-6 py-3 text-center" />
               </tr>
@@ -234,7 +234,7 @@ const agree = ref(false)
                   {{ item.product }}
                 </th>
                 <td class="px-6 py-4 text-center">
-                  ${{ item.price }}
+                  {{ item.price }}
                 </td>
                 <td class="flex-center px-6 py-4 text-center">
                   <input
@@ -244,7 +244,7 @@ const agree = ref(false)
                   >
                 </td>
                 <td class="px-6 py-4 text-center">
-                  ${{ item.price * item.qty }}
+                  {{ item.price * item.qty }}
                 </td>
                 <td class="px-6 py-4 text-center">
                   <SButton class="text-sm" variant="link" @click="remove(item)">
@@ -261,7 +261,7 @@ const agree = ref(false)
                 <td class="px-6 py-3 text-center" />
                 <td class="px-6 py-3 text-center" />
                 <td class="px-6 py-3 text-center">
-                  ${{ total }}
+                  {{ total }}
                 </td>
               </tr>
             </tfoot>
@@ -377,16 +377,16 @@ const agree = ref(false)
                     <span>{{ item.qty }}</span>
                   </div>
                   <div class="w-70px">
-                    ${{ item.price * item.qty }}
+                    {{ item.price * item.qty }} ({{ $t('currency') }})
                   </div>
                 </div>
 
                 <div class="flex items-center gap-2 py-2 pl-6 pr-3">
                   <div class="flex-1 font-bold">
-                    {{ $t('cart.total') }}
+                    {{ $t('cart.total') }} ({{ $t('currency') }})
                   </div>
                   <div class="w-70px">
-                    ${{ total }}
+                    {{ total }}
                   </div>
                 </div>
               </div>
@@ -489,7 +489,7 @@ const agree = ref(false)
                 {{ $t('cart.date') }}
               </h6>
               <h6 class="text-sm font-bold uppercase">
-                {{ $t('cart.total') }}
+                {{ $t('cart.total') }} ({{ $t('currency') }})
               </h6>
 
               <h6 class="text-sm font-bold uppercase">
@@ -505,7 +505,7 @@ const agree = ref(false)
               </div>
 
               <div>
-                ${{ total }}
+                {{ total }}
               </div>
 
               <div>
@@ -521,35 +521,35 @@ const agree = ref(false)
                       {{ $t('cart.product') }}
                     </th>
                     <th scope="col" class="px-6 py-3 text-center">
-                      {{ $t('cart.price') }}
+                      {{ $t('cart.price') }} ({{ $t('currency') }})
                     </th>
                     <th scope="col" class="px-6 py-3 text-center">
-                      {{ $t('cart.total') }}
+                      {{ $t('cart.total') }} ({{ $t('currency') }})
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="item in carts" class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
+                  <tr v-for="(item, i) in carts" :key="i" class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
                     <th scope="row" class="whitespace-nowrap px-10 py-4 text-gray-800 font-medium dark:text-white">
                       {{ item.product }}
                     </th>
                     <td class="px-6 py-4 text-center">
-                      ${{ item.price }}
+                      {{ item.price }}
                     </td>
 
                     <td class="px-6 py-4 text-center">
-                      ${{ item.price * item.qty }}
+                      {{ item.price * item.qty }}
                     </td>
                   </tr>
                 </tbody>
                 <tfoot>
                   <tr class="text-trueGray-800 font-semibold dark:text-white">
                     <th scope="row" class="px-6 py-3 text-base">
-                      {{ $t('cart.total') }}
+                      {{ $t('cart.total') }} ({{ $t('currency') }})
                     </th>
                     <td class="px-6 py-3 text-center" />
                     <td class="px-6 py-3 text-center">
-                      ${{ total }}
+                      {{ total }}
                     </td>
                   </tr>
                 </tfoot>
