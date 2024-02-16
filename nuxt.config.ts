@@ -61,10 +61,15 @@ export default defineNuxtConfig({
     },
     download: true,
   },
+  nitro: {
+    routeRules: {
+      '/': { redirect: '/vi' },
+    },
+  },
   i18n: {
     vueI18n: './i18n.config.ts',
-    defaultLocale: 'en',
-    strategy: 'prefix_except_default',
+    defaultLocale: 'vi',
+    strategy: 'prefix',
     locales: [
       {
         code: 'en',

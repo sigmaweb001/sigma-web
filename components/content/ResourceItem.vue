@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 const { path } = definePropsRefs<{ path: string }>()
-const { data: item } = await useAsyncData(`section-resource-item:${path.value}`, () => queryContent('resources').where({
+const { locale } = useI18n()
+
+const { data: item } = await useAsyncData(`section-resource-item:${path.value}`, () => queryContentLocale('resources').where({
   _path: {
     $eq: path.value,
   },
-}).findOne())
+}).findOne(), { watch: [locale] })
 </script>
 
 <template>

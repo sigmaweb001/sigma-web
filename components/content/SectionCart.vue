@@ -50,23 +50,23 @@ const router = useRouter()
 const carts = useState('carts', () => [])
 
 if (import.meta.dev) {
-  carts.value = [
-    {
-      product: 'A',
-      price: 39,
-      qty: 1,
-    },
-    {
-      product: 'B',
-      price: 49,
-      qty: 1,
-    },
-    {
-      product: 'C',
-      price: 59,
-      qty: 1,
-    },
-  ]
+  // carts.value = [
+  //   {
+  //     product: 'A',
+  //     price: 39,
+  //     qty: 1,
+  //   },
+  //   {
+  //     product: 'B',
+  //     price: 49,
+  //     qty: 1,
+  //   },
+  //   {
+  //     product: 'C',
+  //     price: 59,
+  //     qty: 1,
+  //   },
+  // ]
 }
 
 onMounted(() => {

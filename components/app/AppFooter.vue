@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 const { locale } = useI18n()
-const { data: products } = await useAsyncData('products', () => queryContent(withLocale('products', locale)).find(), { watch: [locale] })
-const { data: engines } = await useAsyncData('engines', () => queryContent(withLocale('engines', locale)).find(), { watch: [locale] })
-const { data: solutions } = await useAsyncData('solutions', () => queryContent(withLocale('solutions', locale)).find(), { watch: [locale] })
-const { data: companies } = await useAsyncData('companies', () => queryContent(withLocale('companies', locale)).find(), { watch: [locale] })
-const { data: legal } = await useAsyncData('legal', () => queryContent(withLocale('legal', locale)).find(), { watch: [locale] })
+const { data: products } = await useAsyncData('products', () => queryContentLocale('products').find(), { watch: [locale] })
+const { data: engines } = await useAsyncData('engines', () => queryContentLocale('engines').find(), { watch: [locale] })
+const { data: solutions } = await useAsyncData('solutions', () => queryContentLocale('solutions').find(), { watch: [locale] })
+const { data: companies } = await useAsyncData('companies', () => queryContentLocale('companies').find(), { watch: [locale] })
+const { data: legal } = await useAsyncData('legal', () => queryContentLocale('legal').find(), { watch: [locale] })
 
-const { data: resources } = await useAsyncData('resources', () => queryContent(withLocale('resources', locale)).where({
+const { data: resources } = await useAsyncData('resources', () => queryContentLocale('resources').where({
   $or: [
     { _dir: { $eq: 'resources' } },
     { _dir: { $eq: '' } },
@@ -15,25 +15,23 @@ const { data: resources } = await useAsyncData('resources', () => queryContent(w
 
 const [DefineTemplate, ReuseTemplate] = createReusableTemplate<{ items: any[] }>()
 
-const localePath = useLocalePath()
-
 function getTarget(item: any) {
   const target = item.redirect?.startsWith('https://') ? '_blank' : '_self'
   return target
 }
 function getPath(item: any) {
   if (item.redirect) {
-    const path = item.redirect?.startsWith('https://') ? item.redirect : localePath(item.redirect)
+    const path = item.redirect?.startsWith('https://') ? item.redirect : item.redirect
     return path
   }
-  return localePath(item._path)
+  return item._path
 }
 </script>
 
 <template>
   <DefineTemplate v-slot="{ items }">
     <NuxtLink
-      v-for="item in items" :key="item._path" exact-active-class="text-primary"
+      v-for="item in items.filter(item => item.navigation !== false)" :key="item._path" exact-active-class="text-primary"
       hover="underline underline-primary text-primary" :to="getPath(item)" :target="getTarget(item)"
     >
       {{ item.title }}

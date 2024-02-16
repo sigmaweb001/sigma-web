@@ -3,13 +3,11 @@ const route = useRoute()
 
 const slug = computed(() => route.params.slug)
 const { locale } = useI18n()
-const { data: pricing } = await useAsyncData('pricing', () => queryContent(withLocale('pricing', locale)).findOne(), { watch: [locale] })
+const { data: pricing } = await useAsyncData('pricing', () => queryContentLocale('pricing').findOne(), { watch: [locale] })
 
-const { data: pricings } = await useAsyncData(`pricings_${slug.value}`, () => queryContent(withLocale('pricing', locale)).where({
+const { data: pricings } = await useAsyncData(`pricings_${slug.value}`, () => queryContentLocale('pricing').where({
   _dir: { $eq: 'pricing' },
 }).find(), { watch: [locale] })
-
-const localePath = useLocalePath()
 </script>
 
 <template>
@@ -20,7 +18,7 @@ const localePath = useLocalePath()
       </ContentRenderer>
       <div class="absolute bottom-0 left-1/2 flex translate-x--1/2">
         <NuxtLink
-          v-for="item in pricings" :key="item._path" :to="localePath(item._path)"
+          v-for="item in pricings" :key="item._path" :to="item._path"
           class="group min-h-68px min-w-300px flex items-end rounded-t-40px text-white" exact-active-class="bg-primary"
         >
           <div
