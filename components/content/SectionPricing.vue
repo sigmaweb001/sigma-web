@@ -86,13 +86,13 @@ const keyFeature = useKeyFeature()
           </h2>
           <div class="grid grid-cols-2 mt-2 border border-border rounded-16px px-2 py-2">
             <SButton class="px-2.5 rounded-full!" :variant="keyFeature ? 'gradient' : 'ghost'" @click="keyFeature = true">
-              Key features
+              {{ $t('key_features') }}
             </SButton>
             <SButton
               class="px-2.5 rounded-full!" :variant="!keyFeature ? 'gradient' : 'ghost'"
               @click="keyFeature = false"
             >
-              All features
+              {{ $t('all_features') }}
             </SButton>
           </div>
         </div>
