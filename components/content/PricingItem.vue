@@ -22,7 +22,7 @@ const full = inject('full')
         v-if="recommended && full"
         class="rounded-full bg-primary-foreground px-2 py-1 text-sm text-primary font-500"
       >
-        Recommended
+        {{ $t('recommended') }}
       </div>
       <div v-if="!full" class="flex items-end gap-1">
         <div class="text-lg font-600">
