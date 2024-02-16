@@ -1,6 +1,6 @@
 ---
-title: Home
-description: 'Sigma Streaming Home'
+title: Trang chủ
+description: 'Trang chủ Sigma Streaming'
 ---
 ::section-hero
 #title
