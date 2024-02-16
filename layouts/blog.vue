@@ -4,7 +4,7 @@ import { joinURL } from 'ufo'
 const { locale } = useI18n()
 
 const route = useRoute()
-const slug = computed(() => joinURL('/resources', route.params.category ?? '', ...route.params.slug))
+const slug = computed(() => joinURL('/', locale.value, '/resources', route.params.category ?? '', ...route.params.slug))
 const { data: item } = await useAsyncData(`resource-content-blog${slug.value}`, () => queryContentLocale('resources').where({
   _path: {
     $eq: slug.value,

@@ -21,7 +21,7 @@ function getTarget(item: any) {
 }
 function getPath(item: any) {
   if (item.redirect) {
-    const path = item.redirect?.startsWith('https://') ? item.redirect : item.redirect
+    const path = item.redirect?.startsWith('https://') ? item.redirect : ensureLocalePath(item.redirect)
     return path
   }
   return item._path

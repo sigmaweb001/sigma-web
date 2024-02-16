@@ -13,7 +13,7 @@ const props = withDefaults(defineProps<{
 })
 
 const target = computed(() => props.redirect?.startsWith('https://') ? '_blank' : '_self')
-const _redirect = computed(() => props.redirect?.startsWith('https://') ? props.redirect : props.redirect)
+const _redirect = computed(() => props.redirect?.startsWith('https://') ? props.redirect : ensureLocalePath(props.redirect))
 </script>
 
 <template>
