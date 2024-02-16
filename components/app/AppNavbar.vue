@@ -110,13 +110,13 @@ const NuxtLink = resolveComponent('NuxtLink')
       <div class="flex justify-center">
         <SNavigationMenuList>
           <SNavigationMenuItem>
-            <SNavigationMenuTrigger>Products</SNavigationMenuTrigger>
+            <SNavigationMenuTrigger>{{ $t('products') }}</SNavigationMenuTrigger>
             <SNavigationMenuContent>
               <div class="flex" md="w-screen-md" lg="w-screen-lg" xl="w-screen-xl">
                 <div class="grid grid-cols-2 gap-6 px-5 xl:grid-cols-3" :class="[hasFeature ? 'w-3/4' : 'w-full']">
                   <div class="py-5 xl:col-span-2">
                     <h1 class="text-lg font-600">
-                      Our products
+                      {{ $t('our_products') }}
                     </h1>
                     <div class="my-2 h-1px bg-gray-200 dark:bg-trueGray-700" />
                     <ul class="grid m-0 list-none gap-10px" xl="grid-cols-2">
@@ -126,7 +126,7 @@ const NuxtLink = resolveComponent('NuxtLink')
 
                   <div class="col-span-1 py-5">
                     <h1 class="text-lg font-600">
-                      Our engines
+                      {{ $t('our_engines') }}
                     </h1>
                     <div class="my-2 h-1px bg-gray-200 dark:bg-trueGray-700" />
                     <ul class="grid m-0 list-none gap-10px" md="grid-cols-1">
@@ -148,13 +148,13 @@ const NuxtLink = resolveComponent('NuxtLink')
             </SNavigationMenuContent>
           </SNavigationMenuItem>
           <SNavigationMenuItem>
-            <SNavigationMenuTrigger>Solutions</SNavigationMenuTrigger>
+            <SNavigationMenuTrigger>{{ $t('solutions') }}</SNavigationMenuTrigger>
             <SNavigationMenuContent>
               <div class="flex" md="w-screen-md">
                 <div class="grid grid-cols-2 w-full gap-6 px-5">
                   <div class="col-span-2 py-5">
                     <h1 class="text-lg font-600">
-                      Our solutions
+                      {{ $t('our_solutions') }}
                     </h1>
                     <div class="my-2 h-1px bg-gray-200 dark:bg-trueGray-700" />
                     <ul class="grid m-0 list-none gap-10px" md="grid-cols-2">
@@ -166,7 +166,7 @@ const NuxtLink = resolveComponent('NuxtLink')
             </SNavigationMenuContent>
           </SNavigationMenuItem>
           <SNavigationMenuItem>
-            <SNavigationMenuTrigger>Resources</SNavigationMenuTrigger>
+            <SNavigationMenuTrigger>{{ $t('resources') }}</SNavigationMenuTrigger>
             <SNavigationMenuContent>
               <div class="flex" md="w-screen-md">
                 <div class="grid grid-cols-2 w-full gap-6 px-4">
@@ -181,7 +181,7 @@ const NuxtLink = resolveComponent('NuxtLink')
           </SNavigationMenuItem>
 
           <SNavigationMenuItem>
-            <SNavigationMenuTrigger>Company</SNavigationMenuTrigger>
+            <SNavigationMenuTrigger>{{ $t('cart.company') }}</SNavigationMenuTrigger>
             <SNavigationMenuContent>
               <ul class="grid grid-flow-row grid-cols-2 m-0 list-none gap-x-12px p-12px" md="w-500px">
                 <AppNavMenuItem v-for="item in companies" :key="item._id" v-bind="item" :icon="item.icon" />
@@ -192,14 +192,14 @@ const NuxtLink = resolveComponent('NuxtLink')
           <SNavigationMenuItem>
             <NuxtLink active-class="text-primary" :to="localePath('/pricing')">
               <SNavigationMenuLink class="navigation-menu-trigger">
-                Pricing
+                {{ $t('pricing') }}
               </SNavigationMenuLink>
             </NuxtLink>
           </SNavigationMenuItem>
           <SNavigationMenuItem>
             <NuxtLink :to="localePath('/cart')">
               <SNavigationMenuLink class="navigation-menu-trigger">
-                Shopping cart
+                {{ $t('shopping_cart') }}
               </SNavigationMenuLink>
             </NuxtLink>
           </SNavigationMenuItem>
@@ -210,7 +210,7 @@ const NuxtLink = resolveComponent('NuxtLink')
           <SNavigationMenuItem>
             <NuxtLink :to="loginPath" external target="_blank">
               <SNavigationMenuLink class="navigation-menu-trigger px-2!">
-                Login
+                {{ $t('login') }}
               </SNavigationMenuLink>
             </NuxtLink>
           </SNavigationMenuItem>
@@ -218,14 +218,14 @@ const NuxtLink = resolveComponent('NuxtLink')
           <SNavigationMenuItem>
             <NuxtLink to="https://appt.link/meet-with-sigma-team" data-appointlet-modal>
               <SNavigationMenuLink class="text-primary navigation-menu-trigger px-2!">
-                View demo
+                {{ $t('view_demo') }}
               </SNavigationMenuLink>
             </NuxtLink>
           </SNavigationMenuItem>
         </div>
         <SNavigationMenuItem class="hidden flex-shrink-0 xl:block">
           <SButton :as="NuxtLink" variant="gradient" class="0 text-sm" to="https://portal.sigmaott.com/auth/login?redirect=/apps" external target="_blank">
-            Start free trial
+            {{ $t('start_free_trial') }}
           </SButton>
         </SNavigationMenuItem>
       </div>

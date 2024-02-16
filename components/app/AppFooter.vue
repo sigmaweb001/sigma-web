@@ -43,35 +43,35 @@ function getPath(item: any) {
     <footer class="grid grid-cols-3 gap-10 px-10 py-10 text-15px container lg:grid-cols-5">
       <div class="flex flex-col gap-8px">
         <div class="mb-8px cursor-default text-primary font-600">
-          Products
+          {{ $t('products') }}
         </div>
         <ReuseTemplate :items="products" />
       </div>
 
       <div class="flex flex-col gap-8px">
         <div class="mb-8px cursor-default text-primary font-600">
-          Engines
+          {{ $t('engines') }}
         </div>
         <ReuseTemplate :items="engines" />
       </div>
 
       <div class="flex flex-col gap-8px">
         <div class="mb-8px cursor-default text-primary font-600">
-          Solutions
+          {{ $t('solutions') }}
         </div>
         <ReuseTemplate :items="solutions" />
       </div>
 
       <div class="flex flex-col gap-8px">
         <div class="mb-8px cursor-default text-primary font-600">
-          Resources
+          {{ $t('resources') }}
         </div>
         <ReuseTemplate :items="resources" />
       </div>
 
       <div class="flex flex-col gap-8px">
         <div class="mb-8px cursor-default text-primary font-600">
-          Company
+          {{ $t('cart.company') }}
         </div>
         <ReuseTemplate :items="companies" />
       </div>
@@ -123,13 +123,13 @@ function getPath(item: any) {
 
         <div class="mt-8px text-13px text-gray-500">
           <div>
-            Tel: (+84) 4 3668 7038
+            {{ $t('tel_84_4_3668_7038') }}
           </div>
           <div>
-            Email: thudojsc@gviet.vn
+            {{ $t('email_thudojsc_gviet_vn', ['thudojsc@gviet.vn']) }}
           </div>
           <div>
-            2023 by Thu Do Multimedia. All rights reserved
+            {{ $t('2023_by_thu_do_multimedia_all_rights_reserved') }}
           </div>
         </div>
       </div>
