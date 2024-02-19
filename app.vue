@@ -4,6 +4,11 @@ const showDrawer = useShowDrawer()
 useRouter().afterEach(() => setTimeout(() => {
   showDrawer.value = false
 }, 50))
+
+const { setLocale } = useI18n()
+callOnce(() => {
+  setLocale('vi')
+})
 </script>
 
 <template>

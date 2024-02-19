@@ -11,9 +11,7 @@ const dirPath = computed(() => {
   return pathArr.slice(0, pathArr.length - 1).join('/')
 })
 
-const { locale } = useI18n()
-
-const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, () => queryContentLocale('resources').where({
+const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, () => queryContent('resources').where({
   $or: [
     {
       _path: {
@@ -21,7 +19,7 @@ const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, (
       },
     },
   ],
-}).findOne(), { watch: [dirPath, locale] })
+}).findOne(), { watch: [dirPath] })
 </script>
 
 <template>

@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { ensurePrefix } from '@antfu/utils'
-
 const appConfig = useAppConfig()
 const showBanner = ref(false)
 onMounted(() => {
@@ -16,22 +14,18 @@ const _style = computed(() => `:root { --header-height: ${showBanner.value ? 40 
 
 useStyleTag(_style)
 const hasFeature = computed(() => appConfig.productPinResource.enabled)
-const { locale } = useI18n()
 
-const pinResourcePath = computed(() => ensurePrefix(`/${locale.value}`, appConfig.productPinResource.path || ''))
-
-const { data: pinResource } = await useAsyncData(`production-pin-resource:${pinResourcePath.value}`, () => queryContentLocale('resources').where({
+const { data: pinResource } = await useAsyncData(`production-pin-resource:${appConfig.productPinResource.path}`, () => queryContent('resources').where({
   _path: {
-    $eq: pinResourcePath.value,
+    $eq: appConfig.productPinResource.path,
   },
-}).findOne(), { immediate: appConfig.productPinResource.enabled, watch: [pinResourcePath, locale] })
-
+}).findOne(), { immediate: appConfig.productPinResource.enabled })
 const dirPath = computed(() => {
   const pathArr = pinResource.value._path.split('/')
   return pathArr.slice(0, pathArr.length - 1).join('/')
 })
 
-const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, () => queryContentLocale('resources').where({
+const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, () => queryContent('resources').where({
   $or: [
     {
       _path: {
@@ -39,14 +33,16 @@ const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, (
       },
     },
   ],
-}).findOne(), { watch: [dirPath, locale] })
+}).findOne(), { watch: [dirPath] })
 
-const { data: products } = await useAsyncData('products', () => queryContentLocale('products').find(), { watch: [locale] })
-const { data: engines } = await useAsyncData('engines', () => queryContentLocale('engines').find(), { watch: [locale] })
-const { data: solutions } = await useAsyncData('solutions', () => queryContentLocale('solutions').find(), { watch: [locale] })
-const { data: companies } = await useAsyncData('companies', () => queryContentLocale('companies').find(), { watch: [locale] })
+const { locale } = useI18n()
 
-const { data: resources } = await useAsyncData('resources', () => queryContentLocale('resources').where({
+const { data: products } = await useAsyncData('products', () => queryContent(withLocale('products', locale)).find(), { watch: [locale] })
+const { data: engines } = await useAsyncData('engines', () => queryContent(withLocale('engines', locale)).find(), { watch: [locale] })
+const { data: solutions } = await useAsyncData('solutions', () => queryContent(withLocale('solutions', locale)).find(), { watch: [locale] })
+const { data: companies } = await useAsyncData('companies', () => queryContent(withLocale('companies', locale)).find(), { watch: [locale] })
+
+const { data: resources } = await useAsyncData('resources', () => queryContent(withLocale('resources', locale)).where({
   $or: [
     { _dir: { $eq: 'resources' } },
     { _dir: { $eq: '' } },
@@ -228,10 +224,7 @@ const NuxtLink = resolveComponent('NuxtLink')
           </SNavigationMenuItem>
         </div>
         <SNavigationMenuItem class="hidden flex-shrink-0 xl:block">
-          <SButton
-            :as="NuxtLink" variant="gradient" class="0 text-sm"
-            to="https://portal.sigmaott.com/auth/login?redirect=/apps" external target="_blank"
-          >
+          <SButton :as="NuxtLink" variant="gradient" class="0 text-sm" to="https://portal.sigmaott.com/auth/login?redirect=/apps" external target="_blank">
             {{ $t('start_free_trial') }}
           </SButton>
         </SNavigationMenuItem>

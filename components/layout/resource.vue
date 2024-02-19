@@ -26,9 +26,7 @@ const query = computed<QueryBuilderWhere>(() => {
     }
   }
 })
-const { locale } = useI18n()
-
-const { data: dataDir } = await useAsyncData(`resources-dir-${slug.value}`, () => queryContentLocale('resources').where({
+const { data: dataDir } = await useAsyncData(`resources-dir-${slug.value}`, () => queryContent('resources').where({
   $or: [
     {
       _path: {
@@ -36,10 +34,10 @@ const { data: dataDir } = await useAsyncData(`resources-dir-${slug.value}`, () =
       },
     },
   ],
-}).findOne(), { watch: [slug, locale] })
+}).findOne(), { watch: [slug] })
 
-const { data: dataResources } = await useAsyncData(`resources-list-content:${slug.value}`, () => queryContentLocale(slug.value)
-  .where(query.value).find(), { watch: [tag, slug, locale] })
+const { data: dataResources } = await useAsyncData(`resources-list-content:${slug.value}`, () => queryContent(slug.value)
+  .where(query.value).find(), { watch: [tag, slug] })
 </script>
 
 <template>

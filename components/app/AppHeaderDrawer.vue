@@ -1,22 +1,21 @@
 <script setup lang="ts">
 const showDrawer = useShowDrawer()
-const { locale } = useI18n()
 
-const { data: products } = await useAsyncData('products', () => queryContentLocale('products').find(), { watch: [locale] })
-const { data: engines } = await useAsyncData('engines', () => queryContentLocale('engines').find(), { watch: [locale] })
-const { data: solutions } = await useAsyncData('solutions', () => queryContentLocale('solutions').find(), { watch: [locale] })
-const { data: resources } = await useAsyncData('resources', () => queryContentLocale('resources').where({
+const { data: products } = await useAsyncData('products', () => queryContent('products').find())
+const { data: engines } = await useAsyncData('engines', () => queryContent('engines').find())
+const { data: solutions } = await useAsyncData('solutions', () => queryContent('solutions').find())
+const { data: resources } = await useAsyncData('resources', () => queryContent('resources').where({
   $or: [
     { _dir: { $eq: 'resources' } },
-    { _dir: { $eq: '' } },
-  ],
-}).find(), { watch: [locale] })
+    { _dir: { $eq: '' } }
+  ]
+}).find())
 </script>
 
 <template>
   <SSheet v-model:open="showDrawer">
     <SSheetTrigger as-child>
-      <img src="/logo_sigma.png" alt="LS" class="h-10 w-10 cursor-pointer">
+      <img src="/logo_sigma.png" alt="LS" class="h-10 w-10 cursor-pointer"/>
     </SSheetTrigger>
     <SSheetContent>
       <!-- <SSheetHeader>

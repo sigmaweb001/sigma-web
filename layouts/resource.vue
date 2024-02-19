@@ -6,9 +6,7 @@ useHead({
   ],
 })
 
-const { locale } = useI18n()
-
-const { data: dataResourcesDir } = await useAsyncData('resources-list-dir', () => queryContentLocale('resources').where({
+const { data: dataResourcesDir } = await useAsyncData('resources-list-dir', () => queryContent('resources').where({
   $or: [
     {
       _dir: {
@@ -21,10 +19,11 @@ const { data: dataResourcesDir } = await useAsyncData('resources-list-dir', () =
       },
     },
   ],
-}).find(), { watch: [locale] })
+}).find())
 
 const appConfig = useAppConfig()
 const tags = computed(() => appConfig.tags)
+const localePath = useLocalePath()
 
 const tag = computed(() => useRoute().query.tag)
 </script>
@@ -39,7 +38,7 @@ const tag = computed(() => useRoute().query.tag)
         <div class="grid mx--2 mt-4 gap-2">
           <NuxtLink
             v-for="item in dataResourcesDir" :key="item.to" exact-active-class="text-primary font-bold"
-            :to="item.redirect || item._path" v-bind="$attrs"
+            :to="item.redirect || localePath(item._path)" v-bind="$attrs"
             :target="item.redirect?.startsWith('https://') ? '_blank' : '_self'"
             class="flex cursor-pointer items-center justify-between gap-2 rounded-xl px-3 py-2 hover:bg-primary/10 hover:text-primary"
           >

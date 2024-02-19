@@ -7,10 +7,6 @@ export function getPath(base: string, ...slugs: string[]) {
   })
 }
 
-export function withLocale(path: string, locale: Ref<string> = ref('vi')) {
-  return joinURL(locale.value, path)
-}
-
-export function queryContentLocale(query: string = '') {
-  return queryContent(withLocale(query, useI18n().locale))
+export function withLocale(path: string, locale: Ref<string> = ref('en')) {
+  return locale.value === 'en' ? path : joinURL(locale.value, path)
 }

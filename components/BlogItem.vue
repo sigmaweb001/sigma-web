@@ -12,9 +12,8 @@ const dirPath = computed(() => {
   const pathArr = item.value._path.split('/')
   return pathArr.slice(0, pathArr.length - 1).join('/')
 })
-const { locale } = useI18n()
 
-const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, () => queryContentLocale('resources').where({
+const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, () => queryContent('resources').where({
   $or: [
     {
       _path: {
@@ -22,15 +21,16 @@ const { data: dataDir } = await useAsyncData(`resources-dir-${dirPath.value}`, (
       },
     },
   ],
-}).findOne(), { watch: [dirPath, locale] })
+}).findOne(), { watch: [dirPath] })
 
 const NuxtLink = resolveComponent('NuxtLink')
+const localePath = useLocalePath()
 </script>
 
 <template>
   <div class="flex flex-col gap-2 of-hidden bg-resource">
     <NuxtLink
-      :to="item._path"
+      :to="localePath(item._path)"
       class="relative block aspect-16/9 of-hidden rounded-12px bg-gray-200 transition-all duration-300 hover:scale-105"
     >
       <template v-if="item?.thumbnail">
@@ -49,7 +49,7 @@ const NuxtLink = resolveComponent('NuxtLink')
     </div>
 
     <div class="h-50px px-3">
-      <NuxtLink :to="item._path" class="flex-1 text-lg font-semibold leading-snug tracking-tight dark:text-white">
+      <NuxtLink :to="localePath(item._path)" class="flex-1 text-lg font-semibold leading-snug tracking-tight dark:text-white">
         <span
           class="transition-[background_size] line-clamp-2 cursor-pointer bg-[length:0px_10px] bg-gradient-to-r bg-left-bottom bg-no-repeat duration-500 hover:(text-primary underline)"
         >
@@ -81,7 +81,7 @@ const NuxtLink = resolveComponent('NuxtLink')
         </p>
       </div>
       <div v-if="hideAuthor" class="mb-2 mt--2 flex items-end justify-between px-3">
-        <SButton :as="NuxtLink" variant="link" class="text-sm p-0!" :to="item._path">
+        <SButton :as="NuxtLink" variant="link" class="text-sm p-0!" :to="localePath(item._path)">
           Read more
           <div class="i-ri:arrow-right-line ml-1 size-16px!" />
         </SButton>
