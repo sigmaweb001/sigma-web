@@ -1,5 +1,4 @@
 import { joinURL } from 'ufo'
-import { ensurePrefix } from '@antfu/utils'
 
 export function getPath(base: string, ...slugs: string[]) {
   return useLocalePath()({
@@ -8,10 +7,10 @@ export function getPath(base: string, ...slugs: string[]) {
   })
 }
 
-export function ensureLocalePath(path: string) {
-  return ensurePrefix(useI18n().locale.value, path)
+export function withLocale(path: string, locale: Ref<string> = ref('vi')) {
+  return joinURL(locale.value, path)
 }
 
 export function queryContentLocale(query: string = '') {
-  return queryContent(joinURL(useI18n().locale.value, query))
+  return queryContent(withLocale(query, useI18n().locale))
 }

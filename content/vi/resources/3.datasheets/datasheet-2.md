@@ -1,6 +1,6 @@
 ---
 title: Datasheet 2 Datasheet 2 Datasheet 2 Datasheet 2 Datasheet 2 Datasheet 2 Datasheet 2 Datasheet 2
-media: /VOD/VTVHub_HD.pdf
+media: /VTVHub_HD.pdf
 thumbnail: /Capture_170819.png
 type: resource
 description: 'A datasheet for the VTVHub'
