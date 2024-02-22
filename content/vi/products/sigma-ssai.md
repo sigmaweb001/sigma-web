@@ -1,26 +1,31 @@
 ---
 title: Sigma DAI
-description: 'Enable ADS Insertion Everywhere'
+description: Enable ADS Insertion Everywhere
 icon: ri:advertisement-line
 ---
 
-::section-hero{}
+::section-hero
+- **Quảng cáo** liền mạch Luồng được cá nhân hóa. Kiếm tiền dễ dàng
+- Mở khóa tiềm năng quảng cáo. Quy mô liền mạch.
+
 #title
-Enable _ADS_ Insertion Everywhere
+Bật tính năng chèn quảng cáo ở mọi nơi
+
 #subtitle
-Dynamic Ad Insertion – also known as Server-side ad insertion (SSAI) – enables the seamless delivery of video ads into content streamed on internet-enabled devices.
-#default
-- Seamless **ads** Personalized streams. Monetize effortlessly
-- Unlock ad potential. Scale seamlessly.
+Chèn quảng cáo động – còn được gọi là Chèn quảng cáo phía máy chủ (SSAI) – cho phép phân phối liền mạch quảng cáo video vào nội dung được phát trực tuyến trên các thiết bị có hỗ trợ internet.
 
 #cta
-::button-link{href="https://portal.sigma.video /auth/login?redirect=/apps" target='_blank'}
-Start free trial
-::
+  :::button-link
+  ---
+  href: https://portal.sigma.video /auth/login?redirect=/apps
+  target: _blank
+  ---
+  Dùng thử miễn phí
+  :::
 
-::button-link{href="/contact" white}
-Contact Us
-::
+  :::button-link{href="/contact" white}
+  Liên hệ chúng tôi
+  :::
 
 #extra
 No credit card required
@@ -29,170 +34,205 @@ No credit card required
 ![ssai-hero.png](/ssai/ssai-hero.png)
 ::
 
-::section-grid{}
+::section-grid
+  :::grid-item
+  ![ssai-grid.png](/ssai/ssai-grid.png)
+  :::
+
+  :::grid-item
+    ::::list-item
+    #image
+    ![ssai-strength-1.png](/ssai/ssai-strength-1.png)
+    
+    #title
+    **Quản lý đồng thời một lượng lớn người xem**
+    
+    #subtitle
+    Sử dụng giải pháp đám mây dễ dàng mở rộng quy mô, đảm bảo hiệu suất cao và trải nghiệm người dùng mượt mà.
+    ::::
+  
+    ::::list-item
+    #image
+    ![ssai-strength-2.png](/ssai/ssai-strength-2.png)
+    
+    #title
+    **Tích hợp**
+    
+    #subtitle
+    Tích hợp hoàn toàn với Sigma Streaming Platform. Tương thích với cả nội dung trực tiếp và độc lập (VOD). Được hỗ trợ trên hầu hết các nền tảng trình phát (trình phát).
+    ::::
+  
+    ::::list-item
+    #image
+    ![ssai-strength-3.png](/ssai/ssai-strength-3.png)
+    
+    #title
+    **Tỷ lệ lấp đầy và tỷ lệ hoàn thành quảng cáo cao**
+    
+    #subtitle
+    Đạt được tỷ lệ lấp đầy và tỷ lệ hoàn thành quảng cáo cao, tối ưu hóa lợi nhuận quảng cáo và tăng hiệu suất quảng cáo tổng thể.
+    ::::
+  
+    ::::list-item
+    #image
+    ![ssai-strength-4.png](/ssai/ssai-strength-4.png))
+    
+    #title
+    **Chuyển đổi quảng cáo tức thì và căn chỉnh theo luồng ban đầu**
+    
+    #subtitle
+    Phù hợp với nội dung gốc, đảm bảo trải nghiệm liền mạch.
+    ::::
+  :::
+
 #title
-Outstanding advantages of Dynamic Ad Insertion
+Ưu điểm nổi bật của tính năng Chèn quảng cáo động
+
 #subtitle
-Strength
-
-
-#default
-::grid-item{}
-![ssai-grid.png](/ssai/ssai-grid.png)
+Điểm mạnh
 ::
 
-::grid-item{}
-
-  ::list-item
-  #image
-  ![ssai-strength-1.png](/ssai/ssai-strength-1.png)
-  #title
-  **Managing a large number of viewers simultaneously**
-  #subtitle
-  Use a cloud solution that is easy to scale, ensuring high performance and a smooth user experience.
-  ::
-  ::list-item
-  #image
-  ![ssai-strength-2.png](/ssai/ssai-strength-2.png)
-  #title
-  **Integration**
-  #subtitle
-  Fully Integrated with Sigma Streaming Platform.Compatible with both live and stand-alone content (VOD). Supported on most player platforms (player).
-  ::
-
-  ::list-item
-  #image
-  ![ssai-strength-3.png](/ssai/ssai-strength-3.png)
-
-  #title
-  **High fill rate and ad completion rate**
-  #subtitle
-  Achieve a high fill rate and ad completion rate, optimize advertising profits, and increase overall advertising performance.
-  ::
-
-  ::list-item
-  #image
-  ![ssai-strength-4.png](/ssai/ssai-strength-4.png))
-  #title
-  **Instant ad conversion and alignment to the original stream**
-  #subtitle
-  Matches the original content, ensuring a seamless experience.
-  ::
-
-::
-::
-
-::section-grid{col=3}
-#title
-What's included
-#subtitle
-HIGHLIGHTS FEATURES
-#default
-  ::grid-card
+::section-grid
+---
+col: '3'
+---
+  :::grid-card
+  Thay thế thời gian ngắt quảng cáo phát sóng bằng Quảng cáo OTT có thể định địa chỉ. Chèn quảng cáo vào luồng Truyền hình trực tiếp tuyến tính và VOD.
+  
   #image
   ![ssai-feature-1.png](/ssai/ssai-feature-1.png)
+  
   #title
-  **How it Work?**
-  #default
-  Replace broadcast ad-breaks with addressable OTT Ads Insert ads into Live- Linear TV and VOD streams.
-  ::
+  **Nó hoạt động như thế nào?**
+  :::
 
-  ::grid-card
+  :::grid-card
+  Kiểm soát quảng cáo và nội dung bằng nhiều phương pháp khác nhau, bao gồm quản lý theo điểm cuối chèn quảng cáo, quản lý dựa trên người dùng và quản lý dựa trên quảng cáo riêng lẻ.
+  
   #image
   ![ssai-feature-2.png](/ssai/ssai-feature-2.png)
+  
   #title
-  **Control method**
-  #default
-  Control ads and content using various methods, including management by ad insert endpoint, user-based management, and individual ad-based management.
-  ::
+  **Phương pháp điều khiển**
+  :::
 
-  ::grid-card
+  :::grid-card
+  Hỗ trợ trên nhiều nền tảng và nhiều thiết bị.
+  
+  Tài liệu này cung cấp cái nhìn tổng quan về thông tin chỉ mục liên quan đến SSAI và bao gồm các chi tiết từ hướng dẫn sử dụng.
+  
   #image
   ![ssai-feature-3.png](/ssai/ssai-feature-3.png)
+  
   #title
-  **Customer dashboard**
-  #default
-  Supports on multiple platforms and multiple devices.
-  The document provides an overview of SSAI-related index information and includes details from the user manual.
+  **Bảng điều khiển khách hàng**
+  :::
 
-  ::
-
-  ::grid-card
+  :::grid-card
+  Điểm cuối chèn quảng cáo tập hợp các bảng kê khai nguồn của bạn thành một luồng tuyến tính, trong đó mỗi điểm cuối chèn quảng cáo chứa một hoặc nhiều đầu ra tương ứng với cấu hình gói của bạn.
+  
   #image
   ![ssai-feature-4.png](/ssai/ssai-feature-4.png)
+  
   #title
-  **Ad insert endpoint**
-  #default
-  An ad insert endpoint assembles your source manifests into a linear stream, with each ad insert endpoint containing one or more outputs corresponding to your package configuration.
-  ::
+  **Điểm cuối chèn quảng cáo**
+  :::
 
-  ::grid-card
+  :::grid-card
+  Khi quảng cáo đã được chuyển mã và đủ điều kiện để chèn vào nội dung, danh sách quảng cáo sẽ giúp quản lý việc chèn những quảng cáo này vào nội dung trực tiếp một cách hợp lý và mượt mà.
+  
   #image
   ![ssai-feature-5.png](/ssai/ssai-feature-5.png)
+  
   #title
-  **Advertising list**
-  #default
-  Once the ads have been transcoded and are eligible for insertion into content, the ad list helps manage the insertion of these ads into live content in a logical and smooth manner.
-  ::
+  **Danh sách quảng cáo**
+  :::
 
-  ::grid-card
+  :::grid-card
+  Theo dõi mức độ phổ biến của nội dung, mức độ tương tác của người xem và giám sát dịch vụ hiệu suất 24/7.
+  
   #image
   ![ssai-feature-6.png](/ssai/ssai-feature-6.png)
+  
   #title
-  **Analytics Tool**
-  #default
-  Tracks Content Popularrity, Viewer Engagement, Ad perforrmance Service Monitorring 24/7.
-  ::
+  **Công cụ phân tích**
+  :::
 
+#title
+Bao gồm những gì?
+
+#subtitle
+TÍNH NĂNG NỔI BẬT
 ::
 
 ::section-normal
-#title
-Avoiding Ad Blockers for Video
-Monetization
-#subtitle
-Globally, 42.7% of internet users use ad blockers
-#default
-#default
-By integrating content and ads into one continuous stream, SSAI provides a seamless viewing experience, similar to a traditional advertising break. We offers SSAI technology that makes it possible to exchange and insert TV spots on the fly, so broadcasters can increase yield from linear streams within OTT and web environments.
+Bằng cách tích hợp nội dung và quảng cáo vào một luồng liên tục, SSAI mang lại trải nghiệm xem liền mạch, tương tự như thời gian nghỉ quảng cáo truyền thống. Chúng tôi cung cấp công nghệ SSAI cho phép trao đổi và chèn các điểm truyền hình một cách nhanh chóng, nhờ đó các đài truyền hình có thể tăng lợi nhuận từ các luồng tuyến tính trong môi trường OTT và web.
 ![ssai-how-it-work-1.png](/ssai/ssai-how-it-work-1.png)
-By integrating content and ads into one continuous stream, SSAI provides a seamless viewing experience, similar to a traditional advertising break. We offers SSAI technology that makes it possible to exchange and insert TV spots on the fly, so broadcasters can increase yield from linear streams within OTT and web environments.
+Bằng cách tích hợp nội dung và quảng cáo vào một luồng liên tục, SSAI mang lại trải nghiệm xem liền mạch, tương tự như thời gian nghỉ quảng cáo truyền thống. Chúng tôi cung cấp công nghệ SSAI cho phép trao đổi và chèn các điểm truyền hình một cách nhanh chóng, nhờ đó các đài truyền hình có thể tăng lợi nhuận từ các luồng tuyến tính trong môi trường OTT và web.
 ![ssai-how-it-work-2.png](/ssai/ssai-how-it-work-2.png)
-Users stream video or OTT content on internet-enabled devices via content delivery networks (CDNs). When a user reaches an ad break, the SSAI server requests ads from third-party ad servers. The SSAI server then stitches those ads – at the same bitrate, frame rate and audio level as the underlying stream – directly into the content, which is passed back to the viewing device via the CDN.
+Người dùng truyền phát nội dung video hoặc OTT trên các thiết bị có hỗ trợ internet thông qua mạng phân phối nội dung (CDN). Khi người dùng đến thời điểm nghỉ quảng cáo, máy chủ SSAI sẽ yêu cầu quảng cáo từ máy chủ quảng cáo của bên thứ ba. Sau đó, máy chủ SSAI sẽ ghép các quảng cáo đó – ở cùng tốc độ bit, tốc độ khung hình và mức âm thanh như luồng cơ bản – trực tiếp vào nội dung, được truyền trở lại thiết bị xem qua CDN.
+
+#title
+Tránh Ad Blockers cho Video và kiếm tiền
+
+#subtitle
+Trên toàn cầu, 42,7% người dùng internet sử dụng trình chặn quảng cáo
 ::
 
-
 ::section-resource
+  :::resource-item{path="/resources/blogs/blog-1"}
+  :::
+
+  :::resource-item{path="/resources/product-updates/guide-1"}
+  :::
+
+  :::resource-item{path="/resources/datasheets/datasheet-1"}
+  :::
+
+  :::resource-item{path="/resources/datasheets/datasheet-1"}
+  :::
+
 #title
-DAI Resources
-#default
-:resource-item{path="/resources/blogs/blog-1"}
-:resource-item{path="/resources/product-updates/guide-1"}
-:resource-item{path="/resources/datasheets/datasheet-1"}
-:resource-item{path="/resources/datasheets/datasheet-1"}
+Tài nguyên DAI
 ::
 
 ::section-marquee
+  :::marquee-item{img="/testimonial/vt.png"}
+  :::
+
+  :::marquee-item{img="/testimonial/vtv-digital.png"}
+  :::
+
+  :::marquee-item{img="/testimonial/vtc.png"}
+  :::
+
+  :::marquee-item{img="/testimonial/vtvc.png"}
+  :::
+
+  :::marquee-item{img="/testimonial/vng.png"}
+  :::
+
 #subtitle
-TRUSTED BY 2000+ CUSTOMERS
-#default
-:marquee-item{img="/testimonial/vt.png"}
-:marquee-item{img="/testimonial/vtv-digital.png"}
-:marquee-item{img="/testimonial/vtc.png"}
-:marquee-item{img="/testimonial/vtvc.png"}
-:marquee-item{img="/testimonial/vng.png"}
+ĐƯỢC 2000+ KHÁCH HÀNG TIN TƯỞNG
 ::
 
 ::section-cta
-#title
-Ready to Get Started?
-#subtitle
-Try our product for Free and start streaming today
-#default
-::button-link{href="https://appt.link/meet-with-sigma-team" data-appointlet-modal}
-View demo
-::
+  :::button-link
+  ---
+  href: https://appt.link/meet-with-sigma-team
+  data-appointlet-modal: true
+  dataAppointletModal: ''
+  ---
+  Xem demo
+  :::
 
-::button-link{href="/contact" white}
-  Contact Us
+  :::button-link{href="/contact" white}
+  Liên hệ chúng tôi
+  :::
+
+#title
+Sẵn sàng để bắt đầu?
+
+#subtitle
+Hãy dùng thử miễn phí sản phẩm của chúng tôi và bắt đầu phát trực tuyến ngay hôm nay
 ::
