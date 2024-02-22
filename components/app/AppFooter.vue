@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 const { locale } = useI18n()
-const { data: products } = await useAsyncData('products', () => queryContent(withLocale('products', locale)).find(), { watch: [locale] })
-const { data: engines } = await useAsyncData('engines', () => queryContent(withLocale('engines', locale)).find(), { watch: [locale] })
-const { data: solutions } = await useAsyncData('solutions', () => queryContent(withLocale('solutions', locale)).find(), { watch: [locale] })
-const { data: companies } = await useAsyncData('companies', () => queryContent(withLocale('companies', locale)).find(), { watch: [locale] })
-const { data: legal } = await useAsyncData('legal', () => queryContent(withLocale('legal', locale)).find(), { watch: [locale] })
+const { data: legal } = await useAsyncData(withLocale('legal', locale), () => queryContent(withLocale('legal', locale)).find(), { watch: [locale] })
 
-const { data: resources } = await useAsyncData('resources', () => queryContent(withLocale('resources', locale)).where({
+const { data: products } = await useAsyncData(withLocale('products', locale), () => queryContent(withLocale('products', locale)).find(), { watch: [locale] })
+const { data: engines } = await useAsyncData(withLocale('engines', locale), () => queryContent(withLocale('engines', locale)).find(), { watch: [locale] })
+const { data: solutions } = await useAsyncData(withLocale('solutions', locale), () => queryContent(withLocale('solutions', locale)).find(), { watch: [locale] })
+const { data: companies } = await useAsyncData(withLocale('companies', locale), () => queryContent(withLocale('companies', locale)).find(), { watch: [locale] })
+
+const { data: resources } = await useAsyncData(withLocale('resources', locale), () => queryContent(withLocale('resources', locale)).where({
   $or: [
     { _dir: { $eq: 'resources' } },
     { _dir: { $eq: '' } },
@@ -33,7 +34,7 @@ function getPath(item: any) {
 <template>
   <DefineTemplate v-slot="{ items }">
     <NuxtLink
-      v-for="item in items" :key="item._path" exact-active-class="text-primary"
+      v-for="item in items.filter(item => item.navigation !== false)" :key="item._path" exact-active-class="text-primary"
       hover="underline underline-primary text-primary" :to="getPath(item)" :target="getTarget(item)"
     >
       {{ item.title }}

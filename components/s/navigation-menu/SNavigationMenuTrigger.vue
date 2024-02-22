@@ -11,7 +11,8 @@ const props = defineProps<NavigationMenuTriggerProps>()
   <NavigationMenuTrigger class="group navigation-menu-trigger" v-bind="props">
     <slot />
     <div
-      class="i-ri:arrow-down-s-line relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180 "
-      aria-hidden="true" />
+      class="i-ri:arrow-down-s-line relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180"
+      aria-hidden="true"
+    />
   </NavigationMenuTrigger>
 </template>
