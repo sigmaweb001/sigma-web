@@ -58,7 +58,7 @@ html.dark {
   --destructive: 0 100% 50%;
   --destructive-foreground: 210 40% 98%;
 
-  --ring: 215 20.2% 65.1%;
+  --ring: 27 98% 56%;
 
   --radius: 0.5rem;
 }
@@ -91,7 +91,7 @@ html.dark {
   --destructive: 0 63% 31%;
   --destructive-foreground: 210 40% 98%;
 
-  --ring: 216 34% 17%;
+  --ring: 27 98% 56%;
 
   --radius: 0.5rem;
 }
