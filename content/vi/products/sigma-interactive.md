@@ -1,226 +1,301 @@
 ---
-title: 'Sigma Interactive'
-description: 'Engage with immersive content on OTT TV, interactive entertainment experience'
+title: Sigma Interactive
+description: Tương tác với nội dung hấp dẫn trên OTT TV, trải nghiệm giải trí tương tác
 icon: material-symbols:auto-videocam-outline-sharp
 ---
 
-::section-hero{}
+::section-hero
+- Chúng tôi tích hợp từ nhiều nguồn khác nhau.
+- Nhiều hình thức thực hiện tương tác.
+- Tương thích với nhiều nền tảng.
+
 #title
-Seamless _Interactive_, Endless Choices
+Tương tác liền mạch, lựa chọn vô tận
+
 #subtitle
-The intermediary channel system helps manage interactions.
-#default
-- We integrate from many different sources.
-- Many forms of interactive implementation.
-- Compatible with multiple platforms.
+Hệ thống kênh trung gian giúp quản lý các tương tác.
 
 #cta
-::button-link{href="https://portal.sigmaott.com/auth/login?redirect=/apps" target='_blank'}
-Start free trial
-::
+  :::button-link
+  ---
+  href: https://portal.sigmaott.com/auth/login?redirect=/apps
+  target: _blank
+  ---
+  Dùng thử miễn phí
+  :::
 
-::button-link{href="/contact" white}
-Contact Us
-::
+  :::button-link{href="/contact" white}
+  Liên hệ chúng tôi
+  :::
 
 #extra
-No credit card required
+Không bắt buộc có thẻ tín dụng
 
 #image
 ![interactive.png](/interactive/interactive.png)
 ::
 
-::section-grid{col=3}
-#title
-What's included
-#subtitle
-HIGHLIGHTS FEATURES
-#default
-  ::grid-card
+::section-grid
+---
+col: '3'
+---
+  :::grid-card
+  - Phát trực tiếp
+  - Truyền hình
+  
   #image
   ![interactive-feature-1.png](/interactive/interactive-feature-1.png)
+  
   #title
-  **Content interaction system**
-  #default
-  - Livestream
-  - Television
-  ::
+  **Hệ thống tương tác nội dung**
+  :::
 
-  ::grid-card
+  :::grid-card
+  - Overlay: Thăm dò ý kiến/dự đoán, câu đố/câu đố, phần ba phía dưới, xổ số.
+  - Panel: bảng trò chuyện, bảng iframe, bảng xếp hạng, bảng nhiều câu hỏi, bảng tùy chỉnh.
+  
   #image
   ![interactive-feature-2.png](/interactive/interactive-feature-2.png)
+  
   #title
-  **Supports many types of interactive components**
-  #default
-  - Overlay: Poll/ prediction, trivia/ quiz, lower third, raffle
-  - Panel: chat panel, iframe panel, leaderboard panel, multi question panel, custom panel.
-  ::
+  **Hỗ trợ nhiều loại thành phần tương tác**
+  :::
 
-  ::grid-card
+  :::grid-card
+  Phát triển nhanh chóng các lớp phủ trên tất cả các nền tảng với các tùy chọn kịch bản tương ứng.
+  
   #image
   ![interactive-feature-3.png](/interactive/interactive-feature-3.png)
+  
   #title
-  **Supports many types of content and optional scenarios.**
-  #default
-  Fast development of overlays on all platforms with corresponding scenario options.
-  ::
+  **Hỗ trợ nhiều loại nội dung và kịch bản tùy chọn.**
+  :::
 
-  ::grid-card
+  :::grid-card
+  Thống kê đầy đủ, điểm tổng hợp và thời gian tương tác của người dùng.
+  
   #image
   ![interactive-feature-4.png](/interactive/interactive-feature-4.png)
+  
   #title
-  **Collect data and analyze user behavior.**
-  #default
-  Full statistics, aggregated points and user interaction time.
-  ::
+  **Thu thập dữ liệu và phân tích hành vi người dùng.**
+  :::
 
-  ::grid-card
+  :::grid-card
+  Bao gồm các nền tảng như Web, Mobile, SmartTV (Android TV, Tizen, WebOS).
+  
   #image
   ![interactive-feature-5.png](/interactive/interactive-feature-5.png)
+  
   #title
-  **Full support for cross platforms**
-  #default
-  Including platforms such as Web, Mobile, SmartTV (Android TV, Tizen, WebOS).
-  ::
+  **Hỗ trợ đầy đủ đa nền tảng.**
+  :::
 
-  ::grid-card
+  :::grid-card
+  Lấy nội dung từ nguồn bên ngoài và tích hợp vào kênh của bạn, cho phép bạn phát trực tiếp hoặc trình bày nội dung từ nguồn đó trên kênh của mình.
+  
   #image
   ![interactive-feature-6.png](/interactive/interactive-feature-6.png)
+  
   #title
-  **Supports external channel integration**
-  #default
-  Takes content from an external source and integrates it into your channel, allowing you to livestream or present content from that source on your channel.
-  ::
+  **Hỗ trợ tích hợp kênh bên ngoài**
+  :::
+
+#title
+What's included
+
+#subtitle
+TÍNH NĂNG NỔI BẬT
 ::
 
-::section-grid{bg col=3}
-#title
-What do we have?
-#subtitle
-Usecase
-
-#default
-  ::grid-item{}
+::section-grid
+---
+col: '3'
+bg: true
+---
+  :::grid-item
   ![usecase-1.png](/interactive/usecase-1.png)
-  ::
+  :::
 
-  ::grid-item{span=2 center padding=16}
+  :::grid-item
+  ---
+  center: true
+  padding: '16'
+  span: '2'
+  ---
   #title
   Figma plugin
+  
   #subtitle
-  Mark an element that can be used as a CTA,supports multiple screens and transitions between screens.
-  ::
+  Đánh dấu element có thể sử dụng làm CTA, hỗ trợ đa màn hình và chuyển tiếp giữa các màn hình với nhau
+  :::
+
+#title
+What do we have?
+
+#subtitle
+Usecase
 ::
 
-::section-grid{bg col=3 }
-#default
-  ::grid-item{span=2 center padding=16}
+::section-grid{col="3" bg}
+  :::grid-item
+  ---
+  center: true
+  padding: '16'
+  span: '2'
+  ---
   #title
-  Sports interaction
+  Tương tác thể thao
+  
   #subtitle
-  Activities or experiences that players, fans or spectators can participate in or interact with in the field of sports include activities such as predicting results, predicting winning teams, etc.
-  ::
+  Các hoạt động hoặc trải nghiệm mà người chơi, người hâm mộ hoặc khán giả có thể tham gia hoặc tương tác trong lĩnh vực thể thao bao gồm các hoạt động như dự đoán kết quả, dự đoán đội thắng,....
+  :::
 
-  ::grid-item{}
+  :::grid-item
   ![usecase-2.png](/interactive/usecase-2.png)
-  ::
+  :::
 ::
-::section-grid{bg col=3}
-#default
-  ::grid-item{}
+
+::section-grid{col="3" bg}
+  :::grid-item
   ![usecase-3.png](/interactive/usecase-3.png)
-  ::
+  :::
 
-  ::grid-item{span=2 center padding=16}
+  :::grid-item
+  ---
+  center: true
+  padding: '16'
+  span: '2'
+  ---
   #title
-  Gameshow interaction
+  Gameshow tương tác
+  
   #subtitle
-  Interactive activities that audiences or viewers can participate in while watching a game show( for example: remote responses via mobile app or website, online voting, or even live participation in rounds).
-  ::
+  Các hoạt động tương tác mà khán giả hoặc người xem có thể tham gia trong quá trình xem một chương trình gameshow ví dụ như: câu trả lời từ xa thông qua ứng dụng di động hoặc trang web, bình chọn trực tuyến, hoặc thậm chí là tham gia trực tiếp trong các vòng chơi.
+  :::
 ::
 
-::section-grid{bg col=3}
-#default
-  ::grid-item{span=2 center padding=16}
+::section-grid{col="3" bg}
+  :::grid-item
+  ---
+  center: true
+  padding: '16'
+  span: '2'
+  ---
   #title
-  Live interaction
+  Tương tác trực tuyến
+  
   #subtitle
-  Communicate and interact directly in real time through online media that allows viewers to interact through comments, emojis, and other forms of direct feedback.
-  ::
+  Giao tiếp và tương tác trực tiếp trong thời gian thực thông qua các phương tiện truyền thông trực tuyến cho phép người xem tương tác thông qua bình luận, emoji, và các hình thức phản hồi trực tiếp khác.
+  :::
 
-  ::grid-item{}
+  :::grid-item
   ![usecase-4.png](/interactive/usecase-4.png)
-  ::
+  :::
 ::
 
-::section-grid{bg col=3}
-#default
-  ::grid-item{}
+::section-grid{col="3" bg}
+  :::grid-item
   ![usecase-5.png](/interactive/usecase-5.png)
-  ::
+  :::
 
-  ::grid-item{span=2 center padding=16}
+  :::grid-item
+  ---
+  center: true
+  padding: '16'
+  span: '2'
+  ---
   #title
-  Overlay editor
+  Biên tập overlay
+  
   #subtitle
-  The process of editing and creating overlays in live video, livestreams, or other multimedia products such as images, graphics, text, and other added information. to improve your viewing experience or convey important information.
-  ::
+  Quá trình chỉnh sửa và tạo ra các phần hiển thị trên màn hình (overlay) trong video trực tiếp, livestream, hoặc trong các sản phẩm đa phương tiện khác như hình ảnh, đồ họa, văn bản, và thông tin khác được thêm vào để cải thiện trải nghiệm xem hoặc truyền tải thông tin quan trọng.
+  :::
 ::
 
-::section-grid{bg col=3}
-#default
-  ::grid-item{span=2 center padding=16}
+::section-grid{col="3" bg}
+  :::grid-item
+  ---
+  center: true
+  padding: '16'
+  span: '2'
+  ---
   #title
   Panel
+  
   #subtitle
-  Part of the interface that viewers can see directly on the video screen.
-  ::
+  Một phần của giao diện mà người xem có thể thấy trực tiếp trên màn hình video.
+  :::
 
-  ::grid-item{}
+  :::grid-item
   ![usecase-6.png](/interactive/usecase-6.png)
-  ::
+  :::
 ::
 
 ::section-normal
+![interactive-how-it-work.png](/interactive/interactive-how-it-work.png)
+
 #title
 How it works
+
 #subtitle
 System architecture
-#default
-![interactive-how-it-work.png](/interactive/interactive-how-it-work.png)
 ::
 
 ::section-resource
+  :::resource-item{path="/resources/datasheets/datasheet-test"}
+  :::
+
+  :::resource-item{path="/resources/blogs/blog-test"}
+  :::
+
+  :::resource-item{path="/resources/blogs/blog-red"}
+  :::
+
+  :::resource-item{path="/resources/product-updates/guide-1"}
+  :::
+
 #title
 Interactive Resources
-#default
-:resource-item{path="/resources/datasheets/datasheet-test"}
-:resource-item{path="/resources/blogs/blog-test"}
-:resource-item{path="/resources/blogs/blog-red"}
-:resource-item{path="/resources/product-updates/guide-1"}
 ::
 
 ::section-marquee
+  :::marquee-item{img="/testimonial/vt.png"}
+  :::
+
+  :::marquee-item{img="/testimonial/vtv-digital.png"}
+  :::
+
+  :::marquee-item{img="/testimonial/vtc.png"}
+  :::
+
+  :::marquee-item{img="/testimonial/vtvc.png"}
+  :::
+
+  :::marquee-item{img="/testimonial/vng.png"}
+  :::
+
 #subtitle
-TRUSTED BY 2000+ CUSTOMERS
-#default
-:marquee-item{img="/testimonial/vt.png"}
-:marquee-item{img="/testimonial/vtv-digital.png"}
-:marquee-item{img="/testimonial/vtc.png"}
-:marquee-item{img="/testimonial/vtvc.png"}
-:marquee-item{img="/testimonial/vng.png"}
+ĐƯỢC 2000+ KHÁCH HÀNG TIN TƯỞNG
 ::
 
 ::section-cta
-#title
-Ready to Get Started?
-#subtitle
-Try our product for Free and start streaming today
-#default
-::button-link{href="https://appt.link/meet-with-sigma-team"  data-appointlet-modal}
-View demo
-::
+  :::button-link
+  ---
+  href: https://appt.link/meet-with-sigma-team
+  data-appointlet-modal: true
+  dataAppointletModal: ''
+  ---
+  Xem demo
+  :::
 
-::button-link{href="/contact" white}
-  Contact Us
+  :::button-link{href="/contact" white}
+  Liên hệ chúng tôi
+  :::
+
+#title
+Sẵn sàng để bắt đầu?
+
+#subtitle
+Hãy dùng thử miễn phí sản phẩm của chúng tôi và bắt đầu phát trực tuyến ngay hôm nay
 ::
