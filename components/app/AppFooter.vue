@@ -117,7 +117,6 @@ function getPath(item: any) {
           <div class="flex gap-3">
             <AppSocialIcons />
           </div>
-          <LangSelect />
           <!-- <AppDarkSwitch class="hidden!" /> -->
         </div>
 

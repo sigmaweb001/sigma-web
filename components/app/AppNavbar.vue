@@ -224,9 +224,13 @@ const NuxtLink = resolveComponent('NuxtLink')
           </SNavigationMenuItem>
         </div>
         <SNavigationMenuItem class="hidden flex-shrink-0 xl:block">
-          <SButton :as="NuxtLink" variant="gradient" class="0 text-sm" to="https://portal.sigmaott.com/auth/login?redirect=/apps" external target="_blank">
-            {{ $t('start_free_trial') }}
-          </SButton>
+          <div class="flex gap-1">
+            <SButton :as="NuxtLink" variant="gradient" class="0 text-sm" to="https://portal.sigmaott.com/auth/login?redirect=/apps" external target="_blank">
+              {{ $t('start_free_trial') }}
+            </SButton>
+
+            <LangSelect />
+          </div>
         </SNavigationMenuItem>
       </div>
     </SNavigationMenu>
