@@ -1,6 +1,6 @@
 ---
 title: Sigma DAI
-description: Enable ADS Insertion Everywhere
+description: Bật tính năng chèn quảng cáo ở mọi nơi
 icon: ri:advertisement-line
 ---
 
