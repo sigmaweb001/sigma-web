@@ -1,176 +1,214 @@
 ---
-title: 'Sigma LRM'
-description: 'Distribute VOD and Live content to distributors'
+title: Sigma LRM
+description: Phân phối nội dung VOD và Live cho nhà phân phối
 icon: ri:advertisement-line
 comingsoon: false
 ---
 
-::section-hero{}
+::section-hero
+- Mang lại tiềm năng thu nhập tối đa nhưng vẫn đảm bảo tuân thủ các quy định.
+- Điều chỉnh lịch trình. Lên lịch ngày xuất bản.
+- Nhập sự kiện nội dung dựa trên API và chuẩn hóa SCTE 224.
+
 #title
-Accurately distribute rights and content using _Sigma LRM_
+Phân phối chính xác quyền và nội dung bằng Sigma LRM
+
 #subtitle
-Control your live or VOD content, delivering it to the right customers at the right time.
-#default
-- Providing maximum earning potential while still ensuring compliance with regulations.
-- Schedule adjustment. Schedule a publication date.
-- API-driven content event ingest and SCTE 224 normalization.
+Kiểm soát nội dung trực tiếp hoặc VOD của bạn, phân phối nội dung đó đến đúng khách hàng vào đúng thời điểm.
 
 #cta
-::button-link{href="https://portal.sigma.video/auth/login?redirect=/apps" target='_blank'}
-Start free trial
-::
+  :::button-link
+  ---
+  href: https://portal.sigma.video/auth/login?redirect=/apps
+  target: _blank
+  ---
+  Dùng thử miễn phí
+  :::
 
-::button-link{href="/contact" white}
-Contact Us
-::
+  :::button-link{href="/contact" white}
+  Liên hệ chúng tôi
+  :::
 
 #extra
-No credit card required
+Không bắt buộc có thẻ tín dụng
 
 #image
 ![lrm-hero.png](/lrm/lrm-hero.png)
 ::
 
-::section-grid{}
+::section-grid
+  :::grid-item
+  ![lrm-grid.png](/lrm/lrm-grid.png)
+  :::
+
+  :::grid-item
+    ::::list-item
+    #image
+    ![lrm-strength-1.png](/lrm/lrm-strength-1.png)
+    
+    #title
+    **Tùy chọn nội dung thay thế**
+    
+    #subtitle
+    Cung cấp các tùy chọn nội dung thay thế trong trường hợp mất tín hiệu, mất nội dung và hạn chế thiết bị.
+    ::::
+  
+    ::::list-item
+    #image
+    ![lrm-feature-2.png](/lrm/lrm-feature-2.png)
+    
+    #title
+    **Quản lý tất cả dữ liệu sự kiện**
+    
+    #subtitle
+    Xác định các lỗ hổng lập trình, chỉnh sửa/mở rộng các sự kiện trong thời gian thực và xác minh các tùy chọn nội dung thay thế phù hợp.
+    ::::
+  
+    ::::list-item
+    #image
+    ![lrm-strength-3.png](/lrm/lrm-strength-3.png)
+    
+    #title
+    **Quản lý kênh phân phối cho đối tác**
+    
+    #subtitle
+    Quản lý cài đặt kênh bằng cách chỉnh sửa kênh và theo dõi các sự kiện đang diễn ra. Định cấu hình thay thế nội dung timeshift để lập trình liền mạch.
+    ::::
+  
+    ::::list-item
+    #image
+    ![lrm-strength-4.png](/lrm/lrm-strength-4.png)
+    
+    #title
+    **Lựa chọn StartOver**
+    
+    #subtitle
+    Thời gian xem nội dung linh hoạt tạo nên trải nghiệm xem linh hoạt; người xem không bắt buộc phải xem nội dung vào một thời điểm cố định.
+    ::::
+  :::
+
 #title
-Outstanding advantages of Sigma Linear Rights Management
+Ưu điểm nổi bật của Sigma Linear Rights Management
+
 #subtitle
-Strength
-
-
-#default
-::grid-item{}
-![lrm-grid.png](/lrm/lrm-grid.png)
+Điểm mạnh
 ::
 
-::grid-item{}
-
-  ::list-item
-  #image
-  ![lrm-strength-1.png](/lrm/lrm-strength-1.png)
-  #title
-  **Alternative content options**
-  #subtitle
-  Provides alternative content options in the cases of signal loss, content loss, and device restrictions.
-  ::
-
-  ::list-item
-  #image
-  ![lrm-feature-2.png](/lrm/lrm-feature-2.png)
-
-  #title
-  **Manage all event data**
-  #subtitle
-  Identify programming gaps, edit/expand events in real-time, and verify appropriate replacement content options.
-  ::
-
-  ::list-item
-  #image
-  ![lrm-strength-3.png](/lrm/lrm-strength-3.png)
-  #title
-  **Manage distribution channels for partners**
-  #subtitle
-  Manage channel settings by editing channels and monitoring ongoing events. Configure timeshift content replacement for seamless programming.
-  ::
-  ::list-item
-  #image
-  ![lrm-strength-4.png](/lrm/lrm-strength-4.png)
-  #title
-  **StartOver option**
-  #subtitle
-  Flexible viewing time for content creates a flexible viewing experience; viewers are not required to watch content at a fixed time.
-  ::
-
-::
-::
-
-::section-grid{col=2}
-#title
-Function and feature
-#subtitle
-Key FEATURES
-#default
-  ::grid-card
+::section-grid
+---
+col: '2'
+---
+  :::grid-card
+  Danh sách kênh toàn diện từ nhiều đối tác giúp bạn dễ dàng quản lý và nhận thông báo về các sự kiện chi tiết trong đó.
+  
   #image
   ![lrm-feature-1.png](/lrm/lrm-feature-1.png)
+  
   #title
-  **Manage and distribute waves to receiving partners**
-  #default
-  The comprehensive channel list from many partners makes it easy to manage and receive notifications about detailed events within it.
-  ::
+  **Quản lý và phân phối wave tới đối tác nhận**
+  :::
 
-  ::grid-card
+  :::grid-card
+  Cho phép bạn “đặt lịch” xem lại các chương trình đã phát sóng trước đó mà không bị giới hạn bởi lịch phát sóng cố định.
+  
   #image
   ![lrm-feature-2.png](/lrm/lrm-feature-2.png)
+  
   #title
-  **Schedule content replacement**
-  #default
-  Allows you to 'set a schedule' to review previously broadcast programs, without being limited by a fixed broadcast schedule.
-  ::
+  **Lên lịch thay thế nội dung**
+  :::
 
-  ::grid-card
+  :::grid-card
+  Tắt và thay thế nội dung chương trình trên cả luồng tuyến tính và luồng bắt kịp.
+  
   #image
   ![lrm-feature-3.png](/lrm/lrm-feature-3.png)
+  
   #title
-  **Replace content**
-  #default
-  Blackout and replace program contents on both linear and catch-up streams.
-  ::
+  **Thay thế nội dung**
+  :::
 
-  ::grid-card
+  :::grid-card
+  Hỗ trợ chèn tín hiệu qua API hoặc EPG. Lên lịch chèn quảng cáo tuyến tính lớp phủ và quảng cáo thu nhỏ màn hình.
+  
   #image
   ![lrm-feature-4.png](/lrm/lrm-feature-4.png)
+  
   #title
-  **Management and scheduling of SCTE-35 advertising signal insertion**
-  #default
-  Supporting signal insertion via API or EPG. Schedule the insertion of overlay linear ads and screen shrink ads.
-  ::
+  **Quản lý và lập lịch chèn tín hiệu quảng cáo SCTE-35**
+  :::
 
+#title
+Chức năng và tính năng
+
+#subtitle
+TÍNH NĂNG CHÍNH
 ::
 
 ::section-normal
+Nhận tín hiệu từ nhà cung cấp nội dung, chúng tôi tiến hành quản lý, lập lịch và chèn tín hiệu dựa trên EPG và API thông qua Sigma LRM. Sau khi hoàn thành quá trình sao chép và thay thế nội dung live và catch-up, nội dung mới được phân phối đến các nhà đài và đối tác phân phối nội dung.
+
 #title
-How it works?
+Làm thế nào nó hoạt động?
+
 #subtitle
-System architecture
-#default
-#default
-![lrm-how-it-work.png](/lrm/lrm-how-it-work.png)
-Receiving signals from content providers, we manage, schedule, and insert signals based on EPG and API through Sigma LRM. After completing the process of copying and replacing live and catch-up content, the new content is distributed to broadcasters and content distribution partners.
+Kiến Trúc Hệ Thống
 ::
 
-
 ::section-resource
+  :::resource-item{path="/resources/blogs/blog-1"}
+  :::
+
+  :::resource-item{path="/resources/product-updates/guide-1"}
+  :::
+
+  :::resource-item{path="/resources/datasheets/datasheet-1"}
+  :::
+
+  :::resource-item{path="/resources/datasheets/datasheet-1"}
+  :::
+
 #title
-LRM Resources
-#default
-:resource-item{path="/resources/blogs/blog-1"}
-:resource-item{path="/resources/product-updates/guide-1"}
-:resource-item{path="/resources/datasheets/datasheet-1"}
-:resource-item{path="/resources/datasheets/datasheet-1"}
+Tài nguyên LRM
 ::
 
 ::section-marquee
+  :::marquee-item{img="/testimonial/vt.png"}
+  :::
+
+  :::marquee-item{img="/testimonial/vtv-digital.png"}
+  :::
+
+  :::marquee-item{img="/testimonial/vtc.png"}
+  :::
+
+  :::marquee-item{img="/testimonial/vtvc.png"}
+  :::
+
+  :::marquee-item{img="/testimonial/vng.png"}
+  :::
+
 #subtitle
-TRUSTED BY 2000+ CUSTOMERS
-#default
-:marquee-item{img="/testimonial/vt.png"}
-:marquee-item{img="/testimonial/vtv-digital.png"}
-:marquee-item{img="/testimonial/vtc.png"}
-:marquee-item{img="/testimonial/vtvc.png"}
-:marquee-item{img="/testimonial/vng.png"}
+ĐƯỢC 2000+ KHÁCH HÀNG TIN TƯỞNG
 ::
 
 ::section-cta
-#title
-Ready to Get Started?
-#subtitle
-Try our product for Free and start streaming today
-#default
-::button-link{href="https://appt.link/meet-with-sigma-team" data-appointlet-modal}
-View demo
-::
+  :::button-link
+  ---
+  href: https://appt.link/meet-with-sigma-team
+  data-appointlet-modal: true
+  dataAppointletModal: ''
+  ---
+  Xem demo
+  :::
 
-::button-link{href="/contact" white}
-  Contact Us
+  :::button-link{href="/contact" white}
+  Liên hệ chúng tôi
+  :::
+
+#title
+Sẵn sàng để bắt đầu?
+
+#subtitle
+Hãy dùng thử miễn phí sản phẩm của chúng tôi và bắt đầu phát trực tuyến ngay hôm nay
 ::
