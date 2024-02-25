@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     'radix-vue/nuxt',
     '@nuxthq/studio',
     'nuxt-icon',
-    '@nuxtjs/color-mode',
+    // '@nuxtjs/color-mode',
     '@vueuse/nuxt',
     'nuxt-module-eslint-config',
     '@nuxt/devtools',
