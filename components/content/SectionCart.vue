@@ -317,10 +317,7 @@ const agree = ref(false)
                       <FormField v-slot="{ componentField }" name="countryCode">
                         <SFormItem>
                           <SFormControl>
-                            <SSelect
-                              v-bind="componentField" :default-value="form.values.countryCode" :options="options"
-                              class="w-150px!"
-                            />
+                            <ThePhoneSelect v-bind="componentField" :options="options" />
                           </SFormControl>
                         </SFormItem>
                       </FormField>

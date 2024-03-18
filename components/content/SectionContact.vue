@@ -182,8 +182,8 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
   <div v-else class="flex justify-items-center pb-20 pt-10 container">
     <div class="hidden max-w-xl w-full rounded-sm bg-primary/20 px-8 py-10" lg="block">
       <h1
-        v-if="$slots.title" class="text-center text-4xl text-gray-800 font-bold leading-snug tracking-tight" lg="text-4xl leading-tight"
-        xl="text-4xl leading-tight" dark="text-black"
+        v-if="$slots.title" class="text-center text-4xl text-gray-800 font-bold leading-snug tracking-tight"
+        lg="text-4xl leading-tight" xl="text-4xl leading-tight" dark="text-black"
       >
         <ContentSlot :use="$slots.title" unwrap="p" />
       </h1>
@@ -209,7 +209,16 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
             <SFormLabel>{{ $t('contact.title') }} <span class="text-red-500">*</span></SFormLabel>
             <div class="w-full">
               <SFormControl>
-                <SSelect v-bind="componentField" :options="optionsTitle" :default-value="form.values.title" />
+                <SSelect v-bind="componentField">
+                  <SSelectTrigger>
+                    <SSelectValue placeholder="" />
+                  </SSelectTrigger>
+                  <SSelectContent>
+                    <SSelectItem v-for="item in optionsTitle" :key="item.value" :value="item.value">
+                      {{ item.label }}
+                    </SSelectItem>
+                  </SSelectContent>
+                </SSelect>
               </SFormControl>
               <SFormMessage />
             </div>
@@ -245,7 +254,7 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
                 <FormField v-slot="{ componentField }" name="countryCode">
                   <SFormItem>
                     <SFormControl>
-                      <SSelect v-bind="componentField" :default-value="form.values.countryCode" :options="options" class="w-150px!" />
+                      <ThePhoneSelect v-bind="componentField" :options="options" />
                     </SFormControl>
                   </SFormItem>
                 </FormField>
@@ -272,13 +281,13 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
           <SFormItem class="flex flex-col gap-2 xl:flex-row">
             <SFormLabel>{{ $t('contact.product_request') }}</SFormLabel>
             <div class="w-full">
-              <FormField v-for="item in products" v-slot="{ value, handleChange }" :key="item.id" type="checkbox" :value="item.id" :unchecked-value="false" name="productRequests">
+              <FormField
+                v-for="item in products" v-slot="{ value, handleChange }" :key="item.id" type="checkbox"
+                :value="item.id" :unchecked-value="false" name="productRequests"
+              >
                 <SFormItem class="flex items-center space-x-3 space-y-1">
                   <SFormControl>
-                    <SCheckbox
-                      :checked="value?.includes(item.id)"
-                      @update:checked="handleChange"
-                    />
+                    <SCheckbox :checked="value?.includes(item.id)" @update:checked="handleChange" />
                   </SFormControl>
                   <SFormLabel class="text-sm! font-normal!">
                     {{ item.label }}
@@ -310,6 +319,6 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
 
 <style scoped>
 .custom-form p {
-  @apply my-1!;
+  @apply my-1 !;
 }
 </style>

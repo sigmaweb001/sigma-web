@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { cva } from 'class-variance-authority'
 
+withDefaults(defineProps<Props>(), {
+  as: 'button',
+})
+
 const buttonVariants = cva(
   'inline-flex items-center justify-center rounded-md text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
   {
@@ -39,10 +43,6 @@ interface Props {
   size?: NonNullable<Parameters<typeof buttonVariants>[0]>['size']
   as?: any
 }
-
-withDefaults(defineProps<Props>(), {
-  as: 'button',
-})
 </script>
 
 <template>
