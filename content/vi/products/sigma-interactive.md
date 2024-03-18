@@ -15,7 +15,7 @@ The intermediary channel system helps manage interactions.
 - Compatible with multiple platforms.
 
 #cta
-::button-link{href="https://portal.sigmaott.com/auth/login?redirect=/apps" target='_blank'}
+::button-link{href="https://portal.sigma.video/auth/login?redirect=/apps" target='_blank'}
 Start free trial
 ::
 
