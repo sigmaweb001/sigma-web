@@ -15,9 +15,10 @@ Bật tính năng chèn quảng cáo ở mọi nơi
 Chèn quảng cáo động – còn được gọi là Chèn quảng cáo phía máy chủ (SSAI) – cho phép phân phối liền mạch quảng cáo video vào nội dung được phát trực tuyến trên các thiết bị có hỗ trợ internet.
 
 #cta
+
   :::button-link
   ---
-  href: https://portal.sigma.video /auth/login?redirect=/apps
+  href: https://portal.sigma.video/auth/login?redirect=/apps
   target: _blank
   ---
   Dùng thử miễn phí
@@ -26,6 +27,7 @@ Chèn quảng cáo động – còn được gọi là Chèn quảng cáo phía 
   :::button-link{href="/contact" white}
   Liên hệ chúng tôi
   :::
+
 
 #extra
 No credit card required
