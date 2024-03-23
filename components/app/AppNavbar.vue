@@ -51,7 +51,8 @@ const { data: resources } = await useAsyncData(withLocale('resources', locale), 
 
 const localePath = useLocalePath()
 
-const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigmaott.com/')
+const loginPath = computed(() => appConfig.loginPath || 'https://portal.sigma.video/auth/login')
+const signupPath = computed(() => appConfig.signupPath || 'https://portal.sigma.video/auth/signup')
 
 const NuxtLink = resolveComponent('NuxtLink')
 </script>
@@ -225,7 +226,7 @@ const NuxtLink = resolveComponent('NuxtLink')
         </div>
         <SNavigationMenuItem class="hidden flex-shrink-0 xl:block">
           <div class="flex gap-1">
-            <SButton :as="NuxtLink" variant="gradient" class="0 text-sm" to="https://portal.sigmaott.com/auth/login?redirect=/apps" external target="_blank">
+            <SButton :as="NuxtLink" variant="gradient" class="0 text-sm" :to="signupPath" external target="_blank">
               {{ $t('start_free_trial') }}
             </SButton>
 

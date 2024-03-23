@@ -17,15 +17,15 @@ export default defineNuxtSchema({
           type: 'string',
           title: 'Header',
           description: 'Header title to display if no icon is provided',
-          icon: 'i-mdi-format-title'
+          icon: 'i-mdi-format-title',
         }),
         icon: field({
           type: 'icon',
           title: 'Icon',
           description: 'Header icon',
-          icon: 'i-mdi-image-filter-center-focus-strong-outline'
-        })
-      }
+          icon: 'i-mdi-image-filter-center-focus-strong-outline',
+        }),
+      },
     }),
     footer: group({
       title: 'Footer',
@@ -36,9 +36,9 @@ export default defineNuxtSchema({
           type: 'boolean',
           title: 'Display',
           description: 'Hide or display the footer',
-          icon: 'i-mdi-page-layout-footer'
-        })
-      }
+          icon: 'i-mdi-page-layout-footer',
+        }),
+      },
     }),
     socials: group({
       title: 'Socials',
@@ -49,26 +49,32 @@ export default defineNuxtSchema({
           type: 'string',
           title: 'Twitter',
           description: 'Twitter social handle',
-          icon: 'i-mdi-twitter'
+          icon: 'i-mdi-twitter',
         }),
         github: field({
           type: 'string',
           description: 'Github social handle',
-          icon: 'i-mdi-github'
-        })
-      }
+          icon: 'i-mdi-github',
+        }),
+      },
     }),
     docsLink: field({
-      type:'string',
+      type: 'string',
       title: 'Documents link',
       description: 'Link to the documentation',
-      icon: 'i-mdi-book-open-page-variant'
+      icon: 'i-mdi-book-open-page-variant',
     }),
     loginPath: field({
-      type:'string',
+      type: 'string',
       title: 'Login path',
       description: 'Path to the login page',
-      icon: 'i-mdi-login'
+      icon: 'i-mdi-login',
+    }),
+    signupPath: field({
+      type: 'string',
+      title: 'Reigster path',
+      description: 'Path to the register page',
+      icon: 'i-mdi-logout',
     }),
     authors: field({
       type: 'array',
@@ -79,31 +85,31 @@ export default defineNuxtSchema({
         type: 'object',
         fields: {
           slug: field({
-            type:'string',
+            type: 'string',
             title: 'Slug',
             description: 'Author slug',
-            icon: 'i-mdi-account'
+            icon: 'i-mdi-account',
           }),
           name: field({
-            type:'string',
+            type: 'string',
             title: 'Name',
             description: 'Author name',
-            icon: 'i-mdi-account'
+            icon: 'i-mdi-account',
           }),
           title: field({
-            type:'string',
+            type: 'string',
             title: 'Title',
             description: 'Author title',
-            icon: 'i-mdi-account-star'
+            icon: 'i-mdi-account-star',
           }),
           avatar: field({
-            type:'string',
+            type: 'string',
             title: 'Avatar',
             description: 'Avatar URL',
-            icon: 'i-mdi-account-circle'
-          })
-        }
-      }
+            icon: 'i-mdi-account-circle',
+          }),
+        },
+      },
     }),
     tags: field({
       type: 'array',
@@ -114,25 +120,25 @@ export default defineNuxtSchema({
         type: 'object',
         fields: {
           slug: field({
-            type:'string',
+            type: 'string',
             title: 'Slug',
             description: 'Tag slug',
-            icon: 'i-mdi-tag'
+            icon: 'i-mdi-tag',
           }),
           name: field({
-            type:'string',
+            type: 'string',
             title: 'Name',
             description: 'Tag name',
-            icon: 'i-mdi-tag'
+            icon: 'i-mdi-tag',
           }),
           color: field({
-            type:'string',
+            type: 'string',
             title: 'Color',
             description: 'Tag color',
-            icon: 'i-mdi-palette'
-          })
-        }
-      }
+            icon: 'i-mdi-palette',
+          }),
+        },
+      },
     }),
     banner: group({
       title: 'Banner',
@@ -143,33 +149,33 @@ export default defineNuxtSchema({
           type: 'boolean',
           title: 'Enabled',
           description: 'Enable or disable the banner',
-          icon: 'mdi:toggle-switch'
+          icon: 'mdi:toggle-switch',
         }),
         key: field({
           type: 'string',
           title: 'Key',
           description: 'Key in a given Local Storage',
-          icon: 'mdi:toggle-switch'
+          icon: 'mdi:toggle-switch',
         }),
         link: field({
-          type:'string',
+          type: 'string',
           title: 'Link',
           description: 'Banner link',
-          icon: 'i-mdi-link-variant'
+          icon: 'i-mdi-link-variant',
         }),
         textLink: field({
-          type:'string',
+          type: 'string',
           title: 'Text link',
           description: 'Banner text link',
-          icon: 'i-mdi-link-variant'
+          icon: 'i-mdi-link-variant',
         }),
         text: field({
-          type:'string',
+          type: 'string',
           title: 'Text',
           description: 'Banner text',
-          icon: 'i-mdi-format-quote-close'
-        })
-      }
+          icon: 'i-mdi-format-quote-close',
+        }),
+      },
     }),
     productPinResource: group({
       title: 'Product pin resource',
@@ -180,15 +186,15 @@ export default defineNuxtSchema({
           type: 'boolean',
           title: 'Enabled',
           description: 'Enable or disable the product pin resource',
-          icon: 'i-mdi:toggle-switch'
+          icon: 'i-mdi:toggle-switch',
         }),
         path: field({
-          type:'string',
+          type: 'string',
           title: 'Path',
           description: 'Product pin resource path',
-          icon: 'i-mdi:application-parentheses-outline'
-        })
-      }
-    })
-  }
+          icon: 'i-mdi:application-parentheses-outline',
+        }),
+      },
+    }),
+  },
 })
