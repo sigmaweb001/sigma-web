@@ -59,36 +59,6 @@ global:
   ## @param extraDeploy Array of extra objects to deploy with the release
   ##
 
-# configuration for Sigma Live Stream Api Service
-studio:
-  enabled: true
-  replicaCount: 1
-
-
-  ingressroute:
-    host: "editor.sigma.video"
-    pathPrefix: "/"
-
-  image:
-    pullPolicy: IfNotPresent
-    repository: sigma-livestream/sanity-studio
-
-  livenessProbe:
-    httpGet:
-      path: /api/livestream/health
-      port: http
-  readinessProbe:
-    httpGet:
-      path: /api/livestream/health
-      port: http
-
-  resources:
-    limits:
-      cpu: 100m
-      memory: 128Mi
-    requests:
-      cpu: 100m
-      memory: 128Mi
 
 web:
   enabled: true
@@ -134,4 +104,7 @@ doc:
 # Database Configuration
 # =================================================================
 
-config:
+config: 
+  recaptcha:
+    enterprise:
+      site_key: AIzaSyDt1kDlNixZcNTrr5sBPu-bWNwcPfaLgWM
