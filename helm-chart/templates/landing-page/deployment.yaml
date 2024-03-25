@@ -36,7 +36,7 @@ spec:
             {{- toYaml .Values.web.securityContext | nindent 12 }}
           image: {{ .Values.global.imageRegistry }}/{{ .Values.web.image.repository }}:{{ .Values.web.image.imageTag }}
           imagePullPolicy: {{ .Values.web.image.pullPolicy }}
-           env:
+          env:
             - name: NUXT_PUBLIC_RECAPTCHA_SITE_KEY
               value: {{ .Values.config.recaptcha.enterprise.site_key | quote }}
           ports:
