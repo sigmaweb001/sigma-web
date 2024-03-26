@@ -60,33 +60,33 @@ release-image-dev-to-harbor:
     refs:
       - main
 
-########## Docker build production #######
+# ########## Docker build production #######
 
-docker-build-landing-page-production:
-  stage: build-image
-  tags:
-    - dind
-  script:
-    - docker build -t $HARBOR_IMAGE_TAG:$CI_COMMIT_TAG --build-arg PACKAGE=$PACKAGE .
-  variables:
-    PACKAGE: landing-page
-  rules:
-    - if: '$CI_COMMIT_TAG =~ /^([0-9]|[1-9][0-9]*)\.([0-9]|[1-9][0-9]*)\.([0-9]|[1-9][0-9]*)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/'
+# docker-build-landing-page-production:
+#   stage: build-image
+#   tags:
+#     - dind
+#   script:
+#     - docker build -t $HARBOR_IMAGE_TAG:$CI_COMMIT_TAG --build-arg PACKAGE=$PACKAGE .
+#   variables:
+#     PACKAGE: landing-page
+#   rules:
+#     - if: '$CI_COMMIT_TAG =~ /^([0-9]|[1-9][0-9]*)\.([0-9]|[1-9][0-9]*)\.([0-9]|[1-9][0-9]*)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/'
 
 
-########## Docker push production #######
+# ########## Docker push production #######
 
-docker-push-landing-page-production:
-  stage: docker-release
-  tags:
-    - dind
+# docker-push-landing-page-production:
+#   stage: docker-release
+#   tags:
+#     - dind
 
-  before_script:
-    - docker login -u $HARBOR_USERNAME -p $HARBOR_PASSWORD $REGISTRY
-  script:
-    - docker push $HARBOR_IMAGE_TAG:$CI_COMMIT_TAG
-  rules:
-    - if: '$CI_COMMIT_TAG =~ /^([0-9]|[1-9][0-9]*)\.([0-9]|[1-9][0-9]*)\.([0-9]|[1-9][0-9]*)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/'
+#   before_script:
+#     - docker login -u $HARBOR_USERNAME -p $HARBOR_PASSWORD $REGISTRY
+#   script:
+#     - docker push $HARBOR_IMAGE_TAG:$CI_COMMIT_TAG
+#   rules:
+#     - if: '$CI_COMMIT_TAG =~ /^([0-9]|[1-9][0-9]*)\.([0-9]|[1-9][0-9]*)\.([0-9]|[1-9][0-9]*)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/'
 
 ########### Docker deploy dev #############
 
