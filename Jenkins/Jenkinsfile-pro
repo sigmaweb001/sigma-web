@@ -64,7 +64,7 @@ pipeline {
         stage("deploy-app") {
             steps {
                 sh '''
-                argocd app create ${APP_NAME} --repo ${HELM_REPO} --project ${APP_PROJECT} --values ${VALUES_HELM} --revision ${HELM_VERSION} --helm-chart ${CHART_REPO} --dest-namespace ${APP_NAMESPACE} --dest-server ${K8S_SERVER} --helm-set doc.image.imageTag=${COMMIT} --sync-policy automated --auto-prune --self-heal --upsert
+                argocd app create ${APP_NAME} --repo ${HELM_REPO} --project ${APP_PROJECT} --values ${VALUES_HELM} --revision ${HELM_VERSION} --helm-chart ${CHART_REPO} --dest-namespace ${APP_NAMESPACE} --dest-server ${K8S_SERVER} --helm-set web.image.imageTag=${COMMIT} --sync-policy automated --auto-prune --self-heal --upsert
                 '''
             }
         }
