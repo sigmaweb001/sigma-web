@@ -70,15 +70,7 @@ web:
     pullPolicy: IfNotPresent
     repository: sigma-livestream/sigma-streaming-platform-website
     imageTag: '2.0.0'
-  livenessProbe:
-    httpGet:
-      path: /api/livestream/health
-      port: http
-  readinessProbe:
-    httpGet:
-      path: /api/livestream/health
-      port: http
-
+    
   resources:
     limits:
       cpu: 100m
