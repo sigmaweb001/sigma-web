@@ -9,7 +9,7 @@ RUN pnpm fetch
 
 COPY . .
 
-ENV NUXT_PUBLIC_RECAPTCHA_SITE_KEY=AIzaSyDt1kDlNixZcNTrr5sBPu-bWNwcPfaLgWM
+ENV NUXT_PUBLIC_RECAPTCHA_SITE_KEY=6Lejt7ElAAAAALNFyfDMb8_dlRbbi7EMCJEK_tT2
 
 RUN pnpm install -r --prefer-offline --frozen-lockfile
 
