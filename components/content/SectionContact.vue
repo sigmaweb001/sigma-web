@@ -13,7 +13,8 @@ const formSchema = toTypedSchema(
     name: z.string({ required_error: t('contact.required') }).min(1, { message: t('contact.required') }).max(50, { message: t('contact.max-50-characters') }),
     email: z.string({ required_error: t('contact.required') }).email(t('contact.invalid_email')),
     countryCode: z.string(),
-    company: z.string().max(50, { message: t('contact.max-50-characters') }).optional(),
+    company: z.string({ required_error: t('contact.required') }).max(50),
+    jobTitle: z.string({ required_error: t('contact.required') }).max(50, { message: t('contact.max-50-characters') }),
     note: z.string().max(300, { message: t('contact.max-300-characters') }).optional(),
     phone: z.string({ required_error: t('contact.required') }).superRefine((val, ctx) => {
       const parsePhone = parsePhoneNumberFromString(val as string || '', form.values.countryCode || 'VN')
@@ -46,7 +47,6 @@ const form = useForm({
     title: 'Mr.',
     productRequests: [],
     note: '',
-    company: '',
   },
 })
 
@@ -94,6 +94,37 @@ const optionsTitle: { value: string, label: string }[] = [
     value: 'Prof.',
     label: 'Prof.',
   },
+]
+
+const optionsNumberOfEmployee: { value: string, label: string }[] = [
+  {
+    value: '1-50',
+    label: '1 - 50',
+  },
+  {
+    value: '51-200',
+    label: '51 - 200',
+  },
+  {
+    value: '201-500',
+    label: '201 - 500',
+  },
+  {
+    value: '501-1000',
+    label: '501 - 1,000',
+  },
+  {
+    value: '1001-5000',
+    label: '1,001 - 5,000',
+  },
+  {
+    value: '5001-10,000',
+    label: '5,001 - 10,000',
+  },
+  {
+    value: '10000+',
+    label: '10,000+',
+  }
 ]
 
 const products = [
@@ -268,10 +299,41 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
         </FormField>
         <FormField v-slot="{ componentField }" name="company">
           <SFormItem class="flex flex-col gap-2 xl:flex-row">
-            <SFormLabel>{{ $t('cart.company') }}</SFormLabel>
+            <SFormLabel>{{ $t('cart.company') }} <span class="text-red-500">*</span></SFormLabel>
             <div class="w-full">
               <SFormControl>
                 <SInputText type="text" placeholder="" v-bind="componentField" />
+              </SFormControl>
+              <SFormMessage />
+            </div>
+          </SFormItem>
+        </FormField>
+        <FormField v-slot="{ componentField }" name="jobTitle">
+          <SFormItem class="flex flex-col gap-2 xl:flex-row">
+            <SFormLabel>{{ $t('cart.job_title') }} <span class="text-red-500">*</span></SFormLabel>
+            <div class="w-full">
+              <SFormControl>
+                <SInputText type="text" placeholder="" v-bind="componentField" />
+              </SFormControl>
+              <SFormMessage />
+            </div>
+          </SFormItem>
+        </FormField>
+        <FormField v-slot="{ componentField }" name="numOfEmployee">
+          <SFormItem class="flex flex-col gap-2 xl:flex-row">
+            <SFormLabel>{{ $t('cart.number_of_employees') }}</SFormLabel>
+            <div class="w-full">
+              <SFormControl>
+                <SSelect v-bind="componentField">
+                  <SSelectTrigger>
+                    <SSelectValue />
+                  </SSelectTrigger>
+                  <SSelectContent>
+                    <SSelectItem v-for="item in optionsNumberOfEmployee" :key="item.value" :value="item.value">
+                      {{ item.label }}
+                    </SSelectItem>
+                  </SSelectContent>
+                </SSelect>
               </SFormControl>
               <SFormMessage />
             </div>
@@ -306,6 +368,15 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
               </SFormControl>
               <SFormMessage />
             </div>
+          </SFormItem>
+        </FormField>
+        <FormField name=" ">
+          <SFormItem class="flex flex-col gap-2 xl:flex-row space-y--1!">
+            <SFormLabel></SFormLabel>
+            <p class="text-sm font-medium">
+              {{ $t('contact.des_submit') }}
+              <NuxtLink to="https://sigma.video/legal/privacy-policy" target="_blank" class="font-bold underline text-primary">{{ $t('contact.privacy-policy') }}</NuxtLink>
+            </p>
           </SFormItem>
         </FormField>
 
