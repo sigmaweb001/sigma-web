@@ -116,7 +116,7 @@ function getPath(item: any) {
       <div class="justify-self-end">
         <div class="flex items-center justify-between">
           <a href="http://online.gov.vn/Home/WebDetails/113816" target="_blank">
-            <img class="h-50px" alt="" title="" src="http://online.gov.vn/Content/EndUser/LogoCCDVSaleNoti/logoSaleNoti.png">
+            <img class="h-50px" alt="" title="" src="/logoSaleNoti.png">
           </a>
           <div class="flex gap-3">
             <AppSocialIcons />

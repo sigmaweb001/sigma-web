@@ -36,32 +36,21 @@ spec:
             {{- toYaml .Values.web.securityContext | nindent 12 }}
           image: {{ .Values.global.imageRegistry }}/{{ .Values.web.image.repository }}:{{ .Values.web.image.imageTag }}
           imagePullPolicy: {{ .Values.web.image.pullPolicy }}
+          env:
+            - name: NUXT_PUBLIC_RECAPTCHA_SITE_KEY
+              value: {{ .Values.config.recaptcha.enterprise.site_key | quote }}
           ports:
             - name: http
-              containerPort: 8080
+              containerPort: 80
               protocol: TCP
-            # - name: grpc
-            #   containerPort: 50051
-            #   protocol: TCP
-          # livenessProbe:
-          #   httpGet:
-          #     path: {{ .Values.web.livenessProbe.httpGet.path }}
-          #     port: {{ .Values.web.livenessProbe.httpGet.port }}
-          #   initialDelaySeconds: {{ .Values.web.livenessProbe.initialDelaySeconds }}
-          #   timeoutSeconds: {{ .Values.web.livenessProbe.timeoutSeconds }}
-          # readinessProbe:
-          #   httpGet:
-          #     path: {{ .Values.web.readinessProbe.httpGet.path }}
-          #     port: {{ .Values.web.readinessProbe.httpGet.port }}
-          #   initialDelaySeconds: {{ .Values.web.readinessProbe.initialDelaySeconds }}
-          #   timeoutSeconds: {{ .Values.web.readinessProbe.timeoutSeconds }}
-          # resources:
-          #   limits:
-          #     cpu: {{ .Values.web.resources.limits.cpu}}
-          #     memory: {{ .Values.web.resources.limits.memory }}
-          #   requests:
-          #     cpu: {{ .Values.web.resources.requests.cpu }}
-          #     memory: {{ .Values.web.resources.requests.memory }}
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
       {{- if .Values.web.nodeSelector }}
       nodeSelector: {{- include "common.tplvalues.render" (dict "value" .Values.web.nodeSelector "context" $) | nindent 8 }}
       {{ else if .Values.global.nodeSelector }}

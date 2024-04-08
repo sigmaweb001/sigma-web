@@ -11,7 +11,8 @@ export default defineAppConfig({
     twitter: '_larbish',
   },
   docsLink: 'https://github.com/docs',
-  loginPath: 'https://portal.sigmaott.com/',
+  loginPath: 'https://portal.sigma.video/auth/login',
+  signupPath: 'https://portal.sigma.video/auth/signup',
   authors: [{
     slug: 'antfu',
     name: 'Ant',

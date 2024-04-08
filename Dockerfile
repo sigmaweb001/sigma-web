@@ -9,6 +9,8 @@ RUN pnpm fetch
 
 COPY . .
 
+ENV NUXT_PUBLIC_RECAPTCHA_SITE_KEY=6Lejt7ElAAAAALNFyfDMb8_dlRbbi7EMCJEK_tT2
+
 RUN pnpm install -r --prefer-offline --frozen-lockfile
 
 RUN env NODE_OPTIONS="--max_old_space_size=4096" pnpm generate
