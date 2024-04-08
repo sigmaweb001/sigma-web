@@ -35,7 +35,9 @@
     "date": "Date",
     "payment_method": "Payment method",
     "product": "Product",
-    "are_you_sure_you_want_to_remove_this_product_from_your_cart": "Are you sure you want to remove this product from your cart?"
+    "are_you_sure_you_want_to_remove_this_product_from_your_cart": "Are you sure you want to remove this product from your cart?",
+    "job_title": "Job title",
+    "number_of_employees": "Number of employees"
   },
   "contact": {
     "title": "Title",
@@ -53,7 +55,9 @@
     "invalid-phone-number": "Invalid phone number",
     "invalid-phone-number-for-the-selected-country": "Invalid phone number for the selected country",
     "product_request": "Product request",
-    "invalid_email": "Invalid email"
+    "invalid_email": "Invalid email",
+    "des_submit": "By submitting the form, you confirm that you have read and agreed to the ",
+    "privacy-policy": "Privacy Policy"
   },
   "thu_do_multimedia_communications_joint_stock_company": "Thu Do Multimedia Communications Joint Stock Company",
   "10th_floor_no_48_le_van_luong": "10th floor, No 48 Le Van Luong",

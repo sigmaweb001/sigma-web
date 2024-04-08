@@ -35,7 +35,9 @@
     "date": "Ngày",
     "payment_method": "Phương thức thanh toán",
     "product": "Sản phẩm",
-    "are_you_sure_you_want_to_remove_this_product_from_your_cart": "Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng của mình không?"
+    "are_you_sure_you_want_to_remove_this_product_from_your_cart": "Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng của mình không?",
+    "job_title": "Chức danh",
+    "number_of_employees": "Số lượng nhân viên"
   },
   "contact": {
     "title": "Tiêu đề",
@@ -47,13 +49,15 @@
     "success": "Thành công! \nChúng tôi đã nhận được thông tin của bạn",
     "thanks": "Cám ơn bạn đã liên lạc với chúng tôi. \nChúng tôi sẽ lấy lại cho bạn sớm.",
     "go-to-home": "Đi về nhà",
-    "max-300-characters": "Phải chứa tối đa 300 ký tự",
-    "max-50-characters": "Phải chứa tối đa 50 ký tự",
+    "max-300-characters": "Tối đa 300 ký tự",
+    "max-50-characters": "Tối đa 50 ký tự",
     "required": "Trường này là bắt buộc",
     "invalid-phone-number": "Số điện thoại không hợp lệ",
     "invalid-phone-number-for-the-selected-country": "Số điện thoại không hợp lệ cho quốc gia đã chọn",
     "product_request": "Yêu cầu sản phẩm",
-    "invalid_email": "Email không hợp lệ"
+    "invalid_email": "Email không hợp lệ",
+    "des_submit": "Bằng cách gửi biểu mẫu, bạn xác nhận rằng bạn đã đọc và đồng ý với ",
+    "privacy-policy": "Chính sách bảo mật"
   },
   "thu_do_multimedia_communications_joint_stock_company": "CÔNG TY CỔ PHẦN TRUYỀN THÔNG ĐA PHƯƠNG TIỆN THỦ ĐÔ",
   "10th_floor_no_48_le_van_luong": "Tầng 10, Số 48 Lê Văn Lương",
