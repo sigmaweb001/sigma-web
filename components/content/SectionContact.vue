@@ -13,7 +13,7 @@ const formSchema = toTypedSchema(
     name: z.string({ required_error: t('contact.required') }).min(1, { message: t('contact.required') }).max(50, { message: t('contact.max-50-characters') }),
     email: z.string({ required_error: t('contact.required') }).email(t('contact.invalid_email')),
     countryCode: z.string(),
-    company: z.string({ required_error: t('contact.required') }).max(50),
+    company: z.string({ required_error: t('contact.required') }).max(50, { message: t('contact.max-50-characters') }),
     jobTitle: z.string({ required_error: t('contact.required') }).max(50, { message: t('contact.max-50-characters') }),
     note: z.string().max(300, { message: t('contact.max-300-characters') }).optional(),
     phone: z.string({ required_error: t('contact.required') }).superRefine((val, ctx) => {
@@ -124,7 +124,7 @@ const optionsNumberOfEmployee: { value: string, label: string }[] = [
   {
     value: '10000+',
     label: '10,000+',
-  }
+  },
 ]
 
 const products = [
@@ -372,10 +372,12 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
         </FormField>
         <FormField name=" ">
           <SFormItem class="flex flex-col gap-2 xl:flex-row space-y--1!">
-            <SFormLabel></SFormLabel>
+            <SFormLabel />
             <p class="text-sm font-medium">
               {{ $t('contact.des_submit') }}
-              <NuxtLink to="https://sigma.video/legal/privacy-policy" target="_blank" class="font-bold underline text-primary">{{ $t('contact.privacy-policy') }}</NuxtLink>
+              <NuxtLink to="https://sigma.video/legal/privacy-policy" target="_blank" class="text-primary font-bold underline">
+                {{ $t('contact.privacy-policy') }}
+              </NuxtLink>
             </p>
           </SFormItem>
         </FormField>
