@@ -14,7 +14,7 @@ const formSchema = toTypedSchema(
     email: z.string({ required_error: t('contact.required') }).min(1, { message: t('contact.required') }).email(t('contact.invalid_email')),
     countryCode: z.string(),
     company: z.string({ required_error: t('contact.required') }).min(1, { message: t('contact.required') }).max(50, { message: t('contact.max-50-characters') }),
-    jobTitle: z.string({ required_error: t('contact.required') }).min(1, { message: t('contact.required') }).max(50, { message: t('contact.max-50-characters') }),
+    jobTitle: z.string({ required_error: t('contact.required') }).min(1, { message: t('contact.required') }),
     note: z.string().max(300, { message: t('contact.max-300-characters') }).optional(),
     phone: z.string({ required_error: t('contact.required') }).superRefine((val, ctx) => {
       const parsePhone = parsePhoneNumberFromString(val as string || '', form.values.countryCode || 'VN')
@@ -94,6 +94,23 @@ const optionsTitle: { value: string, label: string }[] = [
     value: 'Prof.',
     label: 'Prof.',
   },
+]
+
+const roleOptions = [
+  { value: 'product_owner', label: 'Product Owner' },
+  { value: 'scrum_master', label: 'Scrum Master' },
+  { value: 'developer', label: 'Developer' },
+  { value: 'tester', label: 'Tester' },
+  { value: 'project_manager', label: 'Project Manager' },
+  { value: 'designer', label: 'Designer' },
+  { value: 'system_administrator', label: 'System Administrator' },
+  { value: 'security_expert', label: 'Security Expert' },
+  { value: 'user_support', label: 'User Support' },
+  { value: 'business_analyst', label: 'Business Analyst' },
+  { value: 'quality_manager', label: 'Quality Manager' },
+  { value: 'consultant', label: 'Consultant' },
+  { value: 'research_and_development', label: 'Research and Development' },
+  { value: 'others', label: 'Others' },
 ]
 
 const optionsNumberOfEmployee: { value: string, label: string }[] = [
@@ -313,7 +330,16 @@ const phoneHint = computed(() => getExampleNumber(form.values.countryCode || 'VN
             <SFormLabel>{{ $t('cart.job_title') }} <span class="text-red-500">*</span></SFormLabel>
             <div class="w-full">
               <SFormControl>
-                <SInputText type="text" placeholder="" v-bind="componentField" />
+                <SSelect v-bind="componentField">
+                  <SSelectTrigger>
+                    <SSelectValue />
+                  </SSelectTrigger>
+                  <SSelectContent>
+                    <SSelectItem v-for="item in roleOptions" :key="item.value" :value="item.value">
+                      {{ item.label }}
+                    </SSelectItem>
+                  </SSelectContent>
+                </SSelect>
               </SFormControl>
               <SFormMessage />
             </div>
