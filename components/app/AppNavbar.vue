@@ -197,13 +197,6 @@ const NuxtLink = resolveComponent('NuxtLink')
               </SNavigationMenuLink>
             </NuxtLink>
           </SNavigationMenuItem>
-          <SNavigationMenuItem>
-            <NuxtLink :to="localePath('/cart')">
-              <SNavigationMenuLink class="navigation-menu-trigger">
-                {{ $t('shopping_cart') }}
-              </SNavigationMenuLink>
-            </NuxtLink>
-          </SNavigationMenuItem>
         </SNavigationMenuList>
       </div>
       <div class="hidden justify-self-end gap-0 xl:flex">
