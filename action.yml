@@ -28,6 +28,6 @@ runs:
       shell: bash
       env:
         INPUT_TARGET_URL: ${{ inputs.target-url }}
-        INPUT_TARGET_USERNAME: ${{ secrets.TARGET_USERNAME }}
-        INPUT_TARGET_TOKEN: ${{ secrets.TARGET_TOKEN }}
+        INPUT_TARGET_USERNAME: ${{ inputs.target-username }}
+        INPUT_TARGET_TOKEN: ${{ inputs.target-token }}
         GITHUB_EVENT_REF: ${{ github.event.ref }}
