@@ -16,6 +16,6 @@ jobs:
     - uses: sigmaweb001/sigma-web@main
       with:
         target-url: repo.gviet.vn:1443/sigma-livestream/front-end/sigma-streaming-platform-website
-        target-username: congnt
-        target-token: 5g3cdiVe8a8k2t4NXq5G
+        target-username: ${{ secrets.TARGET_USERNAME }}
+        target-token: ${{ secrets.TARGET_TOKEN }}
 
