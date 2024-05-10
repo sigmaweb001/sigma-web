@@ -18,7 +18,7 @@ Chèn quảng cáo động – còn được gọi là Chèn quảng cáo phía 
 
   :::button-link
   ---
-  href: https://portal.sigma.video/auth/login?redirect=/apps
+  href: https://portal.sigma.video/auth/signup
   target: _blank
   ---
   Dùng thử miễn phí

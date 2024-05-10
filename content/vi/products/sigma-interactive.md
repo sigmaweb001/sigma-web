@@ -18,7 +18,7 @@ Hệ thống kênh trung gian giúp quản lý các tương tác.
 #cta
   :::button-link
   ---
-  href: https://portal.sigma.video/auth/login?redirect=/apps
+  href: https://portal.sigma.video/auth/signup
   target: _blank
   ---
   Dùng thử miễn phí

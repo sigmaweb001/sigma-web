@@ -16,7 +16,7 @@ Control your live or VOD content, delivering it to the right customers at the ri
 - API-driven content event ingest and SCTE 224 normalization.
 
 #cta
-::button-link{href="https://portal.sigma.video/auth/login?redirect=/apps" target='_blank'}
+::button-link{href="https://portal.sigma.video/auth/signup" target='_blank'}
 Start free trial
 ::
 

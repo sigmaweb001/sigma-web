@@ -19,7 +19,7 @@ Kiểm soát nội dung trực tiếp hoặc VOD của bạn, phân phối nội
 #cta
   :::button-link
   ---
-  href: https://portal.sigma.video/auth/login?redirect=/apps
+  href: https://portal.sigma.video/auth/signup
   target: _blank
   ---
   Dùng thử miễn phí

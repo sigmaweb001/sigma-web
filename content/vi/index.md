@@ -18,7 +18,7 @@ Khai phá giá trị doanh nghiệp bằng tính năng phát trực tuyến đá
 ![Group\_1321314848.png](/Group_1321314848.png)
 
 #cta
-::button-link{href="https://portal.sigma.video/auth/login?redirect=/apps" target='_blank'}
+::button-link{href="https://portal.sigma.video/auth/signup" target='_blank'}
 Dùng thử miễn phí
 ::
 
