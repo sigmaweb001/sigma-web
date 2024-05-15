@@ -15,9 +15,9 @@ export default defineAppConfig({
   signupPath: 'https://portal.sigma.video/auth/signup',
   authors: [{
     slug: 'antfu',
-    name: 'Ant',
-    title: 'Creator',
-    avatar: 'https://unavatar.io/antfu',
+    name: 'Son Hong Do',
+    title: 'Developer',
+    avatar: 'author/party.png',
   }, {
     slug: 'two',
     name: 'Two',
@@ -29,10 +29,10 @@ export default defineAppConfig({
     title: 'Creator',
     avatar: 'https://unavatar.io/antfu',
   }, {
-    slug: 'ThanhVN',
+    slug: 'thanhvn',
     name: 'ThanhVN',
     title: 'Creator',
-    avatar: 'https://unavatar.io/antfu',
+    avatar: 'author/party.png',
   }],
   tags: [{
     slug: 'tag 1',
@@ -70,6 +70,14 @@ export default defineAppConfig({
     slug: 'paragraph',
     name: 'Ever wondered why some companies seem to move forward easily while others struggle to keep up? Chances are that the leading companies have figured out how to implement cross-functional teamwork.',
     color: '#35c796',
+  }, {
+    slug: 'tag 3',
+    name: 'SSAI',
+    color: '#bac71a',
+  }, {
+    slug: 'tag 4',
+    name: 'Tin Tuc',
+    color: '#707070',
   }],
   banner: {
     enabled: false,
