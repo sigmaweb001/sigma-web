@@ -39,7 +39,6 @@ const localePath = useLocalePath()
   <main>
     <div class="mx-auto container">
       <div class="max-w-screen-xl py-5 container lg:py-8">
-        <img v-if="item?.background" :src="item?.background" alt="logo" class="mb-5 max-h-90 w-full object-contain px-10 py-5">
         <h1
           class="text-brand-primary mb-3 mt-2 text-3xl font-semibold tracking-tight lg:text-4xl dark:text-white lg:leading-snug"
         >
