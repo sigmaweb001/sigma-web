@@ -28,6 +28,11 @@ export default defineAppConfig({
     name: 'linhvtm',
     title: 'Creator',
     avatar: 'https://unavatar.io/antfu',
+  }, {
+    slug: 'ThanhVN',
+    name: 'ThanhVN',
+    title: 'Creator',
+    avatar: 'https://unavatar.io/antfu',
   }],
   tags: [{
     slug: 'tag 1',
