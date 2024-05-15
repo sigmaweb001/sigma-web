@@ -11,7 +11,7 @@ const { data: item } = await useAsyncData(`resource-content-blog${slug.value}`, 
 
 const appConfig = useAppConfig()
 const date = computed(() => item.value.date ? useDateFormat(item.value.date, 'MMMM D, YYYY', { locales: 'en' }).value : '')
-const author = computed(() => appConfig.authors.find(a => a.slug === item.value.author))
+const author = computed(() => appConfig.authors.find(a => a.slug === item.value.author0))
 
 const links = computed(() => item.value?.body.toc.links)
 
@@ -60,9 +60,9 @@ const localePath = useLocalePath()
         <div class="mt-3 flex text-gray-500 space-x-3">
           <div class="flex items-center gap-3">
             <div class="relative h-10 w-10 flex-shrink-0">
-              <template v-if="author.avatar">
+              <template v-if="author?.avatar">
                 <NuxtImg
-                  :src="author.avatar" :alt="author.name"
+                  :src="author?.avatar" :alt="author?.name"
                   class="absolute inset-0 h-full w-full rounded-full object-cover"
                 />
               </template>

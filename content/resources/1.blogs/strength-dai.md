@@ -1,6 +1,6 @@
 ---
 title: Ưu điểm của tính năng chèn quảng cáo phía máy chủ (SSAI)
-author: ThanhVN
+author: antfu
 date: 2024-05-15
 thumbnail: /SSAI/ssai-strength-1.png
 background: /SSAI/ssai-strength-1.png
