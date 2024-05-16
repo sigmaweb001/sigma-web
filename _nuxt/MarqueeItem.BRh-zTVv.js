@@ -1,1 +1,0 @@
-import{d as c,S as a,H as s,b as n,c as r,f as m}from"./entry.MOsoXfvO.js";const p=["src"],f=c({__name:"MarqueeItem",props:{img:{}},setup(t){const o=t,{img:e}=a(o);return(_,l)=>s(e)?(n(),r("img",{key:0,src:s(e),class:"mx-24px my-24px max-h-64px object-scale-down"},null,8,p)):m("",!0)}});export{f as default};
