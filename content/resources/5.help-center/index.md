@@ -1,6 +1,6 @@
 ---
 title: 'Help Center'
-description: 'Lorem ipsum dolor sit amet'
+description: 'Expert support and troubleshooting guides for all inquiries.'
 icon: 'material-symbols:support'
 redirect: 'https://thudo.bolddesk.com/'
 ---
