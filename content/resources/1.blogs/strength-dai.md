@@ -1,5 +1,5 @@
 ---
-title: Ưu điểm của tính năng chèn quảng cáo phía máy chủ (SSAI)
+title: The advantages of server-side ad insertion (SSAI)
 author: thanhvn
 date: 2024-05-15T00:00:00.000Z
 thumbnail: /SSAI/ssai.png
@@ -7,64 +7,61 @@ background: /SSAI/ssai.png
 tags: tag 3, tag 4
 ---
 
-Chèn quảng cáo phía máy chủ (SSAI) là một công nghệ đột phá trong lĩnh vực quảng cáo kỹ thuật số, tập trung vào việc nâng cao mức độ tương tác của người xem và mang đến trải nghiệm quảng cáo liền mạch. SSAI đã cách mạng hóa cách thức phân phối quảng cáo, mang lại nhiều lợi ích to lớn cho cả nhà sáng tạo nội dung và nhà quảng cáo. Bài viết này sẽ đi sâu vào 5 ưu điểm chính của SSAI, giải thích lý do tại sao đây là công cụ không thể thiếu cho bất kỳ ai hoạt động trong lĩnh vực này.
+Server-Side Ad Insertion (SSAI) is a groundbreaking technology in the digital advertising field, focusing on enhancing viewer engagement and delivering seamless ad experiences. SSAI has revolutionized ad delivery methods, bringing significant benefits to both content creators and advertisers. This article will delve into the 5 key advantages of SSAI, explaining why it's an indispensable tool for anyone operating in this field.
 
-## **1. Chống chặn quảng cáo hiệu quả vượt trội với SSAI**
+## **1. Superior ad blocking resistance with SSAI**
 
-SSAI giúp nhà xuất bản và nhà quảng cáo vượt qua rào cản phần mềm chặn quảng cáo bằng cách liền mạch ghép nối video và quảng cáo, đảm bảo phân phối nội dung trong một luồng thống nhất. Phần mềm chặn quảng cáo từ lâu đã trở thành vấn đề nhức nhối cho cả nhà quảng cáo và nhà xuất bản, ngăn chặn các quảng cáo được cung cấp bởi SSAI tiếp cận đúng đối tượng mục tiêu, dẫn đến tổn thất thu nhập và bỏ lỡ cơ hội quảng bá. Khác với phương thức chèn quảng cáo phía máy khách dễ dàng bị phần mềm chặn quảng cáo phát hiện và né tránh, SSAI hoạt động trên máy chủ, do đó có khả năng chống chặn quảng cáo hiệu quả hơn nhiều.
+SSAI helps publishers and advertisers overcome the barrier of ad-blocking software by seamlessly stitching together video and ads, ensuring content distribution in a unified stream. Ad-blocking software has long been a nuisance for both advertisers and publishers, blocking ads delivered by SSAI can reach the intended target audience, resulting in revenue losses and missed advertising opportunities. Unlike client-side ad insertion methods easily detectable and circumvented by ad-blocking software, SSAI operates on servers, thus having much more effective ad-blocking resistance.
 
-Bằng cách ghép nối động các quảng cáo hỗ trợ SSAI vào luồng nội dung trên máy chủ, SSAI có thể né tránh phần mềm chặn quảng cáo một cách hiệu quả. Điều này đảm bảo rằng các quảng cáo được thiết kế tỉ mỉ của bạn được phân phối qua SSAI đến đúng đối tượng mục tiêu mà không gặp bất kỳ trở ngại nào, dẫn đến sự tương tác quảng cáo cao hơn và tăng tỷ suất hoàn vốn đầu tư.
+By dynamically stitching supported ads into the content stream on the server, SSAI can effectively bypass ad-blocking software. This ensures that your meticulously designed ads are delivered through SSAI to the right target audience without any obstacles, leading to higher ad engagement and increased return on investment.
 
-![Hoat-dong-cua-SSAI.png](/SSAI/Hoat-dong-cua-SSAI.png)
+![Hoat-dong-cua-SSAI.png](/SSAI/SSAI_tieng_anh.png)
 
-Cách hoạt động của trình chặn quảng cáo bằng tính năng chèn quảng cáo phía máy chủ
+Additionally, SSAI brings forth numerous other benefits such as:
 
-**Ngoài ra, SSAI còn mang đến nhiều lợi ích khác như:**
+- **Enhanced viewer experience:** SSAI eliminates intrusive and disruptive ads, providing a better viewing experience for audiences. They won't be interrupted by sudden or irrelevant ads, thus experiencing a smoother and more enjoyable viewing.
+- **Improved advertising effectiveness:** SSAI enables targeted advertising to specific demographics based on factors like location, demographics, and interests. This ensures that your ads are displayed to the most relevant audience, leading to higher conversion rates and increased return on investment.
+- **Better content control:** With SSAI, publishers have more control over the advertising content displayed on their websites or apps. They can choose which types of ads to display, as well as the position and frequency of display. This ensures that advertising content aligns with their brand and target audience.
+- **Detailed data analytics:** SSAI provides detailed data on the effectiveness of advertising campaigns, such as click-through rates, conversion rates, and increased return on investment. This data can be used to measure campaign effectiveness and optimize them over time.
 
-- **Nâng cao trải nghiệm người xem:** SSAI loại bỏ các quảng cáo gây khó chịu và xâm lấn, mang lại trải nghiệm xem tốt hơn cho người xem. Họ sẽ không còn bị gián đoạn bởi những quảng cáo đột ngột hoặc không liên quan, từ đó có được trải nghiệm liền mạch và thú vị hơn.
-- **Tăng hiệu quả quảng cáo:** SSAI cho phép nhắm mục tiêu quảng cáo đến đối tượng cụ thể dựa trên các yếu tố như vị trí, nhân khẩu học và sở thích. Điều này giúp đảm bảo rằng quảng cáo của bạn được hiển thị cho những người có khả năng quan tâm nhất, dẫn đến tỷ lệ chuyển đổi và tăng tỷ suất hoàn vốn đầu tư cao hơn.
-- **Kiểm soát nội dung tốt hơn:** Với SSAI, nhà xuất bản có nhiều quyền kiểm soát hơn đối với nội dung quảng cáo được hiển thị trên trang web hoặc ứng dụng của họ. Họ có thể lựa chọn loại quảng cáo nào sẽ được hiển thị, cũng như vị trí và tần suất hiển thị. Điều này giúp đảm bảo rằng nội dung quảng cáo phù hợp với thương hiệu và đối tượng mục tiêu của họ.
-- **Phân tích dữ liệu chi tiết hơn:** SSAI cung cấp dữ liệu chi tiết về hiệu quả của chiến dịch quảng cáo, chẳng hạn như tỷ lệ nhấp chuột, tỷ lệ chuyển đổi và tăng tỷ suất hoàn vốn đầu tư. Dữ liệu này có thể được sử dụng để đo lường hiệu quả của chiến dịch và tối ưu hóa chúng theo thời gian.
+Overall, SSAI is a powerful tool that can help publishers and advertisers improve advertising effectiveness, provide a better viewing experience for audiences, and increase revenue.
 
-Nhìn chung, SSAI là một công cụ mạnh mẽ có thể giúp nhà xuất bản và nhà quảng cáo cải thiện hiệu quả quảng cáo, mang lại trải nghiệm xem tốt hơn cho người xem và tăng doanh thu.
+## 2. Personalized advertising targeting with SSAI
 
-## 2. Mục tiêu quảng cáo cá nhân hóa với SSAI
+In the advertising world, SSAI empowers advertisers by allowing precise targeting. This technology enables advertisers to tailor their campaigns based on numerous factors, including demographics, location, and viewing history, making relevance a crucial factor in the advertising field. Here's how SSAI achieves this:
 
-Trong thế giới quảng cáo, SSAI trao quyền cho nhà quảng cáo bằng cách cho phép nhắm mục tiêu đối tượng chính xác. Công nghệ này cho phép nhà quảng cáo điều chỉnh các chiến dịch của họ dựa trên vô số yếu tố, bao gồm nhân khẩu học, vị trí và lịch sử xem, biến sự liên quan trở thành yếu tố then chốt của lĩnh vực quảng cáo. Dưới đây là cách SSAI đạt được điều này:
+**Utilizing user data:** SSAI can leverage user data to understand viewers' preferences, allowing advertisers to display SSAI-supported ads relevant to their interests, demographics, and web browsing behavior.
 
-**Sử dụng dữ liệu người dùng:** SSAI có thể tận dụng dữ liệu người dùng để hiểu sở thích của người xem, cho phép nhà quảng cáo hiển thị quảng cáo hỗ trợ SSAI phù hợp với sở thích, nhân khẩu học và hành vi duyệt web của họ.
+**Real-time adaptation:** SSAI can adapt in real-time to changing viewer behaviors and preferences, ensuring that SSAI-supported ads are always displayed in an updated and engaging manner.
 
-**Thích ứng thời gian thực:** SSAI có thể thích ứng theo thời gian thực với hành vi và sở thích thay đổi của người xem, đảm bảo rằng các quảng cáo hỗ trợ SSAI được hiển thị luôn cập nhật và hấp dẫn.
+**Dynamic ad insertion:** SSAI-supported ads can be seamlessly inserted into the content stream, making the transition between content and ads almost imperceptible, providing a smoother and more personalized user experience.
 
-**Chèn quảng cáo động:** Quảng cáo hỗ trợ SSAI có thể được chèn liền mạch vào luồng nội dung, khiến cho quá trình chuyển đổi giữa nội dung sang quảng cáo và quay lại gần như không thể nhận thấy, mang lại trải nghiệm người dùng mượt mà và được cá nhân hóa hơn.
+## 3. Generating new revenue streams through SSAI
 
-## 3. Tăng/Tạo nguồn thu mới thông qua SSAI
+SSAI provides content creators and broadcasters with a potent tool as they continually seek ways to maximize revenue streams. SSAI can significantly impact revenue streams in several ways:
 
-SSAI cung cấp cho người sáng tạo nội dung và nhà phát sóng một công cụ lợi hại khi họ liên tục tìm kiếm các phương pháp để tối đa hóa luồng doanh thu. SSAI có thể tác động đáng kể đến luồng doanh thu theo một số cách:
+**Higher ad completion rates:** Advanced ad blocking resistance and personalized targeting through SSAI increase the likelihood of viewers watching SSAI-supported ads to completion, resulting in higher revenue for advertisers.
 
-**Tỷ lệ hoàn thành quảng cáo cao hơn:** Chống chặn quảng cáo nâng cao tiên tiến và nhắm mục tiêu theo cá nhân hóa thông qua SSAI, làm tăng khả năng người xem xem quảng cáo hỗ trợ SSAI cho đến hết, mang lại nhiều doanh thu hơn cho nhà quảng cáo.
+**Competitive advantage:** Offering SSAI capabilities can make publishers more appealing to advertisers, potentially leading to increased demand for ad space and higher prices.
 
-**Lợi thế cạnh tranh:**  Cung cấp các khả năng của SSAI có thể khiến nhà xuất bản hấp dẫn hơn đối với nhà quảng cáo, do đó có khả năng dẫn đến nhu cầu tăng cao đối với không gian quảng cáo và giá cả cao hơn.
+**Monetization opportunities:** SSAI can enable the implementation of new monetization strategies, such as server-side ad insertion for live events, opening up previously untapped revenue streams.
 
-**Cơ hội kiếm tiền:** SSAI có thể cho phép áp dụng các chiến lược kiếm tiền mới, chẳng hạn như ghép nối quảng cáo phía máy chủ cho các sự kiện trực tiếp, mở ra các luồng doanh thu mới chưa từng được khai thác trước đây.
+## 4. TV-like user experience with SSAI
 
-## 4. Trải nghiệm người dùng giống như xem Tivi với SSAI
+SSAI brings a TV-like user experience to the digital realm, enhancing viewer satisfaction – a hallmark of traditional television is seamless ad integration:
 
-SSAI mang trải nghiệm người dùng giống như xem Tivi đến lĩnh vực kỹ thuật số, nâng cao sự hài lòng của người xem - một trong những đặc điểm nổi bật của truyền hình truyền thống là tích hợp quảng cáo liền mạch:
+**Buffer-free transitions:** With SSAI, the transition between ads occurs smoothly and without buffering, eliminating the frustration of long ad loading times that can drive viewers away.
 
-**Chuyển đổi không Buffer:** Với SSAI, quá trình chuyển đổi giữa quảng cáo diễn ra mượt mà và không bị giật hình, loại bỏ sự khó chịu do thời gian tải quảng cáo dài có thể khiến người xem rời đi.
+**Content continuity:** SSAI ensures that ads do not disrupt the content stream, contributing to a more enjoyable viewing experience and encouraging viewers to stay engaged.
 
-**Tính tiếp nối nội dung:** SSAI đảm bảo rằng quảng cáo không làm gián đoạn luồng nội dung, góp phần tạo nên trải nghiệm xem thú vị hơn và khuyến khích người xem tiếp tục tham gia.
+**Stable quality:** Ad quality is maintained at a high level through SSAI, safeguarding the entire viewing experience, which is crucial for retaining viewers and bringing them back.
 
+## 5. Increased control with SSAI
 
-**Chất lượng ổn định:** Chất lượng quảng cáo được duy trì ở mức cao thông qua SSAI, bảo vệ toàn bộ trải nghiệm xem, điều này rất quan trọng để giữ chân người xem và khiến họ quay trở lại.
+SSAI provides advertisers with what they truly desire: control over their advertising campaigns. With SSAI, advertisers have more power to determine the placement, timing, and audience for their ads. This helps them feel more confident and accountable for their campaigns. SSAI provides advertisers and publishers with high levels of control over the distribution of SSAI-supported ads:
 
-## 5. Kiểm soát tăng lên với SSAI
+**Content integration:** Advertisers can precisely designate the placement and integration method of their SSAI-supported ads into content, ensuring optimal audience engagement.
 
-SSAI cung cấp cho nhà quảng cáo những gì họ thực sự mong muốn: kiểm soát các chiến dịch quảng cáo của họ. Với SSAI, nhà quảng cáo có nhiều quyền lực hơn để quyết định vị trí, thời gian hiển thị quảng cáo của họ và đối tượng nào sẽ xem quảng cáo. Điều này giúp họ cảm thấy tự tin hơn và chịu trách nhiệm nhiều hơn đối với các chiến dịch của mình. SSAI cung cấp cho nhà quảng cáo và nhà xuất bản khả năng kiểm soát cao đối với việc phân phối quảng cáo hỗ trợ SSAI:
+**Real-time monitoring:** SSAI platforms are often equipped with real-time analytics, allowing advertisers to track the performance of SSAI-supported ads and make adjustments as needed.
 
-**Tích hợp nội dung:** Nhà quảng cáo có thể chỉ định chính xác vị trí và cách thức tích hợp quảng cáo hỗ trợ SSAI của họ vào nội dung, đảm bảo khán giả tương tác tối ưu.
-
-**Giám sát thời gian thực:** Các nền tảng SSAI thường được trang bị phân tích theo thời gian thực, cho phép nhà quảng cáo theo dõi hiệu suất quảng cáo hỗ trợ SSAI và thực hiện điều chỉnh khi cần thiết.
-
-**Giới hạn quảng cáo:** Nhà xuất bản có thể áp dụng giới hạn quảng cáo thông qua SSAI để ngăn chặn dư thừa quảng cáo và đảm bảo trải nghiệm người xem cân bằng.
+**Ad limiting:** Publishers can apply ad limits through SSAI to prevent ad overload and ensure a balanced viewing experience for audiences.
