@@ -1,5 +1,5 @@
 ---
-title: Ưu điểm của tính năng chèn quảng cáo phía máy chủ (SSAI)
+title: FAST Channel Giải pháp quảng cáo hiệu quả và liền mạch cho doanh nghiệp Việt Nam
 author: thanhvn
 date: 2024-05-15T00:00:00.000Z
 thumbnail: /FAST1.png
