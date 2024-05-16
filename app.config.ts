@@ -36,11 +36,11 @@ export default defineAppConfig({
   }],
   tags: [{
     slug: 'tag 1',
-    name: 'Tag 1',
+    name: 'OTT',
     color: '#35c796',
   }, {
     slug: 'tag 2',
-    name: 'Tag 2',
+    name: 'DRM',
     color: '#bac71a',
   }, {
     slug: 'test-1',
@@ -76,7 +76,7 @@ export default defineAppConfig({
     color: '#bac71a',
   }, {
     slug: 'tag 4',
-    name: 'Tin Tuc',
+    name: 'advertisement',
     color: '#707070',
   }],
   banner: {
