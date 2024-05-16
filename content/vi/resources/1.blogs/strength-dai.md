@@ -15,7 +15,7 @@ SSAI giúp nhà xuất bản và nhà quảng cáo vượt qua rào cản phần
 
 Bằng cách ghép nối động các quảng cáo hỗ trợ SSAI vào luồng nội dung trên máy chủ, SSAI có thể né tránh phần mềm chặn quảng cáo một cách hiệu quả. Điều này đảm bảo rằng các quảng cáo được thiết kế tỉ mỉ của bạn được phân phối qua SSAI đến đúng đối tượng mục tiêu mà không gặp bất kỳ trở ngại nào, dẫn đến sự tương tác quảng cáo cao hơn và tăng tỷ suất hoàn vốn đầu tư.
 
-![Hoat-dong-cua-SSAI.png](/SSAI/Hoat-dong-cua-SSAI.png){0="[" 1="o" 2="b" 3="j" 4="e" 5="c" 6="t" 7="" 8="O" 9="b" 10="j" 11="e" 12="c" 13="t" 14="]"}
+![Hoat-dong-cua-SSAI.png](/SSAI/Hoat-dong-cua-SSAI.png)
 
 Cách hoạt động của trình chặn quảng cáo bằng tính năng chèn quảng cáo phía máy chủ
 
