@@ -33,6 +33,11 @@ export default defineAppConfig({
     name: 'ThanhVN',
     title: 'Creator',
     avatar: 'author/party.png',
+  }, {
+    slug: 'thanhvn',
+    name: 'ThanhVN',
+    title: 'Creator',
+    avatar: 'author/party.png',
   }],
   tags: [{
     slug: 'tag 1',
