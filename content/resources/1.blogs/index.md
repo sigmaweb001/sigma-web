@@ -1,6 +1,6 @@
 ---
 title: 'Blogs'
-description: 'Lorem ipsum dolor sit amet'
+description: 'Sigma Streaming Platform news and insights'
 icon: 'ooui:articles-ltr'
 ---
 # Blogs
