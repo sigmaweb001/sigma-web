@@ -1,6 +1,6 @@
 ---
 title: 'Datasheets'
-description: 'Lorem ipsum dolor sit amet'
+description: 'Detailed product specifications and technical information.'
 icon: 'material-symbols:picture-as-pdf-outline-rounded'
 ---
 # Datasheets

@@ -1,6 +1,6 @@
 ---
 title: 'Product Updates'
-description: 'Lorem ipsum dolor sit amet'
+description: 'Latest features, enhancements, and improvements for optimal performance.'
 icon: 'material-symbols:grade-outline-rounded'
 ---
 # Product Updates

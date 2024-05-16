@@ -1,6 +1,6 @@
 ---
 title: 'Case studies'
-description: 'Lorem ipsum dolor sit amet'
+description: Success stories and real-world applications of our solutions.'
 icon: 'material-symbols:trip-outline'
 ---
 # Case studies
