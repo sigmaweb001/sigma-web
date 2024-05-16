@@ -50,6 +50,22 @@ export default defineAppConfig({
     slug: 'tag 4',
     name: 'advertisement',
     color: '#707070',
+  }, {
+    slug: 'tag 5',
+    name: 'OTT',
+    color: '#bac71a',
+  }, {
+    slug: 'tag 6',
+    name: 'OTT advertising',
+    color: '#bac71a',
+  }, {
+    slug: 'tag 7',
+    name: 'ott platform',
+    color: '#707070',
+  }, {
+    slug: 'tag 8',
+    name: 'ott media',
+    color: '#707070',
   }],
   banner: {
     enabled: false,
