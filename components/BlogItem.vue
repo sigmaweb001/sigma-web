@@ -67,10 +67,10 @@ const localePath = useLocalePath()
       <div v-if="author && !hideAuthor" class="mb-2 w-full flex items-center justify-between gap-3 px-3">
         <div class="flex flex-grow items-center gap-2">
           <div class="relative h-32px w-32px flex-shrink-0">
-            <NuxtImg
+            <img
               class="absolute inset-0 h-full w-full rounded-full object-cover" :src="author.avatar"
               :alt="author.slug"
-            />
+            >
           </div>
           <span class="line-clamp-1 max-w-1/2 min-w-0 text-sm">
             {{ author.name }}
