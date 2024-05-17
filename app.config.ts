@@ -32,7 +32,7 @@ export default defineAppConfig({
     slug: 'thanhvn',
     name: 'ThanhVN',
     title: 'Creator',
-    avatar: 'author/party.png',
+    avatar: '/author/party.png',
   }, {
     slug: 'thanhvn',
     name: 'ThanhVN',
@@ -42,7 +42,7 @@ export default defineAppConfig({
     slug: 'duonght',
     name: 'duonght',
     title: 'Creator',
-    avatar: 'https://unavatar.io/antfu',
+    avatar: '/author/HTD.png',
   }],
   tags: [{
     slug: 'tag 1',
@@ -66,15 +66,15 @@ export default defineAppConfig({
     color: '#bac71a',
   }, {
     slug: 'tag 6',
-    name: 'OTT advertising',
+    name: 'advertising',
     color: '#bac71a',
   }, {
     slug: 'tag 7',
-    name: 'ott platform',
+    name: 'platform',
     color: '#707070',
   }, {
     slug: 'tag 8',
-    name: 'ott media',
+    name: 'media',
     color: '#707070',
   }],
   banner: {
