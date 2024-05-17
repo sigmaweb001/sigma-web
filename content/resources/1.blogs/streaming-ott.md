@@ -8,6 +8,7 @@ tag: tag 1, tag 5, tag 8
 
 ![ott-platform.png](/VOD/ott-platform.png)
 
+# Heading 1
 In the era of Online Video Streaming Platforms, _Over-The-Top (OTT)_ services have emerged as the pioneers of a new entertainment paradigm. This introduction sets the stage, explaining the significance of OTT in the streaming landscape and underlining the crucial role technology plays in enhancing the user experience.
 
 **The Rise of Online Video Streaming: A Paradigm Shift in Entertainment**

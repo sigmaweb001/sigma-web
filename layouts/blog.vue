@@ -10,8 +10,8 @@ const { data: item } = await useAsyncData(`resource-content-blog${slug.value}`, 
 }).findOne())
 
 const appConfig = useAppConfig()
-const date = computed(() => item.value.date ? useDateFormat(item.value.date, 'MMMM D, YYYY', { locales: 'en' }).value : '')
-const author = computed(() => appConfig.authors.find(a => a.slug === item.value.author0))
+const date = computed(() => item.value?.date ? useDateFormat(item.value?.date, 'MMMM D, YYYY', { locales: 'en' }).value : '')
+const author = computed(() => appConfig.authors.find(a => a.slug === item.value?.author))
 
 const links = computed(() => item.value?.body.toc.links)
 

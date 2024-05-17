@@ -6,6 +6,7 @@ thumbnail: /VOD/ott-platform.png
 tag: tag 1, tag 5, tag 8
 ---
 
+# Heading 1
 ![ott-platform.png](/VOD/ott-platform.png)
 
 Trong kỷ nguyên của Nền tảng phát video trực tuyến, các dịch vụ _Over-The-Top (OTT)_ đã nổi lên như những dịch vụ tiên phong của mô hình giải trí mới. Phần giới thiệu này tạo tiền đề, giải thích tầm quan trọng của OTT trong bối cảnh phát trực tuyến và nhấn mạnh vai trò quan trọng của công nghệ trong việc nâng cao trải nghiệm người dùng.
