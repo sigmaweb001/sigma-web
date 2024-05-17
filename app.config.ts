@@ -38,6 +38,11 @@ export default defineAppConfig({
     name: 'ThanhVN',
     title: 'Creator',
     avatar: 'author/party.png',
+  }, {
+    slug: 'duonght',
+    name: 'duonght',
+    title: 'Creator',
+    avatar: 'https://unavatar.io/antfu',
   }],
   tags: [{
     slug: 'tag 1',
