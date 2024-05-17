@@ -62,7 +62,7 @@ export default defineAppConfig({
     color: '#707070',
   }, {
     slug: 'tag 5',
-    name: 'OTT',
+    name: 'streaming',
     color: '#bac71a',
   }, {
     slug: 'tag 6',
