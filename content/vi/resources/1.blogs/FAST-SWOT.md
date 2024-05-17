@@ -66,3 +66,5 @@ Thủ Đô Multimedia, một trong những công ty hàng đầu tại Việt Na
  Với đội ngũ nhân lực độc đáo và giàu kinh nghiệm trong ngành video, Thủ Đô Multimedia đã thành công trong việc phát triển các giải pháp hỗ trợ dịch vụ truyền hình bền vững, bảo vệ bản quyền nội dung kỹ thuật số và cải thiện chất lượng trải nghiệm của người xem. Chúng tôi luôn tập trung vào việc tối ưu hóa tổng chi phí sở hữu dịch vụ TV/VOD và tạo ra doanh thu mới dựa trên cá nhân hóa và chèn quảng cáo.
 
 Ngoài sự linh hoạt về công nghệ, một giá trị quan trọng của Thủ Đô Multimedia là sự hợp tác chặt chẽ với khách hàng. Chúng tôi cam kết cung cấp các mô hình kinh doanh và tương tác linh hoạt, điều này giúp đáp ứng được ưu tiên tài chính và nhu cầu cụ thể của từng đối tác.
+
+![Hoat-dong-cua-SSAI.png](/SSAI/Hoat-dong-cua-SSAI.png)
