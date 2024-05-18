@@ -1,17 +1,13 @@
 FROM registry.gviet.vn:5000/library/node:18-alpine as build-stage
 
 WORKDIR /app
-RUN npm install -g pnpm@8.14.0
-
-COPY .npmrc pnpm-lock.yaml ./
-
-RUN pnpm fetch
+RUN npm install -g pnpm@8
 
 COPY . .
 
 ENV NUXT_PUBLIC_RECAPTCHA_SITE_KEY=6Lejt7ElAAAAALNFyfDMb8_dlRbbi7EMCJEK_tT2
 
-RUN pnpm install -r --prefer-offline --frozen-lockfile
+RUN pnpm install
 
 RUN env NODE_OPTIONS="--max_old_space_size=4096" pnpm generate
 
