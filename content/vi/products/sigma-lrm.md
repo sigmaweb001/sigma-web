@@ -156,7 +156,6 @@ Kiến Trúc Hệ Thống
 ::
 
 ::section-resource
-
 #title
 Tài nguyên LRM
 #default
