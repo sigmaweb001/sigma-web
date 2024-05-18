@@ -86,7 +86,6 @@ export default defineAppConfig({
   },
   productPinResource: {
     enabled: true,
-    // path: '/resources/datasheets/datasheet-2'
-    path: '/resources/blogs/blog-1',
+    path: '/resources/blogsvodvo',
   },
 })

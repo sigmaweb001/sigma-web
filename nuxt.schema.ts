@@ -1,9 +1,3 @@
-// nuxt.schema.ts
-// productPinResource: {
-//   enabled: false,
-//   path: '/resources/datasheets/datasheet-2'
-// }
-
 import { field, group } from '@nuxthq/studio/theme'
 
 export default defineNuxtSchema({
