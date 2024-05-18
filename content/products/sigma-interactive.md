@@ -194,11 +194,18 @@ System architecture
 #title
 Interactive Resources
 #default
-:resource-item{path="/resources/datasheets/datasheet-test"}
-:resource-item{path="/resources/blogs/blog-test"}
-:resource-item{path="/resources/blogs/blog-red"}
-:resource-item{path="/resources/product-updates/guide-1"}
-::
+#default
+  :::resource-item{path="/resources/blogsvodvo"}
+  :::
+
+  :::resource-item{path="/resources/blogsvodvo"}
+  :::
+
+  :::resource-item{path="/resources/blogsvodvo"}
+  :::
+
+  :::resource-item{path="/resources/blogsvodvo"}
+  :::
 
 ::section-marquee
 #subtitle

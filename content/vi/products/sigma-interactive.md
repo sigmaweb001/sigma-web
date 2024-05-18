@@ -42,10 +42,10 @@ col: '3'
   :::grid-card
   - Phát trực tiếp
   - Truyền hình
-  
+
   #image
   ![interactive-feature-1.png](/interactive/interactive-feature-1.png)
-  
+
   #title
   **Hệ thống tương tác nội dung**
   :::
@@ -53,50 +53,50 @@ col: '3'
   :::grid-card
   - Overlay: Thăm dò ý kiến/dự đoán, câu đố/câu đố, phần ba phía dưới, xổ số.
   - Panel: bảng trò chuyện, bảng iframe, bảng xếp hạng, bảng nhiều câu hỏi, bảng tùy chỉnh.
-  
+
   #image
   ![interactive-feature-2.png](/interactive/interactive-feature-2.png)
-  
+
   #title
   **Hỗ trợ nhiều loại thành phần tương tác**
   :::
 
   :::grid-card
   Phát triển nhanh chóng các lớp phủ trên tất cả các nền tảng với các tùy chọn kịch bản tương ứng.
-  
+
   #image
   ![interactive-feature-3.png](/interactive/interactive-feature-3.png)
-  
+
   #title
   **Hỗ trợ nhiều loại nội dung và kịch bản tùy chọn.**
   :::
 
   :::grid-card
   Thống kê đầy đủ, điểm tổng hợp và thời gian tương tác của người dùng.
-  
+
   #image
   ![interactive-feature-4.png](/interactive/interactive-feature-4.png)
-  
+
   #title
   **Thu thập dữ liệu và phân tích hành vi người dùng.**
   :::
 
   :::grid-card
   Bao gồm các nền tảng như Web, Mobile, SmartTV (Android TV, Tizen, WebOS).
-  
+
   #image
   ![interactive-feature-5.png](/interactive/interactive-feature-5.png)
-  
+
   #title
   **Hỗ trợ đầy đủ đa nền tảng.**
   :::
 
   :::grid-card
   Lấy nội dung từ nguồn bên ngoài và tích hợp vào kênh của bạn, cho phép bạn phát trực tiếp hoặc trình bày nội dung từ nguồn đó trên kênh của mình.
-  
+
   #image
   ![interactive-feature-6.png](/interactive/interactive-feature-6.png)
-  
+
   #title
   **Hỗ trợ tích hợp kênh bên ngoài**
   :::
@@ -125,7 +125,7 @@ bg: true
   ---
   #title
   Figma plugin
-  
+
   #subtitle
   Đánh dấu element có thể sử dụng làm CTA, hỗ trợ đa màn hình và chuyển tiếp giữa các màn hình với nhau
   :::
@@ -146,7 +146,7 @@ Usecase
   ---
   #title
   Tương tác thể thao
-  
+
   #subtitle
   Các hoạt động hoặc trải nghiệm mà người chơi, người hâm mộ hoặc khán giả có thể tham gia hoặc tương tác trong lĩnh vực thể thao bao gồm các hoạt động như dự đoán kết quả, dự đoán đội thắng,....
   :::
@@ -169,7 +169,7 @@ Usecase
   ---
   #title
   Gameshow tương tác
-  
+
   #subtitle
   Các hoạt động tương tác mà khán giả hoặc người xem có thể tham gia trong quá trình xem một chương trình gameshow ví dụ như: câu trả lời từ xa thông qua ứng dụng di động hoặc trang web, bình chọn trực tuyến, hoặc thậm chí là tham gia trực tiếp trong các vòng chơi.
   :::
@@ -184,7 +184,7 @@ Usecase
   ---
   #title
   Tương tác trực tuyến
-  
+
   #subtitle
   Giao tiếp và tương tác trực tiếp trong thời gian thực thông qua các phương tiện truyền thông trực tuyến cho phép người xem tương tác thông qua bình luận, emoji, và các hình thức phản hồi trực tiếp khác.
   :::
@@ -207,7 +207,7 @@ Usecase
   ---
   #title
   Biên tập overlay
-  
+
   #subtitle
   Quá trình chỉnh sửa và tạo ra các phần hiển thị trên màn hình (overlay) trong video trực tiếp, livestream, hoặc trong các sản phẩm đa phương tiện khác như hình ảnh, đồ họa, văn bản, và thông tin khác được thêm vào để cải thiện trải nghiệm xem hoặc truyền tải thông tin quan trọng.
   :::
@@ -222,7 +222,7 @@ Usecase
   ---
   #title
   Panel
-  
+
   #subtitle
   Một phần của giao diện mà người xem có thể thấy trực tiếp trên màn hình video.
   :::
@@ -243,16 +243,16 @@ System architecture
 ::
 
 ::section-resource
-  :::resource-item{path="/resources/datasheets/datasheet-test"}
+  :::resource-item{path="/resources/blogsvodvo"}
   :::
 
-  :::resource-item{path="/resources/blogs/blog-test"}
+  :::resource-item{path="/resources/blogsvodvo"}
   :::
 
-  :::resource-item{path="/resources/blogs/blog-red"}
+  :::resource-item{path="/resources/blogsvodvo"}
   :::
 
-  :::resource-item{path="/resources/product-updates/guide-1"}
+  :::resource-item{path="/resources/blogsvodvo"}
   :::
 
 #title
