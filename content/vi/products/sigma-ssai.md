@@ -182,20 +182,21 @@ Trên toàn cầu, 42,7% người dùng internet sử dụng trình chặn quả
 ::
 
 ::section-resource
-  :::resource-item{path="/resources/blogsvodvo"}
-  :::
-
-  :::resource-item{path="/resources/blogsvodvo"}
-  :::
-
-  :::resource-item{path="/resources/blogsvodvo"}
-  :::
-
-  :::resource-item{path="/resources/blogsvodvo"}
-  :::
 
 #title
 Tài nguyên DAI
+#default
+  :::resource-item{path="/resources/blogsvodvo"}
+  :::
+
+  :::resource-item{path="/resources/blogsvodvo"}
+  :::
+
+  :::resource-item{path="/resources/blogsvodvo"}
+  :::
+
+  :::resource-item{path="/resources/blogsvodvo"}
+  :::
 ::
 
 ::section-marquee

@@ -144,7 +144,6 @@ Receiving signals from content providers, we manage, schedule, and insert signal
 #title
 LRM Resources
 #default
-#default
   :::resource-item{path="/resources/blogsvodvo"}
   :::
 
@@ -156,6 +155,7 @@ LRM Resources
 
   :::resource-item{path="/resources/blogsvodvo"}
   :::
+::
 
 ::section-marquee
 #subtitle

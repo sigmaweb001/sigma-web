@@ -243,20 +243,20 @@ System architecture
 ::
 
 ::section-resource
-  :::resource-item{path="/resources/blogsvodvo"}
-  :::
-
-  :::resource-item{path="/resources/blogsvodvo"}
-  :::
-
-  :::resource-item{path="/resources/blogsvodvo"}
-  :::
-
-  :::resource-item{path="/resources/blogsvodvo"}
-  :::
-
 #title
 Interactive Resources
+#default
+  :::resource-item{path="/resources/blogsvodvo"}
+  :::
+
+  :::resource-item{path="/resources/blogsvodvo"}
+  :::
+
+  :::resource-item{path="/resources/blogsvodvo"}
+  :::
+
+  :::resource-item{path="/resources/blogsvodvo"}
+  :::
 ::
 
 ::section-marquee

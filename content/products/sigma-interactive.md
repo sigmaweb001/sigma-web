@@ -194,7 +194,6 @@ System architecture
 #title
 Interactive Resources
 #default
-#default
   :::resource-item{path="/resources/blogsvodvo"}
   :::
 
@@ -206,6 +205,7 @@ Interactive Resources
 
   :::resource-item{path="/resources/blogsvodvo"}
   :::
+::
 
 ::section-marquee
 #subtitle

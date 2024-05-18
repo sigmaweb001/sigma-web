@@ -156,20 +156,21 @@ Kiến Trúc Hệ Thống
 ::
 
 ::section-resource
-  :::resource-item{path="/resources/blogsvodvo"}
-  :::
-
-  :::resource-item{path="/resources/blogsvodvo"}
-  :::
-
-  :::resource-item{path="/resources/blogsvodvo"}
-  :::
-
-  :::resource-item{path="/resources/blogsvodvo"}
-  :::
 
 #title
 Tài nguyên LRM
+#default
+  :::resource-item{path="/resources/blogsvodvo"}
+  :::
+
+  :::resource-item{path="/resources/blogsvodvo"}
+  :::
+
+  :::resource-item{path="/resources/blogsvodvo"}
+  :::
+
+  :::resource-item{path="/resources/blogsvodvo"}
+  :::
 ::
 
 ::section-marquee
