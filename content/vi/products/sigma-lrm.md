@@ -159,16 +159,16 @@ Kiến Trúc Hệ Thống
 #title
 Tài nguyên LRM
 #default
-  :::resource-item{path="/resources/blogsvodvo"}
+  :::resource-item{path="/resources/blogs/vodvo"}
   :::
 
-  :::resource-item{path="/resources/blogsvodvo"}
+  :::resource-item{path="/resources/blogs/vodvo"}
   :::
 
-  :::resource-item{path="/resources/blogsvodvo"}
+  :::resource-item{path="/resources/blogs/vodvo"}
   :::
 
-  :::resource-item{path="/resources/blogsvodvo"}
+  :::resource-item{path="/resources/blogs/vodvo"}
   :::
 ::
 

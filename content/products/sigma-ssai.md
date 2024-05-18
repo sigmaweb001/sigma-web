@@ -166,16 +166,16 @@ Users stream video or OTT content on internet-enabled devices via content delive
 #title
 DAI Resources
 #default
-  :::resource-item{path="/resources/blogsvodvo"}
+  :::resource-item{path="/resources/blogs/vodvo"}
   :::
 
-  :::resource-item{path="/resources/blogsvodvo"}
+  :::resource-item{path="/resources/blogs/vodvo"}
   :::
 
-  :::resource-item{path="/resources/blogsvodvo"}
+  :::resource-item{path="/resources/blogs/vodvo"}
   :::
 
-  :::resource-item{path="/resources/blogsvodvo"}
+  :::resource-item{path="/resources/blogs/vodvo"}
   :::
 ::
 

@@ -194,16 +194,16 @@ System architecture
 #title
 Interactive Resources
 #default
-  :::resource-item{path="/resources/blogsvodvo"}
+  :::resource-item{path="/resources/blogs/vodvo"}
   :::
 
-  :::resource-item{path="/resources/blogsvodvo"}
+  :::resource-item{path="/resources/blogs/vodvo"}
   :::
 
-  :::resource-item{path="/resources/blogsvodvo"}
+  :::resource-item{path="/resources/blogs/vodvo"}
   :::
 
-  :::resource-item{path="/resources/blogsvodvo"}
+  :::resource-item{path="/resources/blogs/vodvo"}
   :::
 ::
 
