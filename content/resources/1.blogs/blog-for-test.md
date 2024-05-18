@@ -37,6 +37,5 @@ I can have as many subsections as I need to discuss the various topics.
 This concludes my new blog post. I can summarize key points and takeaways for the reader here.
 
 | fwef | fwefwe | fwef | ewfew | wef |
-|------|--------|------|-------|-----|
+| ---- | ------ | ---- | ----- | --- |
 | f    | f      | f    | f     | f   |
-

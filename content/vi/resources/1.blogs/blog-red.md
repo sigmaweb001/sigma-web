@@ -1,10 +1,11 @@
 ---
-title: 'Benefits, Examples, and Essential Tips'
+title: Benefits, Examples, and Essential Tips
 author: antfu
-date: 2024-01-10
+date: 2024-01-10T00:00:00.000Z
 thumbnail: /logo_red.png
 tags: tag 1, tag 2
 ---
+
 # New Blog Post
 
 ## Introduction
@@ -25,14 +26,15 @@ I can have as many subsections as I need to discuss the various topics.
 
 ## Conclusion
 
-This concludes my new blog post. I can summarize key points and takeaways for the reader here.
----
+## This concludes my new blog post. I can summarize key points and takeaways for the reader here.
+
 title: 'Benefits, Examples, and Essential Tips'
 author: antfu
 date: 2024-01-10
-thumbnail: /logo_red.png
+thumbnail: /logo\_red.png
 tags: tag 1, tag 2
----
+------------------
+
 # New Blog Post
 
 ## Introduction

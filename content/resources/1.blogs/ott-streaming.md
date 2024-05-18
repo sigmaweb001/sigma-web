@@ -86,4 +86,4 @@ Understand how Thu Do Multimedia leverages machine learning algorithms for perso
 
 Highlight the significance of robust security measures in safeguarding against piracy and unauthorized access on OTT platforms. Introduce Thu Do Multimedia’s cutting-edge DRM (Digital Rights Management) solution, _SigmaDRM_, for comprehensive content protection.
 
-As we conclude, reflect on the unstoppable rise of OTT and its transformative impact on the entertainment industry. Encourage readers to embrace the opportunities presented by OTT while staying ahead of the curve with innovative technology solutions offered by Thu Do Multimedia.
+As we conclude, reflect on the unstoppable rise of OTT and its transformative impact on the entertainment industry. Encourage readers to _embrace the opportunities_ presented by OTT while staying ahead of the curve with innovative technology solutions offered by Thu Do Multimedia.

@@ -1,12 +1,11 @@
 ---
 title: Blog X
 author: antfu
-date: 2024-01-11
+date: 2024-01-11T00:00:00.000Z
 thumbnail: /TestX.png
 ---
 
 # New Blog Post
-
 
 ## Introduction
 
