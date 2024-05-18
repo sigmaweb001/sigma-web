@@ -61,10 +61,10 @@ const localePath = useLocalePath()
           <div class="flex items-center gap-3">
             <div class="relative h-10 w-10 flex-shrink-0">
               <template v-if="author?.avatar">
-                <NuxtImg
+                <img
                   :src="author?.avatar" :alt="author?.name"
                   class="absolute inset-0 h-full w-full rounded-full object-cover"
-                />
+                >
               </template>
             </div>
             <div class="flex items-center gap-2 text-sm">

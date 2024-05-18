@@ -46,7 +46,7 @@ const currentIndex = computed(() => Math.round(currentTime.value / 2))
       <div class="grid gap-12px">
         <div v-for="(item, i) in videos" class="relative w-160px h-90px rounded-8px of-hidden cursor-pointer"
           :class="[i === selectedIndex ? 'ring-3px ring-primary' : '']" @click="selectedIndex = i">
-          <NuxtImg class="absolute inset-0" :src="item.thumb" />
+          <img class="absolute inset-0" :src="item.thumb" />
           <div class="absolute bottom-2 right-2 text-white font-bold">
             <div>{{ item.reso }}</div>
           </div>
