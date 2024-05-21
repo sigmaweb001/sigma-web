@@ -17,11 +17,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'nuxt-module-eslint-config',
     '@nuxt/devtools',
-    'nuxt-gtag',
   ],
-  gtag: {
-    id: process.env.NUXT_PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID,
-  },
   features: {
     // For UnoCSS
     inlineStyles: false,

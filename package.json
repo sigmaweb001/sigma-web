@@ -45,7 +45,6 @@
     "eslint-ts-patch": "^8.56.0-0",
     "libphonenumber-js": "^1.10.56",
     "nuxt": "^3.10.2",
-    "nuxt-gtag": "^2.0.5",
     "nuxt-icon": "^0.6.8",
     "nuxt-module-eslint-config": "^0.1.0",
     "remark-reading-time": "^2.0.1",
