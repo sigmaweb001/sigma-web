@@ -20,7 +20,7 @@ export default defineNuxtConfig({
     'nuxt-gtag',
   ],
   gtag: {
-    id: process.env.NUXT_PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID,
+    id: process.env.NUXT_PUBLIC_GTAG_ID,
   },
   features: {
     // For UnoCSS
