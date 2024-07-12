@@ -67,6 +67,10 @@ else {
 </template>
 
 <style>
+.fc-widget-normal {
+  @apply hidden!;
+}
+
 .plyr {
   @apply w-full h-full inset-0 absolute;
 }
