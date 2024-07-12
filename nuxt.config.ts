@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   devtools: {
-    enabled: true,
+    enabled: false,
   },
   modules: [
     '@nuxt/content',
@@ -16,7 +16,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxt/devtools',
     'nuxt-gtag',
-    "@nuxt/eslint"
+    '@nuxt/eslint',
   ],
   gtag: {
     id: process.env.NUXT_PUBLIC_GTAG_ID,
@@ -28,8 +28,8 @@ export default defineNuxtConfig({
   eslint: {
     config: {
       standalone: false,
-      stylistic: true
-    }
+      stylistic: true,
+    },
   },
   content: {
     markdown: { remarkPlugins: ['remark-reading-time'] },
