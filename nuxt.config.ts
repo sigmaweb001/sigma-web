@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: {
     enabled: true,
@@ -15,9 +14,9 @@ export default defineNuxtConfig({
     'nuxt-icon',
     // '@nuxtjs/color-mode',
     '@vueuse/nuxt',
-    'nuxt-module-eslint-config',
     '@nuxt/devtools',
     'nuxt-gtag',
+    "@nuxt/eslint"
   ],
   gtag: {
     id: process.env.NUXT_PUBLIC_GTAG_ID,
@@ -26,9 +25,11 @@ export default defineNuxtConfig({
     // For UnoCSS
     inlineStyles: false,
   },
-
-  eslintConfig: {
-    setup: false,
+  eslint: {
+    config: {
+      standalone: false,
+      stylistic: true
+    }
   },
   content: {
     markdown: { remarkPlugins: ['remark-reading-time'] },
