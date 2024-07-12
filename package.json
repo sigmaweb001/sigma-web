@@ -9,9 +9,12 @@
   },
   "dependencies": {
     "@vee-validate/zod": "^4.12.5",
+    "dashjs": "^4.7.4",
     "embla-carousel": "^8.0.0-rc23",
     "embla-carousel-autoplay": "^8.0.0-rc23",
     "embla-carousel-vue": "^8.0.0-rc23",
+    "hls.js": "^1.5.13",
+    "plyr": "^3.7.8",
     "radix-vue": "^1.4.8",
     "recaptcha-v3": "^1.10.0",
     "tailwind-merge": "^2.2.1",
