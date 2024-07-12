@@ -18,8 +18,12 @@ const url = withQuery('http://localhost:7777/play', {
 })
 // console.log('[LOG] ~ url:', url)
 
-const isHls = computed(() => source.value.includes('.m3u8'))
-const isDash = computed(() => source.value.includes('.mpd'))
+if (!source.value) {
+  navigateTo('/')
+}
+
+const isHls = computed(() => source.value?.includes('.m3u8'))
+const isDash = computed(() => source.value?.includes('.mpd'))
 
 if (isHls.value) {
   isLoaded.value = true
