@@ -10,6 +10,7 @@ const source = route.query.source as string
 const name = route.query.name as string
 const tags = route.query.tags as string[]
 const category = route.query.category as string
+const isEmbed = route.query.embed === 'true'
 
 const url = withQuery('http://localhost:7777/play', {
   source: 'https://minio-dev.sigma.video:9000/for-test/sigma-asset/349405fa-26e2-4da2-b80b-12f08640e155/source.mp4',
@@ -44,14 +45,14 @@ else {
 </script>
 
 <template>
-  <main class="grid grid-rows-[auto_1fr_auto] h-100dvh of-hidden">
-    <PlayNavbar />
+  <main class="grid h-100dvh of-hidden" :class="[isEmbed ? '' : 'grid-rows-[auto_1fr_auto]']">
+    <PlayNavbar v-if="!isEmbed" />
 
     <div class="max-w-screen-1 relative mx-auto w-full">
       <PlayVideoPlayer v-if="isLoaded" :source="source" :is-dash="isDash" :is-hls="isHls" />
     </div>
 
-    <div class="grid grid-cols-3 mb-3 px-4 py-4">
+    <div v-if="!isEmbed" class="grid grid-cols-3 mb-3 px-4 py-4">
       <div class="col-span-2">
         <h1 v-if="name" class="text-xl font-bold">
           {{ name }}
