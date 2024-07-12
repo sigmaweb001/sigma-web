@@ -49,13 +49,12 @@ else {
     <div class="mx-auto of-hidden p-4">
       <div class="grid grid-cols-3 mb-3">
         <div class="col-span-2">
-          <h1 class="text-xl font-bold">
+          <h1 v-if="name" class="text-xl font-bold">
             {{ name }}
           </h1>
-          <div class="mt-1 flex space-x-2">
-            <span class="text-sm text-secondary-foreground"> <strong>Tags:</strong> {{ tags.join(', ') }}</span>
-            <span class="text-sm text-secondary-foreground">•</span>
-            <span class="text-sm text-secondary-foreground"> <strong>Category:</strong> {{ category }}</span>
+          <div class="mt-1 flex gap-4 space-x-2">
+            <span v-if="tags" class="text-sm text-secondary-foreground"> <strong>Tags:</strong> {{ tags?.join(', ') }}</span>
+            <span v-if="category" class="text-sm text-secondary-foreground"> <strong>Category:</strong> {{ category }}</span>
           </div>
         </div>
       </div>
