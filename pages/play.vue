@@ -44,23 +44,29 @@ else {
 </script>
 
 <template>
-  <main class="of-hidden">
+  <main class="grid grid-rows-[auto_1fr_auto] h-100dvh of-hidden">
     <PlayNavbar />
-    <div class="mx-auto of-hidden p-4">
-      <div class="grid grid-cols-3 mb-3">
-        <div class="col-span-2">
-          <h1 v-if="name" class="text-xl font-bold">
-            {{ name }}
-          </h1>
-          <div class="mt-1 flex gap-4 space-x-2">
-            <span v-if="tags" class="text-sm text-secondary-foreground"> <strong>Tags:</strong> {{ tags?.join(', ') }}</span>
-            <span v-if="category" class="text-sm text-secondary-foreground"> <strong>Category:</strong> {{ category }}</span>
-          </div>
+
+    <div class="max-w-screen-1 relative mx-auto w-full bg-red">
+      <PlayVideoPlayer v-if="isLoaded" :source="source" :is-dash="isDash" :is-hls="isHls" />
+    </div>
+
+    <div class="grid grid-cols-3 mb-3 px-4 py-4">
+      <div class="col-span-2">
+        <h1 v-if="name" class="text-xl font-bold">
+          {{ name }}
+        </h1>
+        <div class="mt-1 flex gap-4 space-x-2">
+          <span v-if="tags" class="text-sm text-secondary-foreground"> <strong>Tags:</strong> {{ tags?.join(', ') }}</span>
+          <span v-if="category" class="text-sm text-secondary-foreground"> <strong>Category:</strong> {{ category }}</span>
         </div>
-      </div>
-      <div class="of-hidden rounded-xl">
-        <PlayVideoPlayer v-if="isLoaded" :source="source" :is-dash="isDash" :is-hls="isHls" />
       </div>
     </div>
   </main>
 </template>
+
+<style>
+.plyr {
+  @apply w-full h-full inset-0 absolute;
+}
+</style>
