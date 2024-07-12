@@ -5,10 +5,11 @@ definePageMeta({
   layout: false,
 })
 const isLoaded = ref(false)
-const source = computed(() => useRoute().query.source as string)
-const name = computed(() => useRoute().query.name as string)
-const tags = computed(() => useRoute().query.tags as string[])
-const category = computed(() => useRoute().query.category as string)
+const route = useRoute()
+const source = route.query.source as string
+const name = route.query.name as string
+const tags = route.query.tags as string[]
+const category = route.query.category as string
 
 const url = withQuery('http://localhost:7777/play', {
   source: 'https://minio-dev.sigma.video:9000/for-test/sigma-asset/349405fa-26e2-4da2-b80b-12f08640e155/source.mp4',
@@ -18,23 +19,19 @@ const url = withQuery('http://localhost:7777/play', {
 })
 // console.log('[LOG] ~ url:', url)
 
-if (!source.value) {
-  navigateTo('/')
-}
+const isHls = source?.includes('.m3u8')
+const isDash = source?.includes('.mpd')
 
-const isHls = computed(() => source.value?.includes('.m3u8'))
-const isDash = computed(() => source.value?.includes('.mpd'))
-
-if (isHls.value) {
+if (isHls) {
   isLoaded.value = true
 }
-else if (isDash.value) {
+else if (isDash) {
   useHead({
     script: [
       {
         src: '/script/dash.all.min.js',
         onload: () => {
-          if (isDash.value)
+          if (isDash)
             isLoaded.value = true
         },
       },
