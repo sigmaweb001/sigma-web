@@ -16,7 +16,7 @@ const url = withQuery('http://localhost:7777/play', {
   tags: ['tag1', 'tag2'],
   category: 'Hello Category',
 })
-console.log('[LOG] ~ url:', url)
+// console.log('[LOG] ~ url:', url)
 
 const isHls = computed(() => source.value.includes('.m3u8'))
 const isDash = computed(() => source.value.includes('.mpd'))
