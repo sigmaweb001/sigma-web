@@ -47,7 +47,7 @@ else {
   <main class="grid grid-rows-[auto_1fr_auto] h-100dvh of-hidden">
     <PlayNavbar />
 
-    <div class="max-w-screen-1 relative mx-auto w-full bg-red">
+    <div class="max-w-screen-1 relative mx-auto w-full">
       <PlayVideoPlayer v-if="isLoaded" :source="source" :is-dash="isDash" :is-hls="isHls" />
     </div>
 
