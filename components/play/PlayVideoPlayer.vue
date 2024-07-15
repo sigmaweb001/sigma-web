@@ -37,8 +37,16 @@ onMounted(() => {
     videoRef.value.src = source.value
   }
 })
+const loaded = ref(false)
+function onLoad() {
+  loaded.value = true
+}
 </script>
 
 <template>
-  <video ref="videoRef" controls crossorigin playsinline />
+  <video
+    ref="videoRef"
+    class="size-0"
+    controls crossorigin playsinline @load="onLoad"
+  />
 </template>

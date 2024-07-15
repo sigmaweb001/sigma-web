@@ -39,6 +39,12 @@ else {
 </template>
 
 <style>
+html,
+body,
+#__nuxt {
+  @apply of-hidden relative z-3147483600;
+}
+
 .fc-widget-normal {
   @apply hidden!;
 }
