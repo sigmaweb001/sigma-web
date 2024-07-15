@@ -1,15 +1,10 @@
 <script lang="ts" setup>
-import { withQuery } from 'ufo'
-
 definePageMeta({
   layout: false,
 })
 const isLoaded = ref(false)
 const route = useRoute()
 const source = route.query.source as string
-const name = route.query.name as string
-const tags = route.query.tags as string[]
-const category = route.query.category as string
 
 const isHls = source?.includes('.m3u8')
 const isDash = source?.includes('.mpd')
@@ -37,7 +32,7 @@ else {
 
 <template>
   <main class="grid h-100dvh of-hidden">
-    <div class="max-w-screen-1 relative mx-auto w-full">
+    <div class="relative mx-auto w-full">
       <PlayVideoPlayer v-if="isLoaded" :source="source" :is-dash="isDash" :is-hls="isHls" />
     </div>
   </main>
