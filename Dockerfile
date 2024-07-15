@@ -1,7 +1,7 @@
 FROM registry.gviet.vn:5000/library/node:18-alpine as build-stage
 
 WORKDIR /app
-RUN npm install -g pnpm@8
+RUN npm install -g pnpm@9
 
 COPY . .
 
