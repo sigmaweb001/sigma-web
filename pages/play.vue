@@ -71,6 +71,6 @@ else {
 }
 
 .plyr {
-  @apply w-full h-full inset-0 absolute;
+  @apply w-full! h-full! inset-0! absolute!;
 }
 </style>
