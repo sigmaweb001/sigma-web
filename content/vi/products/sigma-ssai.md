@@ -15,19 +15,13 @@ Bật tính năng chèn quảng cáo ở mọi nơi
 Chèn quảng cáo động – còn được gọi là Chèn quảng cáo phía máy chủ (SSAI) – cho phép phân phối liền mạch quảng cáo video vào nội dung được phát trực tuyến trên các thiết bị có hỗ trợ internet.
 
 #cta
-
-  :::button-link
-  ---
-  href: https://portal.sigma.video/auth/signup
-  target: _blank
-  ---
+  :::button-link{href="https://portal.sigma.video/auth/signup" target="_blank"}
   Dùng thử miễn phí
   :::
 
-  :::button-link{href="/contact" white}
+  :::button-link{white href="/contact"}
   Liên hệ chúng tôi
   :::
-
 
 #extra
 No credit card required
@@ -45,43 +39,43 @@ No credit card required
     ::::list-item
     #image
     ![ssai-strength-1.png](/ssai/ssai-strength-1.png)
-
+    
     #title
     **Quản lý đồng thời một lượng lớn người xem**
-
+    
     #subtitle
     Sử dụng giải pháp đám mây dễ dàng mở rộng quy mô, đảm bảo hiệu suất cao và trải nghiệm người dùng mượt mà.
     ::::
-
+  
     ::::list-item
     #image
     ![ssai-strength-2.png](/ssai/ssai-strength-2.png)
-
+    
     #title
     **Tích hợp**
-
+    
     #subtitle
     Tích hợp hoàn toàn với Sigma Streaming Platform. Tương thích với cả nội dung trực tiếp và độc lập (VOD). Được hỗ trợ trên hầu hết các nền tảng trình phát (trình phát).
     ::::
-
+  
     ::::list-item
     #image
     ![ssai-strength-3.png](/ssai/ssai-strength-3.png)
-
+    
     #title
     **Tỷ lệ lấp đầy và tỷ lệ hoàn thành quảng cáo cao**
-
+    
     #subtitle
     Đạt được tỷ lệ lấp đầy và tỷ lệ hoàn thành quảng cáo cao, tối ưu hóa lợi nhuận quảng cáo và tăng hiệu suất quảng cáo tổng thể.
     ::::
-
+  
     ::::list-item
     #image
     ![ssai-strength-4.png](/ssai/ssai-strength-4.png))
-
+    
     #title
     **Chuyển đổi quảng cáo tức thì và căn chỉnh theo luồng ban đầu**
-
+    
     #subtitle
     Phù hợp với nội dung gốc, đảm bảo trải nghiệm liền mạch.
     ::::
@@ -100,62 +94,62 @@ col: '3'
 ---
   :::grid-card
   Thay thế thời gian ngắt quảng cáo phát sóng bằng Quảng cáo OTT có thể định địa chỉ. Chèn quảng cáo vào luồng Truyền hình trực tiếp tuyến tính và VOD.
-
+  
   #image
   ![ssai-feature-1.png](/ssai/ssai-feature-1.png)
-
+  
   #title
   **Nó hoạt động như thế nào?**
   :::
 
   :::grid-card
   Kiểm soát quảng cáo và nội dung bằng nhiều phương pháp khác nhau, bao gồm quản lý theo điểm cuối chèn quảng cáo, quản lý dựa trên người dùng và quản lý dựa trên quảng cáo riêng lẻ.
-
+  
   #image
   ![ssai-feature-2.png](/ssai/ssai-feature-2.png)
-
+  
   #title
   **Phương pháp điều khiển**
   :::
 
   :::grid-card
   Hỗ trợ trên nhiều nền tảng và nhiều thiết bị.
-
+  
   Tài liệu này cung cấp cái nhìn tổng quan về thông tin chỉ mục liên quan đến SSAI và bao gồm các chi tiết từ hướng dẫn sử dụng.
-
+  
   #image
   ![ssai-feature-3.png](/ssai/ssai-feature-3.png)
-
+  
   #title
   **Bảng điều khiển khách hàng**
   :::
 
   :::grid-card
   Điểm cuối chèn quảng cáo tập hợp các bảng kê khai nguồn của bạn thành một luồng tuyến tính, trong đó mỗi điểm cuối chèn quảng cáo chứa một hoặc nhiều đầu ra tương ứng với cấu hình gói của bạn.
-
+  
   #image
   ![ssai-feature-4.png](/ssai/ssai-feature-4.png)
-
+  
   #title
   **Điểm cuối chèn quảng cáo**
   :::
 
   :::grid-card
   Khi quảng cáo đã được chuyển mã và đủ điều kiện để chèn vào nội dung, danh sách quảng cáo sẽ giúp quản lý việc chèn những quảng cáo này vào nội dung trực tiếp một cách hợp lý và mượt mà.
-
+  
   #image
   ![ssai-feature-5.png](/ssai/ssai-feature-5.png)
-
+  
   #title
   **Danh sách quảng cáo**
   :::
 
   :::grid-card
   Theo dõi mức độ phổ biến của nội dung, mức độ tương tác của người xem và giám sát dịch vụ hiệu suất 24/7.
-
+  
   #image
   ![ssai-feature-6.png](/ssai/ssai-feature-6.png)
-
+  
   #title
   **Công cụ phân tích**
   :::
@@ -182,20 +176,20 @@ Trên toàn cầu, 42,7% người dùng internet sử dụng trình chặn quả
 ::
 
 ::section-resource
+  :::resource-item{path="/resources/blogs/strength-dai"}
+  :::
+
+  :::resource-item{path="/resources/blogs/vodvo"}
+  :::
+
+  :::resource-item{path="/resources/blogs/streaming-ott"}
+  :::
+
+  :::resource-item{path="/resources/blogs/ott-ssai"}
+  :::
+
 #title
 Tài nguyên DAI
-#default
-  :::resource-item{path="/resources/blogs/vodvo"}
-  :::
-
-  :::resource-item{path="/resources/blogs/vodvo"}
-  :::
-
-  :::resource-item{path="/resources/blogs/vodvo"}
-  :::
-
-  :::resource-item{path="/resources/blogs/vodvo"}
-  :::
 ::
 
 ::section-marquee
@@ -221,14 +215,14 @@ Tài nguyên DAI
 ::section-cta
   :::button-link
   ---
-  href: https://appt.link/meet-with-sigma-team
   data-appointlet-modal: true
   dataAppointletModal: ''
+  href: https://appt.link/meet-with-sigma-team
   ---
   Xem demo
   :::
 
-  :::button-link{href="/contact" white}
+  :::button-link{white href="/contact"}
   Liên hệ chúng tôi
   :::
 
