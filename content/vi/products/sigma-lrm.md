@@ -152,16 +152,16 @@ Kiến Trúc Hệ Thống
 ::
 
 ::section-resource
-  :::resource-item{path="/resources/blogs/fast"}
+  :::resource-item{path="/vi/resources/blogs/fast"}
   :::
 
-  :::resource-item{path="/resources/blogs/vodvo"}
+  :::resource-item{path="/vi/resources/blogs/vodvo"}
   :::
 
-  :::resource-item{path="/resources/blogs/streaming-ott"}
+  :::resource-item{path="/vi/resources/blogs/streaming-ott"}
   :::
 
-  :::resource-item{path="/resources/blogs/strength-dai"}
+  :::resource-item{path="/vi/resources/blogs/strength-dai"}
   :::
 
 #title
