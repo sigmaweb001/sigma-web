@@ -99,4 +99,9 @@ export default defineNuxtConfig({
       recaptchaSiteKey: process.env.NUXT_PUBLIC_RECAPTCHA_SITE_KEY,
     },
   },
+  nitro: {
+    prerender: {
+      failOnError: false,
+    },
+  },
 })
