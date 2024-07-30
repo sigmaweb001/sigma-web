@@ -165,6 +165,18 @@ System architecture
   :::resource-item{path="/resources/blogs/strength-dai"}
   :::
 
+  :::resource-item{path="/resources/blogs/fast-swot"}
+  :::
+
+  :::resource-item{path="/resources/blogs/ott-live"}
+  :::
+
+  :::resource-item{path="/resources/blogs/ott-ssai"}
+  :::
+
+  :::resource-item{path="/resources/blogs/ott"}
+  :::
+
 #title
 LRM Resources
 ::
