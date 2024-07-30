@@ -188,6 +188,18 @@ Globally, 42.7% of internet users use ad blockers
   :::resource-item{path="/resources/blogs/ott-ssai"}
   :::
 
+  :::resource-item{path="/resources/blogs/fast-swot"}
+  :::
+
+  :::resource-item{path="/resources/blogs/fast"}
+  :::
+
+  :::resource-item{path="/resources/blogs/ott-live"}
+  :::
+
+  :::resource-item{path="/resources/blogs/ott"}
+  :::
+
 #title
 DAI Resources
 ::
