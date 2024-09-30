@@ -164,6 +164,18 @@ Kiến Trúc Hệ Thống
   :::resource-item{path="/vi/resources/blogs/strength-dai"}
   :::
 
+  :::resource-item{path="/vi/resources/blogs/fast-swot"}
+  :::
+
+  :::resource-item{path="/vi/resources/blogs/ott-live"}
+  :::
+
+  :::resource-item{path="/vi/resources/blogs/ott-ssai"}
+  :::
+
+  :::resource-item{path="/vi/resources/blogs/ott"}
+  :::
+
 #title
 Tài nguyên LRM
 ::

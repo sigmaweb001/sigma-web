@@ -251,6 +251,18 @@ System architecture
   :::resource-item{path="/vi/resources/blogs/ott-ssai"}
   :::
 
+  :::resource-item{path="/vi/resources/blogs/fast"}
+  :::
+
+  :::resource-item{path="/vi/resources/blogs/ott"}
+  :::
+
+  :::resource-item{path="/vi/resources/blogs/streaming-ott"}
+  :::
+
+  :::resource-item{path="/vi/resources/blogs/strength-dai"}
+  :::
+
 #title
 Interactive Resources
 ::
