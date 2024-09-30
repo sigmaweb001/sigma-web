@@ -37,11 +37,9 @@ const { data: dataDir } = await useAsyncData(`resources-dir-${slug.value}`, () =
 }).findOne(), { watch: [slug] })
 
 const { data: dataResources } = await useAsyncData(`resources-list-content:${slug.value}`, () => queryContent(slug.value)
-  .where(query.value)
-  .sort({
+  .where(query.value).sort({
     date: -1,
-  })
-  .find(), { watch: [tag, slug] })
+  }).find(), { watch: [tag, slug] })
 </script>
 
 <template>
