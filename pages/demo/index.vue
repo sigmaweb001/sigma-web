@@ -90,15 +90,15 @@ const filteredItems = computed(() => {
       </ContentRenderer>
     </div>
     <div class="flex items-center gap-4">
-      <UInput
+      <input
         v-model="searchQuery"
         placeholder="Search"
         icon="i-heroicons-magnifying-glass"
         class="max-w-sm"
-      />
+      >
     </div>
 
-    <div class="mx-4 flex gap-8">
+    <div class="mx-16 flex gap-8">
       <div class="w-64 flex-shrink-0">
         <h2 class="mb-4 text-lg font-semibold">
           Categories
@@ -126,7 +126,7 @@ const filteredItems = computed(() => {
       </div>
 
       <div class="grid grid-cols-1 flex-1 gap-4 lg:grid-cols-3 sm:grid-cols-2">
-        <UCard
+        <div
           v-for="item in filteredItems"
           :key="item.id"
           class="group cursor-pointer transition-transform hover:-translate-y-1"
@@ -145,7 +145,7 @@ const filteredItems = computed(() => {
               </p>
             </div>
           </div>
-        </UCard>
+        </div>
       </div>
     </div>
   </main>
