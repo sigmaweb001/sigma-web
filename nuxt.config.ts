@@ -1,7 +1,8 @@
 export default defineNuxtConfig({
   devtools: {
-    enabled: false,
+    enabled: true,
   },
+
   modules: [
     '@nuxt/content',
     '@vue-macros/nuxt',
@@ -18,22 +19,27 @@ export default defineNuxtConfig({
     'nuxt-gtag',
     '@nuxt/eslint',
   ],
+
   gtag: {
     id: process.env.NUXT_PUBLIC_GTAG_ID,
   },
+
   features: {
     // For UnoCSS
     inlineStyles: false,
   },
+
   eslint: {
     config: {
       standalone: false,
       stylistic: true,
     },
   },
+
   content: {
     markdown: { remarkPlugins: ['remark-reading-time'] },
   },
+
   app: {
     head: {
       script: [
@@ -54,18 +60,22 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   macros: {
     betterDefine: false,
   },
+
   css: [
     '@unocss/reset/tailwind.css',
   ],
+
   googleFonts: {
     families: {
       'Noto Sans': '100..800',
     },
     download: true,
   },
+
   i18n: {
     vueI18n: './i18n.config.ts',
     defaultLocale: 'en',
@@ -84,6 +94,7 @@ export default defineNuxtConfig({
     langDir: 'locales',
     detectBrowserLanguage: false,
   },
+
   colorMode: {
     classSuffix: '',
     preference: 'light',
@@ -94,14 +105,18 @@ export default defineNuxtConfig({
       'vue-json-pretty/lib/styles.css',
     ],
   },
+
   runtimeConfig: {
     public: {
       recaptchaSiteKey: process.env.NUXT_PUBLIC_RECAPTCHA_SITE_KEY,
     },
   },
+
   nitro: {
     prerender: {
       failOnError: false,
     },
   },
+
+  compatibilityDate: '2024-12-25',
 })

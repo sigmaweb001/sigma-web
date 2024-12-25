@@ -197,6 +197,12 @@ const NuxtLink = resolveComponent('NuxtLink')
               </SNavigationMenuLink>
             </NuxtLink>
           </SNavigationMenuItem>
+
+          <SNavigationMenuItem>
+            <NuxtLink active-class="text-primary" :to="localePath('/demo')" class="navigation-menu-trigger">
+              Demo
+            </NuxtLink>
+          </SNavigationMenuItem>
         </SNavigationMenuList>
       </div>
       <div class="hidden justify-self-end gap-0 xl:flex">
