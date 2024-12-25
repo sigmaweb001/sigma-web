@@ -89,13 +89,17 @@ const filteredItems = computed(() => {
         <ContentRendererMarkdown :value="demo" />
       </ContentRenderer>
     </div>
-    <div class="flex items-center gap-4">
-      <input
-        v-model="searchQuery"
-        placeholder="Search"
-        icon="i-heroicons-magnifying-glass"
-        class="max-w-sm"
-      >
+    <div class="mx-16 my-4 flex items-center justify-end gap-4">
+      <div class="relative">
+        <SInputText
+          v-model="searchQuery"
+          placeholder="Search"
+          class="min-w-64"
+        />
+        <div class="absolute right-0 top-0 h-full flex items-center justify-center px-4">
+          <div class="i-heroicons-magnifying-glass size-4" />
+        </div>
+      </div>
     </div>
 
     <div class="mx-16 flex gap-8">
@@ -129,7 +133,7 @@ const filteredItems = computed(() => {
         <div
           v-for="item in filteredItems"
           :key="item.id"
-          class="group cursor-pointer transition-transform hover:-translate-y-1"
+          class="group cursor-pointer overflow-hidden rounded-lg transition-transform hover:-translate-y-1"
           :ui="{ body: { padding: 'p-0' } }"
         >
           <div class="flex flex-col">
