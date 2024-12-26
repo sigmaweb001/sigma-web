@@ -1,87 +1,84 @@
 <script lang="ts" setup>
 const route = useRoute()
-
+useHead({
+  script: [
+    {
+      src: 'https://cdn.jsdelivr.net/npm/hls.js@latest',
+      // valid options are: 'head' | 'bodyClose' | 'bodyOpen'
+      tagPosition: 'head',
+    },
+    {
+      src: 'https://cdn.jsdelivr.net/gh/sigmaott/sigma-ssai-web-sdk@v1.1.1/build/sdk-dai.iife.js',
+      tagPosition: 'head',
+    },
+  ],
+})
 const slug = computed(() => route.params.slug)
 const { locale } = useI18n()
-const { data: demo } = await useAsyncData(
-  'demo',
-  () => queryContent(withLocale('demo', locale)).findOne(),
-  { watch: [locale] },
-)
-
-// const { data: pricings } = await useAsyncData(`pricings_${slug.value}`, () => queryContent(withLocale('pricing', locale)).where({
-//   _dir: { $eq: 'pricing' },
-// }).find(), { watch: [locale] })
 
 const localePath = useLocalePath()
 
-interface DemoItem {
-  path: string
-  title: string
-  subtitle: string
-  type: 'Demo'
-  category: string
-}
-
-interface Category {
-  id: string
-  name: string
-  icon?: string
-}
-
-const categories = ref<Category[]>([
-  {
-    id: 'ssai',
-    name: 'SSAI',
-    icon: 'i-ri:advertisement-line',
-  },
-  // Add more categories as needed
-])
-
-const selectedCategory = ref(categories.value[0].id)
-
-const demoItems = ref<DemoItem[]>([
-  {
-    path: 'ssai-manual',
-    title: 'SSAI',
-    subtitle: 'Manual Ads Insert',
-    type: 'Demo',
-    category: 'ssai',
-  },
-  {
-    path: 'ssai-ai',
-    title: 'SSAI',
-    subtitle: 'AI Ads Marker',
-    type: 'Demo',
-    category: 'ssai',
-  },
-  {
-    path: 'ssai-periodic',
-    title: 'SSAI',
-    subtitle: 'With Periodic Cue Tones',
-    type: 'Demo',
-    category: 'ssai',
-  },
-])
-
-const searchQuery = ref('')
-
-const filteredItems = computed(() => {
-  let items = demoItems.value.filter(item => item.category === selectedCategory.value)
-
-  if (searchQuery.value) {
-    const query = searchQuery.value.toLowerCase()
-    items = items.filter(
-      item =>
-        item.title.toLowerCase().includes(query)
-        || item.subtitle.toLowerCase().includes(query),
-    )
-  }
-
-  return items
-})
-
 const NuxtLink = resolveComponent('NuxtLink')
+
+const adInsertionTime = ref('')
+const adUrl = ref('')
+const timeElapsed = ref('00:00:00')
+
+function formatTime(seconds: number) {
+  const hrs = Math.floor(seconds / 3600)
+  const mins = Math.floor((seconds % 3600) / 60)
+  const secs = Math.floor(seconds % 60)
+  return [hrs, mins, secs]
+    .map(v => v < 10 ? `0${v}` : v)
+    .join(':')
+}
+
+onMounted(() => {
+  // Get references to the video and ad container elements
+  const video = document.querySelector('.videoElement') as HTMLVideoElement | null
+  if (!video)
+    return
+  let destroyFn
+  let hlsInstance
+
+  // STEP 5: Set the URL of the HLS manifest (video stream with SSAI)
+  const sourceURL
+        = 'https://cdn-lrm-test.sigma.video/manifest/origin04/scte35-av6s-clear/master.m3u8?sigma.dai.adsEndpoint=a77eb455-b79d-40c0-9141-bfb62870dfbf'
+
+  const { playerUrl, adsUrl } = window.SigmaDaiSdk.processURL(sourceURL)
+
+  // STEP 6: Create a new instance of the Sigma SSAI SDK with the video and ad containers
+  window.SigmaDaiSdk.createSigmaDai({
+    video,
+    adContainer: null,
+    adsUrl,
+  })
+    .then(({ onEventTracking, sigmaPlayer, destroy }) => {
+      // Check if the HLS.js is supported in the browser
+      if (window.Hls.isSupported()) {
+        const hls = new window.Hls()
+        hlsInstance = hls
+
+        // STEP 7: Load the manifest URL and attach the HLS stream to the video element
+        hls.loadSource(playerUrl)
+        hls.attachMedia(video)
+
+        sigmaPlayer.attachHls(hls)
+        destroyFn = destroy
+
+        // STEP 9: Set up event tracking for logging
+        onEventTracking('*', (payload) => {
+          // console.log('[LOG] Event Payload:', payload);
+        })
+      }
+    })
+
+  video.addEventListener('timeupdate', () => {
+    if (video) {
+      timeElapsed.value = formatTime(video.currentTime)
+    }
+  })
+})
 </script>
 
 <template>
@@ -92,7 +89,7 @@ const NuxtLink = resolveComponent('NuxtLink')
           SSAI Manual Ads Insert
         </template>
         <template #subtitle>
-          Choose the VOD and live streaming pricing plan that’s right for you
+          Easily insert ads into a live stream playlist and customize content flow with real-time updates
         </template>
         <template #image>
           <img src="/Media Live/slide5.png" alt="SSAI Manual Ads Insert">
@@ -100,37 +97,52 @@ const NuxtLink = resolveComponent('NuxtLink')
       </PricingHero>
     </div>
 
-    <!-- SECTION CTA -->
-    <div class="py-10 container">
-      <div
-        class="relative mx-auto w-full max-w-screen-lg flex flex-wrap items-center justify-between gap-5 overflow-hidden rounded-xl from-primary-400 to-primary-500 bg-gradient-to-r px-7 py-7 text-white lg:flex-nowrap lg:px-12 lg:py-12"
-      >
-        <div
-          class="absolute bottom-3 left-3 z-1 h-24 w-24 rounded-full bg-white from-white to-primary-600 bg-gradient-to-b opacity-20"
-        />
-        <div
-          class="absolute left-1/2 z-1 h-24 w-24 rounded-full bg-white from-white to-primary-600 bg-gradient-to-b opacity-20 -top-10"
-        />
-        <div class="relative z-0 flex-grow text-center lg:text-left">
-          <div class="text-3xl text-white font-medium lg:text-3xl">
-            Explore our Demo Center to experience cutting-edge solutions, low-latency streaming and high availability for superior viewer engagement
-          </div>
-          <!-- <div class="mt-2 text-white text-opacity-80 lg:text-xl">
-            <ContentSlot :use="$slots.subtitle" unwrap="p" />
-          </div> -->
+    <div class="mx-16 my-8 flex items-start justify-between gap-8">
+      <div class="flex-1">
+        <div class="mb-2 text-lg font-semibold">
+          Time Elapsed: {{ timeElapsed }}
         </div>
-
-        <div class="relative w-full flex flex-shrink-0 gap-2 text-center lg:w-auto">
-          <SButton
-            class="underline-transparent rounded-full! hover:underline-current"
-            :to="localePath('/contact')" :as="NuxtLink"
-            size="lg"
-            variant="white"
-          >
-            Contact us
-          </SButton>
+        <video controls class="videoElement w-full rounded-lg shadow" />
+        <p class="mt-4">
+          Ad inserted successfully at [hh:mm:ss]
+        </p>
+      </div>
+      <div class="w-80 rounded-lg bg-white p-4 shadow">
+        <h3 class="mb-4 text-xl font-semibold">
+          Manual Ads Insert
+        </h3>
+        <div class="mb-4">
+          <label for="adTime" class="block text-sm text-gray-700 font-medium">Ad Insertion Time</label>
+          <SInputText v-model="adInsertionTime" class="min-w-64" placeholder="30s" />
         </div>
+        <div class="mb-4">
+          <label for="adUrl" class="block text-sm text-gray-700 font-medium">Ad URL</label>
+          <SInputText v-model="adUrl" class="min-w-64" placeholder="//cdn.theoplayer.com/demos/preroll.xml" />
+        </div>
+        <SButton>
+          Insert Ad Now
+        </SButton>
       </div>
     </div>
+
+    <!-- SECTION CTA -->
+    <SectionCta>
+      <template #title>
+        Experience seamless ad insertion with SSAI's Manual Ads Insert feature. Control when and where your ads appear
+        in real-time for a fully customized streaming experience
+      </template>
+
+      <template #default>
+        <SButton
+          class="underline-transparent rounded-full! hover:underline-current"
+          :to="localePath('/contact')"
+          :as="NuxtLink"
+          size="lg"
+          variant="white"
+        >
+          Contact us
+        </SButton>
+      </template>
+    </SectionCta>
   </main>
 </template>
