@@ -13,15 +13,11 @@ useHead({
     },
   ],
 })
-const slug = computed(() => route.params.slug)
-const { locale } = useI18n()
 
 const localePath = useLocalePath()
 
 const NuxtLink = resolveComponent('NuxtLink')
 
-const adInsertionTime = ref('')
-const adUrl = ref('')
 const timeElapsed = ref('00:00:00')
 const adInsertedTime = ref('')
 
@@ -71,6 +67,10 @@ onMounted(() => {
         onEventTracking('start', (payload: any) => {
           adInsertedTime.value = formatTime(video.currentTime)
         })
+
+        onEventTracking('complete', (payload: any) => {
+          adInsertedTime.value = ''
+        })
       }
     })
 
@@ -87,10 +87,10 @@ onMounted(() => {
     <div class="relative mb-10">
       <PricingHero>
         <template #title>
-          SSAI Manual Ads Insert
+          SSAI AI Ads Marker
         </template>
         <template #subtitle>
-          Easily insert ads into a live stream playlist and customize content flow with real-time updates
+          SSAI AI Ads Marker leverages artificial intelligence to automatically detect and mark ad insertion points in live or on-demand content, ensuring seamless and precise ad placements
         </template>
         <template #image>
           <img src="/Media Live/slide5.png" alt="SSAI Manual Ads Insert">
@@ -104,25 +104,14 @@ onMounted(() => {
           Time Elapsed: {{ timeElapsed }}
         </div>
         <video controls class="videoElement w-full rounded-lg shadow" />
-        <p v-if="adInsertedTime" class="mt-4">
-          Ad inserted successfully at {{ adInsertedTime }}
+        <p class="mt-4">
+          {{ adInsertedTime }} {{ adInsertedTime ? 'ads' : 'in-stream' }}
         </p>
       </div>
       <div class="w-80 rounded-lg bg-white p-4 shadow">
-        <h3 class="mb-4 text-xl font-semibold">
-          Manual Ads Insert
+        <h3 class="mb-4 text-lg">
+          Observe how ads seamlessly appear within the video without interruption, providing an optimal user experience. AI Ads Marker ensures that the ad placement points are selected accurately and appropriately.
         </h3>
-        <div class="mb-4">
-          <label for="adTime" class="block text-sm text-gray-700 font-medium">Ad Insertion Time</label>
-          <SInputText v-model="adInsertionTime" class="min-w-64" placeholder="30s" />
-        </div>
-        <div class="mb-4">
-          <label for="adUrl" class="block text-sm text-gray-700 font-medium">Ad URL</label>
-          <SInputText v-model="adUrl" class="min-w-64" placeholder="//cdn.theoplayer.com/demos/preroll.xml" />
-        </div>
-        <SButton>
-          Insert Ad Now
-        </SButton>
       </div>
     </div>
 

@@ -161,7 +161,8 @@ const NuxtLink = resolveComponent('NuxtLink')
       <template #default>
         <SButton
           class="underline-transparent rounded-full! hover:underline-current"
-          :to="localePath('/contact')" :as="NuxtLink"
+          :to="localePath('/contact')"
+          :as="NuxtLink"
           size="lg"
           variant="white"
         >
