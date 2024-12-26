@@ -1,18 +1,6 @@
 <script lang="ts" setup>
 const route = useRoute()
 
-const slug = computed(() => route.params.slug)
-const { locale } = useI18n()
-const { data: demo } = await useAsyncData(
-  'demo',
-  () => queryContent(withLocale('demo', locale)).findOne(),
-  { watch: [locale] },
-)
-
-// const { data: pricings } = await useAsyncData(`pricings_${slug.value}`, () => queryContent(withLocale('pricing', locale)).where({
-//   _dir: { $eq: 'pricing' },
-// }).find(), { watch: [locale] })
-
 const localePath = useLocalePath()
 
 interface DemoItem {
@@ -87,9 +75,17 @@ const NuxtLink = resolveComponent('NuxtLink')
 <template>
   <main>
     <div class="relative mb-10">
-      <ContentRenderer :value="demo">
-        <ContentRendererMarkdown :value="demo" />
-      </ContentRenderer>
+      <PricingHero>
+        <template #title>
+          Demo Center
+        </template>
+        <template #subtitle>
+          See how our system ensures low latency, high availability and superior viewer experience
+        </template>
+        <template #image>
+          <img src="/Media Live/slide5.png" alt="SSAI Manual Ads Insert">
+        </template>
+      </PricingHero>
     </div>
     <div class="mx-16 my-8 flex items-center justify-end gap-4">
       <div class="relative">
@@ -157,36 +153,21 @@ const NuxtLink = resolveComponent('NuxtLink')
     </div>
 
     <!-- SECTION CTA -->
-    <div class="py-10 container">
-      <div
-        class="relative mx-auto w-full max-w-screen-lg flex flex-wrap items-center justify-between gap-5 overflow-hidden rounded-xl from-primary-400 to-primary-500 bg-gradient-to-r px-7 py-7 text-white lg:flex-nowrap lg:px-12 lg:py-12"
-      >
-        <div
-          class="absolute bottom-3 left-3 z-1 h-24 w-24 rounded-full bg-white from-white to-primary-600 bg-gradient-to-b opacity-20"
-        />
-        <div
-          class="absolute left-1/2 z-1 h-24 w-24 rounded-full bg-white from-white to-primary-600 bg-gradient-to-b opacity-20 -top-10"
-        />
-        <div class="relative z-0 flex-grow text-center lg:text-left">
-          <div class="text-3xl text-white font-medium lg:text-3xl">
-            Explore our Demo Center to experience cutting-edge solutions, low-latency streaming and high availability for superior viewer engagement
-          </div>
-          <!-- <div class="mt-2 text-white text-opacity-80 lg:text-xl">
-            <ContentSlot :use="$slots.subtitle" unwrap="p" />
-          </div> -->
-        </div>
+    <SectionCta>
+      <template #title>
+        Explore our Demo Center to experience cutting-edge solutions, low-latency streaming and high availability for superior viewer engagement
+      </template>
 
-        <div class="relative w-full flex flex-shrink-0 gap-2 text-center lg:w-auto">
-          <SButton
-            class="underline-transparent rounded-full! hover:underline-current"
-            :to="localePath('/contact')" :as="NuxtLink"
-            size="lg"
-            variant="white"
-          >
-            Contact us
-          </SButton>
-        </div>
-      </div>
-    </div>
+      <template #default>
+        <SButton
+          class="underline-transparent rounded-full! hover:underline-current"
+          :to="localePath('/contact')" :as="NuxtLink"
+          size="lg"
+          variant="white"
+        >
+          Contact us
+        </SButton>
+      </template>
+    </SectionCta>
   </main>
 </template>
