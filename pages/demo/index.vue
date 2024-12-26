@@ -9,14 +9,14 @@ const { data: demo } = await useAsyncData(
   { watch: [locale] },
 )
 
-const { data: pricings } = await useAsyncData(`pricings_${slug.value}`, () => queryContent(withLocale('pricing', locale)).where({
-  _dir: { $eq: 'pricing' },
-}).find(), { watch: [locale] })
+// const { data: pricings } = await useAsyncData(`pricings_${slug.value}`, () => queryContent(withLocale('pricing', locale)).where({
+//   _dir: { $eq: 'pricing' },
+// }).find(), { watch: [locale] })
 
 const localePath = useLocalePath()
 
 interface DemoItem {
-  id: string
+  path: string
   title: string
   subtitle: string
   type: 'Demo'
@@ -33,7 +33,7 @@ const categories = ref<Category[]>([
   {
     id: 'ssai',
     name: 'SSAI',
-    icon: 'i-heroicons-play',
+    icon: 'i-ri:advertisement-line',
   },
   // Add more categories as needed
 ])
@@ -42,21 +42,21 @@ const selectedCategory = ref(categories.value[0].id)
 
 const demoItems = ref<DemoItem[]>([
   {
-    id: 'ssai-manual',
+    path: 'ssai-manual',
     title: 'SSAI',
     subtitle: 'Manual Ads Insert',
     type: 'Demo',
     category: 'ssai',
   },
   {
-    id: 'ssai-ai',
+    path: 'ssai-ai',
     title: 'SSAI',
     subtitle: 'AI Ads Marker',
     type: 'Demo',
     category: 'ssai',
   },
   {
-    id: 'ssai-periodic',
+    path: 'ssai-periodic',
     title: 'SSAI',
     subtitle: 'With Periodic Cue Tones',
     type: 'Demo',
@@ -80,6 +80,8 @@ const filteredItems = computed(() => {
 
   return items
 })
+
+const NuxtLink = resolveComponent('NuxtLink')
 </script>
 
 <template>
@@ -89,7 +91,7 @@ const filteredItems = computed(() => {
         <ContentRendererMarkdown :value="demo" />
       </ContentRenderer>
     </div>
-    <div class="mx-16 my-4 flex items-center justify-end gap-4">
+    <div class="mx-16 my-8 flex items-center justify-end gap-4">
       <div class="relative">
         <SInputText
           v-model="searchQuery"
@@ -102,7 +104,7 @@ const filteredItems = computed(() => {
       </div>
     </div>
 
-    <div class="mx-16 flex gap-8">
+    <div class="mx-16 min-h-30vh flex gap-8">
       <div class="w-64 flex-shrink-0">
         <h2 class="mb-4 text-lg font-semibold">
           Categories
@@ -117,7 +119,7 @@ const filteredItems = computed(() => {
               }"
               @click="selectedCategory = category.id"
             >
-              <UIcon v-if="category.icon" :name="category.icon" class="flex-shrink-0" />
+              <div v-if="category.icon" :class="category.icon" class="flex-shrink-0" />
               <span>{{ category.name }}</span>
               <UIcon
                 name="i-heroicons-chevron-right"
@@ -129,11 +131,12 @@ const filteredItems = computed(() => {
         </div>
       </div>
 
-      <div class="grid grid-cols-1 flex-1 gap-4 lg:grid-cols-3 sm:grid-cols-2">
-        <div
+      <div class="grid grid-cols-1 flex-1 items-start gap-4 lg:grid-cols-3 sm:grid-cols-2">
+        <NuxtLink
           v-for="item in filteredItems"
-          :key="item.id"
-          class="group cursor-pointer overflow-hidden rounded-lg transition-transform hover:-translate-y-1"
+          :key="item.path"
+          :to="localePath(`/demo/${item.path}`)"
+          class="group cursor-pointer overflow-hidden rounded-lg shadow transition-transform hover:-translate-y-1"
           :ui="{ body: { padding: 'p-0' } }"
         >
           <div class="flex flex-col">
@@ -149,6 +152,39 @@ const filteredItems = computed(() => {
               </p>
             </div>
           </div>
+        </NuxtLink>
+      </div>
+    </div>
+
+    <!-- SECTION CTA -->
+    <div class="py-10 container">
+      <div
+        class="relative mx-auto w-full max-w-screen-lg flex flex-wrap items-center justify-between gap-5 overflow-hidden rounded-xl from-primary-400 to-primary-500 bg-gradient-to-r px-7 py-7 text-white lg:flex-nowrap lg:px-12 lg:py-12"
+      >
+        <div
+          class="absolute bottom-3 left-3 z-1 h-24 w-24 rounded-full bg-white from-white to-primary-600 bg-gradient-to-b opacity-20"
+        />
+        <div
+          class="absolute left-1/2 z-1 h-24 w-24 rounded-full bg-white from-white to-primary-600 bg-gradient-to-b opacity-20 -top-10"
+        />
+        <div class="relative z-0 flex-grow text-center lg:text-left">
+          <div class="text-3xl text-white font-medium lg:text-3xl">
+            Explore our Demo Center to experience cutting-edge solutions, low-latency streaming and high availability for superior viewer engagement
+          </div>
+          <!-- <div class="mt-2 text-white text-opacity-80 lg:text-xl">
+            <ContentSlot :use="$slots.subtitle" unwrap="p" />
+          </div> -->
+        </div>
+
+        <div class="relative w-full flex flex-shrink-0 gap-2 text-center lg:w-auto">
+          <SButton
+            class="underline-transparent rounded-full! hover:underline-current"
+            :to="localePath('/contact')" :as="NuxtLink"
+            size="lg"
+            variant="white"
+          >
+            Contact us
+          </SButton>
         </div>
       </div>
     </div>
