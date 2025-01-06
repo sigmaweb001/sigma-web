@@ -44,6 +44,8 @@ const destroyFn = ref<() => void | null>(null)
 const hlsInstance = ref<any | null>(null)
 
 async function insertAd() {
+  destroyFn.value?.()
+  hlsInstance.value?.destroy()
   sessionId.value = nanoid()
 
   const duration = Number.parseInt(adDuration.value)
@@ -88,6 +90,7 @@ async function insertAd() {
 
         // STEP 9: Set up event tracking for logging
         onEventTracking('start', (payload: any) => {
+          console.log('[LOG] ~ payload:', payload)
           adInsertedTime.value = formatTime(video.currentTime)
         })
 
