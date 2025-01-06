@@ -1,10 +1,11 @@
-<script lang="ts" setup>
-const route = useRoute()
+<script setup lang="ts">
+import { nanoid } from 'nanoid'
+import { joinURL } from 'ufo'
+
 useHead({
   script: [
     {
       src: 'https://cdn.jsdelivr.net/npm/hls.js@latest',
-      // valid options are: 'head' | 'bodyClose' | 'bodyOpen'
       tagPosition: 'head',
     },
     {
@@ -13,15 +14,18 @@ useHead({
     },
   ],
 })
-const slug = computed(() => route.params.slug)
-const { locale } = useI18n()
-
+const NuxtLink = resolveComponent('NuxtLink')
+const sessionId = useSessionStorage('sessionId', nanoid())
 const localePath = useLocalePath()
 
-const NuxtLink = resolveComponent('NuxtLink')
+const domain = 'https://dev-streaming.gviet.vn:8783'
 
-const adInsertionTime = ref('')
-const adUrl = ref('')
+function getPlayerUrl(sessionId: string) {
+  return `http://123.31.18.25:2180/manifest/manipulation/master/c1979665-2bf6-488f-b1db-51a847ae4679/${sessionId}/manifest/origin04/demo-ssai/master.m3u8`
+}
+
+const adDuration = ref('30')
+const adUrl = ref(getPlayerUrl(sessionId.value))
 const timeElapsed = ref('00:00:00')
 const adInsertedTime = ref('')
 
@@ -34,18 +38,33 @@ function formatTime(seconds: number) {
     .join(':')
 }
 
-onMounted(() => {
-  // Get references to the video and ad container elements
+const isLoading = ref(false)
+
+const destroyFn = ref<() => void | null>(null)
+const hlsInstance = ref<any | null>(null)
+
+async function insertAd() {
+  sessionId.value = nanoid()
+
+  const duration = Number.parseInt(adDuration.value)
+  if (duration < 5 || duration > 60) {
+    alert('Duration must be between 5 and 60 seconds')
+    return
+  }
+
+  isLoading.value = true
+  const res = await $fetch(joinURL(domain, '/api/demo-page/sessions', sessionId.value), {
+    method: 'POST',
+    body: {
+      duration,
+    },
+  })
+  console.log('[LOG] ~ res:', res)
   const video = document.querySelector('.videoElement') as HTMLVideoElement | null
   if (!video)
     return
-  let destroyFn
-  let hlsInstance
 
-  // STEP 5: Set the URL of the HLS manifest (video stream with SSAI)
-  const sourceURL
-        = 'https://cdn-lrm-test.sigma.video/manifest/origin04/scte35-av6s-clear/master.m3u8?sigma.dai.adsEndpoint=a77eb455-b79d-40c0-9141-bfb62870dfbf'
-
+  const sourceURL = getPlayerUrl(sessionId.value)
   const { playerUrl, adsUrl } = window.SigmaDaiSdk.processURL(sourceURL)
 
   // STEP 6: Create a new instance of the Sigma SSAI SDK with the video and ad containers
@@ -58,20 +77,26 @@ onMounted(() => {
       // Check if the HLS.js is supported in the browser
       if (window.Hls.isSupported()) {
         const hls = new window.Hls()
-        hlsInstance = hls
+        hlsInstance.value = hls
 
         // STEP 7: Load the manifest URL and attach the HLS stream to the video element
         hls.loadSource(playerUrl)
         hls.attachMedia(video)
 
         sigmaPlayer.attachHls(hls)
-        destroyFn = destroy
+        destroyFn.value = destroy
 
         // STEP 9: Set up event tracking for logging
         onEventTracking('start', (payload: any) => {
           adInsertedTime.value = formatTime(video.currentTime)
         })
+
+        onEventTracking('complete', (payload: any) => {
+          // adInsertedTime.value = formatTime(video.currentTime)
+        })
       }
+
+      isLoading.value = false
     })
 
   video.addEventListener('timeupdate', () => {
@@ -79,7 +104,7 @@ onMounted(() => {
       timeElapsed.value = formatTime(video.currentTime)
     }
   })
-})
+}
 </script>
 
 <template>
@@ -113,20 +138,36 @@ onMounted(() => {
           Manual Ads Insert
         </h3>
         <div class="mb-4">
-          <label for="adTime" class="block text-sm text-gray-700 font-medium">Ad Insertion Time</label>
-          <SInputText v-model="adInsertionTime" class="min-w-64" placeholder="30s" />
+          <div class="flex items-center gap-1">
+            <label for="adTime" class="block text-sm text-gray-700 font-medium">Duration</label>
+            <p class="text-xs text-gray-500">
+              (from 5 to 60 seconds)
+            </p>
+          </div>
+          <SInputText
+            v-model="adDuration"
+            class="min-w-64"
+            placeholder="30"
+            type="number"
+            min="5"
+            max="60"
+          />
         </div>
         <div class="mb-4">
           <label for="adUrl" class="block text-sm text-gray-700 font-medium">Ad URL</label>
-          <SInputText v-model="adUrl" class="min-w-64" placeholder="//cdn.theoplayer.com/demos/preroll.xml" />
+          <SInputText
+            v-model="adUrl"
+            disabled
+            class="min-w-64"
+            placeholder=""
+          />
         </div>
-        <SButton>
+        <SButton @click="insertAd">
           Insert Ad Now
         </SButton>
       </div>
     </div>
 
-    <!-- SECTION CTA -->
     <SectionCta>
       <template #title>
         Experience seamless ad insertion with SSAI's Manual Ads Insert feature. Control when and where your ads appear in real-time for a fully customized streaming experience
