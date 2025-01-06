@@ -164,7 +164,7 @@ async function insertAd() {
             placeholder=""
           />
         </div>
-        <SButton @click="insertAd">
+        <SButton v-if="!isLoading" @click="insertAd">
           Insert Ad Now
         </SButton>
       </div>
