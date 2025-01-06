@@ -9,7 +9,7 @@ useHead({
       tagPosition: 'head',
     },
     {
-      src: 'https://cdn.jsdelivr.net/gh/sigmaott/sigma-ssai-web-sdk@v1.1.1/build/sdk-dai.iife.js',
+      src: 'https://cdn.jsdelivr.net/gh/sigmaott/sigma-ssai-web-sdk@v1.2.0/build/sdk-dai.iife.js',
       tagPosition: 'head',
     },
   ],
@@ -89,9 +89,8 @@ async function insertAd() {
         destroyFn.value = destroy
 
         // STEP 9: Set up event tracking for logging
-        onEventTracking('start', (payload: any) => {
+        onEventTracking('*', (payload: any) => {
           console.log('[LOG] ~ payload:', payload)
-          adInsertedTime.value = formatTime(video.currentTime)
         })
 
         onEventTracking('complete', (payload: any) => {
