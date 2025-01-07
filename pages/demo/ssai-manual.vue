@@ -114,7 +114,7 @@ async function insertAd() {
 
 <template>
   <main>
-    <div class="relative mb-10">
+    <div class="relative mb-4">
       <PricingHero>
         <template #title>
           SSAI Manual Ads Insert
@@ -128,7 +128,7 @@ async function insertAd() {
       </PricingHero>
     </div>
 
-    <div class="mx-16 my-8 flex items-start justify-between gap-8">
+    <div class="mx-16 flex items-start justify-between gap-8">
       <div class="flex-1">
         <div class="mb-2 text-lg font-semibold">
           Time Elapsed: {{ timeElapsed }}
@@ -138,7 +138,7 @@ async function insertAd() {
           Ad inserted successfully at {{ adInsertedTime }}
         </p>
       </div>
-      <div class="mt-7 w-80 rounded-lg bg-white p-4 shadow">
+      <div class="mt-9 w-80 rounded-lg bg-white p-4 shadow">
         <h3 class="mb-4 text-xl font-semibold">
           Manual Ads Insert
         </h3>

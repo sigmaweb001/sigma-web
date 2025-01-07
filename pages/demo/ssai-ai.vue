@@ -83,7 +83,7 @@ onMounted(() => {
 
 <template>
   <main>
-    <div class="relative mb-10">
+    <div class="relative mb-4">
       <PricingHero>
         <template #title>
           SSAI AI Ads Marker
@@ -97,7 +97,7 @@ onMounted(() => {
       </PricingHero>
     </div>
 
-    <div class="mx-16 my-8 flex items-start justify-between gap-8">
+    <div class="mx-16 flex items-start justify-between gap-8">
       <div class="flex-1">
         <div class="flex items-center justify-between">
           <div class="mb-2 text-lg font-semibold">
