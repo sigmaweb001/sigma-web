@@ -9,7 +9,7 @@ useHead({
       tagPosition: 'head',
     },
     {
-      src: 'https://cdn.jsdelivr.net/gh/sigmaott/sigma-ssai-web-sdk@v1.2.0/build/sdk-dai.iife.js',
+      src: 'https://cdn.jsdelivr.net/gh/sigmaott/sigma-ssai-web-sdk@v1.1.1/build/sdk-dai.iife.js',
       tagPosition: 'head',
     },
   ],
