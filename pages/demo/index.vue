@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+useHead({
+  title: 'Demo Center',
+})
 const route = useRoute()
 
 const localePath = useLocalePath()
