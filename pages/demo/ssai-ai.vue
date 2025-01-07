@@ -39,8 +39,7 @@ onMounted(() => {
   let hlsInstance
 
   // STEP 5: Set the URL of the HLS manifest (video stream with SSAI)
-  const sourceURL
-        = 'https://cdn-lrm-test.sigma.video/manifest/origin04/scte35-av6s-clear/master.m3u8?sigma.dai.adsEndpoint=a77eb455-b79d-40c0-9141-bfb62870dfbf'
+  const sourceURL = 'https://dai.sigma.video/manifest/manipulation/master/53ff75d8-22ca-4457-baf9-a058233e098b/scte35-av6s-clear/master.m3u8'
 
   const { playerUrl, adsUrl } = window.SigmaDaiSdk.processURL(sourceURL)
 
@@ -100,15 +99,17 @@ onMounted(() => {
 
     <div class="mx-16 my-8 flex items-start justify-between gap-8">
       <div class="flex-1">
-        <div class="mb-2 text-lg font-semibold">
-          Time Elapsed: {{ timeElapsed }}
+        <div class="flex items-center justify-between">
+          <div class="mb-2 text-lg font-semibold">
+            Time Elapsed: {{ timeElapsed }}
+          </div>
+          <p class="mt-4 text-primary font-semibold">
+            {{ adInsertedTime }} {{ adInsertedTime ? 'Ads' : 'In-stream' }}
+          </p>
         </div>
         <video controls class="videoElement w-full rounded-lg shadow" />
-        <p class="mt-4">
-          {{ adInsertedTime }} {{ adInsertedTime ? 'ads' : 'in-stream' }}
-        </p>
       </div>
-      <div class="w-80 rounded-lg bg-white p-4 shadow">
+      <div class="mt-15 w-80 rounded-lg bg-white p-4 text-primary shadow">
         <h3 class="mb-4 text-lg">
           Observe how ads seamlessly appear within the video without interruption, providing an optimal user experience. AI Ads Marker ensures that the ad placement points are selected accurately and appropriately.
         </h3>

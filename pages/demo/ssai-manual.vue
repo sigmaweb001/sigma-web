@@ -96,6 +96,9 @@ async function insertAd() {
         onEventTracking('complete', (payload: any) => {
           // adInsertedTime.value = formatTime(video.currentTime)
         })
+
+        // play video
+        video.play()
       }
 
       isLoading.value = false
@@ -135,7 +138,7 @@ async function insertAd() {
           Ad inserted successfully at {{ adInsertedTime }}
         </p>
       </div>
-      <div class="w-80 rounded-lg bg-white p-4 shadow">
+      <div class="mt-7 w-80 rounded-lg bg-white p-4 shadow">
         <h3 class="mb-4 text-xl font-semibold">
           Manual Ads Insert
         </h3>
