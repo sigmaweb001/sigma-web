@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const route = useRoute()
 useHead({
+  title: 'SSAI AI Ads Marker',
   script: [
     {
       src: 'https://cdn.jsdelivr.net/npm/hls.js@latest',

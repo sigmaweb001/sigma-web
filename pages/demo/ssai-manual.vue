@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid'
 import { joinURL } from 'ufo'
 
 useHead({
+  title: 'SSAI Manual Ads Insert',
   script: [
     {
       src: 'https://cdn.jsdelivr.net/npm/hls.js@latest',
