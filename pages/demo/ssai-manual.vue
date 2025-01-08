@@ -29,7 +29,15 @@ const adDuration = ref('30')
 const adUrl = ref(getPlayerUrl(sessionId.value))
 const timeElapsed = ref('00:00:00')
 const adInsertedTime = ref('')
+const countdown = ref(0)
 
+watch(countdown, (value) => {
+  if (value === 0)
+    return
+  setTimeout(() => {
+    countdown.value = value - 1
+  }, 1000)
+})
 function formatTime(seconds: number) {
   const hrs = Math.floor(seconds / 3600)
   const mins = Math.floor((seconds % 3600) / 60)
@@ -52,6 +60,7 @@ async function insertAds() {
     return
   }
   isLoading.value = true
+  countdown.value = duration
   const res = await $fetch(joinURL(domain, '/api/demo-page/sessions', sessionId.value), {
     method: 'POST',
     body: {
@@ -177,7 +186,7 @@ onMounted(() => {
           />
         </div>
         <SButton :disabled="isLoading || isPending" @click="insertAds">
-          {{ isLoading || isPending ? 'Inserting...' : 'Insert Ads Now' }}
+          {{ isLoading || isPending ? `Inserting... (${countdown}s)` : 'Insert Ads Now' }}
         </SButton>
       </div>
     </div>
