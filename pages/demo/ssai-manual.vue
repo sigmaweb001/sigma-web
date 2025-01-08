@@ -38,6 +38,7 @@ function formatTime(seconds: number) {
     .map(v => v < 10 ? `0${v}` : v)
     .join(':')
 }
+const isPending = refAutoReset(false, 60 * 1000)
 
 const isLoading = ref(false)
 
@@ -58,6 +59,7 @@ async function insertAds() {
     },
   })
   isLoading.value = false
+  isPending.value = true
 }
 
 async function startPlayer() {
@@ -174,8 +176,8 @@ onMounted(() => {
             placeholder=""
           />
         </div>
-        <SButton v-if="!isLoading" @click="insertAds">
-          Insert Ads Now
+        <SButton :disabled="isLoading || isPending" @click="insertAds">
+          {{ isLoading || isPending ? 'Inserting...' : 'Insert Ads Now' }}
         </SButton>
       </div>
     </div>
