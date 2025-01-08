@@ -112,7 +112,8 @@ async function startPlayer() {
         })
 
         // play video
-        nextTick(() => {
+        hls.on(window.Hls.Events.MEDIA_ATTACHED, () => {
+          video.muted = true
           video.play()
         })
       }

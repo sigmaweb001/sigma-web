@@ -71,6 +71,12 @@ onMounted(() => {
         onEventTracking('complete', (payload: any) => {
           adInsertedTime.value = ''
         })
+
+        // play video
+        hls.on(window.Hls.Events.MEDIA_ATTACHED, () => {
+          video.muted = true
+          video.play()
+        })
       }
     })
 
