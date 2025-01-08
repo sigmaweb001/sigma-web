@@ -44,17 +44,12 @@ const isLoading = ref(false)
 const destroyFn = ref<() => void | null>(null)
 const hlsInstance = ref<any | null>(null)
 
-async function insertAd() {
-  destroyFn.value?.()
-  hlsInstance.value?.destroy()
-  sessionId.value = nanoid()
-
+async function insertAds() {
   const duration = Number.parseInt(adDuration.value)
   if (duration < 5 || duration > 60) {
     alert('Duration must be between 5 and 60 seconds')
     return
   }
-
   isLoading.value = true
   const res = await $fetch(joinURL(domain, '/api/demo-page/sessions', sessionId.value), {
     method: 'POST',
@@ -62,7 +57,14 @@ async function insertAd() {
       duration,
     },
   })
-  console.log('[LOG] ~ res:', res)
+  isLoading.value = false
+}
+
+async function startPlayer() {
+  destroyFn.value?.()
+  hlsInstance.value?.destroy()
+  sessionId.value = nanoid()
+
   const video = document.querySelector('.videoElement') as HTMLVideoElement | null
   if (!video)
     return
@@ -99,10 +101,10 @@ async function insertAd() {
         })
 
         // play video
-        video.play()
+        nextTick(() => {
+          video.play()
+        })
       }
-
-      isLoading.value = false
     })
 
   video.addEventListener('timeupdate', () => {
@@ -111,6 +113,10 @@ async function insertAd() {
     }
   })
 }
+
+onMounted(() => {
+  startPlayer()
+})
 </script>
 
 <template>
@@ -168,8 +174,8 @@ async function insertAd() {
             placeholder=""
           />
         </div>
-        <SButton v-if="!isLoading" @click="insertAd">
-          Insert Ad Now
+        <SButton v-if="!isLoading" @click="insertAds">
+          Insert Ads Now
         </SButton>
       </div>
     </div>
