@@ -31,8 +31,8 @@ function formatTime(seconds: number) {
     .join(':')
 }
 
-onMounted(() => {
-  // Get references to the video and ad container elements
+function startPlayer() {
+// Get references to the video and ad container elements
   const video = document.querySelector('.videoElement') as HTMLVideoElement | null
   if (!video)
     return
@@ -85,6 +85,16 @@ onMounted(() => {
       timeElapsed.value = formatTime(video.currentTime)
     }
   })
+}
+
+onMounted(() => {
+  // wait until window.SigmaDaiSdk is ready
+  const interval = setInterval(() => {
+    if (window.SigmaDaiSdk) {
+      clearInterval(interval)
+      startPlayer()
+    }
+  }, 100)
 })
 </script>
 

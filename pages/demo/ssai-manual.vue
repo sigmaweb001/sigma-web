@@ -127,7 +127,13 @@ async function startPlayer() {
 }
 
 onMounted(() => {
-  startPlayer()
+  // wait until window.SigmaDaiSdk is ready
+  const interval = setInterval(() => {
+    if (window.SigmaDaiSdk) {
+      clearInterval(interval)
+      startPlayer()
+    }
+  }, 100)
 })
 </script>
 
