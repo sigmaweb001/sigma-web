@@ -46,7 +46,7 @@ function formatTime(seconds: number) {
     .map(v => v < 10 ? `0${v}` : v)
     .join(':')
 }
-const isPending = refAutoReset(false, 60 * 1000)
+const isPending = computed(() => countdown.value > 0)
 
 const isLoading = ref(false)
 
