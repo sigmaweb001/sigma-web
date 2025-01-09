@@ -45,6 +45,7 @@ function startPlayer() {
   const { playerUrl, adsUrl } = window.SigmaDaiSdk.processURL(sourceURL)
 
   // STEP 6: Create a new instance of the Sigma SSAI SDK with the video and ad containers
+
   window.SigmaDaiSdk.createSigmaDai({
     video,
     adContainer: null,
@@ -63,52 +64,24 @@ function startPlayer() {
         sigmaPlayer.attachHls(hls)
         destroyFn = destroy
 
-        function createHlsFragParsingMetadata() {
-          return async (event, data) => {
-            data.samples.forEach((sample) => {
-              const textDecoder = new TextDecoder('utf-8')
-              const decodedData = textDecoder.decode(sample.data)
+        function createHlsFragChanged() {
+          return async (event: string, data: any) => {
+            const { tagList, _url } = data.frag
 
-              // Sử dụng biểu thức chính quy để tìm phần dữ liệu JSON
-              const regex = /\{.*\}/ // Tìm chuỗi JSON trong dữ liệu
-              const match = decodedData.match(regex)
+            const isAds = tagList.flat().find(tag => tag === 'ads')
 
-              if (match) {
-                const jsonData = match[0] // Kết quả là chuỗi JSON
-                console.log(`Extracted JSON: ${jsonData}`)
-
-                try {
-                // Parse JSON nếu cần sử dụng đối tượng JavaScript
-                  const parsedData = JSON.parse(jsonData)
-                  console.log('Parsed Data:', parsedData)
-
-                  // Bạn có thể truy cập vào các trường cụ thể
-                  console.log(`Event: ${parsedData.event}`)
-                  console.log(`Ad ID: ${parsedData.adId}`)
-                  console.log(`Time: ${parsedData.time}`)
-                  console.log(`P: ${parsedData.p}`)
-
-                  if (parsedData.event === 'start') {
-                    adInsertedTime.value = formatTime(video.currentTime)
-                  }
-
-                  if (parsedData.event === 'complete') {
-                    adInsertedTime.value = ''
-                  }
-                }
-                catch (error) {
-                  console.error('JSON parsing error:', error)
-                }
+            if (isAds) {
+              if (!adInsertedTime.value) {
+                adInsertedTime.value = formatTime(video.currentTime)
               }
-              else {
-                console.warn('No JSON found in ID3 tag:', decodedData)
-              }
-            })
+            }
+            else {
+              adInsertedTime.value = ''
+            }
           }
         }
 
-        hls.on(window.Hls.Events.FRAG_PARSING_METADATA, createHlsFragParsingMetadata())
-
+        hls.on(window.Hls.Events.FRAG_CHANGED, createHlsFragChanged())
         // play video
         hls.on(window.Hls.Events.MEDIA_ATTACHED, () => {
           video.muted = true
