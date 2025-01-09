@@ -63,14 +63,51 @@ function startPlayer() {
         sigmaPlayer.attachHls(hls)
         destroyFn = destroy
 
-        // STEP 9: Set up event tracking for logging
-        onEventTracking('start', (payload: any) => {
-          adInsertedTime.value = formatTime(video.currentTime)
-        })
+        function createHlsFragParsingMetadata() {
+          return async (event, data) => {
+            data.samples.forEach((sample) => {
+              const textDecoder = new TextDecoder('utf-8')
+              const decodedData = textDecoder.decode(sample.data)
 
-        onEventTracking('complete', (payload: any) => {
-          adInsertedTime.value = ''
-        })
+              // Sử dụng biểu thức chính quy để tìm phần dữ liệu JSON
+              const regex = /\{.*\}/ // Tìm chuỗi JSON trong dữ liệu
+              const match = decodedData.match(regex)
+
+              if (match) {
+                const jsonData = match[0] // Kết quả là chuỗi JSON
+                console.log(`Extracted JSON: ${jsonData}`)
+
+                try {
+                // Parse JSON nếu cần sử dụng đối tượng JavaScript
+                  const parsedData = JSON.parse(jsonData)
+                  console.log('Parsed Data:', parsedData)
+
+                  // Bạn có thể truy cập vào các trường cụ thể
+                  console.log(`Event: ${parsedData.event}`)
+                  console.log(`Ad ID: ${parsedData.adId}`)
+                  console.log(`Time: ${parsedData.time}`)
+                  console.log(`P: ${parsedData.p}`)
+
+                  if (parsedData.event === 'start') {
+                    adInsertedTime.value = formatTime(video.currentTime)
+                  }
+
+                  if (parsedData.event === 'complete') {
+                    adInsertedTime.value = ''
+                  }
+                }
+                catch (error) {
+                  console.error('JSON parsing error:', error)
+                }
+              }
+              else {
+                console.warn('No JSON found in ID3 tag:', decodedData)
+              }
+            })
+          }
+        }
+
+        hls.on(window.Hls.Events.FRAG_PARSING_METADATA, createHlsFragParsingMetadata())
 
         // play video
         hls.on(window.Hls.Events.MEDIA_ATTACHED, () => {
@@ -120,8 +157,8 @@ onMounted(() => {
           <div class="mb-2 text-lg font-semibold">
             Time Elapsed: {{ timeElapsed }}
           </div>
-          <p class="mt-4 text-primary font-semibold">
-            {{ adInsertedTime }} {{ adInsertedTime ? 'Ads' : 'In-stream' }}
+          <p class="mt-4 text-lg text-primary font-semibold">
+            {{ adInsertedTime ? `Ads (${adInsertedTime})` : 'In-stream' }}
           </p>
         </div>
         <video controls class="videoElement w-full rounded-lg shadow" />
