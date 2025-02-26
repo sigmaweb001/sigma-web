@@ -175,28 +175,10 @@ Trên toàn cầu, 42,7% người dùng internet sử dụng trình chặn quả
   :::resource-item{path="/resources/datasheets/sigma-dai-datasheet"}
   :::
 
-  :::resource-item{path="/vi/resources/blogs/strength-dai"}
+  :::resource-item{path="/resources/blogs/strength-dai"}
   :::
 
-  :::resource-item{path="/vi/resources/blogs/vodvo"}
-  :::
-
-  :::resource-item{path="/vi/resources/blogs/streaming-ott"}
-  :::
-
-  :::resource-item{path="/vi/resources/blogs/ott-ssai"}
-  :::
-
-  :::resource-item{path="/vi/resources/blogs/fast-swot"}
-  :::
-
-  :::resource-item{path="/vi/resources/blogs/fast"}
-  :::
-
-  :::resource-item{path="/vi/resources/blogs/ott-live"}
-  :::
-
-  :::resource-item{path="/vi/resources/blogs/ott"}
+  :::resource-item{path="/resources/blogs/ott-ssai"}
   :::
 
 #title
