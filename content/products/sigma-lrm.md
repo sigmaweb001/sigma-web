@@ -11,7 +11,7 @@ comingsoon: false
 - API-driven content event ingest and SCTE 224 normalization.
 
 #title
-Accurately distribute rights and content using _Sigma LRM_
+Accurately distribute rights and content using *Sigma LRM*
 
 #subtitle
 Control your live or VOD content, delivering it to the right customers at the right time.
@@ -92,7 +92,7 @@ Strength
 
 ::section-grid
 ---
-col: '2'
+col: "2"
 ---
   :::grid-card
   The comprehensive channel list from many partners makes it easy to manage and receive notifications about detailed events within it.
@@ -142,8 +142,7 @@ Key FEATURES
 ::
 
 ::section-normal
-![lrm-how-it-work.png](/lrm/lrm-how-it-work.png)
-Receiving signals from content providers, we manage, schedule, and insert signals based on EPG and API through Sigma LRM. After completing the process of copying and replacing live and catch-up content, the new content is distributed to broadcasters and content distribution partners.
+![lrm-how-it-work.png](/lrm/lrm-how-it-work.png) Receiving signals from content providers, we manage, schedule, and insert signals based on EPG and API through Sigma LRM. After completing the process of copying and replacing live and catch-up content, the new content is distributed to broadcasters and content distribution partners.
 
 #title
 How it works?
@@ -153,6 +152,9 @@ System architecture
 ::
 
 ::section-resource
+  :::resource-item{path="/resources/datasheets/Sigma LRM Datasheet"}
+  :::
+  
   :::resource-item{path="/resources/blogs/fast"}
   :::
 
@@ -205,7 +207,7 @@ TRUSTED BY 2000+ CUSTOMERS
   :::button-link
   ---
   data-appointlet-modal: true
-  dataAppointletModal: ''
+  dataAppointletModal: ""
   href: https://appt.link/meet-with-sigma-team
   ---
   View demo
