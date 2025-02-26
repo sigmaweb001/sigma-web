@@ -172,7 +172,7 @@ Globally, 42.7% of internet users use ad blockers
 ::section-resource
   :::resource-item{path="/resources/datasheets/sigma-dai-datasheet"}
   :::
-  
+
   :::resource-item{path="/resources/blogs/strength-dai"}
   :::
 

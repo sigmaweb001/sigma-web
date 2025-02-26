@@ -33,7 +33,7 @@ Không bắt buộc có thẻ tín dụng
 
 ::section-grid
 ---
-col: '3'
+col: "3"
 ---
   :::grid-card
   - Phát trực tiếp
@@ -107,7 +107,7 @@ TÍNH NĂNG NỔI BẬT
 ::section-grid
 ---
 bg: true
-col: '3'
+col: "3"
 ---
   :::grid-item
   ![usecase-1.png](/interactive/usecase-1.png)
@@ -116,8 +116,8 @@ col: '3'
   :::grid-item
   ---
   center: true
-  padding: '16'
-  span: '2'
+  padding: "16"
+  span: "2"
   ---
   #title
   Figma plugin
@@ -137,8 +137,8 @@ Usecase
   :::grid-item
   ---
   center: true
-  padding: '16'
-  span: '2'
+  padding: "16"
+  span: "2"
   ---
   #title
   Tương tác thể thao
@@ -160,8 +160,8 @@ Usecase
   :::grid-item
   ---
   center: true
-  padding: '16'
-  span: '2'
+  padding: "16"
+  span: "2"
   ---
   #title
   Gameshow tương tác
@@ -175,8 +175,8 @@ Usecase
   :::grid-item
   ---
   center: true
-  padding: '16'
-  span: '2'
+  padding: "16"
+  span: "2"
   ---
   #title
   Tương tác trực tuyến
@@ -198,8 +198,8 @@ Usecase
   :::grid-item
   ---
   center: true
-  padding: '16'
-  span: '2'
+  padding: "16"
+  span: "2"
   ---
   #title
   Biên tập overlay
@@ -213,8 +213,8 @@ Usecase
   :::grid-item
   ---
   center: true
-  padding: '16'
-  span: '2'
+  padding: "16"
+  span: "2"
   ---
   #title
   Panel
@@ -291,7 +291,7 @@ Interactive Resources
   :::button-link
   ---
   data-appointlet-modal: true
-  dataAppointletModal: ''
+  dataAppointletModal: ""
   href: https://appt.link/meet-with-sigma-team
   ---
   Xem demo

@@ -92,7 +92,7 @@ Không bắt buộc có thẻ tín dụng
 
 ::section-grid
 ---
-col: '2'
+col: "2"
 ---
   :::grid-card
   Danh sách kênh toàn diện từ nhiều đối tác giúp bạn dễ dàng quản lý và nhận thông báo về các sự kiện chi tiết trong đó.
@@ -152,6 +152,9 @@ Kiến Trúc Hệ Thống
 ::
 
 ::section-resource
+  :::resource-item{path="/resources/datasheets/Sigma LRM Datasheet"}
+  :::
+
   :::resource-item{path="/vi/resources/blogs/fast"}
   :::
 
@@ -204,7 +207,7 @@ Tài nguyên LRM
   :::button-link
   ---
   data-appointlet-modal: true
-  dataAppointletModal: ''
+  dataAppointletModal: ""
   href: https://appt.link/meet-with-sigma-team
   ---
   Xem demo

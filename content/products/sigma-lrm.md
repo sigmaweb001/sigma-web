@@ -154,7 +154,7 @@ System architecture
 ::section-resource
   :::resource-item{path="/resources/datasheets/Sigma LRM Datasheet"}
   :::
-  
+
   :::resource-item{path="/resources/blogs/fast"}
   :::
 
