@@ -10,7 +10,7 @@ icon: ic:twotone-ads-click
 - Compatible with multiple platforms.
 
 #title
-Seamless _Interactive_, Endless Choices
+Seamless *Interactive*, Endless Choices
 
 #subtitle
 The intermediary channel system helps manage interactions.
@@ -33,7 +33,7 @@ No credit card required
 
 ::section-grid
 ---
-col: '3'
+col: "3"
 ---
   :::grid-card
   - Livestream
@@ -107,7 +107,7 @@ HIGHLIGHTS FEATURES
 ::section-grid
 ---
 bg: true
-col: '3'
+col: "3"
 ---
   :::grid-item
   ![usecase-1.png](/interactive/usecase-1.png)
@@ -116,8 +116,8 @@ col: '3'
   :::grid-item
   ---
   center: true
-  padding: '16'
-  span: '2'
+  padding: "16"
+  span: "2"
   ---
   #title
   Figma plugin
@@ -137,8 +137,8 @@ Usecase
   :::grid-item
   ---
   center: true
-  padding: '16'
-  span: '2'
+  padding: "16"
+  span: "2"
   ---
   #title
   Sports interaction
@@ -160,8 +160,8 @@ Usecase
   :::grid-item
   ---
   center: true
-  padding: '16'
-  span: '2'
+  padding: "16"
+  span: "2"
   ---
   #title
   Gameshow interaction
@@ -175,8 +175,8 @@ Usecase
   :::grid-item
   ---
   center: true
-  padding: '16'
-  span: '2'
+  padding: "16"
+  span: "2"
   ---
   #title
   Live interaction
@@ -198,8 +198,8 @@ Usecase
   :::grid-item
   ---
   center: true
-  padding: '16'
-  span: '2'
+  padding: "16"
+  span: "2"
   ---
   #title
   Overlay editor
@@ -213,8 +213,8 @@ Usecase
   :::grid-item
   ---
   center: true
-  padding: '16'
-  span: '2'
+  padding: "16"
+  span: "2"
   ---
   #title
   Panel
@@ -239,28 +239,10 @@ System architecture
 ::
 
 ::section-resource
-  :::resource-item{path="/resources/blogs/vodvo"}
-  :::
-
-  :::resource-item{path="/resources/blogs/fast-swot"}
-  :::
-
   :::resource-item{path="/resources/blogs/ott-live"}
   :::
 
-  :::resource-item{path="/resources/blogs/ott-ssai"}
-  :::
-
-  :::resource-item{path="/resources/blogs/fast"}
-  :::
-
   :::resource-item{path="/resources/blogs/ott"}
-  :::
-
-  :::resource-item{path="/resources/blogs/streaming-ott"}
-  :::
-
-  :::resource-item{path="/resources/blogs/strength-dai"}
   :::
 
 #title
@@ -291,7 +273,7 @@ TRUSTED BY 2000+ CUSTOMERS
   :::button-link
   ---
   data-appointlet-modal: true
-  dataAppointletModal: ''
+  dataAppointletModal: ""
   href: https://appt.link/meet-with-sigma-team
   ---
   View demo

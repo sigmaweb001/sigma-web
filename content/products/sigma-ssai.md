@@ -9,7 +9,7 @@ icon: ri:advertisement-line
 - Unlock ad potential. Scale seamlessly.
 
 #title
-Enable _ADS_ Insertion Everywhere
+Enable *ADS* Insertion Everywhere
 
 #subtitle
 Dynamic Ad Insertion – also known as Server-side ad insertion (SSAI) – enables the seamless delivery of video ads into content streamed on internet-enabled devices.
@@ -90,7 +90,7 @@ Strength
 
 ::section-grid
 ---
-col: '3'
+col: "3"
 ---
   :::grid-card
   Replace broadcast ad-breaks with addressable OTT Ads Insert ads into Live- Linear TV and VOD streams.
@@ -113,8 +113,7 @@ col: '3'
   :::
 
   :::grid-card
-  Supports on multiple platforms and multiple devices.
-  The document provides an overview of SSAI-related index information and includes details from the user manual.
+  Supports on multiple platforms and multiple devices. The document provides an overview of SSAI-related index information and includes details from the user manual.
   
   #image
   ![ssai-feature-3.png](/ssai/ssai-feature-3.png)
@@ -161,43 +160,23 @@ HIGHLIGHTS FEATURES
 ::
 
 ::section-normal
-By integrating content and ads into one continuous stream, SSAI provides a seamless viewing experience, similar to a traditional advertising break. We offers SSAI technology that makes it possible to exchange and insert TV spots on the fly, so broadcasters can increase yield from linear streams within OTT and web environments.
-![ssai-how-it-work-1.png](/ssai/ssai-how-it-work-1.png)
-By integrating content and ads into one continuous stream, SSAI provides a seamless viewing experience, similar to a traditional advertising break. We offers SSAI technology that makes it possible to exchange and insert TV spots on the fly, so broadcasters can increase yield from linear streams within OTT and web environments.
-![ssai-how-it-work-2.png](/ssai/ssai-how-it-work-2.png)
-Users stream video or OTT content on internet-enabled devices via content delivery networks (CDNs). When a user reaches an ad break, the SSAI server requests ads from third-party ad servers. The SSAI server then stitches those ads – at the same bitrate, frame rate and audio level as the underlying stream – directly into the content, which is passed back to the viewing device via the CDN.
+By integrating content and ads into one continuous stream, SSAI provides a seamless viewing experience, similar to a traditional advertising break. We offers SSAI technology that makes it possible to exchange and insert TV spots on the fly, so broadcasters can increase yield from linear streams within OTT and web environments. ![ssai-how-it-work-1.png](/ssai/ssai-how-it-work-1.png) By integrating content and ads into one continuous stream, SSAI provides a seamless viewing experience, similar to a traditional advertising break. We offers SSAI technology that makes it possible to exchange and insert TV spots on the fly, so broadcasters can increase yield from linear streams within OTT and web environments. ![ssai-how-it-work-2.png](/ssai/ssai-how-it-work-2.png) Users stream video or OTT content on internet-enabled devices via content delivery networks (CDNs). When a user reaches an ad break, the SSAI server requests ads from third-party ad servers. The SSAI server then stitches those ads – at the same bitrate, frame rate and audio level as the underlying stream – directly into the content, which is passed back to the viewing device via the CDN.
 
 #title
-Avoiding Ad Blockers for Video
-Monetization
+Avoiding Ad Blockers for Video Monetization
 
 #subtitle
 Globally, 42.7% of internet users use ad blockers
 ::
 
 ::section-resource
+  :::resource-item{path="/resources/datasheets/sigma-dai-datasheet"}
+  :::
+
   :::resource-item{path="/resources/blogs/strength-dai"}
   :::
 
-  :::resource-item{path="/resources/blogs/vodvo"}
-  :::
-
-  :::resource-item{path="/resources/blogs/streaming-ott"}
-  :::
-
   :::resource-item{path="/resources/blogs/ott-ssai"}
-  :::
-
-  :::resource-item{path="/resources/blogs/fast-swot"}
-  :::
-
-  :::resource-item{path="/resources/blogs/fast"}
-  :::
-
-  :::resource-item{path="/resources/blogs/ott-live"}
-  :::
-
-  :::resource-item{path="/resources/blogs/ott"}
   :::
 
 #title
@@ -228,7 +207,7 @@ TRUSTED BY 2000+ CUSTOMERS
   :::button-link
   ---
   data-appointlet-modal: true
-  dataAppointletModal: ''
+  dataAppointletModal: ""
   href: https://appt.link/meet-with-sigma-team
   ---
   View demo

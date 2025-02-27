@@ -74,7 +74,19 @@ export default defineAppConfig({
     color: '#707070',
   }, {
     slug: 'tag 8',
-    name: 'media',
+    name: 'Media Live',
+    color: '#707070',
+  }, {
+    slug: 'tag 9',
+    name: 'LRM',
+    color: '#707070',
+  }, {
+    slug: 'tag 10',
+    name: 'Media VOD',
+    color: '#707070',
+  }, {
+    slug: 'tag 11',
+    name: 'Playout',
     color: '#707070',
   }],
   banner: {

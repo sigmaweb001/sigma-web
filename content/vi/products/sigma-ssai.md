@@ -90,7 +90,7 @@ No credit card required
 
 ::section-grid
 ---
-col: '3'
+col: "3"
 ---
   :::grid-card
   Thay thế thời gian ngắt quảng cáo phát sóng bằng Quảng cáo OTT có thể định địa chỉ. Chèn quảng cáo vào luồng Truyền hình trực tiếp tuyến tính và VOD.
@@ -162,11 +162,7 @@ TÍNH NĂNG NỔI BẬT
 ::
 
 ::section-normal
-Bằng cách tích hợp nội dung và quảng cáo vào một luồng liên tục, SSAI mang lại trải nghiệm xem liền mạch, tương tự như thời gian nghỉ quảng cáo truyền thống. Chúng tôi cung cấp công nghệ SSAI cho phép trao đổi và chèn các điểm truyền hình một cách nhanh chóng, nhờ đó các đài truyền hình có thể tăng lợi nhuận từ các luồng tuyến tính trong môi trường OTT và web.
-![ssai-how-it-work-1.png](/ssai/ssai-how-it-work-1.png)
-Bằng cách tích hợp nội dung và quảng cáo vào một luồng liên tục, SSAI mang lại trải nghiệm xem liền mạch, tương tự như thời gian nghỉ quảng cáo truyền thống. Chúng tôi cung cấp công nghệ SSAI cho phép trao đổi và chèn các điểm truyền hình một cách nhanh chóng, nhờ đó các đài truyền hình có thể tăng lợi nhuận từ các luồng tuyến tính trong môi trường OTT và web.
-![ssai-how-it-work-2.png](/ssai/ssai-how-it-work-2.png)
-Người dùng truyền phát nội dung video hoặc OTT trên các thiết bị có hỗ trợ internet thông qua mạng phân phối nội dung (CDN). Khi người dùng đến thời điểm nghỉ quảng cáo, máy chủ SSAI sẽ yêu cầu quảng cáo từ máy chủ quảng cáo của bên thứ ba. Sau đó, máy chủ SSAI sẽ ghép các quảng cáo đó – ở cùng tốc độ bit, tốc độ khung hình và mức âm thanh như luồng cơ bản – trực tiếp vào nội dung, được truyền trở lại thiết bị xem qua CDN.
+Bằng cách tích hợp nội dung và quảng cáo vào một luồng liên tục, SSAI mang lại trải nghiệm xem liền mạch, tương tự như thời gian nghỉ quảng cáo truyền thống. Chúng tôi cung cấp công nghệ SSAI cho phép trao đổi và chèn các điểm truyền hình một cách nhanh chóng, nhờ đó các đài truyền hình có thể tăng lợi nhuận từ các luồng tuyến tính trong môi trường OTT và web. ![ssai-how-it-work-1.png](/ssai/ssai-how-it-work-1.png) Bằng cách tích hợp nội dung và quảng cáo vào một luồng liên tục, SSAI mang lại trải nghiệm xem liền mạch, tương tự như thời gian nghỉ quảng cáo truyền thống. Chúng tôi cung cấp công nghệ SSAI cho phép trao đổi và chèn các điểm truyền hình một cách nhanh chóng, nhờ đó các đài truyền hình có thể tăng lợi nhuận từ các luồng tuyến tính trong môi trường OTT và web. ![ssai-how-it-work-2.png](/ssai/ssai-how-it-work-2.png) Người dùng truyền phát nội dung video hoặc OTT trên các thiết bị có hỗ trợ internet thông qua mạng phân phối nội dung (CDN). Khi người dùng đến thời điểm nghỉ quảng cáo, máy chủ SSAI sẽ yêu cầu quảng cáo từ máy chủ quảng cáo của bên thứ ba. Sau đó, máy chủ SSAI sẽ ghép các quảng cáo đó – ở cùng tốc độ bit, tốc độ khung hình và mức âm thanh như luồng cơ bản – trực tiếp vào nội dung, được truyền trở lại thiết bị xem qua CDN.
 
 #title
 Tránh Ad Blockers cho Video và kiếm tiền
@@ -176,28 +172,13 @@ Trên toàn cầu, 42,7% người dùng internet sử dụng trình chặn quả
 ::
 
 ::section-resource
-  :::resource-item{path="/vi/resources/blogs/strength-dai"}
+  :::resource-item{path="/resources/datasheets/sigma-dai-datasheet"}
   :::
 
-  :::resource-item{path="/vi/resources/blogs/vodvo"}
+  :::resource-item{path="/resources/blogs/strength-dai"}
   :::
 
-  :::resource-item{path="/vi/resources/blogs/streaming-ott"}
-  :::
-
-  :::resource-item{path="/vi/resources/blogs/ott-ssai"}
-  :::
-
-  :::resource-item{path="/vi/resources/blogs/fast-swot"}
-  :::
-
-  :::resource-item{path="/vi/resources/blogs/fast"}
-  :::
-
-  :::resource-item{path="/vi/resources/blogs/ott-live"}
-  :::
-
-  :::resource-item{path="/vi/resources/blogs/ott"}
+  :::resource-item{path="/resources/blogs/ott-ssai"}
   :::
 
 #title
@@ -228,7 +209,7 @@ Tài nguyên DAI
   :::button-link
   ---
   data-appointlet-modal: true
-  dataAppointletModal: ''
+  dataAppointletModal: ""
   href: https://appt.link/meet-with-sigma-team
   ---
   Xem demo
