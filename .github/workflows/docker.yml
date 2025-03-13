@@ -11,8 +11,7 @@ on:
       - main
 
 env:
-  HARBOR_REGISTRY: ${{ secrets.HARBOR_REGISTRY }}
-  DOCKER_IMAGE: ${{ secrets.DOCKER_USERNAME }}/sigma-streaming-platform-web
+  DOCKER_IMAGE: brucewayne2610/sigma-streaming-platform-web
 
 jobs:
   build-and-push:
