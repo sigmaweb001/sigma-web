@@ -48,3 +48,11 @@ jobs:
           context: .
           push: true
           tags: ${{ env.DOCKER_IMAGE }}:${{ env.SHORT_SHA }}
+
+      - name: Trigger pipeline in GitLab
+        run: |
+         curl -X POST \
+          -F token=${{ secrets.TRIGGER_TOKEN }} \
+          -F "ref=main" \
+          -F "variables[IMAGE_TAG]=${{ env.SHORT_SHA }}" \
+          https://${{ secrets.GITLAB_DNS }}/api/v4/projects/119/trigger/pipeline
