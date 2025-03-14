@@ -1,0 +1,32 @@
+title: The Sigma Resources
+navigation.title: Resources
+description: 'Find all the resources you need to learn about Sigma Streaming'
+icon: i-lucide-book
+hero:
+  title: 'Resources'
+  description: 'Find all the resources you need to learn about Sigma Streaming'
+  align: center
+  # links:
+  #   - label: 'Sigma Streaming'
+  #     icon: i-simple-icons-facebook
+  #     color: neutral
+  #     variant: outline
+  #     size: sm
+  #     to: https://www.facebook.com/sigma-streaming
+  #     target: _blank
+
+  #   - label: 'Sigma Streaming'
+  #     icon: i-simple-icons-linkedin
+  #     color: neutral
+  #     variant: outline
+  #     size: sm
+  #     to: https://www.linkedin.com/in/sigma-streaming
+  #     target: _blank
+
+  #   - label: 'Sigma Streaming'
+  #     icon: 'i-simple-icons-github'
+  #     to: https://www.github.com/sigma-streaming
+  #     color: neutral
+  #     variant: outline
+  #     size: sm
+  #     target: _blank
