@@ -1,0 +1,78 @@
+{
+  "name": "@sigma-streaming/content",
+  "private": false,
+  "version": "0.8.18",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "PORT=5000 nuxi dev",
+    "build": "nuxi generate",
+    "release": "pnpm build && npx wrangler pages deploy .output/public",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "@iconify-json/carbon": "^1.2.8",
+    "@iconify-json/fa-brands": "^1.2.1",
+    "@iconify-json/heroicons": "^1.2.2",
+    "@iconify-json/logos": "^1.2.4",
+    "@iconify-json/lucide": "^1.2.28",
+    "@iconify-json/material-symbols": "^1.2.15",
+    "@iconify-json/ph": "^1.2.2",
+    "@iconify-json/ri": "^1.2.5",
+    "@iconify-json/simple-icons": "^1.2.27",
+    "@nuxt/content": "^3.3.0",
+    "@nuxt/eslint": "^1.1.0",
+    "@nuxt/fonts": "^0.10.3",
+    "@nuxt/icon": "1.10.3",
+    "@nuxt/image": "^1.9.0",
+    "@nuxt/scripts": "^0.10.5",
+    "@nuxt/ui": "^3.0.0",
+    "@nuxt/ui-pro": "^3.0.0",
+    "@nuxtjs/i18n": "^9.2.1",
+    "@nuxtjs/plausible": "^1.2.0",
+    "@pureadmin/utils": "^2.5.0",
+    "@rollup/plugin-yaml": "^4.1.2",
+    "@tsparticles/engine": "^3.8.1",
+    "@tsparticles/slim": "^3.8.1",
+    "@videojs-player/vue": "^1.0.0",
+    "@vueuse/core": "^12.7.0",
+    "@vueuse/nuxt": "^12.7.0",
+    "echarts": "^5.6.0",
+    "embla-carousel": "^8.5.2",
+    "embla-carousel-vue": "^8.5.2",
+    "feed": "^4.2.2",
+    "hls.js": "^1.5.20",
+    "libphonenumber-js": "^1.12.5",
+    "medium-zoom": "^1.1.0",
+    "nuxt": "^3.16.0",
+    "nuxt-cloudflare-analytics": "^1.0.8",
+    "nuxt-gtag": "^3.0.2",
+    "nuxt-llms": "^0.1.0",
+    "nuxt-og-image": "^5.0.2",
+    "plyr": "^3.7.8",
+    "recaptcha-v3": "^1.11.3",
+    "video.js": "^8.21.0",
+    "vue": "^3.5.13",
+    "vue-json-pretty": "^2.4.0",
+    "vue3-marquee": "^4.2.2"
+  },
+  "resolutions": {},
+  "packageManager": "pnpm@10.5.2",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "@tsparticles/engine",
+      "better-sqlite3",
+      "esbuild",
+      "puppeteer",
+      "sharp",
+      "vue-demi",
+      "workerd"
+    ],
+    "patchedDependencies": {
+      "@nuxt/ui-pro@3.0.0": "patches/@nuxt__ui-pro@3.0.0.patch"
+    }
+  }
+}
