@@ -1,9 +1,15 @@
 ---
 title: The Growth of Live Streaming in Multimedia All Over The World
-author: thanhvn
-date: 2024-05-18T00:00:00.000Z
-thumbnail: /Livestream/streaming.png
-tag: tag 1, tag 5, tag 8
+description: ''
+image: '/Livestream/streaming.png'
+authors:
+  - name: thanhvn
+    avatar:
+      src: https://avatars.githubusercontent.com/u/904724?v=4
+    to: https://x.com/thanhvn
+    username: thanhvn
+date: 2024-05-18
+tag: Live Streaming
 ---
 
 ![streaming.png](/Livestream/streaming.png)
@@ -41,4 +47,3 @@ Witness the growing influence of mobile devices in shaping the future of live st
 In conclusion, the immense potential of live streaming continues to drive innovation across the multimedia landscape. Embrace the power of live video to stay ahead in the competitive digital era.
 
 CTA: To experience Thudo Multimedia’s live streaming services and leverage its expertise in engaging customers through live video, visit _Thudo Multimedia._
-Hello world 2

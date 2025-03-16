@@ -10,7 +10,7 @@ icon: ic:twotone-ads-click
 - Compatible with multiple platforms.
 
 #title
-Seamless *Interactive*, Endless Choices
+Seamless *Interactive* Endless Choices
 
 #subtitle
 The intermediary channel system helps manage interactions.
@@ -34,6 +34,7 @@ No credit card required
 ::section-grid
 ---
 col: "3"
+gradient: true
 ---
   :::grid-card
   - Livestream
@@ -239,12 +240,11 @@ System architecture
 ::
 
 ::section-resource
-  :::resource-item{path="/resources/blogs/ott-live"}
-  :::
-
-  :::resource-item{path="/resources/blogs/ott"}
-  :::
-
+---
+items:
+  - /resources/blogs/ott-live
+  - /resources/blogs/ott
+---
 #title
 Interactive Resources
 ::

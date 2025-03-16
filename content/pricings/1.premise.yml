@@ -1,0 +1,468 @@
+title: On Premise
+
+plans:
+  - title: "Free"
+    subtitle: "Sigma Media Server Free Edition and basic features on the Cloud portal at no cost."
+    price: "$0"
+    billingCycle: "/month"
+    button:
+      label: "Start free trial"
+      color: neutral
+      variant: subtle
+      to: https://portal.sigma.video/auth/signup
+      target: _blank
+
+  - title: "Pro"
+    subtitle: "Sigma Media Server Pro Edition and advanced features on the Cloud portal at no cost."
+    price: "$199"
+    billingCycle: "/server/month"
+    highlight: true
+    button:
+      label: "Start free trial"
+      to: https://portal.sigma.video/auth/signup
+      target: _blank
+    buttonDemo:
+      label: "View demo"
+      color: neutral
+      variant: subtle
+      to: https://appt.link/meet-with-sigma-team
+      target: _blank
+      data-appointlet-modal: true
+      dataAppointletModal: ""
+    ui:
+      root: "bg-gradient-to-t from-(--ui-primary)/10 dark:from-(--ui-primary)/20 via-(--ui-bg) to-(--ui-bg) rounded-xl"
+
+  - title: "Enterprise"
+    subtitle: "Complete features and customization options for enterprise needs."
+    billingCycle: ""
+    price: "Custom"
+    button:
+      label: "Start free trial"
+      color: neutral
+      variant: subtle
+      to: "https://portal.sigma.video/auth/signup"
+
+features:
+  includes:
+    mediaServer:
+      title: Media Server
+      description: Robust streaming engine for scalable and flexible live video/audio delivery.
+      includes:
+        packaging:
+          title: Packaging
+          value:
+            - Unlimited
+            - Unlimited
+            - Unlimited
+        transcoding:
+          title: Transcoding
+          value:
+            - -
+            - Unlimited
+            - Unlimited
+        ingest:
+          title: Ingest Protocols
+          plans:
+            - free
+            - pro
+            - enterprise
+        output:
+          title: Output Protocols
+          plans:
+            - free
+            - pro
+            - enterprise
+        scte35:
+          title: SCTE-35 Marker
+          plans:
+            - pro
+            - enterprise
+        audioWatermarking:
+          title: Audio Watermarking
+          plans:
+            - pro
+            - enterprise
+        joinVodAsset:
+          title: Join VOD Asset
+          plans:
+            - pro
+            - enterprise
+        subtitle:
+          title: Subtitle
+          plans:
+            - pro
+            - enterprise
+        closedCaptions:
+          title: Closed Captions
+          plans:
+            - pro
+            - enterprise
+        trickPlay:
+          title: Trick Play
+          plans:
+            - pro
+            - enterprise
+        overlay:
+          title: Overlay Add On The Fly
+          plans:
+            - pro
+            - enterprise
+        vod2live:
+          title: VOD to Live (playout)
+          plans:
+            - pro
+            - enterprise
+        serverCluster:
+          title: Server Cluster
+          plans:
+            - pro
+            - enterprise
+        jitPackaging:
+          title: JIT Packaging
+          plans:
+            - free
+            - pro
+            - enterprise
+        inputMixer:
+          title: Input Mixer
+          plans:
+            - pro
+            - enterprise
+    mediaLive:
+      title: Sigma Media Live
+      description: Transcode Live channel service converts live video streams into various formats for optimal playback across devices and networks.
+      includes:
+        packageChannel:
+          title: Package Channel
+          plans:
+            - free
+            - pro
+            - enterprise
+        transcodeChannel:
+          title: Transcode Channel
+          plans:
+            - pro
+            - enterprise
+        eventChannel:
+          title: Event Channel
+          plans:
+            - pro
+            - enterprise
+    mediaVod:
+      title: Sigma Media VOD
+      description: Transcode VOD service converts pre-recorded videos into multiple formats for optimal playback across devices and networks
+      includes:
+        localStorageIngest:
+          title: S3, FTP, HTTP, Local Storage Ingest
+          plans:
+            - pro
+            - enterprise
+        localStorageOutput:
+          title: S3, FTP, Local Storage Output
+          plans:
+            - pro
+            - enterprise
+        audioWatermarking:
+          title: Audio Watermarking
+          plans:
+            - pro
+            - enterprise
+        perTitleEncoding:
+          title: Per-title Encoding
+          plans:
+            - pro
+            - enterprise
+        watchFolderRule:
+          title: Watch Folder Rule
+          plans:
+            - pro
+            - enterprise
+        batchTranscode:
+          title: Batch Transcode
+          plans:
+            - pro
+            - enterprise
+        pseudoLive:
+          title: Pseudo Live from VOD
+          plans:
+            - pro
+            - enterprise
+
+    livestream:
+      title: Sigma Livestream
+      description: Solution delivers real-time video content over the internet, enabling interactive engagement with audiences worldwide. Features include low latency, scalability, and robust streaming infrastructure.
+      includes:
+        packagingMode:
+          title: Packaging mode
+          plans:
+            - free
+            - pro
+            - enterprise
+        transcodeMode:
+          title: Transcode mode
+          plans:
+            - pro
+            - enterprise
+        hybridMode:
+          title: Hybrid mode
+          plans:
+            - pro
+            - enterprise
+        catchup:
+          title: Catchup (live2vod)
+          plans:
+            - pro
+            - enterprise
+        record:
+          title: Record (source mp4)
+          plans:
+            - pro
+            - enterprise
+        lowLatency:
+          title: Low latency mode
+          plans:
+            - pro
+            - enterprise
+
+
+    playout:
+      title: Sigma Playout
+      description: Broadcast solution for seamless content delivery, enabling reliable and efficient channel playout with advanced automation features.
+      includes:
+        fastChannel:
+          title: Fast Channel
+          plans:
+            - pro
+            - enterprise
+        linearInput:
+          title: Integrate with Linear Input
+          plans:
+            - pro
+            - enterprise
+        dynamicWatermark:
+          title: Dynamic Watermark
+          plans:
+            - pro
+            - enterprise
+
+    dai:
+      title: Sigma DAI
+      description: Inserts ads into video streams in real-time at the server level, ensuring personalized viewing experiences. It optimizes ad placement based on viewer demographics, improving ad performance and revenue for content providers.
+      includes:
+        serverSideAdsInsert:
+          title: Server Side Ads Insert
+          plans:
+            - pro
+            - enterprise
+        adsApprove:
+          title: Ads Approve
+          plans:
+            - pro
+            - enterprise
+        slateAds:
+          title: Slate Ads
+          plans:
+            - pro
+            - enterprise
+        bumperAds:
+          title: Bumper Ads
+          plans:
+            - pro
+            - enterprise
+        rateLimit:
+          title: Rate Limit
+          value:
+            - -
+            - 10.000.000 ads/ month
+            - Custom
+
+    api:
+      title: API & Integrations
+      includes:
+        publicApi:
+          title: Public API
+          plans:
+            - pro
+            - enterprise
+        basicAuthentication:
+          title: Basic Authentication API
+          plans:
+            - pro
+            - enterprise
+        rateLimit:
+          title: Rate Limit
+          value:
+            - -
+            - 50 req/s
+            - Custom
+
+    management:
+      title: Management
+      includes:
+        userGroupPermission:
+          title: User Group Permission
+          plans:
+            - pro
+            - enterprise
+        auditLog:
+          title: Audit Log
+          plans:
+            - pro
+            - enterprise
+        inviteMember:
+          title: Invite Member
+          plans:
+            - pro
+            - enterprise
+        webhook:
+          title: Webhook
+          plans:
+            - pro
+            - enterprise
+    security:
+      title: Security & Privacy
+      includes:
+        soc2TypeIICompliance:
+          title: SOC2 Type II Compliance
+          plans:
+            - free
+            - pro
+            - enterprise
+        automaticDataBackups:
+          title: Automatic Data Backups
+          plans:
+            - free
+            - pro
+            - enterprise
+        openidLogin:
+          title: OpenID Login (Github, Google)
+          plans:
+            - free
+            - pro
+            - enterprise
+        twoFactorAuthentication:
+          title: 2-Factor Authentication
+          plans:
+            - free
+            - pro
+            - enterprise
+        samlSingleSignOn:
+          title: SAML Single Sign-On (SSO)
+          plans:
+            - enterprise
+
+    billing:
+      title: Billing
+      includes:
+        # Payment Methods
+        # Credit card via VNPAY
+        # Custom
+        # Pricing Model
+        # PAYG
+        # PAYG, Contract
+        # Payment Periods
+        # Monthly
+        # Custom
+        paymentMethods:
+          title: Payment Methods
+          value:
+            - -
+            - Credit card via VNPAY
+            - Custom
+        pricingModel:
+          title: Pricing Model
+          value:
+            - -
+            - PAYG
+            - PAYG, Contract
+        paymentPeriods:
+          title: Payment Periods
+          value:
+            - -
+            - Monthly
+            - Custom
+
+    support:
+      title: Support
+      description: Guaranteed response times and priority assistance for critical issues.
+      includes:
+        communityForum:
+          title: Community Forum
+          plans:
+            - free
+            - pro
+            - enterprise
+        groupChat:
+          title: Group Chat
+          plans:
+            - free
+            - pro
+            - enterprise
+        email:
+          title: Email
+          plans:
+            - pro
+            - enterprise
+        ticket:
+          title: Ticket
+          plans:
+            - pro
+            - enterprise
+        phone:
+          title: Phone
+          plans:
+            - enterprise
+        serviceLevelAgreement:
+          title: Service Level Agreement
+          plans:
+            - enterprise
+        prioritySupport:
+          title: Priority Support
+          plans:
+            - enterprise
+        dedicatedAccountManager:
+          title: Dedicated Account Manager
+          plans:
+            - enterprise
+        personalizedOnboarding:
+          title: Personalized Onboarding
+          plans:
+            - enterprise
+
+
+
+faq:
+  title: 'Frequently Asked Questions'
+  description: "If you can't find what you're looking for, email our support team and will get back to you."
+  items:
+    - label: 'What is Sigma Streaming Platform?'
+      content: 'Sigma Streaming Platform is a SaaS streaming platform that provides live, on-demand, and VOD video and audio streaming capabilities. The system utilizes Sigma Media Server, a media server solution optimized for high performance and reliability.'
+
+    - label: 'What features does Sigma Media Server offer?'
+      content: 'Sigma Media Server provides a comprehensive set of features to enable you to stream multimedia content easily and efficiently, including:'
+      items:
+        - '**Multi-protocol support**: Supports popular streaming protocols such as HLS, DASH, Smooth Streaming, and RTSP.'
+        - '**Adaptive bitrate streaming**: Automatically transcodes multimedia content into multiple bitrates to suit user bandwidth.'
+        - '**Content storage**: Stores multimedia content locally for on-demand and VOD streaming.'
+        - '**Content delivery**: Distributes multimedia content across multiple servers to ensure high performance and reliability.'
+        - '**Security**: Provides security features to protect your multimedia content.'
+
+    - label: 'How does the Sigma Streaming Platform billing system work?'
+      content: 'The billing system is based on Sigma Media Server licenses. Each license corresponds to one installed server, with no limit on the number of streams. You can purchase licenses monthly, annually, or based on the number of servers.'
+
+    - label: 'Who should use Sigma Streaming Platform?'
+      content: 'Sigma Streaming Platform is an ideal solution for businesses that want to stream multimedia content easily and efficiently. The system is suitable for a wide range of businesses, including:'
+      items:
+        - '**Media companies**: Stream news, sports, entertainment, and other programming.'
+        - '**Educational institutions**: Stream online courses and other educational materials.'
+        - '**Retail businesses**: Stream their products and services.'
+        - '**Government agencies**: Stream public services and government information.'
+
+    - label: 'How do I get started with Sigma Streaming Platform?'
+      content: You can get started with Sigma Streaming Platform by signing up for a free account. Then, you can install Sigma Media Server on your server and start streaming multimedia content.
+
+    - label: 'Where can I learn more about Sigma Streaming Platform?'
+      content: You can learn more about Sigma Streaming Platform on our website
+
+    - label: 'How can I contact Sigma Streaming Platform for support?'
+      content: You can contact Sigma Streaming Platform by email or phone. Our contact information is available on our website.

@@ -239,12 +239,11 @@ System architecture
 ::
 
 ::section-resource
-  :::resource-item{path="/resources/blogs/ott-live"}
-  :::
-
-  :::resource-item{path="/resources/blogs/ott"}
-  :::
-
+---
+items:
+  - /resources/blogs/ott-live
+  - /resources/blogs/ott
+---
 #title
 Interactive Resources
 ::

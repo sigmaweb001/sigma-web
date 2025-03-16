@@ -172,15 +172,12 @@ Trên toàn cầu, 42,7% người dùng internet sử dụng trình chặn quả
 ::
 
 ::section-resource
-  :::resource-item{path="/resources/datasheets/sigma-dai-datasheet"}
-  :::
-
-  :::resource-item{path="/resources/blogs/strength-dai"}
-  :::
-
-  :::resource-item{path="/resources/blogs/ott-ssai"}
-  :::
-
+---
+items:
+  - /resources/datasheets/sigma-dai-datasheet
+  - /resources/blogs/strength-dai
+  - /resources/blogs/ott-ssai
+---
 #title
 Tài nguyên DAI
 ::

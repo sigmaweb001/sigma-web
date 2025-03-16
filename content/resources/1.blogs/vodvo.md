@@ -1,10 +1,11 @@
 ---
 title: What is VOD? Key Features of VOD
-author: thanhvn
-date: 2024-05-15T00:00:00.000Z
-thumbnail: /VOD/VOD.png
-background: /VOD/VOD.png
-tags: tag
+description: ''
+image: /VOD/VOD.png
+authors: 
+  - name: thanhvn
+date: 2024-05-15
+tag: VOD Advertising
 ---
 
 We all live in a world where accessing and consuming online content has become more common than ever. With the advancement of technology, Video on Demand (VOD) has become an essential part of our daily lives. It is a powerful tool that allows us to watch shows, movies, educational videos, and entertainment content instantly, anytime, anywhere, without being dependent on traditional TV schedules. Let's delve deeper into what VOD is, its impact, and how it is changing the way we view and interact with online content.

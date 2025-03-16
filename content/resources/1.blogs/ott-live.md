@@ -1,8 +1,10 @@
 ---
 title: The Popularity of Online Video Streaming Platforms and the Secrets Behind
-author: thanhvn
-date: 2024-05-17T00:00:00.000Z
-thumbnail: /VOD/ott-platform.png
+description: ''
+image: /VOD/ott-platform.png
+authors: 
+  - name: thanhvn
+date: 2024-05-17
 tag: tag 1, tag 5, tag 8
 ---
 

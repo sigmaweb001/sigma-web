@@ -9,7 +9,7 @@ description: Sigma Streaming Home
 - Empower your stream: Transcode, Interact, Monetize. Experience the future.
 
 #title
-Powering The _Streaming Experience_
+Powering The *Streaming Experience*
 
 #subtitle
 Unlocking business value with reliable streaming from a trusted partner
@@ -18,11 +18,11 @@ Unlocking business value with reliable streaming from a trusted partner
 ![Group\_1321314848.png](/Group_1321314848.png)
 
 #cta
-  :::button-link{href="https://portal.sigma.video/auth/signup" target='_blank'}
+  :::button-link{href="https://portal.sigma.video/auth/signup" target="_blank"}
   Start free trial
   :::
 
-  :::button-link{white href="/contact"}
+  :::button-link{outline href="/contact"}
   Contact Us
   :::
 
@@ -32,7 +32,7 @@ No credit card required
 
 ::section-grid
 ---
-col: '2'
+col: "2"
 ---
   :::grid-item
   ![Capture_170819.png](/Capture_170819.png)
@@ -153,78 +153,61 @@ Products
 
 ::section-grid
 ---
-col: '3'
+gradient: true
+col: "3"
 ---
-  :::grid-card
+  :::u-grid-card
   ---
   left: true
+  description: Secure video hosting with an all-in-one streaming platform.
   icon: material-symbols:audio-video-receiver-outline
+  title: Secure Video Hosting
   ---
-  #title
-  Secure Video Hosting
-  
-  #subtitle
-  Secure video hosting with an all-in-one streaming platform
   :::
 
-  :::grid-card
+  :::u-grid-card
   ---
   left: true
+  description: Reliable, flawless live event streaming with top-tier CDNs.
   icon: material-symbols:celebration-outline
+  title: Stream Live Events
   ---
-  #title
-  Stream Live Events
-  
-  #subtitle
-  Reliable, flawless live event streaming with top-tier CDNs.
   :::
 
-  :::grid-card
+  :::u-grid-card
   ---
   left: true
+  description: Integrate live video & VODS with our APIs with no difficulty.
   icon: material-symbols:important-devices-outline
+  title: VOD | OTT Platform
   ---
-  #title
-  VOD | OTT Platform
-  
-  #subtitle
-  Integrate live video & VODS with our APIs with no difficulty.
   :::
 
-  :::grid-card
+  :::u-grid-card
   ---
   left: true
+  description: Boost your revenue by monetizing video with us.
   icon: material-symbols:display-settings-outline
+  title: Integrated Interactive TV
   ---
-  #title
-  Integrated Interactive TV
-  
-  #subtitle
-  Boost your revenue by monetizing video with us.
   :::
 
-  :::grid-card
+  :::u-grid-card
   ---
   left: true
+  description: Livestream with low latency, optimal experience.
   icon: material-symbols-light:slow-motion-video
+  title: Low Latency Streaming
   ---
-  #title
-  Low Latency Streaming
-  
-  #subtitle
-  Livestream with low latency, optimal experience.
   :::
 
-  :::grid-card
+  :::u-grid-card
   ---
   left: true
+  description: Connect with our support starting when become our partner.
   icon: material-symbols:support-agent
+  title: 24/7 Customer Support
   ---
-  #title
-  24/7 Customer Support
-  
-  #subtitle
-  Connect with our support starting when become our partner.
   :::
 
 #title
@@ -237,7 +220,7 @@ HIGHLIGHTS FEATURES
 ::section-grid
 ---
 bg: true
-padding: '16'
+padding: "16"
 ---
   :::grid-item
   ---
@@ -328,7 +311,7 @@ TRUSTED BY 2000+ CUSTOMERS
   :::button-link
   ---
   data-appointlet-modal: true
-  dataAppointletModal: ''
+  dataAppointletModal: ""
   href: https://appt.link/meet-with-sigma-team
   ---
   View demo

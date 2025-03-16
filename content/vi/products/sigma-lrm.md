@@ -152,9 +152,10 @@ Kiến Trúc Hệ Thống
 ::
 
 ::section-resource
-  :::resource-item{path="/resources/datasheets/Sigma LRM Datasheet"}
-  :::
-
+---
+items:
+  - /resources/datasheets/Sigma LRM Datasheet
+---
 #title
 Tài nguyên LRM
 ::

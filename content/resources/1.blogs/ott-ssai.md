@@ -1,9 +1,11 @@
 ---
 title: Enhancing OTT Advertising with Seamless Server-Side Ad Insertion (Sigma SSAI)
-author: thanhvn
-date: 2024-05-17T00:00:00.000Z
-thumbnail: /SSAI/ott-ssai.png
-tag: tag 1, tag 3, tag 4
+description: ''
+image: /SSAI/ott-ssai.png
+authors: 
+  - name: thanhvn
+date: 2024-05-17
+tag: OTT Advertising
 ---
 
 ![ott-ssai.png](/SSAI/ott-ssai.png)

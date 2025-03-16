@@ -1,7 +1,0 @@
----
-title: 'Developer portal'
-description: 'APIs, documentation, and tools for developers.'
-icon: 'material-symbols:code-blocks-outline'
-redirect: 'https://docs.sigma.video/'
----
-# Developer portal

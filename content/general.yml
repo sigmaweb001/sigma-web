@@ -1,0 +1,14 @@
+socials:
+  - label: 'Facebook'
+    to: 'https://www.facebook.com/ThuDoMultimedia.vn/'
+    icon: 'i-simple-icons-facebook'
+  - label: 'LinkedIn'
+    to: 'https://www.linkedin.com/in/multimedia-thudo-46108028b/'
+    icon: 'i-simple-icons-linkedin'
+  - label: 'GitHub'
+    to: 'https://github.com/sigmaott/sigma-ssai-web-sdk'
+    icon: 'i-simple-icons-github'
+
+pinResources:
+  enabled: true
+  path: '/resources/blogs/vodvo'
