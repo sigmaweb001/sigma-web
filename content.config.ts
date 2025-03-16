@@ -274,26 +274,5 @@ export default defineContentConfig({
         hero: PageHero,
       }),
     }),
-    cloudflarePricing: defineCollection({
-      type: 'data',
-      source: 'cloudflare-pricing.yml',
-      schema: z.object({
-        plans: z.array(z.object({
-          label: z.string(),
-          icon: z.string().editor({ input: 'icon' }),
-          slot: z.string(),
-          buttons: z.array(Button),
-          columns: z.array(z.object({
-            key: z.string(),
-            label: z.string(),
-          })),
-          rows: z.array(z.object({
-            title: z.string(),
-            free: z.string(),
-            paid: z.string(),
-          })),
-        })),
-      }),
-    }),
   },
 })
