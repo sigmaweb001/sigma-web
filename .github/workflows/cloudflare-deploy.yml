@@ -35,4 +35,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 168fa46ecfa0755b45fe5b273c753152
-          command: pages deploy .output/public --project-name=sigma-nuxt-content
+          command: pages deploy .output/public --project-name=sigma-web
