@@ -5,7 +5,7 @@ icon: ic:twotone-ads-click
 ---
 
 ::section-hero
-- We integrate from many different sources. Hello
+- We integrate from many different sources.
 - Many forms of interactive implementation.
 - Compatible with multiple platforms.
 
