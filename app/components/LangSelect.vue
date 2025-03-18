@@ -7,10 +7,10 @@ const localePath = useLocalePath()
 const route = useRoute()
 const router = useRouter()
 
-async function updateLocale(value: string) {
+async function updateLocale() {
   await router.push(localePath(route.path))
-
-  window.location.reload()
+  await loadLocaleMessages(locale.value)
+  // window.location.reload()
 }
 </script>
 
