@@ -8,11 +8,9 @@ const route = useRoute()
 const router = useRouter()
 
 async function updateLocale(value: string) {
-  await router.replace({
-    path: localePath(route.path),
-    query: route.query,
-  })
-  await loadLocaleMessages(value)
+  await router.push(localePath(route.path))
+
+  window.location.reload()
 }
 </script>
 
