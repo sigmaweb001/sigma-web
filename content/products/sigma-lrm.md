@@ -159,7 +159,7 @@ System architecture
 ::section-resource
 ---
 items:
-  - /resources/datasheets/Sigma LRM Datasheet
+  - /resources/datasheets/sigma-lrm-datasheet
 ---
 #title
 LRM Resources

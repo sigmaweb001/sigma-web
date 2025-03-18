@@ -155,7 +155,7 @@ Kiến Trúc Hệ Thống
 ::section-resource
 ---
 items:
-  - /resources/datasheets/Sigma LRM Datasheet
+  - /resources/datasheets/sigma-lrm-datasheet
 ---
 #title
 Tài nguyên LRM
