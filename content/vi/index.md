@@ -33,6 +33,7 @@ Không bắt buộc có thẻ tín dụng
 ::section-grid
 ---
 col: '2'
+gradient: true
 ---
   :::grid-item
   ![Capture_170819.png](/Capture_170819.png)

@@ -34,6 +34,7 @@ Không bắt buộc có thẻ tín dụng
 ::section-grid
 ---
 col: "3"
+gradient: true
 ---
   :::grid-card
   - Phát trực tiếp

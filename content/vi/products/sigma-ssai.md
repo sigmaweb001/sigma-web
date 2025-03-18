@@ -91,6 +91,7 @@ No credit card required
 ::section-grid
 ---
 col: "3"
+gradient: true
 ---
   :::grid-card
   Thay thế thời gian ngắt quảng cáo phát sóng bằng Quảng cáo OTT có thể định địa chỉ. Chèn quảng cáo vào luồng Truyền hình trực tiếp tuyến tính và VOD.
