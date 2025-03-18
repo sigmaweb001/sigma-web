@@ -4,7 +4,7 @@ description: Optimize and Control VAST Ads with Ease
 new: true
 ---
 
-::section-hero 
+::section-hero
 - Seamless integration: Manage VAST ads without disrupting content playback
 - Performance optimization: Ensure accurate ad delivery and minimize wasted resources.
 - Flexible management: Support multiple delivery rules and adjust ads based on your needs.
@@ -28,9 +28,7 @@ Provides a comprehensive solution for managing and optimizing VAST ads, giving y
 
 #image
 ![vast-control-hero-section.png](/solutions/Vast-Control/Right.png)
-
 ::
-
 
 ::section-grid
   :::grid-item
@@ -132,64 +130,67 @@ title: What's included
   ---
   :::
 ::
+
 ::section-normal
+![Diagram](/solutions/Vast-Control/Diagram.png)
+
 #title
 How it works
+
 #subtitle
 SYSTEM ARCHITECTURE
-#default
-![Diagram](/solutions/Vast-Control/Diagram.png)
 ::
 
+\::
+
+::section-resource
+---
+items:
+  - /resources/datasheets/sigma-dai-datasheet
+---
+#title
+Resources
 ::
 
-  :::section-resource
+::section-marquee
+  :::marquee-item{img="/testimonial/vt.png"}
+  :::
+
+  :::marquee-item{img="/testimonial/vtv-digital.png"}
+  :::
+
+  :::marquee-item{img="/testimonial/vtc.png"}
+  :::
+
+  :::marquee-item{img="/testimonial/vtvc.png"}
+  :::
+
+  :::marquee-item{img="/testimonial/vng.png"}
+  :::
+
+#subtitle
+TRUSTED BY 2000+ CUSTOMERS
+::
+
+::section-cta
+  :::button-link
   ---
-  items:
-    - /resources/datasheets/sigma-dai-datasheet
+  data-appointlet-modal: true
+  dataAppointletModal: ""
+  href: https://appt.link/meet-with-sigma-team
   ---
-  #title
-  Resources
+  View demo
   :::
 
-  :::section-marquee
-    ::::marquee-item{img="/testimonial/vt.png"}
-    ::::
-  
-    ::::marquee-item{img="/testimonial/vtv-digital.png"}
-    ::::
-  
-    ::::marquee-item{img="/testimonial/vtc.png"}
-    ::::
-  
-    ::::marquee-item{img="/testimonial/vtvc.png"}
-    ::::
-  
-    ::::marquee-item{img="/testimonial/vng.png"}
-    ::::
-  
-  #subtitle
-  TRUSTED BY 2000+ CUSTOMERS
+  :::button-link{white href="/contact"}
+  Contact Us
   :::
 
-  :::section-cta
-    ::::button-link
-    ---
-    data-appointlet-modal: true
-    dataAppointletModal: ""
-    href: https://appt.link/meet-with-sigma-team
-    ---
-    View demo
-    ::::
-  
-    ::::button-link{white href="/contact"}
-    Contact Us
-    ::::
-  
-  #title
-  Ready to Get Started?
-  
-  #subtitle
-  Try our product for Free and start streaming today
-  :::
+#title
+Ready to Get Started?
+
+#subtitle
+Try our product for Free and start streaming today
 ::
+
+\::
