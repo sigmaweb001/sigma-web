@@ -69,8 +69,8 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/': { prerender: true },
-    '/api/templates.json': { prerender: true },
-    '/blog/rss.xml': { prerender: true },
+    // '/api/templates.json': { prerender: true },
+    // '/blog/rss.xml': { prerender: true },
   },
   future: {
     compatibilityVersion: 4,
@@ -128,12 +128,12 @@ export default defineNuxtConfig({
     detectBrowserLanguage: false,
   },
   llms: {
-    domain: 'https://hub.nuxt.com',
+    domain: 'https://sigma.video',
     title: 'SigmaStreaming Documentation for LLMs',
-    description: 'SigmaStreaming helps you build and deploy full-stack Nuxt applications globally on your Cloudflare account.',
+    description: '',
     full: {
-      title: 'SigmaStreaming Complete Documentation',
-      description: 'The complete SigmaStreaming documentation, blog posts and changelog written in Markdown (MDC syntax).',
+      title: '',
+      description: '',
     },
   },
 })
