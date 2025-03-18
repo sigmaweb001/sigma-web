@@ -11,7 +11,7 @@ const route = useRoute()
 const { locale } = useI18n()
 const { seo } = useAppConfig()
 
-const { data: page } = await useAsyncData('index',
+const { data: page } = await useAsyncData('index' + locale.value,
   () => queryCollection(withLocaleCollection('index', locale)).first(),
   { watch: [locale] },
 )
