@@ -26,7 +26,6 @@ Provides a comprehensive solution for managing and optimizing VAST ads, giving y
   Contact Us
   :::
 
-
 #image
 ![vast-control-hero-section.png](/solutions/Vast-Control/Right.png)
 
