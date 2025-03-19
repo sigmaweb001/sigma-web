@@ -140,7 +140,7 @@ const columns: TableColumn<Feature>[] = [
             h('p', { class: 'font-medium text-(--ui-primary) text-base' }, row.original.title),
             h('p', { class: 'text-sm text-(--ui-text-muted) mt-1' }, row.original.description),
           ])
-        : h('span', { class: 'font-medium text-[var(--ui-text)] p-3' }, row.original.title)
+        : h('span', { class: 'font-medium text-[var(--ui-text)] p-3 border-l-[2px] border-l-[var(--ui-primary)]' }, row.original.title)
     },
   },
   {
