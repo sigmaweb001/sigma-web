@@ -49,7 +49,7 @@ useHead({
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
   ],
   link: [
-    { rel: 'icon', href: '/favicon2.ico' },
+    { rel: 'icon', href: '/logo_sigma.png' },
   ],
   htmlAttrs: {
     lang: 'en',
