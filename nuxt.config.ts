@@ -1,43 +1,22 @@
+import yaml from '@rollup/plugin-yaml'
+
 export default defineNuxtConfig({
+  modules: [
+    '@nuxt/ui-pro',
+    '@nuxt/content',
+    // '@nuxt/image',
+    '@nuxt/scripts',
+    '@nuxtjs/plausible',
+    '@vueuse/nuxt',
+    'nuxt-og-image',
+    'nuxt-cloudflare-analytics',
+    'nuxt-llms',
+    '@nuxtjs/i18n',
+    '@nuxt/eslint',
+    'nuxt-gtag',
+  ],
   devtools: {
     enabled: true,
-  },
-
-  modules: [
-    '@nuxt/content',
-    '@vue-macros/nuxt',
-    '@nuxt/image',
-    '@unocss/nuxt',
-    '@nuxtjs/google-fonts',
-    '@nuxtjs/i18n',
-    'radix-vue/nuxt',
-    '@nuxthq/studio',
-    'nuxt-icon',
-    // '@nuxtjs/color-mode',
-    '@vueuse/nuxt',
-    '@nuxt/devtools',
-    'nuxt-gtag',
-    '@nuxt/eslint',
-  ],
-
-  gtag: {
-    id: process.env.NUXT_PUBLIC_GTAG_ID,
-  },
-
-  features: {
-    // For UnoCSS
-    inlineStyles: false,
-  },
-
-  eslint: {
-    config: {
-      standalone: false,
-      stylistic: true,
-    },
-  },
-
-  content: {
-    markdown: { remarkPlugins: ['remark-reading-time'] },
   },
 
   app: {
@@ -60,63 +39,101 @@ export default defineNuxtConfig({
       ],
     },
   },
-
-  macros: {
-    betterDefine: false,
+  css: ['~/assets/main.css'],
+  colorMode: {
+    preference: 'light',
   },
-
-  css: [
-    '@unocss/reset/tailwind.css',
-  ],
-
-  googleFonts: {
-    families: {
-      'Noto Sans': '100..800',
+  content: {
+    build: {
+      markdown: {
+        highlight: {
+          langs: ['sql', 'diff'],
+        },
+      },
     },
-    download: true,
+    preview: {
+      api: 'https://api.nuxt.studio',
+    },
+  },
+  ui: {
+
+    theme: {
+      colors: ['primary', 'secondary', 'info', 'success', 'warning', 'error', 'important'],
+    },
   },
 
+  runtimeConfig: {
+    public: {
+      recaptchaSiteKey: process.env.NUXT_PUBLIC_RECAPTCHA_SITE_KEY || '6Lejt7ElAAAAALNFyfDMb8_dlRbbi7EMCJEK_tT2',
+    },
+  },
+  routeRules: {
+    '/': { prerender: true },
+    // '/api/templates.json': { prerender: true },
+    // '/blog/rss.xml': { prerender: true },
+  },
+  future: {
+    compatibilityVersion: 4,
+  },
+
+  compatibilityDate: '2025-02-11',
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ['/'],
+      // For CF trailing slash issue
+      autoSubfolderIndex: false,
+      failOnError: false,
+    },
+  },
+  vite: {
+    plugins: [
+      yaml(),
+    ],
+  },
+  typescript: {
+    strict: false,
+  },
+  cloudflareAnalytics: {
+    token: '469b1f7049f14941acef0d0262a07ab3',
+    scriptPath: false,
+  },
+  eslint: {
+    config: {
+      stylistic: true,
+    },
+  },
+  gtag: {
+    id: process.env.NUXT_PUBLIC_GTAG_ID || 'G-BV8FJFFZLR',
+  },
   i18n: {
-    vueI18n: './i18n.config.ts',
     defaultLocale: 'en',
     strategy: 'prefix_except_default',
     locales: [
       {
         code: 'en',
         file: 'en.json',
+        name: 'English',
+        language: 'en-US',
       },
       {
         code: 'vi',
         file: 'vi.json',
+        name: 'Vietnamese',
+        language: 'vi-VN',
       },
     ],
     lazy: true,
-    langDir: 'locales',
+    langDir: '',
     detectBrowserLanguage: false,
   },
-
-  colorMode: {
-    classSuffix: '',
-    preference: 'light',
-  },
-
-  $development: {
-    css: [
-      'vue-json-pretty/lib/styles.css',
-    ],
-  },
-
-  runtimeConfig: {
-    public: {
-      recaptchaSiteKey: process.env.NUXT_PUBLIC_RECAPTCHA_SITE_KEY,
+  llms: {
+    domain: 'https://sigma.video',
+    title: 'SigmaStreaming Documentation for LLMs',
+    description: '',
+    full: {
+      title: '',
+      description: '',
     },
   },
-
-  nitro: {
-    prerender: {
-      failOnError: false,
-    },
-  },
-
-  compatibilityDate: '2024-12-25',
 })

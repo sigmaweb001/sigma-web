@@ -93,45 +93,50 @@ Strength
 ::section-grid
 ---
 col: "2"
+gradient: true
 ---
   :::grid-card
+  #description
   The comprehensive channel list from many partners makes it easy to manage and receive notifications about detailed events within it.
-  
+
   #image
   ![lrm-feature-1.png](/lrm/lrm-feature-1.png)
   
   #title
-  **Manage and distribute waves to receiving partners**
+  Manage and distribute waves to receiving partners
   :::
 
   :::grid-card
+  #description
   Allows you to 'set a schedule' to review previously broadcast programs, without being limited by a fixed broadcast schedule.
   
   #image
   ![lrm-feature-2.png](/lrm/lrm-feature-2.png)
   
   #title
-  **Schedule content replacement**
+  Schedule content replacement
   :::
 
   :::grid-card
+  #description
   Blackout and replace program contents on both linear and catch-up streams.
   
   #image
   ![lrm-feature-3.png](/lrm/lrm-feature-3.png)
   
   #title
-  **Replace content**
+  Replace content
   :::
 
   :::grid-card
+  #description
   Supporting signal insertion via API or EPG. Schedule the insertion of overlay linear ads and screen shrink ads.
   
   #image
   ![lrm-feature-4.png](/lrm/lrm-feature-4.png)
   
   #title
-  **Management and scheduling of SCTE-35 advertising signal insertion**
+  Management and scheduling of SCTE-35 advertising signal insertion
   :::
 
 #title
@@ -152,9 +157,10 @@ System architecture
 ::
 
 ::section-resource
-  :::resource-item{path="/resources/datasheets/Sigma LRM Datasheet"}
-  :::
-
+---
+items:
+  - /resources/datasheets/sigma-lrm-datasheet
+---
 #title
 LRM Resources
 ::

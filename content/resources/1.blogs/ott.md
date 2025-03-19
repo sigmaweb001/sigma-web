@@ -1,9 +1,11 @@
 ---
 title: 'Engagement Trends: How OTT Stimulates Viewer Engagement'
-author: thanhvn
-date: 2024-05-16T00:00:00.000Z
-thumbnail: /VOD/ott_trends.png
-tags: tag 5, tag 6, tag 7, tag 8
+description: ''
+image: /VOD/ott_trends.png
+authors: 
+  - name: thanhvn
+date: 2024-05-16
+tag: OTT Advertising
 ---
 
 ![ott\_trends.png](/VOD/ott_trends.png)

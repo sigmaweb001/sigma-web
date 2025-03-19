@@ -3,7 +3,7 @@
     "*.css": "postcss"
   },
   "i18n-ally.localesPaths": [
-    "locales"
+    "i18n"
   ],
 
   // Disable the default formatter, use eslint instead

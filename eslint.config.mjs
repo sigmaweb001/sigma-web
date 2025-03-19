@@ -1,12 +1,6 @@
-import antfu from '@antfu/eslint-config'
+// @ts-check
 import withNuxt from './.nuxt/eslint.config.mjs'
 
-export default withNuxt(antfu({
-  unocss: true,
-  formatters: true,
-  rules: {
-    'unused-imports/no-unused-vars': 'warn',
-  },
-})).overrideRules({
-  'vue/max-attributes-per-line': ['warn', { singleline: 3 }],
-})
+export default withNuxt(
+  // Your custom configs here
+)

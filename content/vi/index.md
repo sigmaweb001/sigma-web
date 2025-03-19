@@ -9,7 +9,7 @@ description: Trang chủ Sigma Streaming
 - Trao quyền cho luồng của bạn: Chuyển mã, Tương tác, Kiếm tiền. Trải nghiệm tương lai.
 
 #title
-Hỗ trợ _Trải nghiệm phát trực tuyến_
+Hỗ trợ *Trải nghiệm phát trực tuyến*
 
 #subtitle
 Khai phá giá trị doanh nghiệp bằng tính năng phát trực tuyến đáng tin cậy từ một đối tác đáng tin cậy
@@ -18,21 +18,21 @@ Khai phá giá trị doanh nghiệp bằng tính năng phát trực tuyến đá
 ![Group\_1321314848.png](/Group_1321314848.png)
 
 #cta
-::button-link{href="https://portal.sigma.video/auth/signup" target='_blank'}
-Dùng thử miễn phí
-::
+  :::button-link{href="https://portal.sigma.video/auth/signup" target="_blank"}
+  Dùng thử miễn phí
+  :::
 
-::button-link{href="/contact" white}
-Liên hệ chúng tôi
-::
+  :::button-link{white href="/contact"}
+  Liên hệ chúng tôi
+  :::
 
 #extra
 Không bắt buộc có thẻ tín dụng
-:: 
+::
 
 ::section-grid
 ---
-col: '2'
+col: "2"
 ---
   :::grid-item
   ![Capture_170819.png](/Capture_170819.png)
@@ -153,7 +153,8 @@ Các sản phẩm
 
 ::section-grid
 ---
-col: '3'
+gradient: true
+col: "3"
 ---
   :::grid-card
   ---
@@ -237,7 +238,7 @@ TÍNH NĂNG NỔI BẬT
 ::section-grid
 ---
 bg: true
-padding: '16'
+padding: "16"
 ---
   :::grid-item
   ---
@@ -327,14 +328,14 @@ FAQ
 ::section-cta
   :::button-link
   ---
-  href: https://appt.link/meet-with-sigma-team
   data-appointlet-modal: true
-  dataAppointletModal: ''
+  dataAppointletModal: ""
+  href: https://appt.link/meet-with-sigma-team
   ---
   Xem demo
   :::
 
-  :::button-link{href="/contact" white}
+  :::button-link{white href="/contact"}
   Liên hệ chúng tôi
   :::
 

@@ -34,6 +34,7 @@ Không bắt buộc có thẻ tín dụng
 ::section-grid
 ---
 col: "3"
+gradient: true
 ---
   :::grid-card
   - Phát trực tiếp
@@ -239,12 +240,11 @@ System architecture
 ::
 
 ::section-resource
-  :::resource-item{path="/resources/blogs/ott-live"}
-  :::
-
-  :::resource-item{path="/resources/blogs/ott"}
-  :::
-
+---
+items:
+  - /resources/blogs/ott-live
+  - /resources/blogs/ott
+---
 #title
 Interactive Resources
 ::
