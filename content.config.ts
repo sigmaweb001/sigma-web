@@ -88,6 +88,7 @@ const pricingFeature = z.object({
   plans: z.array(z.enum(['solo', 'team', 'unlimited'])).optional(),
   value: z.array(z.string()).optional(),
   soon: z.boolean().optional(),
+  feature: z.boolean().optional(),
 })
 
 export default defineContentConfig({
@@ -192,6 +193,7 @@ export default defineContentConfig({
             mediaServer: z.object({
               title: z.string(),
               description: z.string(),
+              feature: z.boolean().optional(),
               includes: z.object({
                 packaging: pricingFeature,
                 transcoding: pricingFeature,
@@ -207,6 +209,7 @@ export default defineContentConfig({
             collaboration: pricingFeature,
             sync: z.object({
               title: z.string(),
+              feature: z.boolean().optional(),
               includes: z.object({
                 repositories: pricingFeature,
                 workflow: pricingFeature,
@@ -214,6 +217,7 @@ export default defineContentConfig({
             }),
             project: z.object({
               title: z.string(),
+              feature: z.boolean().optional(),
               includes: z.object({
                 clone: pricingFeature,
                 import: pricingFeature,
@@ -221,6 +225,7 @@ export default defineContentConfig({
             }),
             editors: z.object({
               title: z.string(),
+              feature: z.boolean().optional(),
               includes: z.object({
                 markdown: pricingFeature,
                 json: pricingFeature,
@@ -230,6 +235,7 @@ export default defineContentConfig({
             }),
             preview: z.object({
               title: z.string(),
+              feature: z.boolean().optional(),
               includes: z.object({
                 draft: pricingFeature,
                 branches: pricingFeature,
@@ -238,6 +244,7 @@ export default defineContentConfig({
             }),
             deploy: z.object({
               title: z.string(),
+              feature: z.boolean().optional(),
               includes: z.object({
                 gh: pricingFeature,
                 self: pricingFeature,
@@ -245,6 +252,7 @@ export default defineContentConfig({
             }),
             publish: z.object({
               title: z.string(),
+              feature: z.boolean().optional(),
               includes: z.object({
                 preview: pricingFeature,
                 branch: pricingFeature,

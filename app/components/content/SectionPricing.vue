@@ -49,7 +49,7 @@ watchOnce(height, () => {
 
 const keyFeature = useKeyFeature()
 
-const active = ref('0')
+const active = defineModel<string>('active', { required: true })
 
 const { t: $t } = useI18n()
 const items = ref([

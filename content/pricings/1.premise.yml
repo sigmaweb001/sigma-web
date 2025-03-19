@@ -47,6 +47,7 @@ features:
     mediaServer:
       title: Media Server
       description: Robust streaming engine for scalable and flexible live video/audio delivery.
+      feature: true
       includes:
         packaging:
           title: Packaging
@@ -74,6 +75,7 @@ features:
             - enterprise
         scte35:
           title: SCTE-35 Marker
+          feature: true
           plans:
             - pro
             - enterprise
@@ -84,21 +86,25 @@ features:
             - enterprise
         joinVodAsset:
           title: Join VOD Asset
+          feature: true
           plans:
             - pro
             - enterprise
         subtitle:
           title: Subtitle
+          feature: true
           plans:
             - pro
             - enterprise
         closedCaptions:
           title: Closed Captions
+          feature: true
           plans:
             - pro
             - enterprise
         trickPlay:
           title: Trick Play
+          feature: true
           plans:
             - pro
             - enterprise
@@ -151,6 +157,7 @@ features:
     mediaVod:
       title: Sigma Media VOD
       description: Transcode VOD service converts pre-recorded videos into multiple formats for optimal playback across devices and networks
+      feature: true
       includes:
         localStorageIngest:
           title: S3, FTP, HTTP, Local Storage Ingest
@@ -184,6 +191,7 @@ features:
             - enterprise
         pseudoLive:
           title: Pseudo Live from VOD
+          feature: true
           plans:
             - pro
             - enterprise

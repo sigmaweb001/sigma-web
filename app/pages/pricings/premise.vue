@@ -44,6 +44,8 @@ type Feature = {
   enterprise: boolean | string
 }
 
+const active = ref('1')
+
 const data = computed(() => {
   const features: Feature[] = []
   Object.values(page.value?.features.includes || {}).map((mainFeature) => {
@@ -55,6 +57,7 @@ const data = computed(() => {
         free: '',
         pro: '',
         enterprise: '',
+        feature: mainFeature.feature,
       })
 
       Object.values(mainFeature.includes).forEach((feature) => {
@@ -67,6 +70,7 @@ const data = computed(() => {
           free,
           pro,
           enterprise,
+          feature: feature.feature,
         })
       })
     }
@@ -80,11 +84,12 @@ const data = computed(() => {
         free,
         pro,
         enterprise,
+        feature: mainFeature.feature,
       })
     }
   })
 
-  return features
+  return features.filter(feature => active.value === '0' ? feature.feature : true)
 })
 
 // Should be non exported Row type from ui
@@ -164,10 +169,12 @@ const columns: TableColumn<Feature>[] = [
       }"
     >
       <SectionPricing
+        v-model:active="active"
         title="_Pricing_ for Application"
         description="Transparency and loyalty are key values at The Sigma Streaming. We offer a variety of pricing options to access our technology."
         :plans="page.plans"
       />
+
       <UTable
         :data="data"
         :columns="columns"
