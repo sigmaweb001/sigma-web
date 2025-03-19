@@ -13,5 +13,11 @@ RUN pnpm install
 
 RUN env NODE_OPTIONS="--max_old_space_size=4096" pnpm build
 
-FROM nginx:stable-alpine as production-stage
-COPY --from=build-stage /app/.output/public /usr/share/nginx/html
+FROM node:20-alpine AS production-stage
+WORKDIR /src
+
+COPY --from=build-stage /app/.output/public ./build
+RUN npm install -g serve
+
+EXPOSE 80
+CMD ["serve", "build", "-p", "80"]
