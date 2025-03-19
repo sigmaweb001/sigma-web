@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
     link: siteUrl,
     language: 'en',
     image: joinURL(baseUrl, 'icon.png'),
-    favicon: joinURL(baseUrl, 'favicon.ico'),
+    favicon: joinURL(baseUrl, 'favicon2.ico'),
     copyright: `Copyright © 2024-${new Date().getFullYear()} NuxtLabs All Rights Reserved`,
     feedLinks: {
       rss: `${siteUrl}/rss.xml`,
