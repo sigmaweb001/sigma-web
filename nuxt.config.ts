@@ -34,7 +34,7 @@ export default defineNuxtConfig({
         },
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon2.ico' },
+        { rel: 'icon', type: 'image/x-icon', href: '/logo_sigma.png' },
         { rel: 'stylesheet', href: 'https://js.appointlet.com/styles.css' },
       ],
     },
