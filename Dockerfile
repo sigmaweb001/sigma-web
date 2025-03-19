@@ -16,7 +16,7 @@ RUN env NODE_OPTIONS="--max_old_space_size=4096" pnpm build
 FROM node:20-alpine AS production-stage
 WORKDIR /src
 
-COPY --from=build-stage /app/.output/public ./
+COPY --from=build-stage /app/.output/public ./build
 RUN npm install -g serve
 
 EXPOSE 80
