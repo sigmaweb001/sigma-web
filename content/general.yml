@@ -8,9 +8,9 @@ socials:
   - label: 'GitHub'
     to: 'https://github.com/sigmaott/sigma-ssai-web-sdk'
     icon: 'i-simple-icons-github'
-  - label: 'Twitter'
+  - label: 'X'
     to: 'https://x.com/MThudo'
-    icon: 'i-simple-icons-twitter'
+    icon: 'i-simple-icons-x'
 
 pinResources:
   enabled: true
