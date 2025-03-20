@@ -71,7 +71,7 @@ No credit card required
   
     ::::list-item
     #image
-    ![ssai-strength-4.png](/ssai/ssai-strength-4.png))
+    ![ssai-strength-4.png](/ssai/ssai-strength-4.png)
     
     #title
     **Instant ad conversion and alignment to the original stream**
