@@ -164,6 +164,38 @@ Avoiding Ad Blockers for Video Monetization
 Globally, 42.7% of internet users use ad blockers
 ::
 
+::section-grid
+---
+bg: true
+col: "3"
+---
+  :::grid-item
+  ![Ads-marker-thumb](/ads-marker-thumb.png)
+  :::
+
+  :::grid-item
+  ---
+  padding: "16"
+  span: "2"
+  ---
+  #title
+  **Ads Marker**: Smart Ad Tagging, Maximized Revenue
+  
+  #subtitle
+  Enhance ad placement with AI-driven Ads Marker, an intelligent solution that detects ad signals in real time. With automatic ad insertion, LRM-supported scheduling, and direct API integration, it ensures seamless monetization across live and VOD content. Maximize ad fill rates, optimize viewer experience, and boost revenue—all with the power of AI.
+  
+    ::::button-link{href="/solutions/sigma-ads-markers"}
+    Learn more
+    ::::
+  :::
+
+#title
+Ads Marker
+
+#subtitle
+A Breakthrough Tool for Ad Management & Optimization
+::
+
 ::section-resource
 ---
 items:
