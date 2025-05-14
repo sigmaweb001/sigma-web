@@ -170,7 +170,7 @@ bg: true
 col: "3"
 ---
   :::grid-item
-  ![Ads-marker-thumb](/ads-marker-thumb.png)
+  ![Ads-marker-thumb](/solutions/Ads-marker/Image.jpg)
   :::
 
   :::grid-item
