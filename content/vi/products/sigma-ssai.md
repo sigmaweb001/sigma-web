@@ -177,7 +177,7 @@ Trên toàn cầu, 42,7% người dùng internet sử dụng trình chặn quả
 bg: true
 col: "3"
 ---
-  :::grid-item
+  :::grid-item{center padding="10"}
   ![Ads-marker-thumb](/solutions/Ads-marker/Image.jpg)
   :::
 

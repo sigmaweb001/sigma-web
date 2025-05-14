@@ -169,7 +169,7 @@ Globally, 42.7% of internet users use ad blockers
 bg: true
 col: "3"
 ---
-  :::grid-item
+  :::grid-item{center padding="10"}
   ![Ads-marker-thumb](/solutions/Ads-marker/Image.jpg)
   :::
 
