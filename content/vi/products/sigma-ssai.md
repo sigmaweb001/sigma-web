@@ -90,8 +90,8 @@ No credit card required
 
 ::section-grid
 ---
-col: "3"
 gradient: true
+col: "3"
 ---
   :::grid-card
   Thay thế thời gian ngắt quảng cáo phát sóng bằng Quảng cáo OTT có thể định địa chỉ. Chèn quảng cáo vào luồng Truyền hình trực tiếp tuyến tính và VOD.
@@ -170,6 +170,38 @@ Tránh Ad Blockers cho Video và kiếm tiền
 
 #subtitle
 Trên toàn cầu, 42,7% người dùng internet sử dụng trình chặn quảng cáo
+::
+
+::section-grid
+---
+bg: true
+col: "3"
+---
+  :::grid-item{center padding="10"}
+  ![Ads-marker-thumb](/solutions/Ads-marker/Image.jpg)
+  :::
+
+  :::grid-item
+  ---
+  padding: "16"
+  span: "2"
+  ---
+  #title
+  **Ads Marker**: Gắn Thẻ Quảng Cáo Thông Minh, Tối Đa Hóa Doanh Thu
+  
+  #subtitle
+  Nâng cao vị trí quảng cáo với Ads Marker sử dụng AI, giải pháp thông minh phát hiện tín hiệu quảng cáo theo thời gian thực. Tự động chèn quảng cáo, hỗ trợ lên lịch LRM, tích hợp API trực tiếp, đảm bảo kiếm tiền liền mạch trên cả nội dung trực tiếp và VOD. Tối đa hóa tỷ lệ lấp đầy quảng cáo, tối ưu trải nghiệm người xem và tăng doanh thu—tất cả nhờ sức mạnh của AI.
+  
+    ::::button-link{href="/solutions/sigma-ads-markers"}
+    Xem thêm
+    ::::
+  :::
+
+#title
+Ads Marker
+
+#subtitle
+Công Cụ Đột Phá Cho Quản Lý & Tối Ưu Hóa Quảng Cáo
 ::
 
 ::section-resource
