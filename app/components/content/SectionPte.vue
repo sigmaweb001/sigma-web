@@ -130,11 +130,6 @@ const currentIndex = computed(() => Math.round(currentTime.value / 2))
             :src="video"
             :loop="true"
             :volume="0"
-            @mounted="() => { }"
-            @ready="() => { }"
-            @play="() => { }"
-            @pause="() => { }"
-            @ended="() => { }"
             @timeupdate="timeUpdate"
           >
             <template #default="{ player, state }">

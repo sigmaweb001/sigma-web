@@ -133,6 +133,7 @@ const hideDemo = () => {
 
 const selectVideo = (videoId: number) => {
   selectedVideoId.value = videoId
+  hideDemo()
 }
 
 const selectedVideo = computed(() => {
@@ -166,17 +167,22 @@ whenever(scrollableDiv, () => {
     })
   }
 })
+
+const src = ref('http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4')
 </script>
 
 <template>
   <div class="h-screen bg-gray-900 flex items-center justify-center relative overflow-hidden">
     <!-- Main Demo Container -->
-    <div class="relative w-full h-full">
+    <div class="relative w-full aspect-video">
       <!-- Video/Thumbnail Section -->
-      <div class="relative w-full h-full bg-gray-900 overflow-hidden">
+      <div class="relative w-full h-full bg-gray-900 overflow-hidden flex items-center justify-center">
         <!-- Background Image/Video -->
         <div class="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
           <div class="absolute inset-0 bg-black/40" />
+          <ClientOnly>
+            <PlayVideoPte :src="src" />
+          </ClientOnly>
         </div>
 
         <!-- Top Stats Overlay -->
@@ -200,7 +206,8 @@ whenever(scrollableDiv, () => {
           <div class="backdrop-blur-md bg-gray-700/50 rounded-full px-4 py-2 flex items-center gap-3">
             <div class="flex flex-col">
               <span class="text-white font-bold text-sm">Sigma Per-title Encoding</span>
-              <span class="text-orange-400 font-bold text-sm">{{ selectedVideo.optimizedSize }} {{ selectedVideo.optimizedUnit }}</span>
+              <span class="text-orange-400 font-bold text-sm">{{ selectedVideo.optimizedSize }} {{
+                selectedVideo.optimizedUnit }}</span>
             </div>
             <div class="text-white/50">
               |
@@ -277,6 +284,102 @@ whenever(scrollableDiv, () => {
         </div>
       </div>
 
+      <!-- Demo Overlay -->
+      <Transition
+        enter-active-class="transition-all duration-300 ease-out"
+        enter-from-class="opacity-0 scale-105"
+        enter-to-class="opacity-100 scale-100"
+        leave-active-class="transition-all duration-300 ease-in"
+        leave-from-class="opacity-100 scale-100"
+        leave-to-class="opacity-0 scale-95"
+      >
+        <div
+          v-if="showDemoOverlay"
+          class="absolute inset-0 z-[9999] bg-black/10 backdrop-blur-xs"
+        >
+          <!-- Overlay Background -->
+          <div class="absolute inset-0 overflow-hidden flex flex-col">
+            <!-- Demo Videos Content -->
+            <div class="relative z-11 flex-1 flex flex-col justify-end p-6">
+              <!-- Demo Videos Grid/Scroll -->
+              <div class="mb-6">
+                <div class="backdrop-blur-md bg-black/20 rounded-2xl py-2">
+                  <TransitionGroup
+                    id="video-demo-list"
+                    ref="scrollableDiv"
+                    name="video-list"
+                    tag="div"
+                    class="flex gap-1 overflow-x-auto overflow-y-hidden scrollbar-hide"
+                    appear
+                  >
+                    <div
+                      v-for="(video, index) in demoVideos"
+                      :key="video.id"
+                      class="flex-shrink-0 w-64 rounded-xl border-2 cursor-pointer transition-all duration-300 scale-95 hover:scale-100 overflow-hidden relative video-card bg-gray-800/90 backdrop-blur-sm select-none"
+                      :class="{
+                        'border-white': video.id === selectedVideoId,
+                        'border-gray-700/50': video.id !== selectedVideoId,
+                      }"
+                      :style="{ 'animation-delay': `${index * 100}ms` }"
+                      @click="selectVideo(video.id)"
+                    >
+                      <!-- Video Thumbnail -->
+                      <div class="aspect-video bg-gray-700 flex items-center justify-center relative">
+                        <!-- Background pattern -->
+                        <div class="absolute inset-0 bg-gradient-to-br from-gray-800/80 to-gray-900/80" />
+
+                        <!-- Video Info Overlay -->
+                        <div
+                          class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900/95 via-gray-900/70 to-transparent p-4"
+                        >
+                          <!-- Resolution -->
+                          <div class="text-white font-bold text-2xl mb-2">
+                            {{ video.resolution }}
+                          </div>
+
+                          <!-- Size Comparison -->
+                          <div class="flex items-center gap-2 text-base mb-2">
+                            <span class="text-white font-semibold">{{ video.originalSize }}</span>
+                            <span class="text-gray-300">{{ video.originalUnit }}</span>
+                            <span class="text-orange-400 font-bold">></span>
+                            <span class="text-orange-400 font-semibold">{{ video.optimizedSize }}</span>
+                            <span class="text-orange-300">{{ video.optimizedUnit }}</span>
+                          </div>
+
+                          <!-- Video Details -->
+                          <div class="text-sm text-gray-400">
+                            {{ video.dimensions }} | {{ video.duration }} | {{ video.format }} | {{ video.codec }} | {{
+                              video.fps }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </TransitionGroup>
+                </div>
+              </div>
+
+              <!-- Bottom Controls -->
+              <div class="flex items-end gap-4">
+                <!-- Close Button -->
+                <UButton
+                  color="neutral"
+                  variant="solid"
+                  size="xl"
+                  class="backdrop-blur-lg bg-white/80 text-gray-800 border-0 hover:bg-white/90 transition-colors duration-200 rounded-full"
+                  @click="hideDemo"
+                >
+                  <Icon
+                    name="i-heroicons-x-mark-20-solid"
+                    class="size-5 text-gray-800"
+                  />
+                  Thu gọn
+                </UButton>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Transition>
+
       <!-- Hidden File Input -->
       <input
         id="file-upload"
@@ -286,99 +389,6 @@ whenever(scrollableDiv, () => {
         @change="handleFileUpload"
       >
     </div>
-
-    <!-- Demo Overlay -->
-    <Transition
-      enter-active-class="transition-all duration-300 ease-out"
-      enter-from-class="opacity-0 scale-105"
-      enter-to-class="opacity-100 scale-100"
-      leave-active-class="transition-all duration-300 ease-in"
-      leave-from-class="opacity-100 scale-100"
-      leave-to-class="opacity-0 scale-95"
-    >
-      <div
-        v-if="showDemoOverlay"
-        class="fixed inset-0 z-[9999] bg-black/10 backdrop-blur-xs"
-      >
-        <!-- Overlay Background -->
-        <div class="absolute inset-0 overflow-hidden flex flex-col">
-          <!-- Demo Videos Content -->
-          <div class="relative z-10 flex-1 flex flex-col justify-end p-6">
-            <!-- Demo Videos Grid/Scroll -->
-            <div class="mb-6">
-              <div class="backdrop-blur-md bg-black/20 rounded-2xl p-6">
-                <TransitionGroup
-                  id="video-demo-list"
-                  ref="scrollableDiv"
-                  name="video-list"
-                  tag="div"
-                  class="flex gap-1 overflow-x-auto overflow-y-hidden scrollbar-hide"
-                  appear
-                >
-                  <div
-                    v-for="(video, index) in demoVideos"
-                    :key="video.id"
-                    class="flex-shrink-0 w-64 rounded-xl border-2 cursor-pointer transition-all duration-300 scale-95 hover:scale-100 overflow-hidden relative video-card bg-gray-800/90 backdrop-blur-sm select-none"
-                    :class="{
-                      'border-white': video.id === selectedVideoId,
-                      'border-gray-700/50': video.id !== selectedVideoId,
-                    }"
-                    :style="{ 'animation-delay': `${index * 100}ms` }"
-                    @click="selectVideo(video.id)"
-                  >
-                    <!-- Video Thumbnail -->
-                    <div class="aspect-video bg-gray-700 flex items-center justify-center relative">
-                      <!-- Background pattern -->
-                      <div class="absolute inset-0 bg-gradient-to-br from-gray-800/80 to-gray-900/80" />
-
-                      <!-- Video Info Overlay -->
-                      <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900/95 via-gray-900/70 to-transparent p-4">
-                        <!-- Resolution -->
-                        <div class="text-white font-bold text-2xl mb-2">
-                          {{ video.resolution }}
-                        </div>
-
-                        <!-- Size Comparison -->
-                        <div class="flex items-center gap-2 text-base mb-2">
-                          <span class="text-white font-semibold">{{ video.originalSize }}</span>
-                          <span class="text-gray-300">{{ video.originalUnit }}</span>
-                          <span class="text-orange-400 font-bold">></span>
-                          <span class="text-orange-400 font-semibold">{{ video.optimizedSize }}</span>
-                          <span class="text-orange-300">{{ video.optimizedUnit }}</span>
-                        </div>
-
-                        <!-- Video Details -->
-                        <div class="text-sm text-gray-400">
-                          {{ video.dimensions }} | {{ video.duration }} | {{ video.format }} | {{ video.codec }} | {{ video.fps }}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </TransitionGroup>
-              </div>
-            </div>
-
-            <!-- Bottom Controls -->
-            <div class="flex items-end gap-4">
-              <!-- Close Button -->
-              <UButton
-                color="neutral"
-                variant="solid"
-                size="xl"
-                class="backdrop-blur-lg bg-white/80 text-gray-800 border-0 hover:bg-white/90 transition-colors duration-200 rounded-full"
-                @click="hideDemo"
-              >
-                <Icon
-                  name="i-heroicons-x-mark-20-solid"
-                  class="size-5 text-gray-800"
-                />
-                Thu gọn
-              </UButton>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Transition>
   </div>
 </template>
 
@@ -402,6 +412,7 @@ whenever(scrollableDiv, () => {
     opacity: 0;
     transform: translateY(30px) scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
