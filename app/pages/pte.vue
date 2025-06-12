@@ -281,21 +281,21 @@ const selectedVideo = computed(() => {
                   <div
                     v-for="(video, index) in demoVideos"
                     :key="video.id"
-                    class="flex-shrink-0 w-64 rounded-lg border-2 cursor-pointer transition-all duration-300 hover:scale-105 overflow-hidden relative video-card"
+                    class="flex-shrink-0 w-64 rounded-xl border-2 cursor-pointer transition-all duration-300 hover:scale-105 overflow-hidden relative video-card bg-gray-800/90 backdrop-blur-sm"
                     :class="{
-                      'border-purple-500': video.id === selectedVideoId,
-                      'border-gray-500': video.id !== selectedVideoId,
+                      'border-white': video.id === selectedVideoId,
+                      'border-gray-700/50': video.id !== selectedVideoId,
                     }"
                     :style="{ 'animation-delay': `${index * 100}ms` }"
                     @click="selectVideo(video.id)"
                   >
                     <!-- Video Thumbnail -->
-                    <div class="aspect-video bg-gradient-to-br from-blue-800 to-purple-800 flex items-center justify-center relative">
+                    <div class="aspect-video bg-gray-700 flex items-center justify-center relative">
                       <!-- Background pattern -->
-                      <div class="absolute inset-0 bg-gradient-to-br from-blue-900/50 to-purple-900/50" />
+                      <div class="absolute inset-0 bg-gradient-to-br from-gray-800/80 to-gray-900/80" />
 
                       <!-- Video Info Overlay -->
-                      <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-4">
+                      <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900/95 via-gray-900/70 to-transparent p-4">
                         <!-- Resolution -->
                         <div class="text-white font-bold text-2xl mb-2">
                           {{ video.resolution }}
@@ -304,14 +304,14 @@ const selectedVideo = computed(() => {
                         <!-- Size Comparison -->
                         <div class="flex items-center gap-2 text-base mb-2">
                           <span class="text-white font-semibold">{{ video.originalSize }}</span>
-                          <span class="text-white/80">{{ video.originalUnit }}</span>
-                          <span class="text-white/60">></span>
+                          <span class="text-gray-300">{{ video.originalUnit }}</span>
+                          <span class="text-orange-400 font-bold">></span>
                           <span class="text-orange-400 font-semibold">{{ video.optimizedSize }}</span>
-                          <span class="text-orange-400/90">{{ video.optimizedUnit }}</span>
+                          <span class="text-orange-300">{{ video.optimizedUnit }}</span>
                         </div>
 
                         <!-- Video Details -->
-                        <div class="text-sm text-white/70">
+                        <div class="text-sm text-gray-400">
                           {{ video.dimensions }} | {{ video.duration }} | {{ video.format }} | {{ video.codec }} | {{ video.fps }}
                         </div>
                       </div>
