@@ -3,6 +3,8 @@ definePageMeta({
   layout: 'empty',
 })
 
+const pageParams = useUrlSearchParams('history')
+
 useSeoMeta({
   title: 'Per-Title Encoding Demo - Sigma Video',
   ogTitle: 'Per-Title Encoding Demo - Sigma Video',
@@ -21,7 +23,12 @@ useSeoMeta({
 
 const isUploading = ref(false)
 const selectedFile = ref(null)
-const showDemoOverlay = ref(false)
+const showDemoOverlay = computed({
+  get: () => pageParams.open,
+  set: (value) => {
+    pageParams.open = value
+  },
+})
 const selectedVideoId = ref(2) // Default to second video (Standard Demo)
 
 const demoVideos = [
@@ -130,6 +137,34 @@ const selectVideo = (videoId: number) => {
 
 const selectedVideo = computed(() => {
   return demoVideos.find(video => video.id === selectedVideoId.value) || demoVideos[1]
+})
+
+onMounted(() => {
+  // Hide fc_frame elements
+  const fcFrameElements = document.querySelectorAll('.fc_frame')
+  fcFrameElements.forEach((element) => {
+    (element as HTMLElement).style.display = 'none'
+  })
+
+  // Add horizontal scroll for video demo list
+})
+
+const scrollableDiv = ref(null)
+
+whenever(scrollableDiv, () => {
+  if (scrollableDiv.value) {
+    scrollableDiv.value.$el.addEventListener('wheel', (event) => {
+      event.preventDefault()
+      if (event.shiftKey) {
+        scrollableDiv.value.$el.scrollLeft += event.deltaX
+      }
+      else {
+        scrollableDiv.value.$el.scrollLeft += event.deltaX === 0
+          ? event.deltaY
+          : Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY
+      }
+    })
+  }
 })
 </script>
 
@@ -273,15 +308,17 @@ const selectedVideo = computed(() => {
             <div class="mb-6">
               <div class="backdrop-blur-md bg-black/20 rounded-2xl p-6">
                 <TransitionGroup
+                  id="video-demo-list"
+                  ref="scrollableDiv"
                   name="video-list"
                   tag="div"
-                  class="flex gap-3 overflow-visible scrollbar-hide"
+                  class="flex gap-1 overflow-x-auto overflow-y-hidden scrollbar-hide"
                   appear
                 >
                   <div
                     v-for="(video, index) in demoVideos"
                     :key="video.id"
-                    class="flex-shrink-0 w-64 rounded-xl border-2 cursor-pointer transition-all duration-300 hover:scale-105 overflow-hidden relative video-card bg-gray-800/90 backdrop-blur-sm"
+                    class="flex-shrink-0 w-64 rounded-xl border-2 cursor-pointer transition-all duration-300 scale-95 hover:scale-100 overflow-hidden relative video-card bg-gray-800/90 backdrop-blur-sm"
                     :class="{
                       'border-white': video.id === selectedVideoId,
                       'border-gray-700/50': video.id !== selectedVideoId,
