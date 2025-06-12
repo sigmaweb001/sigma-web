@@ -143,7 +143,7 @@ onMounted(() => {
   // Hide fc_frame elements
   const fcFrameElements = document.querySelectorAll('.fc_frame')
   fcFrameElements.forEach((element) => {
-    (element as HTMLElement).style.display = 'none'
+    (element as HTMLElement).style.display = 'none !important'
   })
 
   // Add horizontal scroll for video demo list
@@ -218,7 +218,7 @@ whenever(scrollableDiv, () => {
           <UButton
             color="neutral"
             variant="solid"
-            size="lg"
+            size="xl"
             class="backdrop-blur-md bg-gray-900/60 border border-white/20 hover:bg-gray-900/80 transition-colors duration-200"
           >
             <Icon
@@ -237,7 +237,7 @@ whenever(scrollableDiv, () => {
               v-if="!showDemoOverlay"
               color="neutral"
               variant="solid"
-              size="md"
+              size="xl"
               class="backdrop-blur-lg bg-white/80 text-gray-800 border-0 hover:bg-white/90 transition-colors duration-200 rounded-full"
               @click="showDemo"
             >
@@ -262,7 +262,7 @@ whenever(scrollableDiv, () => {
             <!-- Upload Button -->
             <UButton
               color="warning"
-              size="md"
+              size="xl"
               :loading="isUploading"
               class="font-bold"
               @click="triggerFileUpload"
@@ -298,7 +298,7 @@ whenever(scrollableDiv, () => {
     >
       <div
         v-if="showDemoOverlay"
-        class="fixed inset-0 z-50 bg-black/10 backdrop-blur-xs"
+        class="fixed inset-0 z-[9999] bg-black/10 backdrop-blur-xs"
       >
         <!-- Overlay Background -->
         <div class="absolute inset-0 overflow-hidden flex flex-col">
@@ -318,7 +318,7 @@ whenever(scrollableDiv, () => {
                   <div
                     v-for="(video, index) in demoVideos"
                     :key="video.id"
-                    class="flex-shrink-0 w-64 rounded-xl border-2 cursor-pointer transition-all duration-300 scale-95 hover:scale-100 overflow-hidden relative video-card bg-gray-800/90 backdrop-blur-sm"
+                    class="flex-shrink-0 w-64 rounded-xl border-2 cursor-pointer transition-all duration-300 scale-95 hover:scale-100 overflow-hidden relative video-card bg-gray-800/90 backdrop-blur-sm select-none"
                     :class="{
                       'border-white': video.id === selectedVideoId,
                       'border-gray-700/50': video.id !== selectedVideoId,
@@ -364,7 +364,7 @@ whenever(scrollableDiv, () => {
               <UButton
                 color="neutral"
                 variant="solid"
-                size="md"
+                size="xl"
                 class="backdrop-blur-lg bg-white/80 text-gray-800 border-0 hover:bg-white/90 transition-colors duration-200 rounded-full"
                 @click="hideDemo"
               >

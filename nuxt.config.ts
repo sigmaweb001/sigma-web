@@ -23,11 +23,6 @@ export default defineNuxtConfig({
     head: {
       script: [
         {
-          src: '//fw-cdn.com/11186380/3902989.js',
-          async: true,
-          defer: true,
-        },
-        {
           src: 'https://js.appointlet.com/',
           async: true,
           defer: true,
