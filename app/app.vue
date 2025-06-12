@@ -94,13 +94,13 @@ onMounted(() => {
 
     <AppFooter />
 
-    <ClientOnly>
+    <!-- <ClientOnly>
       <LazyUContentSearch
         :files="files"
         :navigation="navigation"
         :links="[]"
       />
-    </ClientOnly>
+    </ClientOnly> -->
   </UApp>
 </template>
 

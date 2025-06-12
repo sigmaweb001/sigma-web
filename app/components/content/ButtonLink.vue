@@ -1,18 +1,17 @@
 <script lang="ts" setup>
-import type { ButtonProps } from '@nuxt/ui'
-
 defineOptions({
   inheritAttrs: false,
 })
 
 const props = withDefaults(defineProps<{
-  href: any
+  href: string
   rounded?: boolean
-  size?: string
+  size?: 'xl' | 'xs' | 'sm' | 'md' | 'lg'
   white?: boolean
   outline?: boolean
   link?: boolean
-} & ButtonProps>(), {
+  block?: boolean
+}>(), {
   size: 'xl',
   rounded: true,
 })

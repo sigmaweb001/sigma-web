@@ -35,7 +35,7 @@ const items = computed(() => {
       label: products?.title,
       icon: products?.icon,
       active: route.path.startsWith('/products'),
-      childrenProducts: products.children.map(child => ({
+      childrenProducts: products?.children.map(child => ({
         label: child.title,
         description: child.description,
         icon: child.icon,
@@ -53,7 +53,7 @@ const items = computed(() => {
       label: solutions?.title,
       icon: solutions?.icon,
       active: route.path.startsWith('/solutions'),
-      children: solutions.children.map(child => ({
+      children: solutions?.children.map(child => ({
         label: child.title,
         description: child.description,
         icon: child.icon,
@@ -66,7 +66,7 @@ const items = computed(() => {
       icon: resources?.icon,
       to: '/resources',
       active: route.path.startsWith('/resources'),
-      children: resources.children.map(child => ({
+      children: resources?.children.map(child => ({
         label: child.title,
         description: child.description,
         icon: child.icon,
@@ -202,15 +202,15 @@ const active = ref()
       :items="items"
       class="justify-center flex-1"
       :ui="{
-        viewport: 'sm:w-(--reka-navigation-menu-viewport-width) z-100',
-        childList: 'sm:w-[384px]',
+        // viewport: 'sm:w-(--reka-navigation-menu-viewport-width) z-100',
+        // childList: 'sm:w-[384px]',
         linkLeadingIcon: 'hidden xl:block',
-        childLinkDescription: 'text-balance line-clamp-2',
-
+        // childLinkDescription: 'text-balance line-clamp-2',
       }"
     >
       <template #products-content="{ item: products }">
-        <div class="lg:w-[550px] xl:w-[750px] 2xl:w-[900px] flex">
+        <!-- lg:w-[550px] xl:w-[750px] 2xl:w-[900px]  -->
+        <div class="flex w-full">
           <div class="grid xl:grid-cols-2 gap-2 px-2">
             <div class="py-2">
               <h1 class="text-lg font-medium px-2 py-2">

@@ -28,7 +28,7 @@ const resourcesCategories = computed(() => {
 
 const item = computed(() => {
   const category = data.value?.path.split('/')[2]
-  const categoryItem = resourcesCategories.value.find((item: any) => item.category === category)
+  const categoryItem = (resourcesCategories.value || []).find((item: any) => item.category === category)
   return {
     ...data.value,
     isDatasheet: data.value?.path.includes('/datasheets/'),
@@ -40,7 +40,7 @@ const item = computed(() => {
 <template>
   <div
     v-if="item"
-    class="py-2 bg-neutral-50 flex-shrink-0 w-[256px]"
+    class="py-2 flex-shrink-0 w-[256px] bg-neutral-50"
   >
     <h1 class="text-lg font-medium px-2 py-2">
       {{ item.category }}
