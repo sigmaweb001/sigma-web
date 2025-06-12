@@ -199,6 +199,7 @@ const selectedVideo = computed(() => {
           <div class="flex items-end gap-4">
             <!-- View More Demo Button -->
             <UButton
+              v-if="!showDemoOverlay"
               color="neutral"
               variant="solid"
               size="md"
@@ -271,15 +272,21 @@ const selectedVideo = computed(() => {
             <!-- Demo Videos Grid/Scroll -->
             <div class="mb-6">
               <div class="backdrop-blur-md bg-black/20 rounded-2xl p-6">
-                <div class="flex gap-3 overflow-visible scrollbar-hide">
+                <TransitionGroup
+                  name="video-list"
+                  tag="div"
+                  class="flex gap-3 overflow-visible scrollbar-hide"
+                  appear
+                >
                   <div
-                    v-for="video in demoVideos"
+                    v-for="(video, index) in demoVideos"
                     :key="video.id"
-                    class="flex-shrink-0 w-64 rounded-lg border-2 cursor-pointer transition-all duration-200 hover:scale-105 overflow-hidden relative"
+                    class="flex-shrink-0 w-64 rounded-lg border-2 cursor-pointer transition-all duration-300 hover:scale-105 overflow-hidden relative video-card"
                     :class="{
                       'border-purple-500': video.id === selectedVideoId,
                       'border-gray-500': video.id !== selectedVideoId,
                     }"
+                    :style="{ 'animation-delay': `${index * 100}ms` }"
                     @click="selectVideo(video.id)"
                   >
                     <!-- Video Thumbnail -->
@@ -310,7 +317,7 @@ const selectedVideo = computed(() => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </TransitionGroup>
               </div>
             </div>
 
@@ -346,5 +353,44 @@ const selectedVideo = computed(() => {
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+/* Video card animation */
+.video-card {
+  animation: slideInUp 0.6s ease-out both;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* TransitionGroup animations */
+.video-list-enter-active {
+  transition: all 0.5s ease-out;
+}
+
+.video-list-leave-active {
+  transition: all 0.3s ease-in;
+}
+
+.video-list-enter-from {
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+}
+
+.video-list-leave-to {
+  opacity: 0;
+  transform: translateY(-20px) scale(0.9);
+}
+
+.video-list-move {
+  transition: transform 0.4s ease;
 }
 </style>
