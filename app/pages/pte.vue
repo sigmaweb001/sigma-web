@@ -1,0 +1,350 @@
+<script lang="ts" setup>
+definePageMeta({
+  layout: 'empty',
+})
+
+useSeoMeta({
+  title: 'Per-Title Encoding Demo - Sigma Video',
+  ogTitle: 'Per-Title Encoding Demo - Sigma Video',
+  description: 'Experience Sigma Per-title Encoding technology that reduces video file sizes by up to 86% while maintaining quality. Upload your own video to see the optimization in action.',
+  ogDescription: 'Experience Sigma Per-title Encoding technology that reduces video file sizes by up to 86% while maintaining quality. Upload your own video to see the optimization in action.',
+  ogImage: '/images/pte-demo-preview.jpg',
+  twitterCard: 'summary_large_image',
+  twitterImage: '/images/pte-demo-preview.jpg',
+  twitterTitle: 'Per-Title Encoding Demo - Sigma Video',
+  twitterDescription: 'Experience Sigma Per-title Encoding - reduce video sizes by 86% while maintaining quality.',
+  keywords: 'per-title encoding, video optimization, video compression, sigma video, PTE, video encoding, file size reduction',
+  robots: 'index, follow',
+  ogType: 'website',
+  ogLocale: 'vi_VN',
+})
+
+const isUploading = ref(false)
+const selectedFile = ref(null)
+const showDemoOverlay = ref(false)
+const selectedVideoId = ref(2) // Default to second video (Standard Demo)
+
+const demoVideos = [
+  {
+    id: 1,
+    title: 'Video của bạn',
+    resolution: '4K',
+    originalSize: '480',
+    originalUnit: 'MB',
+    optimizedSize: '168',
+    optimizedUnit: 'MB',
+    dimensions: '3840 x 1714',
+    duration: '12:24',
+    format: 'MP4',
+    codec: 'H.264',
+    fps: '24 FPS',
+    thumbnail: 'demo-1.jpg',
+  },
+  {
+    id: 2,
+    title: 'Standard Demo',
+    resolution: '4K',
+    originalSize: '6.8',
+    originalUnit: 'GB',
+    optimizedSize: '910',
+    optimizedUnit: 'MB',
+    dimensions: '3840 x 1714',
+    duration: '12:24',
+    format: 'MP4',
+    codec: 'H.264',
+    fps: '24 FPS',
+    thumbnail: 'demo-2.jpg',
+  },
+  {
+    id: 3,
+    title: '2K Demo',
+    resolution: '2K',
+    originalSize: '1.1',
+    originalUnit: 'GB',
+    optimizedSize: '286',
+    optimizedUnit: 'MB',
+    dimensions: '1920 x 1080',
+    duration: '12:24',
+    format: 'MP4',
+    codec: 'H.264',
+    fps: '24 FPS',
+    thumbnail: 'demo-3.jpg',
+  },
+  {
+    id: 4,
+    title: 'HD Demo 1',
+    resolution: 'HD',
+    originalSize: '815',
+    originalUnit: 'MB',
+    optimizedSize: '284',
+    optimizedUnit: 'MB',
+    dimensions: '1920 x 818',
+    duration: '12:24',
+    format: 'MP4',
+    codec: 'H.264',
+    fps: '24 FPS',
+    thumbnail: 'demo-4.jpg',
+  },
+  {
+    id: 5,
+    title: 'HD Demo 2',
+    resolution: 'HD',
+    originalSize: '815',
+    originalUnit: 'MB',
+    optimizedSize: '284',
+    optimizedUnit: 'MB',
+    dimensions: '1920 x 818',
+    duration: '12:24',
+    format: 'MP4',
+    codec: 'H.264',
+    fps: '24 FPS',
+    thumbnail: 'demo-5.jpg',
+  },
+]
+
+const handleFileUpload = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  if (target.files && target.files[0]) {
+    selectedFile.value = target.files[0]
+    // Handle file upload logic here
+    console.log('File selected:', target.files[0])
+  }
+}
+
+const triggerFileUpload = () => {
+  const fileInput = document.getElementById('file-upload') as HTMLInputElement
+  fileInput?.click()
+}
+
+const showDemo = () => {
+  showDemoOverlay.value = true
+}
+
+const hideDemo = () => {
+  showDemoOverlay.value = false
+}
+
+const selectVideo = (videoId: number) => {
+  selectedVideoId.value = videoId
+}
+
+const selectedVideo = computed(() => {
+  return demoVideos.find(video => video.id === selectedVideoId.value) || demoVideos[1]
+})
+</script>
+
+<template>
+  <div class="h-screen bg-gray-900 flex items-center justify-center relative overflow-hidden">
+    <!-- Main Demo Container -->
+    <div class="relative w-full h-full">
+      <!-- Video/Thumbnail Section -->
+      <div class="relative w-full h-full bg-gray-900 overflow-hidden">
+        <!-- Background Image/Video -->
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
+          <div class="absolute inset-0 bg-black/40" />
+        </div>
+
+        <!-- Top Stats Overlay -->
+        <div class="absolute top-6 left-6 right-6 flex justify-between items-start z-10">
+          <!-- Standard Static Stats -->
+          <div class="backdrop-blur-md bg-white/10 rounded-full px-4 py-2 flex items-center gap-3">
+            <div class="flex flex-col">
+              <span class="text-white/80 text-sm font-medium">Standard Static</span>
+              <span class="text-white font-bold text-sm">6.8 GB</span>
+            </div>
+            <div class="text-white/50">
+              |
+            </div>
+            <div class="flex flex-col">
+              <span class="text-white/80 text-sm font-medium">Encoding Settings</span>
+              <span class="text-white font-medium text-sm">1080P H.264</span>
+            </div>
+          </div>
+
+          <!-- Sigma PTE Stats -->
+          <div class="backdrop-blur-md bg-white/10 rounded-full px-4 py-2 flex items-center gap-3">
+            <div class="flex flex-col">
+              <span class="text-white font-bold text-sm">Sigma Per-title Encoding</span>
+              <span class="text-orange-400 font-bold text-sm">{{ selectedVideo.optimizedSize }} {{ selectedVideo.optimizedUnit }}</span>
+            </div>
+            <div class="text-white/50">
+              |
+            </div>
+            <div class="flex flex-col">
+              <span class="text-white/80 text-sm font-medium">Encoding Settings</span>
+              <span class="text-white font-medium text-sm">1080P H.264</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Central Divider and Play Button -->
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="absolute w-0.5 h-full bg-white/20 left-1/2 transform -translate-x-1/2" />
+          <UButton
+            color="neutral"
+            variant="solid"
+            size="lg"
+            class="backdrop-blur-md bg-gray-900/60 border border-white/20 hover:bg-gray-900/80 transition-colors duration-200"
+          >
+            <Icon
+              name="i-heroicons-play-20-solid"
+              class="w-5 h-5"
+            />
+            Phát video
+          </UButton>
+        </div>
+
+        <!-- Bottom Overlay -->
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900/80 to-transparent p-6">
+          <div class="flex items-end gap-4">
+            <!-- View More Demo Button -->
+            <UButton
+              color="neutral"
+              variant="solid"
+              size="md"
+              class="backdrop-blur-lg bg-white/80 text-gray-800 border-0 hover:bg-white/90 transition-colors duration-200 rounded-full"
+              @click="showDemo"
+            >
+              <Icon
+                name="i-heroicons-rectangle-group-20-solid"
+                class="w-4 h-4 text-gray-800"
+              />
+              Xem thêm demo
+            </UButton>
+
+            <!-- Right Side Content -->
+            <div class="flex-1 text-right">
+              <h3 class="text-white font-bold text-sm mb-1">
+                Trải nghiệm thử với video của bạn
+              </h3>
+              <p class="text-white/60 text-xs">
+                Dung lượng tối đa 500 Mb. Bạn muốn thử video lớn hơn? Vui lòng
+                <span class="text-blue-400 underline cursor-pointer">Đăng ký tài khoản</span>
+              </p>
+            </div>
+
+            <!-- Upload Button -->
+            <UButton
+              color="warning"
+              size="md"
+              :loading="isUploading"
+              class="font-bold"
+              @click="triggerFileUpload"
+            >
+              <Icon
+                name="i-heroicons-arrow-up-tray-20-solid"
+                class="w-4 h-4"
+              />
+              Upload video
+            </UButton>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hidden File Input -->
+      <input
+        id="file-upload"
+        type="file"
+        accept="video/*"
+        class="hidden"
+        @change="handleFileUpload"
+      >
+    </div>
+
+    <!-- Demo Overlay -->
+    <Transition
+      enter-active-class="transition-all duration-300 ease-out"
+      enter-from-class="opacity-0 scale-105"
+      enter-to-class="opacity-100 scale-100"
+      leave-active-class="transition-all duration-300 ease-in"
+      leave-from-class="opacity-100 scale-100"
+      leave-to-class="opacity-0 scale-95"
+    >
+      <div
+        v-if="showDemoOverlay"
+        class="fixed inset-0 z-50 bg-black/10 backdrop-blur-xs"
+      >
+        <!-- Overlay Background -->
+        <div class="absolute inset-0 overflow-hidden flex flex-col">
+          <!-- Demo Videos Content -->
+          <div class="relative z-10 flex-1 flex flex-col justify-end p-6">
+            <!-- Demo Videos Grid/Scroll -->
+            <div class="mb-6">
+              <div class="backdrop-blur-md bg-black/20 rounded-2xl p-6">
+                <div class="flex gap-3 overflow-visible scrollbar-hide">
+                  <div
+                    v-for="video in demoVideos"
+                    :key="video.id"
+                    class="flex-shrink-0 w-64 rounded-lg border-2 cursor-pointer transition-all duration-200 hover:scale-105 overflow-hidden relative"
+                    :class="{
+                      'border-purple-500': video.id === selectedVideoId,
+                      'border-gray-500': video.id !== selectedVideoId,
+                    }"
+                    @click="selectVideo(video.id)"
+                  >
+                    <!-- Video Thumbnail -->
+                    <div class="aspect-video bg-gradient-to-br from-blue-800 to-purple-800 flex items-center justify-center relative">
+                      <!-- Background pattern -->
+                      <div class="absolute inset-0 bg-gradient-to-br from-blue-900/50 to-purple-900/50" />
+
+                      <!-- Video Info Overlay -->
+                      <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-4">
+                        <!-- Resolution -->
+                        <div class="text-white font-bold text-2xl mb-2">
+                          {{ video.resolution }}
+                        </div>
+
+                        <!-- Size Comparison -->
+                        <div class="flex items-center gap-2 text-base mb-2">
+                          <span class="text-white font-semibold">{{ video.originalSize }}</span>
+                          <span class="text-white/80">{{ video.originalUnit }}</span>
+                          <span class="text-white/60">></span>
+                          <span class="text-orange-400 font-semibold">{{ video.optimizedSize }}</span>
+                          <span class="text-orange-400/90">{{ video.optimizedUnit }}</span>
+                        </div>
+
+                        <!-- Video Details -->
+                        <div class="text-sm text-white/70">
+                          {{ video.dimensions }} | {{ video.duration }} | {{ video.format }} | {{ video.codec }} | {{ video.fps }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Controls -->
+            <div class="flex items-end gap-4">
+              <!-- Close Button -->
+              <UButton
+                color="neutral"
+                variant="solid"
+                size="md"
+                class="backdrop-blur-lg bg-white/80 text-gray-800 border-0 hover:bg-white/90 transition-colors duration-200 rounded-full"
+                @click="hideDemo"
+              >
+                <Icon
+                  name="i-heroicons-x-mark-20-solid"
+                  class="w-4 h-4 text-gray-800"
+                />
+                Thu gọn
+              </UButton>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Transition>
+  </div>
+</template>
+
+<style scoped>
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+</style>
