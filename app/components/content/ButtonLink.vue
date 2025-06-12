@@ -10,6 +10,7 @@ const props = withDefaults(defineProps<{
   white?: boolean
   outline?: boolean
   link?: boolean
+  block?: boolean
 }>(), {
   size: 'xl',
   rounded: true,
