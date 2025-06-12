@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { Slot } from 'reka-ui'
+
 const props = defineProps<{
   icon?: string
   size?: 'default' | 'small'
