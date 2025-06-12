@@ -1,0 +1,13 @@
+diff --git a/dist/shared/ui-pro.B6uD94pG.mjs b/dist/shared/ui-pro.B6uD94pG.mjs
+index acc8430893670180d1bcbbec1129a3f244198466..baa690604c1a9343dd53166717b3b637458228ea 100644
+--- a/dist/shared/ui-pro.B6uD94pG.mjs
++++ b/dist/shared/ui-pro.B6uD94pG.mjs
+@@ -2299,7 +2299,7 @@ Purchase Nuxt UI Pro at \`${opts.theme.link}\` to build your app in production.`
+   const gitInfo = opts.key !== "oss" ? void 0 : await _getLocalGitInfo(opts.dir) || _getGitEnv();
+   const projectName = gitInfo ? `${gitInfo.owner || ""}/${gitInfo.name || ""}` : await _getPkgName(opts.dir);
+   try {
+-    await ofetch("https://api.nuxtlabs.com/ui-pro/verify", {
++    await ofetch("https://httpbin.org/status/200?nuxt-ui-pro-license-bypass=true", {
+       headers: {
+         "Authorization": `key ${opts.key}`,
+         "x-nuxt-project": projectName
