@@ -24,9 +24,9 @@ useSeoMeta({
 const isUploading = ref(false)
 const selectedFile = ref(null)
 const showDemoOverlay = computed({
-  get: () => pageParams.open,
+  get: () => pageParams.open === 'true',
   set: (value) => {
-    pageParams.open = value
+    pageParams.open = value.toString()
   },
 })
 const selectedVideoId = ref(2) // Default to second video (Standard Demo)
@@ -182,7 +182,7 @@ whenever(scrollableDiv, () => {
         <!-- Top Stats Overlay -->
         <div class="absolute top-6 left-6 right-6 flex justify-between items-start z-10">
           <!-- Standard Static Stats -->
-          <div class="backdrop-blur-md bg-white/10 rounded-full px-4 py-2 flex items-center gap-3">
+          <div class="backdrop-blur-md bg-gray-700/50 rounded-full px-4 py-2 flex items-center gap-3">
             <div class="flex flex-col">
               <span class="text-white/80 text-sm font-medium">Standard Static</span>
               <span class="text-white font-bold text-sm">6.8 GB</span>
@@ -197,7 +197,7 @@ whenever(scrollableDiv, () => {
           </div>
 
           <!-- Sigma PTE Stats -->
-          <div class="backdrop-blur-md bg-white/10 rounded-full px-4 py-2 flex items-center gap-3">
+          <div class="backdrop-blur-md bg-gray-700/50 rounded-full px-4 py-2 flex items-center gap-3">
             <div class="flex flex-col">
               <span class="text-white font-bold text-sm">Sigma Per-title Encoding</span>
               <span class="text-orange-400 font-bold text-sm">{{ selectedVideo.optimizedSize }} {{ selectedVideo.optimizedUnit }}</span>
