@@ -35,7 +35,7 @@ const items = computed(() => {
       label: products?.title,
       icon: products?.icon,
       active: route.path.startsWith('/products'),
-      childrenProducts: products.children.map(child => ({
+      childrenProducts: products?.children.map(child => ({
         label: child.title,
         description: child.description,
         icon: child.icon,
@@ -53,7 +53,7 @@ const items = computed(() => {
       label: solutions?.title,
       icon: solutions?.icon,
       active: route.path.startsWith('/solutions'),
-      children: solutions.children.map(child => ({
+      children: solutions?.children.map(child => ({
         label: child.title,
         description: child.description,
         icon: child.icon,
@@ -66,7 +66,7 @@ const items = computed(() => {
       icon: resources?.icon,
       to: '/resources',
       active: route.path.startsWith('/resources'),
-      children: resources.children.map(child => ({
+      children: resources?.children.map(child => ({
         label: child.title,
         description: child.description,
         icon: child.icon,
