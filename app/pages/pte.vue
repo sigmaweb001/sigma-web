@@ -219,11 +219,11 @@ whenever(scrollableDiv, () => {
             color="neutral"
             variant="solid"
             size="xl"
-            class="backdrop-blur-md bg-gray-900/60 border border-white/20 hover:bg-gray-900/80 transition-colors duration-200"
+            class="backdrop-blur-md bg-gray-900/60 border border-white/20 hover:bg-gray-900/80 transition-colors duration-200 rounded-full"
           >
             <Icon
               name="i-heroicons-play-20-solid"
-              class="w-5 h-5"
+              class="size-5"
             />
             Phát video
           </UButton>
@@ -243,7 +243,7 @@ whenever(scrollableDiv, () => {
             >
               <Icon
                 name="i-heroicons-rectangle-group-20-solid"
-                class="w-4 h-4 text-gray-800"
+                class="size-5 text-gray-800"
               />
               Xem thêm demo
             </UButton>
@@ -269,7 +269,7 @@ whenever(scrollableDiv, () => {
             >
               <Icon
                 name="i-heroicons-arrow-up-tray-20-solid"
-                class="w-4 h-4"
+                class="size-5"
               />
               Upload video
             </UButton>
@@ -370,7 +370,7 @@ whenever(scrollableDiv, () => {
               >
                 <Icon
                   name="i-heroicons-x-mark-20-solid"
-                  class="w-4 h-4 text-gray-800"
+                  class="size-5 text-gray-800"
                 />
                 Thu gọn
               </UButton>
