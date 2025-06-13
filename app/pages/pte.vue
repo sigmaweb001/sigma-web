@@ -169,6 +169,11 @@ whenever(scrollableDiv, () => {
 })
 
 const src = ref('http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4')
+
+const playVideoRef = ref(null)
+function handlePlay() {
+  playVideoRef.value?.play()
+}
 </script>
 
 <template>
@@ -181,7 +186,10 @@ const src = ref('http://commondatastorage.googleapis.com/gtv-videos-bucket/sampl
         <div class="absolute inset-0 ">
           <div class="absolute inset-0 bg-black/40" />
           <ClientOnly>
-            <PlayVideoPte :src="src" />
+            <PlayVideoPte
+              ref="playVideoRef"
+              :src="src"
+            />
           </ClientOnly>
         </div>
 
@@ -221,25 +229,8 @@ const src = ref('http://commondatastorage.googleapis.com/gtv-videos-bucket/sampl
           </div>
         </div>
 
-        <!-- Central Divider and Play Button -->
-        <div class="absolute inset-0 bottom-0 flex items-center justify-center">
-          <div class="absolute w-0.5 h-full bg-white/20 left-1/2 transform -translate-x-1/2" />
-          <UButton
-            color="neutral"
-            variant="solid"
-            size="xl"
-            class="backdrop-blur-md bg-gray-900/60 border border-white/20 hover:bg-gray-900/80 transition-colors duration-200 rounded-full"
-          >
-            <Icon
-              name="i-heroicons-play-20-solid"
-              class="size-5"
-            />
-            Phát video
-          </UButton>
-        </div>
-
         Bottom Overlay
-        <div class="absolute bottom-0 left-0 right-0  p-6 opacity-0 pointer-events-none transition-opacity duration-300 group-hover:opacity-100 group-hover:pointer-events-auto">
+        <div class="absolute bottom-0 left-0 right-0 px-6 py-5 opacity-0 pointer-events-none transition-opacity duration-300 group-hover:opacity-100 group-hover:pointer-events-auto">
           <div class="flex items-end gap-4">
             <!-- View More Demo Button -->
             <UButton
@@ -263,8 +254,7 @@ const src = ref('http://commondatastorage.googleapis.com/gtv-videos-bucket/sampl
                 Trải nghiệm thử với video của bạn
               </h3>
               <p class="text-white/60 text-xs">
-                Dung lượng tối đa 500 Mb. Bạn muốn thử video lớn hơn? Vui lòng
-                <span class="text-blue-400 underline cursor-pointer">Đăng ký tài khoản</span>
+                Dung lượng tối đa 500 Mb
               </p>
             </div>
 
