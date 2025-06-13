@@ -229,7 +229,7 @@ function handlePlay() {
           </div>
         </div>
 
-        <div class="absolute bottom-0 left-0 right-0 px-6 py-5 opacity-0 pointer-events-none transition-opacity duration-300 group-hover:opacity-100 group-hover:pointer-events-auto">
+        <div class="absolute bottom-0 left-0 right-0 px-6 py-5 opacity-0 bg-gradient-to-t from-gray-900/80 to-transparent  pointer-events-none transition-opacity duration-300 group-hover:opacity-100 group-hover:pointer-events-auto">
           <div class="flex items-end gap-4">
             <!-- View More Demo Button -->
             <UButton
@@ -262,7 +262,7 @@ function handlePlay() {
               color="warning"
               size="xl"
               :loading="isUploading"
-              class="font-bold"
+              class="font-bold rounded-full"
               @click="triggerFileUpload"
             >
               <Icon
