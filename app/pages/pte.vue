@@ -168,7 +168,8 @@ whenever(scrollableDiv, () => {
   }
 })
 
-const src = ref('http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4')
+const originalSrc = ref('http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4')
+const optimizedSrc = ref('http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4')
 
 const playVideoRef = ref(null)
 function handlePlay() {
@@ -184,11 +185,11 @@ function handlePlay() {
       <div class="relative w-full h-full bg-gray-900 overflow-hidden flex items-center justify-center">
         <!-- Background Image/Video -->
         <div class="absolute inset-0 ">
-          <div class="absolute inset-0 bg-black/40" />
           <ClientOnly>
             <PlayVideoPte
               ref="playVideoRef"
-              :src="src"
+              :src="originalSrc"
+              :optimized-src="optimizedSrc"
             />
           </ClientOnly>
         </div>

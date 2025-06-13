@@ -1,15 +1,14 @@
 <script lang="ts" setup>
 const props = defineProps<{
   src: string
+  optimizedSrc: string
 }>()
 
-const { src } = toRefs(props)
+const { src, optimizedSrc } = toRefs(props)
 
 const videoRef = ref()
+const videoRefOptimized = ref()
 
-onMounted(() => {
-  videoRef.value.src = src.value
-})
 const loaded = ref(false)
 const currentTime = ref(0)
 const duration = ref(0)
@@ -39,11 +38,21 @@ function formatTime(time: number) {
 }
 
 function play() {
-  videoRef.value?.play()
+  if (videoRef.value) {
+    videoRef.value.play()
+  }
+  if (videoRefOptimized.value) {
+    videoRefOptimized.value.play()
+  }
 }
 
 function pause() {
-  videoRef.value?.pause()
+  if (videoRef.value) {
+    videoRef.value.pause()
+  }
+  if (videoRefOptimized.value) {
+    videoRefOptimized.value.pause()
+  }
 }
 
 function togglePlay() {
@@ -68,17 +77,31 @@ defineExpose({ play, pause })
 
 <template>
   <div class="relative w-full h-full group focus-within:group">
-    <video
-      ref="videoRef"
-      :src="src"
-      class="w-full h-full object-cover"
-      crossorigin
-      playsinline
-      @loadedmetadata="onLoadedMetadata"
-      @timeupdate="onTimeUpdate"
-      @play="onPlay"
-      @pause="onPause"
-    />
+    <ImgComparisonSlider class="w-full h-full relative">
+      <template #first>
+        <video
+          ref="videoRef"
+          :src="src"
+          class="w-full h-full object-cover"
+          crossorigin
+          playsinline
+          @loadedmetadata="onLoadedMetadata"
+          @timeupdate="onTimeUpdate"
+          @play="onPlay"
+          @pause="onPause"
+        />
+      </template>
+      <template #second>
+        <video
+          ref="videoRefOptimized"
+          :src="optimizedSrc"
+          class="w-full h-full object-cover"
+          crossorigin
+          playsinline
+        />
+      </template>
+    </ImgComparisonSlider>
+
     <transition name="fade">
       <div
         v-if="loaded"
