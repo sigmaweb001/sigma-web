@@ -96,6 +96,9 @@ const isFocused = ref(false)
 
 const dragByHandle = ref(false)
 
+let resizeObserver: ResizeObserver | null = null
+let dragStartHandler: ((e: Event) => void) | null = null
+
 function setHandle(newValue: any) {
   dragByHandle.value = newValue.toString().toLowerCase() !== 'false'
 }
@@ -155,12 +158,13 @@ function connectedCallback() {
     tabIndex.value = TABINDEX
   }
 
-  rootEle.value.addEventListener('dragstart', (e) => {
+  dragStartHandler = (e) => {
     e.preventDefault()
     return false
-  })
+  }
+  rootEle.value.addEventListener('dragstart', dragStartHandler)
 
-  const resizeObserver = new ResizeObserver(resetDimensions)
+  resizeObserver = new ResizeObserver(resetDimensions)
   resizeObserver.observe(rootEle.value)
 
   setExposure(0)
@@ -207,9 +211,35 @@ function disconnectedCallback() {
   if (transitionTimer.value) {
     window.clearTimeout(transitionTimer.value)
   }
+
+  if (dragStartHandler && rootEle.value) {
+    rootEle.value.removeEventListener('dragstart', dragStartHandler)
+    dragStartHandler = null
+  }
+
+  if (rootEle.value) {
+    rootEle.value.removeEventListener('keydown', onKeyDown)
+    rootEle.value.removeEventListener('keyup', onKeyUp)
+    rootEle.value.removeEventListener('focus', onFocus)
+    rootEle.value.removeEventListener('blur', onBlur)
+    rootEle.value.removeEventListener('touchstart', onTouchStart)
+    rootEle.value.removeEventListener('touchmove', onTouchMove)
+    rootEle.value.removeEventListener('touchend', onTouchEnd)
+    rootEle.value.removeEventListener('mousedown', onMouseDown)
+  }
+
+  window.removeEventListener('mousemove', onMouseMove)
+  window.removeEventListener('mouseup', onWindowMouseUp)
+
+  removeEventListener('mousemove', onMouseMove)
+
+  if (resizeObserver && rootEle.value) {
+    resizeObserver.disconnect()
+    resizeObserver = null
+  }
 }
 
-onUnmounted(() => {
+onBeforeUnmount(() => {
   disconnectedCallback()
 })
 
