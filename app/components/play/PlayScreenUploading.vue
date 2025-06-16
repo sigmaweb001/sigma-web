@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 const emit = defineEmits<(
   e: 'uploading' | 'success',
@@ -9,8 +9,51 @@ const emit = defineEmits<(
 const domain = 'https://dev-streaming.gviet.vn:8783/proxy'
 const percentage = ref(0)
 const isUploading = ref(false)
+const fileRef = ref<File>()
+
+function getFileFormat(file: File | undefined) {
+  if (!file) return ''
+  if (file.type && file.type.includes('/')) {
+    return file.type.split('/')[1].toUpperCase()
+  }
+  const match = file.name.match(/\.([a-zA-Z0-9]+)$/)
+  return match ? match[1].toUpperCase() : ''
+}
+
+function getFileSize(file: File | undefined) {
+  if (!file) return ''
+  const s = file.size
+  if (s < 1024) return s + ' B'
+  if (s < 1024 * 1024) return (s / 1024).toFixed(1) + ' KB'
+  if (s < 1024 * 1024 * 1024) return (s / (1024 * 1024)).toFixed(1) + ' MB'
+  return (s / (1024 * 1024 * 1024)).toFixed(1) + ' GB'
+}
+
+const format = computed(() => getFileFormat(fileRef.value))
+const size = computed(() => getFileSize(fileRef.value))
+
+// Async computed for duration
+const duration = asyncComputed(() => {
+  const file = fileRef.value
+  if (!file) return ''
+  const url = URL.createObjectURL(file)
+  const video = document.createElement('video')
+  video.preload = 'metadata'
+
+  return new Promise<string>((resolve) => {
+    video.onloadedmetadata = () => {
+      URL.revokeObjectURL(url)
+      const secs = Math.floor(video.duration % 60).toString().padStart(2, '0')
+      const mins = Math.floor(video.duration / 60).toString().padStart(2, '0')
+      resolve(`${mins}:${secs}`)
+    }
+    video.src = url
+  })
+})
 
 async function startUpload(file: File) {
+  fileRef.value = file
+  return
   const item = {
     file,
     name: file.name,
@@ -107,26 +150,76 @@ async function uploadMultipartFile(assetId: string, uploadId: string, item: { fi
 </script>
 
 <template>
-  <div class="relative w-full aspect-video group">
-    <div class="absolute inset-0 bg-gray-900">
-      <div class="flex items-center justify-center h-full">
-        <div class="text-white text-2xl font-bold">
-          Uploading...
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-sky-200/70 via-indigo-300/60 to-fuchsia-400/60 backdrop-blur-2xl">
+    <div class="w-full max-w-2xl bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl p-0 flex flex-col items-center border border-white/20">
+      <!-- Logo and wordmark -->
+      <div class="flex flex-col items-center mt-10 mb-6">
+        <img
+          src="/logo_sigma.png"
+          alt="Sigma logo"
+          class="h-12 mb-2"
+        >
+        <div class="flex flex-col items-center">
+          <div class="text-white text-xl font-bold">
+            Sigma
+          </div>
+          <div class="text-white text-2xl font-bold">
+            Per-Title Encoding
+          </div>
         </div>
       </div>
-    </div>
-
-    <div
-      v-if="percentage > 0 && percentage < 100"
-      class="mt-2 text-sm text-gray-600"
-    >
-      Uploading: {{ percentage }}%
-    </div>
-    <div
-      v-if="percentage === 100"
-      class="mt-2 text-sm text-green-600 font-bold"
-    >
-      Upload complete!
+      <!-- File info -->
+      <div class="bg-white/10 border border-white/30 rounded-xl px-6 py-4 flex flex-col items-center w-3/4 mb-6">
+        <div class="font-semibold text-base text-white truncate w-full text-center">
+          {{ fileRef?.name }}
+        </div>
+        <div class="flex gap-2 text-xs text-white/70 mt-1 justify-center">
+          <span>{{ duration }}</span>
+          <span>|</span>
+          <span>{{ format }}</span>
+          <span>|</span>
+          <span>{{ size }}</span>
+        </div>
+      </div>
+      <!-- Status text -->
+      <div class="text-lg font-semibold text-white mb-4 text-center">
+        Đang tải video lên hệ thống ...
+      </div>
+      <!-- Progress bar -->
+      <div class="w-3/4 h-4 bg-white/10 rounded-full overflow-hidden mb-8">
+        <div
+          class="h-full bg-gradient-to-r from-orange-400 to-orange-300 transition-all duration-500"
+          :style="{ width: percentage + '%' }"
+        />
+      </div>
+      <!-- Percentage -->
+      <div class="text-sm text-white/80 mb-8">
+        {{ percentage }}%
+      </div>
+      <!-- Bottom tip and button -->
+      <div class="w-full bg-gradient-to-t from-black/60 to-transparent rounded-b-3xl px-8 py-6 flex flex-col items-center">
+        <div class="text-xs text-white/70 text-center mb-4">
+          Bạn đang trong quá trình tải video lên để trải nghiệm tính năng. Vui lòng không thoát hoặc tải lại trang.<br>
+          Nếu bạn thoát hoặc tải lại trang, quá trình này sẽ không được tiếp tục.
+        </div>
+        <button
+          class="flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 text-white font-semibold text-sm shadow disabled:opacity-60 disabled:cursor-not-allowed"
+          :disabled="isUploading"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 9l5-5 5 5M12 4v12"
+          /></svg>
+          Upload video
+        </button>
+      </div>
     </div>
   </div>
 </template>

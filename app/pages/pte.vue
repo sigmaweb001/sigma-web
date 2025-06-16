@@ -18,8 +18,9 @@ useSeoMeta({
   ogType: 'website',
   ogLocale: 'vi_VN',
 })
+const pageParams = useUrlSearchParams('history')
+pageParams.screen = 'player'
 
-const screen = ref('player')
 const { open, onChange, reset } = useFileDialog({
   accept: 'video/*',
   directory: false,
@@ -29,21 +30,21 @@ const uploadingRef = ref()
 const toast = useToast()
 
 function validateFile(file: File): boolean {
-  const maxSizeMB = 500
+  const maxSizeMB = 1024
   const isVideo = file.type.startsWith('video/')
   const isSizeOk = file.size <= maxSizeMB * 1024 * 1024
   if (!isVideo) {
     toast.add({
-      title: 'Invalid file type',
-      description: 'Only video files are allowed',
+      title: 'Loại tệp không hợp lệ',
+      description: 'Chỉ cho phép tệp video',
       color: 'error',
     })
     return true
   }
   if (!isSizeOk) {
     toast.add({
-      title: 'File too large',
-      description: `File must be <= ${maxSizeMB}MB`,
+      title: 'Tệp quá lớn',
+      description: `Video vượt quá dung lượng cho phép (Dung lượng tối đa: 1GB)`,
       color: 'error',
     })
     return true
@@ -59,7 +60,7 @@ onChange((newFiles) => {
       return
     }
 
-    screen.value = 'uploading'
+    pageParams.screen = 'uploading'
     nextTick(() => {
       uploadingRef.value.startUpload(newFiles[0])
     })
@@ -69,7 +70,7 @@ onChange((newFiles) => {
 
 <template>
   <div class="h-screen bg-gray-900 flex items-center justify-center relative overflow-hidden">
-    <PlayScreenPlayer v-if="screen === 'player'">
+    <PlayScreenPlayer v-if="pageParams.screen === 'player'">
       <template #upload>
         <UButton
           color="warning"
@@ -86,7 +87,7 @@ onChange((newFiles) => {
       </template>
     </PlayScreenPlayer>
     <PlayScreenUploading
-      v-else-if="screen === 'uploading'"
+      v-else-if="pageParams.screen === 'uploading'"
       ref="uploadingRef"
     />
   </div>
