@@ -20,27 +20,42 @@ useSeoMeta({
 })
 
 const screen = ref('player')
-const { open, onChange } = useFileDialog({
+const { open, onChange, reset } = useFileDialog({
   accept: 'video/*',
   directory: false,
 })
 
 const uploadingRef = ref()
+const toast = useToast()
 
-function validateFile(file: File): string | false {
+function validateFile(file: File): boolean {
   const maxSizeMB = 500
   const isVideo = file.type.startsWith('video/')
   const isSizeOk = file.size <= maxSizeMB * 1024 * 1024
-  if (!isVideo) return 'Only video files are allowed'
-  if (!isSizeOk) return `File must be <= ${maxSizeMB}MB`
-  return false
+  if (!isVideo) {
+    toast.add({
+      title: 'Invalid file type',
+      description: 'Only video files are allowed',
+      color: 'error',
+    })
+    return true
+  }
+  if (!isSizeOk) {
+    toast.add({
+      title: 'File too large',
+      description: `File must be <= ${maxSizeMB}MB`,
+      color: 'error',
+    })
+    return true
+  }
+  return false // valid file
 }
 
 onChange((newFiles) => {
-  if (newFiles.length > 0) {
+  if (newFiles?.length > 0) {
     const error = validateFile(newFiles[0])
     if (error) {
-      alert(error)
+      reset()
       return
     }
 
