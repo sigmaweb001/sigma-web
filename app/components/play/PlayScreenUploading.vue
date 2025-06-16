@@ -150,30 +150,30 @@ async function uploadMultipartFile(assetId: string, uploadId: string, item: { fi
 </script>
 
 <template>
-  <div class="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-sky-200/70 via-indigo-300/60 to-fuchsia-400/60 backdrop-blur-2xl">
-    <div class="w-full max-w-2xl bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl p-0 flex flex-col items-center border border-white/20">
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-b from-gray-800 via-gray-700 to-gray-800">
+    <div class="w-full max-w-3xl bg-black/60 rounded-3xl shadow-xl p-12 flex flex-col gap-6 items-center">
       <!-- Logo and wordmark -->
-      <div class="flex flex-col items-center mt-10 mb-6">
+      <div class="flex gap-3 items-center">
         <img
           src="/logo_sigma.png"
           alt="Sigma logo"
-          class="h-12 mb-2"
+          class="h-12"
         >
-        <div class="flex flex-col items-center">
-          <div class="text-white text-xl font-bold">
+        <div class="flex flex-col items-start">
+          <div class="text-white text-xl font-semibold">
             Sigma
           </div>
-          <div class="text-white text-2xl font-bold">
+          <div class="text-white text-3xl font-extrabold">
             Per-Title Encoding
           </div>
         </div>
       </div>
       <!-- File info -->
-      <div class="bg-white/10 border border-white/30 rounded-xl px-6 py-4 flex flex-col items-center w-3/4 mb-6">
+      <div class="bg-transparent border border-neutral-700 rounded-xl px-4 py-3 flex flex-col items-center w-3/4">
         <div class="font-semibold text-base text-white truncate w-full text-center">
           {{ fileRef?.name }}
         </div>
-        <div class="flex gap-2 text-xs text-white/70 mt-1 justify-center">
+        <div class="flex gap-2 text-xs text-neutral-400 mt-2 justify-center">
           <span>{{ duration }}</span>
           <span>|</span>
           <span>{{ format }}</span>
@@ -182,43 +182,34 @@ async function uploadMultipartFile(assetId: string, uploadId: string, item: { fi
         </div>
       </div>
       <!-- Status text -->
-      <div class="text-lg font-semibold text-white mb-4 text-center">
+      <div class="text-2xl font-bold text-white text-center">
         Đang tải video lên hệ thống ...
       </div>
-      <!-- Progress bar -->
-      <div class="w-3/4 h-4 bg-white/10 rounded-full overflow-hidden mb-8">
+
+      <div class="h-4 w-3/4 bg-neutral-800 rounded-full overflow-hidden mb-2">
         <div
           class="h-full bg-gradient-to-r from-orange-400 to-orange-300 transition-all duration-500"
           :style="{ width: percentage + '%' }"
         />
       </div>
-      <!-- Percentage -->
-      <div class="text-sm text-white/80 mb-8">
-        {{ percentage }}%
-      </div>
       <!-- Bottom tip and button -->
-      <div class="w-full bg-gradient-to-t from-black/60 to-transparent rounded-b-3xl px-8 py-6 flex flex-col items-center">
-        <div class="text-xs text-white/70 text-center mb-4">
+      <div class="w-full flex flex-col items-center">
+        <div class="text-xs text-neutral-400 text-center mb-6">
           Bạn đang trong quá trình tải video lên để trải nghiệm tính năng. Vui lòng không thoát hoặc tải lại trang.<br>
           Nếu bạn thoát hoặc tải lại trang, quá trình này sẽ không được tiếp tục.
         </div>
-        <button
+        <UButton
+          color="primary"
+          size="md"
           class="flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 text-white font-semibold text-sm shadow disabled:opacity-60 disabled:cursor-not-allowed"
           :disabled="isUploading"
         >
-          <svg
+          <Icon
+            name="i-heroicons-arrow-up-tray-20-solid"
             class="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          ><path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 9l5-5 5 5M12 4v12"
-          /></svg>
+          />
           Upload video
-        </button>
+        </UButton>
       </div>
     </div>
   </div>
