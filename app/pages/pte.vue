@@ -45,7 +45,7 @@ const demoVideos = [
     format: 'MP4',
     codec: 'H.264',
     fps: '24 FPS',
-    thumbnail: 'demo-1.jpg',
+    thumbnail: 'https://images.pexels.com/photos/799137/pexels-photo-799137.jpeg',
   },
   {
     id: 2,
@@ -60,7 +60,7 @@ const demoVideos = [
     format: 'MP4',
     codec: 'H.264',
     fps: '24 FPS',
-    thumbnail: 'demo-2.jpg',
+    thumbnail: 'https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg',
   },
   {
     id: 3,
@@ -75,7 +75,7 @@ const demoVideos = [
     format: 'MP4',
     codec: 'H.264',
     fps: '24 FPS',
-    thumbnail: 'demo-3.jpg',
+    thumbnail: 'https://images.pexels.com/photos/799137/pexels-photo-799137.jpeg',
   },
   {
     id: 4,
@@ -90,7 +90,7 @@ const demoVideos = [
     format: 'MP4',
     codec: 'H.264',
     fps: '24 FPS',
-    thumbnail: 'demo-4.jpg',
+    thumbnail: 'https://images.pexels.com/photos/799137/pexels-photo-799137.jpeg',
   },
   {
     id: 5,
@@ -105,7 +105,7 @@ const demoVideos = [
     format: 'MP4',
     codec: 'H.264',
     fps: '24 FPS',
-    thumbnail: 'demo-5.jpg',
+    thumbnail: 'https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg',
   },
 ]
 
@@ -307,41 +307,41 @@ function handlePlay() {
                     <div
                       v-for="(video, index) in demoVideos"
                       :key="video.id"
-                      class="flex-shrink-0 w-64 rounded-xl border-2 cursor-pointer transition-all duration-300 scale-95 hover:scale-100 overflow-hidden relative video-card bg-gray-800/90 backdrop-blur-sm select-none"
+                      class="flex-shrink-0 w-82 rounded-2xl shadow-xl border border-black/10 cursor-pointer transition-all duration-300 scale-95 hover:scale-99 overflow-hidden relative video-card bg-gray-900/80 backdrop-blur-lg select-none"
                       :class="{
-                        'border-white': video.id === selectedVideoId,
+                        'ring-2 ring-white': video.id === selectedVideoId,
                         'border-gray-700/50': video.id !== selectedVideoId,
                       }"
                       :style="{ 'animation-delay': `${index * 100}ms` }"
                       @click="selectVideo(video.id)"
                     >
                       <!-- Video Thumbnail -->
-                      <div class="aspect-video bg-gray-700 flex items-center justify-center relative">
-                        <!-- Background pattern -->
-                        <div class="absolute inset-0 bg-gradient-to-br from-gray-800/80 to-gray-900/80" />
-
-                        <!-- Video Info Overlay -->
-                        <div
-                          class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900/95 via-gray-900/70 to-transparent p-4"
+                      <div class="aspect-video relative flex items-end justify-stretch">
+                        <img
+                          :src="video.thumbnail"
+                          class="absolute inset-0 w-full h-full object-cover object-center z-0 scale-105"
+                          alt="video thumbnail"
                         >
-                          <!-- Resolution -->
-                          <div class="text-white font-bold text-2xl mb-2">
-                            {{ video.resolution }}
+                        <div class="absolute inset-0 bg-gradient-to-br from-gray-900/80 to-gray-800/80 z-10" />
+                        <div class="relative z-20 p-5 flex flex-col w-full">
+                          <div class="flex items-center gap-3 mb-1">
+                            <span class="text-white text-2xl font-extrabold leading-none">{{ video.resolution }}</span>
+                            <span class="text-white text-2xl font-bold leading-none">{{ video.originalSize }}</span>
+                            <span class="text-gray-300 text-lg font-semibold leading-none">{{ video.originalUnit }}</span>
+                            <span class="text-orange-400 text-2xl font-bold leading-none mx-1">&gt;</span>
+                            <span class="text-orange-400 text-2xl font-extrabold leading-none">{{ video.optimizedSize }}</span>
+                            <span class="text-orange-300 text-lg font-semibold leading-none">{{ video.optimizedUnit }}</span>
                           </div>
-
-                          <!-- Size Comparison -->
-                          <div class="flex items-center gap-2 text-base mb-2">
-                            <span class="text-white font-semibold">{{ video.originalSize }}</span>
-                            <span class="text-gray-300">{{ video.originalUnit }}</span>
-                            <span class="text-orange-400 font-bold">></span>
-                            <span class="text-orange-400 font-semibold">{{ video.optimizedSize }}</span>
-                            <span class="text-orange-300">{{ video.optimizedUnit }}</span>
-                          </div>
-
-                          <!-- Video Details -->
-                          <div class="text-sm text-gray-400">
-                            {{ video.dimensions }} | {{ video.duration }} | {{ video.format }} | {{ video.codec }} | {{
-                              video.fps }}
+                          <div class="flex items-center gap-2 text-xs text-gray-300 font-medium">
+                            <span>{{ video.dimensions }}</span>
+                            <span>|</span>
+                            <span>{{ video.duration }}</span>
+                            <span>|</span>
+                            <span>{{ video.format }}</span>
+                            <span>|</span>
+                            <span>{{ video.codec }}</span>
+                            <span>|</span>
+                            <span>{{ video.fps }}</span>
                           </div>
                         </div>
                       </div>
