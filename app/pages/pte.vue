@@ -29,7 +29,7 @@ const showDemoOverlay = computed({
     pageParams.open = value.toString()
   },
 })
-const selectedVideoId = ref(2) // Default to second video (Standard Demo)
+const selectedVideoId = ref(1) // Default to second video (Standard Demo)
 
 const demoVideos = [
   {
@@ -46,6 +46,8 @@ const demoVideos = [
     codec: 'H.264',
     fps: '24 FPS',
     thumbnail: 'https://images.pexels.com/photos/799137/pexels-photo-799137.jpeg',
+    originalSrc: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+    optimizedSrc: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
   },
   {
     id: 2,
@@ -61,6 +63,8 @@ const demoVideos = [
     codec: 'H.264',
     fps: '24 FPS',
     thumbnail: 'https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg',
+    originalSrc: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    optimizedSrc: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
   },
   {
     id: 3,
@@ -76,6 +80,8 @@ const demoVideos = [
     codec: 'H.264',
     fps: '24 FPS',
     thumbnail: 'https://images.pexels.com/photos/799137/pexels-photo-799137.jpeg',
+    originalSrc: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
+    optimizedSrc: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
   },
   {
     id: 4,
@@ -91,6 +97,8 @@ const demoVideos = [
     codec: 'H.264',
     fps: '24 FPS',
     thumbnail: 'https://images.pexels.com/photos/799137/pexels-photo-799137.jpeg',
+    originalSrc: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
+    optimizedSrc: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
   },
   {
     id: 5,
@@ -106,6 +114,8 @@ const demoVideos = [
     codec: 'H.264',
     fps: '24 FPS',
     thumbnail: 'https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg',
+    originalSrc: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4',
+    optimizedSrc: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
   },
 ]
 
@@ -131,8 +141,16 @@ const hideDemo = () => {
   showDemoOverlay.value = false
 }
 
+const originalSrc = ref(demoVideos[0].originalSrc)
+const optimizedSrc = ref(demoVideos[0].optimizedSrc)
+
 const selectVideo = (videoId: number) => {
   selectedVideoId.value = videoId
+  const video = demoVideos.find(v => v.id === videoId)
+  if (video) {
+    originalSrc.value = video.originalSrc
+    optimizedSrc.value = video.optimizedSrc
+  }
   hideDemo()
 }
 
@@ -168,9 +186,6 @@ whenever(scrollableDiv, () => {
   }
 })
 
-const originalSrc = ref('http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4')
-const optimizedSrc = ref('http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4')
-
 const playVideoRef = ref(null)
 function handlePlay() {
   playVideoRef.value?.play()
@@ -184,9 +199,10 @@ function handlePlay() {
       <!-- Video/Thumbnail Section -->
       <div class="relative w-full h-full bg-gray-900 overflow-hidden flex items-center justify-center">
         <!-- Background Image/Video -->
-        <div class="absolute inset-0 ">
+        <div class="absolute inset-0">
           <ClientOnly>
             <PlayVideoPte
+              :key="selectedVideoId"
               ref="playVideoRef"
               :src="originalSrc"
               :optimized-src="optimizedSrc"
