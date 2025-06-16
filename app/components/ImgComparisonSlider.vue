@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+const props = defineProps<{
+  hideHandle?: boolean
+}>()
+
 const TABINDEX = 0
 const RENDERED_CLASS = 'rendered'
 const inBetween = (actual: number, min: number, max: number): number => {
@@ -496,17 +500,29 @@ function resetDimensions() {
           class="handle"
         >
           <slot name="handle">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="default-handle"
-              viewBox="-8 -3 16 6"
+            <!-- Custom handle overlay -->
+            <div
+              v-if="!hideHandle"
+              class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
             >
-              <path
-                d="M -5 -2 L -7 0 L -5 2 M 5 -2 L 7 0 L 5 2"
-                fill="none"
-                vector-effect="non-scaling-stroke"
-              />
-            </svg>
+              <button
+                class="pointer-events-auto backdrop-blur-md bg-gray-900/60 border border-white/20 hover:bg-gray-900/80 transition-colors duration-200 rounded-full flex items-center gap-2 px-4 py-3 text-white text-sm font-semibold shadow-lg"
+              >
+                <UIcon
+                  name="i-heroicons:chevron-left-20-solid"
+                  class="size-6"
+                />
+                <span
+                  class="truncate"
+                >
+                  Kéo để so sánh
+                </span>
+                <UIcon
+                  name="i-heroicons:chevron-right-20-solid"
+                  class="size-6"
+                />
+              </button>
+            </div>
           </slot>
         </div>
       </div>

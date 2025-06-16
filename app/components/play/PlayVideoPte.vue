@@ -77,7 +77,10 @@ defineExpose({ play, pause })
 
 <template>
   <div class="relative w-full h-full group focus-within:group">
-    <ImgComparisonSlider class="w-full h-full relative">
+    <ImgComparisonSlider
+      :hide-handle="!isPlaying"
+      class="w-full h-full relative"
+    >
       <template #first>
         <video
           ref="videoRef"
@@ -146,7 +149,7 @@ defineExpose({ play, pause })
       class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none"
     >
       <button
-        class="pointer-events-auto backdrop-blur-md bg-gray-900/60 border border-white/20 hover:bg-gray-900/80 transition-colors duration-200 rounded-full flex items-center gap-2 px-6 py-3 text-white text-lg font-semibold shadow-lg"
+        class="pointer-events-auto backdrop-blur-md bg-gray-900/60 border border-white/20 hover:bg-gray-900/80 transition-colors duration-200 rounded-full flex items-center gap-2 px-6 py-3 text-white text-base font-semibold shadow-lg"
         @click="play"
       >
         <UIcon
