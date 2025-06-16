@@ -21,8 +21,6 @@ useSeoMeta({
   ogLocale: 'vi_VN',
 })
 
-const isUploading = ref(false)
-const selectedFile = ref(null)
 const showDemoOverlay = computed({
   get: () => pageParams.open === 'true',
   set: (value) => {
@@ -119,20 +117,6 @@ const demoVideos = [
   },
 ]
 
-const handleFileUpload = (event: Event) => {
-  const target = event.target as HTMLInputElement
-  if (target.files && target.files[0]) {
-    selectedFile.value = target.files[0]
-    // Handle file upload logic here
-    console.log('File selected:', target.files[0])
-  }
-}
-
-const triggerFileUpload = () => {
-  const fileInput = document.getElementById('file-upload') as HTMLInputElement
-  fileInput?.click()
-}
-
 const showDemo = () => {
   showDemoOverlay.value = true
 }
@@ -187,9 +171,6 @@ whenever(scrollableDiv, () => {
 })
 
 const playVideoRef = ref(null)
-function handlePlay() {
-  playVideoRef.value?.play()
-}
 </script>
 
 <template>
@@ -275,19 +256,7 @@ function handlePlay() {
             </div>
 
             <!-- Upload Button -->
-            <UButton
-              color="warning"
-              size="xl"
-              :loading="isUploading"
-              class="font-bold rounded-full"
-              @click="triggerFileUpload"
-            >
-              <Icon
-                name="i-heroicons-arrow-up-tray-20-solid"
-                class="size-5"
-              />
-              Upload video
-            </UButton>
+            <PlayUpload />
           </div>
         </div>
       </div>
@@ -387,15 +356,6 @@ function handlePlay() {
           </div>
         </div>
       </Transition>
-
-      <!-- Hidden File Input -->
-      <input
-        id="file-upload"
-        type="file"
-        accept="video/*"
-        class="hidden"
-        @change="handleFileUpload"
-      >
     </div>
   </div>
 </template>
