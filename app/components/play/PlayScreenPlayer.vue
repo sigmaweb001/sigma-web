@@ -97,11 +97,11 @@ const demoVideos = [
   },
 ]
 
-const showDemo = () => {
+function showDemo() {
   showDemoOverlay.value = true
 }
 
-const hideDemo = () => {
+function hideDemo() {
   showDemoOverlay.value = false
 }
 

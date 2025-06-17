@@ -19,7 +19,7 @@ useSeoMeta({
   ogLocale: 'vi_VN',
 })
 const pageParams = useUrlSearchParams('history')
-pageParams.screen = 'player'
+pageParams.screen = ''
 
 const { open, onChange, reset } = useFileDialog({
   accept: 'video/*',
@@ -70,7 +70,7 @@ onChange((newFiles) => {
 
 <template>
   <div class="h-screen bg-gray-900 flex items-center justify-center relative overflow-hidden">
-    <PlayScreenPlayer v-if="pageParams.screen === 'player'">
+    <PlayScreenPlayer>
       <template #upload>
         <UButton
           color="warning"
@@ -85,10 +85,10 @@ onChange((newFiles) => {
           Upload video
         </UButton>
       </template>
+      <PlayScreenUploading
+        v-if="pageParams.screen === 'uploading'"
+        ref="uploadingRef"
+      />
     </PlayScreenPlayer>
-    <PlayScreenUploading
-      v-else-if="pageParams.screen === 'uploading'"
-      ref="uploadingRef"
-    />
   </div>
 </template>
