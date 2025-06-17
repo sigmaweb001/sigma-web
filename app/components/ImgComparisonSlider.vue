@@ -536,7 +536,7 @@ function resetDimensions() {
               class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
             >
               <button
-                class="pointer-events-auto backdrop-blur-md bg-gray-900/60 border border-white/20 hover:bg-gray-900/80 transition-colors duration-200 rounded-full flex items-center gap-2 px-4 py-3 text-white text-sm font-semibold shadow-lg"
+                class="pointer-events-auto backdrop-blur-md bg-gray-900/60 border border-white/20 hover:bg-gray-900/80 transition-colors duration-200 rounded-full flex items-center gap-1 px-2 py-1 text-white text-sm font-semibold shadow-lg"
               >
                 <UIcon
                   name="i-heroicons:chevron-left-20-solid"
