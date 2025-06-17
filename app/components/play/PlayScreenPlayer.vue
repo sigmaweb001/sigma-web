@@ -122,7 +122,17 @@ const selectedVideo = computed(() => {
   return demoVideos.find(video => video.id === selectedVideoId.value) || demoVideos[1]
 })
 
+const isTallScreen = ref(false)
+
+const updateAspect = () => {
+  // 16/9 = 1.777...
+  isTallScreen.value = window.innerHeight / window.innerWidth > 9 / 16
+}
+
 onMounted(() => {
+  updateAspect()
+  window.addEventListener('resize', updateAspect)
+
   // Hide fc_frame elements
   const fcFrameElements = document.querySelectorAll('.fc_frame')
   fcFrameElements.forEach((element) => {
@@ -130,6 +140,10 @@ onMounted(() => {
   })
 
   // Add horizontal scroll for video demo list
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateAspect)
 })
 
 const scrollableDiv = ref(null)
@@ -154,7 +168,10 @@ const playVideoRef = ref(null)
 </script>
 
 <template>
-  <div class="relative w-full aspect-video group">
+  <div
+    class="relative group aspect-video"
+    :class="isTallScreen ? 'w-full' : 'h-full'"
+  >
     <!-- Video/Thumbnail Section -->
     <div class="relative w-full h-full bg-gray-900 overflow-hidden flex items-center justify-center">
       <!-- Background Image/Video -->
