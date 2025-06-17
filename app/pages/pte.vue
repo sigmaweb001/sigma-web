@@ -377,6 +377,7 @@ const hideInfo = computed(() => {
           <PlayFileUploading
             v-else-if="pageParams.modal === 'uploading'"
             ref="uploadingRef"
+            :uploading-data="uploadingData"
             @success="handleUploadSuccess"
           />
 

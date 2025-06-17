@@ -1,12 +1,66 @@
 <script lang="ts" setup>
-// No logic needed for static UI
+import { computed, ref, onMounted } from 'vue'
+
+const props = defineProps<{
+  uploadingData: { assetId: string, uploadId: string }
+}>()
+
+const status = ref('processing')
+const stepIndex = ref(0)
+const originalSize = ref(Math.floor(Math.random() * 1000))
+const optimizedSize = ref(Math.floor(Math.random() * 1000))
+
+const steps = [
+  {
+    icon: 'i-ri:check-fill',
+    iconClass: 'text-green-500 text-xl',
+    text: 'Tải video thành công',
+    textClass: 'text-gray-200 text-lg',
+  },
+  {
+    icon: 'i-ri:timer-fill',
+    iconClass: 'text-yellow-500 text-xl',
+    text: 'Chờ đến lượt xử lý video',
+    textClass: 'text-orange-400 text-lg font-semibold',
+  },
+  {
+    icon: 'i-ri:flashlight-fill',
+    iconClass: 'text-yellow-400 text-xl',
+    text: 'Đang thực hiện transcode video',
+    textClass: 'text-gray-300 text-lg',
+  },
+  {
+    icon: 'i-ri:brain-fill',
+    iconClass: 'text-gray-300 text-xl',
+    text: 'AI đang phân tích video...',
+    textClass: 'text-gray-300 text-lg',
+  },
+]
+
+const showProcessing = computed(() => status.value === 'processing')
+const showSuccess = computed(() => status.value === 'success')
+const showError = computed(() => status.value === 'error')
+
+onMounted(() => {
+  if (status.value !== 'processing') return
+  const interval = setInterval(() => {
+    if (stepIndex.value < steps.length - 1) {
+      stepIndex.value++
+    }
+    else {
+      clearInterval(interval)
+      // Toggle between success and error for demo. Set to 'success' or 'error' as needed.
+      status.value = 'success' // or 'error'
+    }
+  }, 2000)
+})
 </script>
 
 <template>
   <div class="flex-1 flex flex-col items-center justify-center">
     <div class="w-full max-w-md bg-black/60 rounded-3xl shadow-xl p-8 flex flex-col gap-6">
       <!-- Logo and Title -->
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-3 justify-center">
         <img
           src="/logo_sigma.png"
           alt="Sigma logo"
@@ -14,29 +68,74 @@
         >
         <span class="text-3xl font-bold text-white tracking-wide">SIGMA</span>
       </div>
-      <!-- Subtitle -->
-      <div class="text-white text-lg font-semibold">
-        Hệ thống Sigma AI Per-title Encoding<br>bắt đầu xử lý ...
-      </div>
-      <!-- Status List -->
-      <div class="flex flex-col gap-3 w-full  mx-auto">
-        <div class="flex items-center gap-4">
-          <span class="text-green-500 text-xl">✔</span>
-          <span class="text-gray-200 text-lg">Tải video thành công</span>
+      <!-- Processing Screen -->
+      <template v-if="showProcessing">
+        <div class="text-white text-lg font-semibold text-center">
+          Hệ thống Sigma AI Per-title Encoding<br>bắt đầu xử lý ...
         </div>
-        <div class="flex items-center gap-4">
-          <span class="text-yellow-500 text-xl">⏳</span>
-          <span class="text-orange-400 text-lg font-semibold">Chờ đến lượt xử lý video</span>
+        <div class="flex flex-col gap-3 w-full mx-auto">
+          <div
+            v-for="(step, idx) in steps"
+            :key="idx"
+            class="flex items-center gap-4"
+          >
+            <Icon
+              v-if="idx < stepIndex"
+              name="i-ri:check-fill"
+              class="text-green-500 text-xl"
+            />
+            <Icon
+              v-else-if="idx === stepIndex"
+              :name="step.icon"
+              :class="[step.iconClass, 'animate-bounce']"
+            />
+            <Icon
+              v-else
+              :name="step.icon"
+              class="text-gray-500 text-xl"
+            />
+
+            <span
+              v-if="idx < stepIndex"
+              class="text-gray-400 text-lg line-through"
+            >{{ step.text }}</span>
+            <span
+              v-else-if="idx === stepIndex"
+              class="text-orange-400 text-lg font-bold"
+            >{{ step.text }}</span>
+            <span
+              v-else
+              class="text-gray-500 text-lg"
+            >{{ step.text }}</span>
+          </div>
         </div>
-        <div class="flex items-center gap-4">
-          <span class="w-5" />
-          <span class="text-gray-300 text-lg">Đang thực hiện transcode video</span>
+      </template>
+      <!-- Success Screen -->
+      <template v-else-if="showSuccess">
+        <div class="text-white text-lg font-semibold text-center">
+          Hệ thống Sigma AI Per-title Encoding<br>đã hoàn tất xử lý video!
         </div>
-        <div class="flex items-center gap-4">
-          <span class="w-5" />
-          <span class="text-gray-300 text-lg">AI đang phân tích video...</span>
+        <div class="flex flex-col items-center justify-center gap-4 ">
+          <Icon
+            name="i-ri:checkbox-circle-fill"
+            class="text-green-500 size-20"
+          />
+
+          <div class="flex items-center gap-3 mt-2">
+            <span class="text-5xl font-extrabold text-white">{{ originalSize }}</span>
+            <span class="text-2xl font-bold text-gray-300">MB</span>
+            <span class="text-4xl font-bold text-gray-400">&gt;</span>
+            <span class="text-5xl font-extrabold text-orange-400">{{ optimizedSize }}</span>
+            <span class="text-2xl font-bold text-orange-300">MB</span>
+          </div>
         </div>
-      </div>
+      </template>
+      <!-- Error Screen -->
+      <template v-else-if="showError">
+        <div class="text-white text-lg font-semibold text-center">
+          Đã xảy ra lỗi trong quá trình xử lý video.<br>Vui lòng thử lại sau.
+        </div>
+      </template>
     </div>
   </div>
 </template>
