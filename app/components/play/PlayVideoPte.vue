@@ -56,15 +56,6 @@ function pause() {
   }
 }
 
-function togglePlay() {
-  if (isPlaying.value) {
-    pause()
-  }
-  else {
-    play()
-  }
-}
-
 function onPlay() {
   isPlaying.value = true
 }

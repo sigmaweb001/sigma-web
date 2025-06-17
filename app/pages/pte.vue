@@ -223,6 +223,8 @@ onChange((newFiles) => {
     }
 
     pageParams.modal = 'uploading'
+    // pause video
+    playVideoRef.value.pause()
     nextTick(() => {
       uploadingRef.value.startUpload(newFiles[0])
     })
