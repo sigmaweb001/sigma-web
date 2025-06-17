@@ -154,7 +154,7 @@ async function uploadMultipartFile(assetId: string, uploadId: string, item: { fi
 </script>
 
 <template>
-  <div class="flex items-center justify-center ">
+  <div class="flex-1 flex flex-col items-center justify-center ">
     <div class="w-full max-w-3xl bg-black/60 rounded-3xl shadow-xl p-12 flex flex-col gap-6 items-center">
       <!-- Error message -->
       <div
