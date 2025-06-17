@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
+import { asyncComputed } from '@vueuse/core'
 
 const emit = defineEmits<(
   e: 'uploading' | 'success',
@@ -10,6 +11,9 @@ const domain = 'https://dev-streaming.gviet.vn:8783/proxy'
 const percentage = ref(0)
 const isUploading = ref(false)
 const fileRef = ref<File>()
+
+// Error state
+const uploadError = ref<string | null>(null)
 
 function getFileFormat(file: File | undefined) {
   if (!file) return ''
@@ -33,14 +37,13 @@ const format = computed(() => getFileFormat(fileRef.value))
 const size = computed(() => getFileSize(fileRef.value))
 
 // Async computed for duration
-const duration = asyncComputed(() => {
+const duration = asyncComputed(async () => {
   const file = fileRef.value
   if (!file) return ''
   const url = URL.createObjectURL(file)
   const video = document.createElement('video')
   video.preload = 'metadata'
-
-  return new Promise<string>((resolve) => {
+  return await new Promise<string>((resolve) => {
     video.onloadedmetadata = () => {
       URL.revokeObjectURL(url)
       const secs = Math.floor(video.duration % 60).toString().padStart(2, '0')
@@ -49,10 +52,11 @@ const duration = asyncComputed(() => {
     }
     video.src = url
   })
-})
+}, '')
 
 async function startUpload(file: File) {
   fileRef.value = file
+  uploadError.value = null
   return
   const item = {
     file,
@@ -152,6 +156,13 @@ async function uploadMultipartFile(assetId: string, uploadId: string, item: { fi
 <template>
   <div class="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-b from-gray-800 via-gray-700 to-gray-800">
     <div class="w-full max-w-3xl bg-black/60 rounded-3xl shadow-xl p-12 flex flex-col gap-6 items-center">
+      <!-- Error message -->
+      <div
+        v-if="uploadError"
+        class="w-full text-center text-red-500 font-semibold text-base mb-2"
+      >
+        {{ uploadError }}
+      </div>
       <!-- Logo and wordmark -->
       <div class="flex gap-3 items-center">
         <img
@@ -182,13 +193,15 @@ async function uploadMultipartFile(assetId: string, uploadId: string, item: { fi
         </div>
       </div>
       <!-- Status text -->
-      <div class="text-2xl font-bold text-white text-center">
+      <div :class="['text-2xl font-bold text-center', uploadError ? 'text-red-500' : 'text-white']">
         Đang tải video lên hệ thống ...
       </div>
-
+      <!-- Progress bar -->
       <div class="h-4 w-3/4 bg-neutral-800 rounded-full overflow-hidden mb-2">
         <div
-          class="h-full bg-gradient-to-r from-orange-400 to-orange-300 transition-all duration-500"
+          :class="uploadError
+            ? 'h-full bg-gradient-to-r from-red-500 to-red-400 transition-all duration-500'
+            : 'h-full bg-gradient-to-r from-orange-400 to-orange-300 transition-all duration-500'"
           :style="{ width: percentage + '%' }"
         />
       </div>
@@ -202,7 +215,7 @@ async function uploadMultipartFile(assetId: string, uploadId: string, item: { fi
           color="primary"
           size="md"
           class="flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 text-white font-semibold text-sm shadow disabled:opacity-60 disabled:cursor-not-allowed"
-          :disabled="isUploading"
+          :disabled="isUploading || !!uploadError"
         >
           <Icon
             name="i-heroicons-arrow-up-tray-20-solid"
