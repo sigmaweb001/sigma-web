@@ -230,6 +230,16 @@ onChange((newFiles) => {
     })
   }
 })
+
+const uploadingData = ref<{ assetId: string, uploadId: string } | null>(null)
+function handleUploadSuccess(data: { assetId: string, uploadId: string }) {
+  uploadingData.value = data
+  pageParams.modal = 'processing'
+}
+
+const hideInfo = computed(() => {
+  return pageParams.modal === 'uploading' || pageParams.modal === 'processing'
+})
 </script>
 
 <template>
@@ -249,12 +259,16 @@ onChange((newFiles) => {
               :src="originalSrc"
               :optimized-src="optimizedSrc"
               :thumbnail="selectedVideo.thumbnail"
+              :hide-controls="hideInfo"
             />
           </ClientOnly>
         </div>
 
         <!-- Top Stats Overlay -->
-        <div class="absolute top-6 left-6 right-6 flex justify-between items-start z-10 transition-opacity duration-300 flex-nowrap gap-4 overflow-x-auto scrollbar-hide">
+        <div
+          v-if="!hideInfo"
+          class="absolute top-6 left-6 right-6 flex justify-between items-start z-10 transition-opacity duration-300 flex-nowrap gap-4 overflow-x-auto scrollbar-hide opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto"
+        >
           <!-- Standard Static Stats -->
           <div class="backdrop-blur-md bg-gray-700/50 rounded-full px-4 py-2 flex items-center gap-3 min-w-max">
             <div class="flex gap-1">
@@ -288,7 +302,8 @@ onChange((newFiles) => {
         </div>
 
         <div
-          class="absolute bottom-0 left-0 right-0 px-6 py-5 opacity-0 bg-gradient-to-t from-gray-900/80 to-transparent  pointer-events-none transition-opacity duration-300 group-hover:opacity-100 group-hover:pointer-events-auto"
+          v-if="!hideInfo"
+          class="absolute bottom-0 left-0 right-0 px-6 py-5 opacity-0 bg-gradient-to-t from-gray-900/80 to-transparent pointer-events-none transition-opacity duration-300 group-hover:opacity-100 group-hover:pointer-events-auto"
         >
           <div class="flex items-end gap-4">
             <!-- View More Demo Button -->
@@ -362,6 +377,12 @@ onChange((newFiles) => {
           <PlayFileUploading
             v-else-if="pageParams.modal === 'uploading'"
             ref="uploadingRef"
+            @success="handleUploadSuccess"
+          />
+
+          <PlayFileProcessing
+            v-else-if="pageParams.modal === 'processing'"
+            ref="processingRef"
           />
         </div>
       </Transition>

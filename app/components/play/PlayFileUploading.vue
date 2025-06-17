@@ -57,7 +57,7 @@ const duration = asyncComputed(async () => {
 async function startUpload(file: File) {
   fileRef.value = file
   uploadError.value = null
-  return
+  // return
   const item = {
     file,
     name: file.name,
@@ -81,6 +81,7 @@ async function startUpload(file: File) {
     )
     const { assetId, uploadId } = data
     emit('uploading', { assetId, uploadId })
+    percentage.value = 10
     // 2. Upload file in chunks
     await uploadMultipartFile(assetId, uploadId, item)
     emit('success', { assetId, uploadId })
@@ -180,11 +181,11 @@ async function uploadMultipartFile(assetId: string, uploadId: string, item: { fi
         </div>
       </div>
       <!-- File info -->
-      <div class="bg-transparent border border-neutral-700 rounded-xl px-4 py-3 flex flex-col items-center w-3/4">
+      <div class="bg-transparent border border-white/40 rounded-xl px-4 py-3 flex flex-col items-center w-3/4">
         <div class="font-semibold text-base text-white truncate w-full text-center">
           {{ fileRef?.name }}
         </div>
-        <div class="flex gap-2 text-xs text-neutral-400 mt-2 justify-center">
+        <div class="flex gap-2 text-xs text-gray-300 mt-2 justify-center">
           <span>{{ duration }}</span>
           <span>|</span>
           <span>{{ format }}</span>
@@ -197,17 +198,17 @@ async function uploadMultipartFile(assetId: string, uploadId: string, item: { fi
         Đang tải video lên hệ thống ...
       </div>
       <!-- Progress bar -->
-      <div class="h-4 w-3/4 bg-neutral-800 rounded-full overflow-hidden mb-2">
+      <div class="h-4 w-3/4 bg-gray-800 rounded-full overflow-hidden mb-2">
         <div
           :class="uploadError
             ? 'h-full bg-gradient-to-r from-red-500 to-red-400 transition-all duration-500'
-            : 'h-full bg-gradient-to-r from-orange-400 to-orange-300 transition-all duration-500'"
+            : 'h-full bg-gradient-to-r from-[#FFA726] to-[#FFB74D] transition-all duration-500'"
           :style="{ width: percentage + '%' }"
         />
       </div>
       <!-- Bottom tip and button -->
       <div class="w-full flex flex-col items-center">
-        <div class="text-xs text-neutral-400 text-center mb-6">
+        <div class="text-xs text-gray-300 text-center mb-6">
           Bạn đang trong quá trình tải video lên để trải nghiệm tính năng. Vui lòng không thoát hoặc tải lại trang.<br>
           Nếu bạn thoát hoặc tải lại trang, quá trình này sẽ không được tiếp tục.
         </div>

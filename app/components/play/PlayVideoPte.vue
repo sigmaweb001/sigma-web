@@ -3,9 +3,10 @@ const props = defineProps<{
   src: string
   optimizedSrc: string
   thumbnail: string
+  hideControls: boolean
 }>()
 
-const { src, optimizedSrc, thumbnail } = toRefs(props)
+const { src, optimizedSrc, thumbnail, hideControls } = toRefs(props)
 
 const videoRef = ref()
 const videoRefOptimized = ref()
@@ -101,7 +102,7 @@ defineExpose({ play, pause })
 
     <transition name="fade">
       <div
-        v-if="loaded"
+        v-if="loaded && !hideControls"
         class="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-6 px-3 py-2 bg-black/60 rounded-full flex items-center gap-4 text-white text-sm z-10 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition-opacity duration-300"
         style="min-width: 200px; justify-content: center;"
       >
