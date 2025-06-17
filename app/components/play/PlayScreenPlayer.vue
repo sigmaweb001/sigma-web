@@ -248,7 +248,8 @@ const playVideoRef = ref(null)
             <p class="text-white/80 text-xs">
               <a
                 href="https://portal.sigma.video/auth/signup"
-                class="underline "
+                class="underline"
+                target="_blank"
               >Bạn muốn thử video lớn hơn?</a>
             </p>
           </div>
