@@ -226,10 +226,13 @@ const playVideoRef = ref(null)
           <!-- Right Side Content -->
           <div class="flex-1 text-right">
             <h3 class="text-white font-bold text-sm mb-1">
-              Trải nghiệm thử với video của bạn
+              Trải nghiệm video của bạn (Tối đa 1GB)
             </h3>
-            <p class="text-white/60 text-xs">
-              Dung lượng tối đa 500 Mb
+            <p class="text-white/80 text-xs">
+              <a
+                href="https://portal.sigma.video/auth/signup"
+                class="underline "
+              >Bạn muốn thử video lớn hơn?</a>
             </p>
           </div>
 
