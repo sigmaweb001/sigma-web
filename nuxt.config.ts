@@ -6,7 +6,6 @@ export default defineNuxtConfig({
     '@nuxt/content',
     // '@nuxt/image',
     '@nuxt/scripts',
-    '@nuxtjs/plausible',
     '@vueuse/nuxt',
     'nuxt-og-image',
     'nuxt-cloudflare-analytics',
