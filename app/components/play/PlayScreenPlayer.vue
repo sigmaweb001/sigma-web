@@ -23,7 +23,7 @@ const demoVideos = [
     format: 'MP4',
     codec: 'H.264',
     fps: '30 FPS',
-    thumbnail: 'https://peach.blender.org/wp-content/uploads/title_anouncement.jpg',
+    thumbnail: 'https://pte-cdn.sigma.video/bbb30/thumb.jpg',
     originalSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
     optimizedSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
   },
@@ -105,21 +105,21 @@ const hideDemo = () => {
   showDemoOverlay.value = false
 }
 
-const originalSrc = ref(demoVideos[0].originalSrc)
-const optimizedSrc = ref(demoVideos[0].optimizedSrc)
-
 const selectVideo = (videoId: number) => {
   selectedVideoId.value = videoId
-  const video = demoVideos.find(v => v.id === videoId)
-  if (video) {
-    originalSrc.value = video.originalSrc
-    optimizedSrc.value = video.optimizedSrc
-  }
+
   hideDemo()
 }
 
 const selectedVideo = computed(() => {
-  return demoVideos.find(video => video.id === selectedVideoId.value) || demoVideos[1]
+  return demoVideos.find(video => video.id === selectedVideoId.value) || demoVideos[0]
+})
+
+const originalSrc = computed(() => {
+  return selectedVideo.value.originalSrc
+})
+const optimizedSrc = computed(() => {
+  return selectedVideo.value.optimizedSrc
 })
 
 const isTallScreen = ref(false)
@@ -182,6 +182,7 @@ const playVideoRef = ref(null)
             ref="playVideoRef"
             :src="originalSrc"
             :optimized-src="optimizedSrc"
+            :thumbnail="selectedVideo.thumbnail"
           />
         </ClientOnly>
       </div>

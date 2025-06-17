@@ -2,9 +2,10 @@
 const props = defineProps<{
   src: string
   optimizedSrc: string
+  thumbnail: string
 }>()
 
-const { src, optimizedSrc } = toRefs(props)
+const { src, optimizedSrc, thumbnail } = toRefs(props)
 
 const videoRef = ref()
 const videoRefOptimized = ref()
@@ -88,6 +89,7 @@ defineExpose({ play, pause })
           class="w-full h-full object-cover"
           crossorigin
           playsinline
+          :poster="thumbnail"
           @loadedmetadata="onLoadedMetadata"
           @timeupdate="onTimeUpdate"
           @play="onPlay"
@@ -101,6 +103,7 @@ defineExpose({ play, pause })
           class="w-full h-full object-cover"
           crossorigin
           playsinline
+          :poster="thumbnail"
         />
       </template>
     </ImgComparisonSlider>
