@@ -57,7 +57,7 @@ const duration = asyncComputed(async () => {
 async function startUpload(file: File) {
   fileRef.value = file
   uploadError.value = null
-  // return
+
   const item = {
     file,
     name: file.name,
@@ -88,7 +88,7 @@ async function startUpload(file: File) {
   }
   catch (err) {
     console.error('Upload error:', err)
-    alert('Upload failed!')
+    uploadError.value = 'Upload failed!'
   }
   finally {
     isUploading.value = false
@@ -152,18 +152,54 @@ async function uploadMultipartFile(assetId: string, uploadId: string, item: { fi
   })
   percentage.value = 100
 }
+
+// Play Video Uploading
+const { open, onChange, reset } = useFileDialog({
+  accept: 'video/*',
+  directory: false,
+})
+
+const toast = useToast()
+
+function validateFile(file: File): boolean {
+  const maxSizeMB = 1024
+  const isVideo = file.type.startsWith('video/')
+  const isSizeOk = file.size <= maxSizeMB * 1024 * 1024
+  if (!isVideo) {
+    toast.add({
+      title: 'Loại tệp không hợp lệ',
+      description: 'Chỉ cho phép tệp video',
+      color: 'error',
+    })
+    return true
+  }
+  if (!isSizeOk) {
+    toast.add({
+      title: 'Tệp quá lớn',
+      description: `Video vượt quá dung lượng cho phép (Dung lượng tối đa: 1GB)`,
+      color: 'error',
+    })
+    return true
+  }
+  return false // valid file
+}
+
+onChange((newFiles) => {
+  if (newFiles?.length > 0) {
+    const error = validateFile(newFiles[0])
+    if (error) {
+      reset()
+      return
+    }
+
+    startUpload(newFiles[0])
+  }
+})
 </script>
 
 <template>
   <div class="flex-1 flex flex-col items-center justify-center ">
-    <div class="w-full max-w-3xl bg-black/60 rounded-3xl shadow-xl p-12 flex flex-col gap-6 items-center">
-      <!-- Error message -->
-      <div
-        v-if="uploadError"
-        class="w-full text-center text-red-500 font-semibold text-base mb-2"
-      >
-        {{ uploadError }}
-      </div>
+    <div class="w-full max-w-2xl bg-black/60 rounded-3xl shadow-xl p-11 flex flex-col gap-6 items-center">
       <!-- Logo and wordmark -->
       <div class="flex gap-3 items-center">
         <img
@@ -181,11 +217,16 @@ async function uploadMultipartFile(assetId: string, uploadId: string, item: { fi
         </div>
       </div>
       <!-- File info -->
-      <div class="bg-transparent border border-white/40 rounded-xl px-4 py-3 flex flex-col items-center w-3/4">
-        <div class="font-semibold text-base text-white truncate w-full text-center">
+      <div
+        class="bg-transparent border rounded-xl px-4 py-3 flex flex-col w-4/5"
+        :class="[
+          uploadError ? 'border-red-500' : 'border-white/40',
+        ]"
+      >
+        <div class="font-semibold text-base text-white truncate">
           {{ fileRef?.name }}
         </div>
-        <div class="flex gap-2 text-xs text-gray-300 mt-2 justify-center">
+        <div class="flex gap-2 text-xs text-gray-300 mt-2 ">
           <span>{{ duration }}</span>
           <span>|</span>
           <span>{{ format }}</span>
@@ -194,36 +235,65 @@ async function uploadMultipartFile(assetId: string, uploadId: string, item: { fi
         </div>
       </div>
       <!-- Status text -->
-      <div :class="['text-2xl font-bold text-center', uploadError ? 'text-red-500' : 'text-white']">
-        Đang tải video lên hệ thống ...
-      </div>
-      <!-- Progress bar -->
-      <div class="h-4 w-3/4 bg-gray-800 rounded-full overflow-hidden mb-2">
-        <div
-          :class="uploadError
-            ? 'h-full bg-gradient-to-r from-red-500 to-red-400 transition-all duration-500'
-            : 'h-full bg-gradient-to-r from-[#FFA726] to-[#FFB74D] transition-all duration-500'"
-          :style="{ width: percentage + '%' }"
+      <div
+        v-if="uploadError"
+        class="text-red-500 font-semibold text-sm flex justify-start w-4/5 gap-2"
+      >
+        <Icon
+          name="i-ri:close-circle-line"
+          class="text-red-500 size-6"
         />
+        Quá trình tải video lên thất bại.
       </div>
-      <!-- Bottom tip and button -->
-      <div class="w-full flex flex-col items-center">
-        <div class="text-xs text-gray-300 text-center mb-6">
-          Bạn đang trong quá trình tải video lên để trải nghiệm tính năng. Vui lòng không thoát hoặc tải lại trang.<br>
-          Nếu bạn thoát hoặc tải lại trang, quá trình này sẽ không được tiếp tục.
+      <template v-else>
+        <div :class="['text-xl font-bold text-center', 'text-white']">
+          Đang tải video lên hệ thống ...
         </div>
+        <!-- Progress bar -->
+        <div class="h-4 w-4/5 bg-gray-800 rounded-full overflow-hidden">
+          <div
+            :class="'h-full bg-gradient-to-r from-[#FFA726] to-[#FFB74D] transition-all duration-500'"
+            :style="{ width: percentage + '%' }"
+          />
+        </div>
+      </template>
+      <!-- Bottom tip and button -->
+      <div
+        v-if="uploadError"
+        class="w-full flex flex-col items-center gap-6"
+      >
         <UButton
           color="primary"
           size="md"
-          class="flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 text-white font-semibold text-sm shadow disabled:opacity-60 disabled:cursor-not-allowed"
-          :disabled="isUploading || !!uploadError"
+          class="flex items-center gap-2 px-6 py-2 rounded-full bg-white text-black font-semibold text-sm shadow disabled:opacity-60 disabled:cursor-not-allowed"
+          :disabled="isUploading"
+          @click="open()"
         >
           <Icon
             name="i-heroicons-arrow-up-tray-20-solid"
             class="w-5 h-5"
           />
-          Upload video
+          Tải lại video
         </UButton>
+
+        <div class="text-xs text-gray-300 text-center mb-6">
+          Bạn muốn tải video lên nhanh hơn để sớm trải nghiệm?
+          <a
+            href="https://portal.sigma.video/auth/signup"
+            class="underline"
+            target="_blank"
+          > Nhấn vào đây</a>
+        </div>
+      </div>
+
+      <div
+        v-else
+        class="w-full flex flex-col items-center"
+      >
+        <div class="text-xs text-gray-300 text-center mb-6">
+          Bạn đang trong quá trình tải video lên để trải nghiệm tính năng. Vui lòng không thoát hoặc tải lại trang.<br>
+          Nếu bạn thoát hoặc tải lại trang, quá trình này sẽ không được tiếp tục.
+        </div>
       </div>
     </div>
   </div>
