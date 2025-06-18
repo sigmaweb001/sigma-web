@@ -222,6 +222,7 @@ onChange((newFiles) => {
     }
 
     pageParams.modal = 'uploading'
+    pageParams.uploadId = ''
     // pause video
     playVideoRef.value.pause()
     nextTick(() => {
