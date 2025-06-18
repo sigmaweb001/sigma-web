@@ -248,6 +248,8 @@ function handleOpenResult() {
   pageParams.modal = ''
   pageParams.uploadId = uploadingData.value?.uploadId
 }
+
+const showDetail = computed(() => Boolean(pageParams.uploadId))
 </script>
 
 <template>
@@ -268,6 +270,7 @@ function handleOpenResult() {
               :optimized-src="optimizedSrc"
               :thumbnail="selectedVideo.thumbnail"
               :hide-controls="hideInfo"
+              :control-class="showDetail ? 'bottom-17' : 'bottom-6'"
             />
           </ClientOnly>
         </div>
@@ -278,7 +281,7 @@ function handleOpenResult() {
           class="absolute top-6 left-6 right-6 flex justify-between items-start z-10 transition-opacity duration-300 flex-nowrap gap-4 overflow-x-auto scrollbar-hide opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto"
         >
           <!-- Standard Static Stats -->
-          <div class="backdrop-blur-md bg-gray-700/50 rounded-full px-4 py-2 flex items-center gap-3 min-w-max">
+          <div class="backdrop-blur-md bg-gray-800/60 rounded-full px-4 py-2 flex items-center gap-3 min-w-max">
             <div class="flex gap-1">
               <span class="text-white/80 text-sm font-medium">Standard Static</span>
               <span class="text-white font-bold text-sm">6.8 GB</span>
@@ -293,7 +296,7 @@ function handleOpenResult() {
           </div>
 
           <!-- Sigma PTE Stats -->
-          <div class="backdrop-blur-md bg-gray-700/50 rounded-full px-4 py-2 flex items-center gap-3 min-w-max">
+          <div class="backdrop-blur-md bg-gray-800/60 rounded-full px-4 py-2 flex items-center gap-3 min-w-max">
             <div class="flex gap-1">
               <span class="text-white font-bold text-sm">Sigma Per-title Encoding</span>
               <span class="text-orange-400 font-bold text-sm">{{ selectedVideo.optimizedSize }} {{
@@ -313,13 +316,13 @@ function handleOpenResult() {
           v-if="!hideInfo"
           class="absolute bottom-0 left-0 right-0 px-6 py-5 opacity-0 bg-gradient-to-t from-gray-900/80 to-transparent pointer-events-none transition-opacity duration-300 group-hover:opacity-100 group-hover:pointer-events-auto"
         >
-          <div class="flex items-end gap-4">
+          <div class="flex items-end gap-2">
             <!-- View More Demo Button -->
             <UButton
               v-if="pageParams.modal === ''"
               color="neutral"
               variant="solid"
-              size="xl"
+              size="lg"
               class="backdrop-blur-lg bg-white/80 text-gray-800 border-0 hover:bg-white/90 transition-colors duration-200 rounded-full"
               @click="showVideoList"
             >
@@ -330,33 +333,85 @@ function handleOpenResult() {
               Xem thêm demo
             </UButton>
 
-            <!-- Right Side Content -->
-            <div class="flex-1 text-right">
-              <h3 class="text-white font-bold text-sm mb-1">
-                Trải nghiệm video của bạn (Tối đa 1GB)
-              </h3>
-              <p class="text-white/80 text-xs">
-                <a
-                  href="https://portal.sigma.video/auth/signup"
-                  class="underline"
-                  target="_blank"
-                >Bạn muốn thử video lớn hơn?</a>
-              </p>
-            </div>
+            <template v-if="!showDetail">
+              <!-- Right Side Content -->
+              <div class="flex-1 text-right pr-2">
+                <h3 class="text-white font-bold text-sm mb-1">
+                  Trải nghiệm video của bạn (Tối đa 1GB)
+                </h3>
+                <p class="text-white/80 text-xs">
+                  <a
+                    href="https://portal.sigma.video/auth/signup"
+                    class="underline"
+                    target="_blank"
+                  >Bạn muốn thử video lớn hơn?</a>
+                </p>
+              </div>
+              <!-- Upload Button -->
+              <UButton
+                color="warning"
+                size="lg"
+                class="font-bold rounded-full"
+                @click="open()"
+              >
+                <Icon
+                  name="i-heroicons-arrow-up-tray-20-solid"
+                  class="size-5"
+                />
+                Upload video
+              </UButton>
+            </template>
+            <template v-else>
+              <!-- Right Side Content -->
+              <div class="flex-1 text-right pr-2">
+                <h3 class="text-white font-bold text-sm mb-1">
+                  Video kết quả chỉ được lưu trữ trong vòng 24h
+                </h3>
+                <p class="text-white/80 text-xs">
+                  Bạn có thể kéo thanh so sánh để đối chiếu với video gốc
+                </p>
+              </div>
 
-            <!-- Upload Button -->
-            <UButton
-              color="warning"
-              size="xl"
-              class="font-bold rounded-full"
-              @click="open()"
-            >
-              <Icon
-                name="i-heroicons-arrow-up-tray-20-solid"
-                class="size-5"
-              />
-              Upload video
-            </UButton>
+              <!-- Upload Button -->
+              <UButton
+                color="warning"
+                size="lg"
+                class="font-bold rounded-full"
+              >
+                <Icon
+                  name="i-heroicons-arrow-down-tray-20-solid"
+                  class="size-5"
+                />
+                Tải video
+              </UButton>
+              <UButton
+                color="neutral"
+                variant="outline"
+                size="lg"
+                class="font-bold rounded-full"
+              >
+                <Icon
+                  name="i-heroicons-share-20-solid"
+                  class="size-5"
+                />
+                Chia sẻ
+              </UButton>
+
+              <!-- Upload Button -->
+              <UButton
+                color="neutral"
+                variant="outline"
+                size="lg"
+                class="font-bold rounded-full"
+                @click="open()"
+              >
+                <Icon
+                  name="i-heroicons-arrow-up-tray-20-solid"
+                  class="size-5"
+                />
+                Upload video
+              </UButton>
+            </template>
           </div>
         </div>
       </div>

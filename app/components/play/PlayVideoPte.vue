@@ -4,6 +4,7 @@ const props = defineProps<{
   optimizedSrc: string
   thumbnail: string
   hideControls: boolean
+  controlClass: string
 }>()
 
 const { src, optimizedSrc, thumbnail, hideControls } = toRefs(props)
@@ -103,8 +104,9 @@ defineExpose({ play, pause })
     <transition name="fade">
       <div
         v-if="loaded && !hideControls"
-        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-6 px-3 py-2 bg-black/60 rounded-full flex items-center gap-4 text-white text-sm z-10 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition-opacity duration-300"
+        class="absolute bottom-6 left-1/2 transform -translate-x-1/2 px-3 py-2 bg-black/60 rounded-full flex items-center gap-4 text-white text-sm z-10 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition-opacity duration-300"
         style="min-width: 200px; justify-content: center;"
+        :class="[controlClass]"
       >
         <button
           v-if="isPlaying"
