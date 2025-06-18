@@ -206,8 +206,11 @@ function open() {
         Quá trình tải video lên thất bại.
       </div>
       <template v-else>
-        <div :class="['text-xl font-bold text-center', 'text-white']">
-          Đang tải video lên hệ thống ...
+        <div :class="['text-xl font-bold text-center', 'text-white flex items-end gap-1']">
+          <span>Đang tải video lên hệ thống</span>
+          <Icon
+            name="i-svg-spinners:3-dots-fade"
+          />
         </div>
         <!-- Progress bar -->
         <div class="relative h-4 w-4/5 rounded-full overflow-hidden">
