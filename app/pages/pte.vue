@@ -230,7 +230,6 @@ onChange((newFiles) => {
     })
   }
 })
-
 const uploadingData = ref<{ assetId: string, uploadId: string } | null>(null)
 function handleUploadSuccess(data: { assetId: string, uploadId: string }) {
   uploadingData.value = data
@@ -243,6 +242,11 @@ const hideInfo = computed(() => {
 
 function handleOpenUploading() {
   open()
+}
+
+function handleOpenResult() {
+  pageParams.modal = ''
+  pageParams.uploadId = uploadingData.value?.uploadId
 }
 </script>
 
@@ -391,6 +395,7 @@ function handleOpenUploading() {
             ref="processingRef"
             @upload="handleOpenUploading"
             @back="pageParams.modal = ''"
+            @result="handleOpenResult"
           />
         </div>
       </Transition>

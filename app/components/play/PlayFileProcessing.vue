@@ -8,6 +8,7 @@ const props = defineProps<{
 const emits = defineEmits<{
   (e: 'back'): void
   (e: 'upload'): void
+  (e: 'result'): void
 }>()
 
 const status = ref('processing')
@@ -55,8 +56,13 @@ onMounted(() => {
     else {
       clearInterval(interval)
       // Toggle between success and error for demo. Set to 'success' or 'error' as needed.
-      // status.value = 'success' // or 'error'
-      status.value = 'error'
+      status.value = 'success' // or 'error'
+
+      if (status.value === 'success') {
+        setTimeout(() => {
+          emits('result')
+        }, 3000)
+      }
     }
   }, 2000)
 })
