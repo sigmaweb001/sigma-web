@@ -5,6 +5,11 @@ const props = defineProps<{
   uploadingData: { assetId: string, uploadId: string }
 }>()
 
+const emits = defineEmits<{
+  (e: 'back'): void
+  (e: 'upload'): void
+}>()
+
 const status = ref('processing')
 const stepIndex = ref(0)
 const originalSize = ref(Math.floor(Math.random() * 1000))
@@ -19,7 +24,7 @@ const steps = [
   },
   {
     icon: 'i-ri:timer-fill',
-    iconClass: 'text-yellow-500 text-xl',
+    iconClass: 'text-info-500 text-xl',
     text: 'Chờ đến lượt xử lý video',
     textClass: 'text-orange-400 text-lg font-semibold',
   },
@@ -50,10 +55,19 @@ onMounted(() => {
     else {
       clearInterval(interval)
       // Toggle between success and error for demo. Set to 'success' or 'error' as needed.
-      status.value = 'success' // or 'error'
+      // status.value = 'success' // or 'error'
+      status.value = 'error'
     }
   }, 2000)
 })
+
+function openDemo() {
+  emits('back')
+}
+
+function openUploading() {
+  emits('upload')
+}
 </script>
 
 <template>
@@ -73,7 +87,7 @@ onMounted(() => {
         <div class="text-white text-lg font-semibold text-center">
           Hệ thống Sigma AI Per-title Encoding<br>bắt đầu xử lý ...
         </div>
-        <div class="flex flex-col gap-3 w-full mx-auto">
+        <div class="flex flex-col gap-3 w-full mx-auto px-4">
           <div
             v-for="(step, idx) in steps"
             :key="idx"
@@ -97,7 +111,7 @@ onMounted(() => {
 
             <span
               v-if="idx < stepIndex"
-              class="text-gray-400 text-lg line-through"
+              class="text-gray-400 text-lg"
             >{{ step.text }}</span>
             <span
               v-else-if="idx === stepIndex"
@@ -134,6 +148,31 @@ onMounted(() => {
       <template v-else-if="showError">
         <div class="text-white text-lg font-semibold text-center">
           Đã xảy ra lỗi trong quá trình xử lý video.<br>Vui lòng thử lại sau.
+        </div>
+        <div class="flex flex-col items-center justify-center gap-4">
+          <Icon
+            name="i-ri:close-circle-fill"
+            class="text-red-500 size-15"
+          />
+          <UButton
+            color="primary"
+            size="md"
+            class="flex items-center gap-2 px-6 py-2 rounded-full font-semibold text-sm shadow disabled:opacity-60 disabled:cursor-not-allowed"
+            @click="openUploading()"
+          >
+            <Icon
+              name="i-heroicons-arrow-up-tray-20-solid"
+              class="w-5 h-5"
+            />
+            Tải lại video
+          </UButton>
+
+          <button
+            class="text-gray-300 text-sm underline cursor-pointer"
+            @click="openDemo()"
+          >
+            Xem thêm demo
+          </button>
         </div>
       </template>
     </div>

@@ -3,7 +3,7 @@ import { ref, computed } from 'vue'
 import { asyncComputed } from '@vueuse/core'
 
 const emit = defineEmits<(
-  e: 'uploading' | 'success',
+  e: 'upload' | 'success',
   data: { assetId: string, uploadId: string }
 ) => void>()
 
@@ -80,7 +80,6 @@ async function startUpload(file: File) {
       },
     )
     const { assetId, uploadId } = data
-    emit('uploading', { assetId, uploadId })
     percentage.value = 10
     // 2. Upload file in chunks
     await uploadMultipartFile(assetId, uploadId, item)
@@ -153,48 +152,9 @@ async function uploadMultipartFile(assetId: string, uploadId: string, item: { fi
   percentage.value = 100
 }
 
-// Play Video Uploading
-const { open, onChange, reset } = useFileDialog({
-  accept: 'video/*',
-  directory: false,
-})
-
-const toast = useToast()
-
-function validateFile(file: File): boolean {
-  const maxSizeMB = 1024
-  const isVideo = file.type.startsWith('video/')
-  const isSizeOk = file.size <= maxSizeMB * 1024 * 1024
-  if (!isVideo) {
-    toast.add({
-      title: 'Loại tệp không hợp lệ',
-      description: 'Chỉ cho phép tệp video',
-      color: 'error',
-    })
-    return true
-  }
-  if (!isSizeOk) {
-    toast.add({
-      title: 'Tệp quá lớn',
-      description: `Video vượt quá dung lượng cho phép (Dung lượng tối đa: 1GB)`,
-      color: 'error',
-    })
-    return true
-  }
-  return false // valid file
+function open() {
+  emit('upload')
 }
-
-onChange((newFiles) => {
-  if (newFiles?.length > 0) {
-    const error = validateFile(newFiles[0])
-    if (error) {
-      reset()
-      return
-    }
-
-    startUpload(newFiles[0])
-  }
-})
 </script>
 
 <template>

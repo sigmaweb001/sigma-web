@@ -226,6 +226,7 @@ onChange((newFiles) => {
     playVideoRef.value.pause()
     nextTick(() => {
       uploadingRef.value.startUpload(newFiles[0])
+      reset()
     })
   }
 })
@@ -239,6 +240,10 @@ function handleUploadSuccess(data: { assetId: string, uploadId: string }) {
 const hideInfo = computed(() => {
   return pageParams.modal === 'uploading' || pageParams.modal === 'processing'
 })
+
+function handleOpenUploading() {
+  open()
+}
 </script>
 
 <template>
@@ -362,7 +367,7 @@ const hideInfo = computed(() => {
         leave-to-class="opacity-0"
       >
         <div
-          v-if="pageParams.modal"
+          v-if="pageParams.modal !== ''"
           class="absolute inset-0 z-[9999] bg-black/10 backdrop-blur-xs overflow-hidden flex flex-col"
         >
           <PlayVideoList
@@ -377,12 +382,15 @@ const hideInfo = computed(() => {
             v-else-if="pageParams.modal === 'uploading'"
             ref="uploadingRef"
             :uploading-data="uploadingData"
+            @upload="handleOpenUploading"
             @success="handleUploadSuccess"
           />
 
           <PlayFileProcessing
             v-else-if="pageParams.modal === 'processing'"
             ref="processingRef"
+            @upload="handleOpenUploading"
+            @back="pageParams.modal = ''"
           />
         </div>
       </Transition>
