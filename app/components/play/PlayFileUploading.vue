@@ -250,9 +250,12 @@ onChange((newFiles) => {
           Đang tải video lên hệ thống ...
         </div>
         <!-- Progress bar -->
-        <div class="h-4 w-4/5 bg-gray-800 rounded-full overflow-hidden">
+        <div class="relative h-4 w-4/5 rounded-full overflow-hidden">
+          <!-- Striped background -->
+          <div class="absolute inset-0 rounded-full bg-[repeating-linear-gradient(120deg,#222_0_40px,#333_40px_80px)] z-0" />
+          <!-- Progress fill -->
           <div
-            :class="'h-full bg-gradient-to-r from-[#FFA726] to-[#FFB74D] transition-all duration-500'"
+            class="absolute left-0 top-0 h-full rounded-full bg-gradient-to-r from-[#FFA726] to-[#FFB74D] transition-all duration-500 z-10"
             :style="{ width: percentage + '%' }"
           />
         </div>
@@ -298,3 +301,13 @@ onChange((newFiles) => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.progress-stripes {
+  background: repeating-linear-gradient(
+    120deg,
+    #222 0 40px,
+    #333 40px 80px
+  );
+}
+</style>
