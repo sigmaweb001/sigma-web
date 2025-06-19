@@ -313,7 +313,7 @@ async function handleDownloadVideo() {
       </div>
     </template>
     <template v-else>
-      <div class="h-screen bg-gray-900 flex items-center justify-center relative overflow-hidden">
+      <div class="h-screen bg-black/80 flex items-center justify-center relative overflow-hidden">
         <a
           ref="downloadAnchor"
           style="display:none"
@@ -323,7 +323,7 @@ async function handleDownloadVideo() {
           :class="isTallScreen ? 'w-full' : 'h-full'"
         >
           <!-- Video/Thumbnail Section -->
-          <div class="relative w-full h-full bg-gray-900 overflow-hidden flex items-center justify-center">
+          <div class="relative w-full h-full bg-black/80 overflow-hidden flex items-center justify-center">
             <!-- Background Image/Video -->
             <div class="absolute inset-0">
               <ClientOnly>
