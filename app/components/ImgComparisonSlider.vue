@@ -523,7 +523,10 @@ function resetDimensions() {
           <slot name="first" />
         </div>
       </div>
-      <div class="handle-container">
+      <div
+        v-if="!hideHandle"
+        class="handle-container"
+      >
         <div class="divider" />
         <div
           ref="handleElement"
@@ -532,7 +535,6 @@ function resetDimensions() {
           <slot name="handle">
             <!-- Custom handle overlay -->
             <div
-              v-if="!hideHandle"
               class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
             >
               <button
