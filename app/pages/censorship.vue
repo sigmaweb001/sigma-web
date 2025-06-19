@@ -63,7 +63,7 @@ const selectedVideo = computed(() => {
         </div>
         <div class="flex gap-1">
           <span class="text-white/80 text-sm font-medium">Encoding Settings</span>
-          <span class="text-white font-medium text-sm">1080P H.264</span>
+          <span class="text-white font-medium text-sm">{{ selectedVideo.resolution }} {{ selectedVideo.codec }}</span>
         </div>
       </div>
 
@@ -77,7 +77,7 @@ const selectedVideo = computed(() => {
         </div>
         <div class="flex gap-1">
           <span class="text-white/80 text-sm font-medium">Encoding Settings</span>
-          <span class="text-white font-medium text-sm">1080P H.264</span>
+          <span class="text-white font-medium text-sm">{{ selectedVideo.resolution }} {{ selectedVideo.codec }}</span>
         </div>
       </div>
     </template>
