@@ -240,7 +240,7 @@ function handleUploadSuccess(data: { assetId: string, uploadId: string }) {
 }
 
 const hideInfo = computed(() => {
-  return pageParams.modal === 'uploading' || pageParams.modal === 'processing' || pageParams.modal === 'share'
+  return pageParams.modal === 'uploading' || pageParams.modal === 'processing'
 })
 
 function handleOpenUploading() {
@@ -432,7 +432,6 @@ async function handleDownloadVideo() {
                 variant="outline"
                 size="lg"
                 class="font-bold rounded-full"
-                @click="pageParams.modal = 'share'"
               >
                 <Icon
                   name="i-heroicons-share-20-solid"
@@ -495,11 +494,6 @@ async function handleDownloadVideo() {
             @upload="handleOpenUploading"
             @back="pageParams.modal = ''"
             @result="handleOpenResult"
-          />
-
-          <PlayFileShare
-            v-else-if="pageParams.modal === 'share'"
-            @back="pageParams.modal = ''"
           />
         </div>
       </Transition>
