@@ -72,7 +72,7 @@ whenever(scrollableDiv, () => {
                   <span>|</span>
                   <span>{{ video.duration }}</span>
                   <span>|</span>
-                  <span>{{ video.format }}</span>
+                  <span>{{ 'MP4' }}</span>
                   <span>|</span>
                   <span>{{ video.codec }}</span>
                   <span>|</span>
