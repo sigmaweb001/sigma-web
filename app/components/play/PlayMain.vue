@@ -6,93 +6,11 @@ pageParams.modal = ''
 
 const selectedVideoId = ref(1) // Default to second video (Standard Demo)
 
-const demoVideos = [
-  {
-    id: 1,
-    title: 'Big Buck Bunny',
-    resolution: '1080p',
-    originalSize: '600',
-    originalUnit: 'MB',
-    optimizedSize: '200',
-    optimizedUnit: 'MB',
-    dimensions: '1920 x 1080',
-    duration: '09:56',
-    format: 'MP4',
-    codec: 'H.264',
-    fps: '30 FPS',
-    thumbnail: 'https://pte-cdn.sigma.video/bbb30/thumb.jpg',
-    originalSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-    optimizedSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-  },
-  {
-    id: 2,
-    title: 'Sintel',
-    resolution: '2K',
-    originalSize: '1.1',
-    originalUnit: 'GB',
-    optimizedSize: '300',
-    optimizedUnit: 'MB',
-    dimensions: '1920 x 816',
-    duration: '14:48',
-    format: 'MP4',
-    codec: 'H.264',
-    fps: '24 FPS',
-    thumbnail: 'https://durian.blender.org/wp-content/uploads/2010/05/sintel_poster.jpg',
-    originalSrc: 'https://media.xiph.org/sintel/sintel-2048-surround.mp4',
-    optimizedSrc: 'https://media.xiph.org/sintel/sintel-1024-surround.mp4',
-  },
-  {
-    id: 3,
-    title: 'Tears of Steel',
-    resolution: '4K',
-    originalSize: '6.3',
-    originalUnit: 'GB',
-    optimizedSize: '1.5',
-    optimizedUnit: 'GB',
-    dimensions: '3840 x 1634',
-    duration: '12:14',
-    format: 'MP4',
-    codec: 'H.264',
-    fps: '24 FPS',
-    thumbnail: 'https://mango.blender.org/wp-content/themes/mango/images/project/tears_of_steel_poster.jpg',
-    originalSrc: 'https://mango.blender.org/wp-content/content/download.php?file=tearsofsteel_4k.mov',
-    optimizedSrc: 'https://mango.blender.org/wp-content/content/download.php?file=tearsofsteel_720p.mov',
-  },
-  {
-    id: 4,
-    title: 'Elephants Dream',
-    resolution: 'HD',
-    originalSize: '815',
-    originalUnit: 'MB',
-    optimizedSize: '284',
-    optimizedUnit: 'MB',
-    dimensions: '1920 x 1080',
-    duration: '10:53',
-    format: 'MP4',
-    codec: 'H.264',
-    fps: '24 FPS',
-    thumbnail: 'https://orange.blender.org/wp-content/themes/orange/images/common/ed_head.jpg',
-    originalSrc: 'https://download.blender.org/durian/movies/elephants-dream-1080p.mp4',
-    optimizedSrc: 'https://download.blender.org/durian/movies/elephants-dream-720p.mp4',
-  },
-  {
-    id: 5,
-    title: 'Sintel (HD)',
-    resolution: 'HD',
-    originalSize: '815',
-    originalUnit: 'MB',
-    optimizedSize: '284',
-    optimizedUnit: 'MB',
-    dimensions: '1280 x 544',
-    duration: '14:48',
-    format: 'MP4',
-    codec: 'H.264',
-    fps: '24 FPS',
-    thumbnail: 'https://durian.blender.org/wp-content/uploads/2010/05/sintel_poster.jpg',
-    originalSrc: 'https://media.xiph.org/sintel/sintel-2048-surround.mp4',
-    optimizedSrc: 'https://media.xiph.org/sintel/sintel-1024-surround.mp4',
-  },
-]
+const props = defineProps<{
+  demoVideos: Array<any>
+}>()
+
+const demoVideos = props.demoVideos
 
 function showVideoList() {
   pageParams.modal = 'list'
