@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { saveAs } from 'file-saver'
-
 definePageMeta({
   layout: 'empty',
 })
@@ -253,45 +251,6 @@ function handleOpenResult() {
 }
 
 const showDetail = computed(() => Boolean(pageParams.uploadId))
-
-async function handleDownloadVideo() {
-  try {
-    const url = optimizedSrc.value
-    const filename = (selectedVideo.value?.title || 'video') + '.mp4'
-
-    // Show loading state
-    const loadingToast = toast.add({
-      title: 'Đang chuẩn bị tải xuống...',
-      description: 'Vui lòng đợi trong giây lát',
-      color: 'info',
-      duration: Infinity,
-      close: false,
-    })
-
-    // Fetch the video file
-    const response = await fetch(url)
-    const blob = await response.blob()
-
-    toast.remove(loadingToast.id)
-
-    // Save the file using file-saver
-    saveAs(blob, filename)
-
-    toast.add({
-      title: 'Tải xuống thành công',
-      description: filename,
-      color: 'success',
-    })
-  }
-  catch (error) {
-    toast.add({
-      title: 'Tải xuống thất bại',
-      description: 'Có lỗi xảy ra khi tải video',
-      color: 'error',
-    })
-    console.error('Download error:', error)
-  }
-}
 </script>
 
 <template>
@@ -419,7 +378,6 @@ async function handleDownloadVideo() {
                 color="warning"
                 size="lg"
                 class="font-bold rounded-full"
-                @click="handleDownloadVideo"
               >
                 <Icon
                   name="i-heroicons-arrow-down-tray-20-solid"
