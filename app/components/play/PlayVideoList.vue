@@ -40,7 +40,7 @@ whenever(scrollableDiv, () => {
           <div
             v-for="(video, index) in demoVideos"
             :key="video.id"
-            class="flex-shrink-0 w-82 rounded-2xl shadow-xl border border-black/10 cursor-pointer transition-all duration-300 scale-95 hover:scale-99 overflow-hidden relative video-card bg-gray-900/80 backdrop-blur-lg select-none"
+            class="flex-shrink-0 w-72 rounded-xl shadow-lg border border-black/10 cursor-pointer transition-all duration-300 scale-95 hover:scale-100 overflow-hidden relative video-card bg-gray-900/80 backdrop-blur-lg select-none"
             :class="{
               'ring-2 ring-white': video.id === selectedVideoId,
               'border-gray-700/50': video.id !== selectedVideoId,
@@ -55,16 +55,19 @@ whenever(scrollableDiv, () => {
                 alt="video thumbnail"
               >
               <div class="absolute inset-0 bg-gradient-to-br from-gray-900/80 to-gray-800/80 z-10" />
-              <div class="relative z-20 p-5 flex flex-col w-full">
-                <div class="flex items-center gap-3 mb-1">
-                  <span class="text-white text-2xl font-extrabold leading-none">{{ video.resolution }}</span>
-                  <span class="text-white text-2xl font-bold leading-none">{{ video.originalSize }}</span>
-                  <span class="text-gray-300 text-lg font-semibold leading-none">{{ video.originalUnit }}</span>
-                  <span class="text-orange-400 text-2xl font-bold leading-none mx-1">&gt;</span>
-                  <span class="text-orange-400 text-2xl font-extrabold leading-none">{{ video.optimizedSize }}</span>
-                  <span class="text-orange-300 text-lg font-semibold leading-none">{{ video.optimizedUnit }}</span>
+              <div class="relative z-20 p-3 flex flex-col w-full">
+                <div class="flex items-center gap-4 mb-1.5 ">
+                  <span class="text-white text-xl font-extrabold leading-none">{{ video.resolution }}</span>
+
+                  <div class="flex items-center gap-1">
+                    <span class="text-white text-xl font-bold leading-none">{{ video.originalSize }}</span>
+                    <span class="text-gray-300 text-base font-semibold leading-none">{{ video.originalUnit }}</span>
+                    <span class="text-orange-400 text-xl font-bold leading-none mx-1">&gt;</span>
+                    <span class="text-orange-400 text-xl font-extrabold leading-none">{{ video.optimizedSize }}</span>
+                    <span class="text-orange-300 text-base font-semibold leading-none">{{ video.optimizedUnit }}</span>
+                  </div>
                 </div>
-                <div class="flex items-center gap-2 text-xs text-gray-300 font-medium">
+                <div class="flex items-center gap-1 text-xs text-gray-300 font-medium">
                   <span>{{ video.dimensions }}</span>
                   <span>|</span>
                   <span>{{ video.duration }}</span>
