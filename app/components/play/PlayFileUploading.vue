@@ -60,6 +60,7 @@ const duration = asyncComputed(async () => {
 }, '')
 
 async function startUpload(file: File) {
+  emit('success', { assetId: '123', uploadId: '123' })
   return
   fileRef.value = file
   uploadError.value = null

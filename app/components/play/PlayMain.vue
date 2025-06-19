@@ -12,6 +12,12 @@ const props = defineProps<{
     title: string
     subtitle?: string
   }
+  processing: {
+    title: string
+    successTitle: string
+  }
+  originalSize?: number
+  optimizedSize?: number
 }>()
 
 const demoVideos = props.demoVideos
@@ -391,6 +397,10 @@ async function handleDownloadVideo() {
               <PlayFileProcessing
                 v-else-if="pageParams.modal === 'processing'"
                 ref="processingRef"
+                :title="processing.title"
+                :success-title="processing.successTitle"
+                :original-size="originalSize"
+                :optimized-size="optimizedSize"
                 @upload="handleOpenUploading"
                 @back="pageParams.modal = ''"
                 @result="handleOpenResult"

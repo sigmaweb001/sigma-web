@@ -112,6 +112,9 @@ const selectedVideoId = ref(1)
 const selectedVideo = computed(() => {
   return demoVideos.find(video => video.id === selectedVideoId.value) || demoVideos[0]
 })
+
+const originalSize = ref(Math.floor(Math.random() * 1000))
+const optimizedSize = ref(Math.floor(Math.random() * 1000))
 </script>
 
 <template>
@@ -122,6 +125,12 @@ const selectedVideo = computed(() => {
       title: 'Uploading Video',
       subtitle: 'Đang tải video lên hệ thống',
     }"
+    :processing="{
+      title: 'Hệ thống Sigma AI Per-title Encoding bắt đầu xử lý',
+      successTitle: 'Hệ thống Sigma AI Per-title Encoding đã hoàn tất xử lý video!',
+    }"
+    :original-size="originalSize"
+    :optimized-size="optimizedSize"
   >
     <template #stats>
       <!-- Standard Static Stats -->

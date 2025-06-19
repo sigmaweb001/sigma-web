@@ -87,6 +87,10 @@ const selectedVideo = computed(() => {
       title: 'AI Censorship',
       subtitle: 'Đang tải video lên hệ thống với model là [model-name]',
     }"
+    :processing="{
+      title: 'Hệ thống Sigma AI Censorship bắt đầu xử lý với model là [model-name]',
+      successTitle: 'Hệ thống Sigma AI Censorship đã hoàn tất xử lý video!',
+    }"
   >
     <template #stats>
       <!-- Standard Static Stats -->

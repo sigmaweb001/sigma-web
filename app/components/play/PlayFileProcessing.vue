@@ -2,7 +2,11 @@
 import { computed, ref, onMounted } from 'vue'
 
 const props = defineProps<{
+  title: string
+  successTitle: string
   uploadingData: { assetId: string, uploadId: string }
+  originalSize: number
+  optimizedSize: number
 }>()
 
 const emits = defineEmits<{
@@ -13,8 +17,6 @@ const emits = defineEmits<{
 
 const status = ref('processing')
 const stepIndex = ref(0)
-const originalSize = ref(Math.floor(Math.random() * 1000))
-const optimizedSize = ref(Math.floor(Math.random() * 1000))
 
 const steps = [
   {
@@ -90,8 +92,12 @@ function openUploading() {
       </div>
       <!-- Processing Screen -->
       <template v-if="showProcessing">
-        <div class="text-white text-lg font-semibold text-center">
-          Hệ thống Sigma AI Per-title Encoding<br>bắt đầu xử lý ...
+        <div class="text-lg font-semibold text-white px-3">
+          <span>{{ title || 'Hệ thống Sigma AI Per-title Encoding bắt đầu xử lý' }}</span>
+          <Icon
+            class="inline-block size-5 ml-1 align-bottom"
+            name="i-svg-spinners:3-dots-fade"
+          />
         </div>
         <div class="flex flex-col gap-3 w-full mx-auto px-4">
           <div
@@ -133,7 +139,7 @@ function openUploading() {
       <!-- Success Screen -->
       <template v-else-if="showSuccess">
         <div class="text-white text-lg font-semibold text-center">
-          Hệ thống Sigma AI Per-title Encoding<br>đã hoàn tất xử lý video!
+          {{ successTitle }}
         </div>
         <div class="flex flex-col items-center justify-center gap-4 ">
           <Icon
@@ -141,7 +147,10 @@ function openUploading() {
             class="text-green-500 size-20"
           />
 
-          <div class="flex items-center gap-3 mt-2">
+          <div
+            v-if="originalSize && optimizedSize"
+            class="flex items-center gap-3 mt-2"
+          >
             <span class="text-5xl font-extrabold text-white">{{ originalSize }}</span>
             <span class="text-2xl font-bold text-gray-300">MB</span>
             <span class="text-4xl font-bold text-gray-400">&gt;</span>
