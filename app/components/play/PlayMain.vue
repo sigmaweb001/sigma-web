@@ -146,24 +146,6 @@ onUnmounted(() => {
   window.removeEventListener('resize', updateAspect)
 })
 
-const scrollableDiv = ref(null)
-
-whenever(scrollableDiv, () => {
-  if (scrollableDiv.value) {
-    scrollableDiv.value.$el.addEventListener('wheel', (event) => {
-      event.preventDefault()
-      if (event.shiftKey) {
-        scrollableDiv.value.$el.scrollLeft += event.deltaX
-      }
-      else {
-        scrollableDiv.value.$el.scrollLeft += event.deltaX === 0
-          ? event.deltaY
-          : Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY
-      }
-    })
-  }
-})
-
 const playVideoRef = ref(null)
 
 // Play Video Uploading

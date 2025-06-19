@@ -5,6 +5,24 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits(['select-video', 'close'])
+
+const scrollableDiv = ref(null)
+
+whenever(scrollableDiv, () => {
+  if (scrollableDiv.value) {
+    scrollableDiv.value.$el.addEventListener('wheel', (event) => {
+      event.preventDefault()
+      if (event.shiftKey) {
+        scrollableDiv.value.$el.scrollLeft += event.deltaX
+      }
+      else {
+        scrollableDiv.value.$el.scrollLeft += event.deltaX === 0
+          ? event.deltaY
+          : Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY
+      }
+    })
+  }
+})
 </script>
 
 <template>
@@ -13,6 +31,7 @@ const emit = defineEmits(['select-video', 'close'])
       <div class="backdrop-blur-md bg-black/20 rounded-2xl py-2">
         <TransitionGroup
           id="video-demo-list"
+          ref="scrollableDiv"
           name="video-list"
           tag="div"
           class="flex gap-1 overflow-x-auto overflow-y-hidden scrollbar-hide"
