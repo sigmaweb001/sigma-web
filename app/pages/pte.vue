@@ -62,14 +62,14 @@ const optimizedSize = ref(Math.floor(Math.random() * 1000))
       <div class="backdrop-blur-md bg-gray-800/60 rounded-full px-4 py-2 flex items-center gap-3 min-w-max">
         <div class="flex gap-1">
           <span class="text-white/80 text-sm font-medium">Standard Static</span>
-          <span class="text-white font-bold text-sm">6.8 GB</span>
+          <span class="text-white font-bold text-sm">{{ selectedVideo.originalSize }} {{ selectedVideo.originalUnit }}</span>
         </div>
         <div class="text-white/50">
           |
         </div>
         <div class="flex gap-1">
           <span class="text-white/80 text-sm font-medium">Encoding Settings</span>
-          <span class="text-white font-medium text-sm">1080P H.264</span>
+          <span class="text-white font-medium text-sm">{{ selectedVideo.resolution }} {{ selectedVideo.codec }}</span>
         </div>
       </div>
 
@@ -84,7 +84,7 @@ const optimizedSize = ref(Math.floor(Math.random() * 1000))
         </div>
         <div class="flex gap-1">
           <span class="text-white/80 text-sm font-medium">Encoding Settings</span>
-          <span class="text-white font-medium text-sm">1080P H.264</span>
+          <span class="text-white font-medium text-sm">{{ selectedVideo.resolution }} {{ selectedVideo.codec }}</span>
         </div>
       </div>
     </template>
