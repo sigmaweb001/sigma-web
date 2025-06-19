@@ -81,6 +81,7 @@ defineExpose({ play, pause })
           :src="src"
           class="w-full h-full object-cover"
           crossorigin
+          preload="auto"
           playsinline
           :poster="thumbnail"
           @loadedmetadata="onLoadedMetadata"
@@ -95,6 +96,7 @@ defineExpose({ play, pause })
           :src="optimizedSrc"
           class="w-full h-full object-cover"
           crossorigin
+          preload="auto"
           playsinline
           :poster="thumbnail"
         />
