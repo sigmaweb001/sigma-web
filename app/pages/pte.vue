@@ -251,10 +251,62 @@ function handleOpenResult() {
 }
 
 const showDetail = computed(() => Boolean(pageParams.uploadId))
+
+const downloadAnchor = ref<HTMLAnchorElement | null>(null)
+
+async function handleDownloadVideo() {
+  try {
+    const url = optimizedSrc.value
+    const filename = (selectedVideo.value?.title || 'video') + '.mp4'
+
+    // Show loading state
+    const loadingToast = toast.add({
+      title: 'Đang chuẩn bị tải xuống...',
+      description: 'Vui lòng đợi trong giây lát',
+      color: 'info',
+      duration: Infinity,
+      close: false,
+    })
+
+    // Fetch the video as a blob
+    const response = await fetch(url)
+    const blob = await response.blob()
+    const objectUrl = URL.createObjectURL(blob)
+
+    // Use a simple anchor for download
+    if (downloadAnchor.value) {
+      downloadAnchor.value.href = objectUrl
+      downloadAnchor.value.download = filename
+      downloadAnchor.value.click()
+      // Revoke the object URL after a short delay
+      setTimeout(() => URL.revokeObjectURL(objectUrl), 1000)
+    }
+
+    toast.remove(loadingToast.id)
+
+    toast.add({
+      title: 'Tải xuống thành công',
+      description: filename,
+      color: 'success',
+    })
+  }
+  catch (error) {
+    toast.add({
+      title: 'Tải xuống thất bại',
+      description: 'Có lỗi xảy ra khi tải video',
+      color: 'error',
+    })
+    console.error('Download error:', error)
+  }
+}
 </script>
 
 <template>
   <div class="h-screen bg-gray-900 flex items-center justify-center relative overflow-hidden">
+    <a
+      ref="downloadAnchor"
+      style="display:none"
+    />
     <div
       class="relative group aspect-video"
       :class="isTallScreen ? 'w-full' : 'h-full'"
@@ -378,6 +430,7 @@ const showDetail = computed(() => Boolean(pageParams.uploadId))
                 color="warning"
                 size="lg"
                 class="font-bold rounded-full"
+                @click="handleDownloadVideo"
               >
                 <Icon
                   name="i-heroicons-arrow-down-tray-20-solid"
