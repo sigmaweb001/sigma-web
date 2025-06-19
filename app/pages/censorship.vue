@@ -72,8 +72,50 @@ const demoVideos = [
     optimizedSrc: 'https://mango.blender.org/wp-content/content/download.php?file=tearsofsteel_720p.mov',
   },
 ]
+const selectedVideoId = ref(1)
+
+const selectedVideo = computed(() => {
+  return demoVideos.find(video => video.id === selectedVideoId.value) || demoVideos[0]
+})
 </script>
 
 <template>
-  <PlayMain :demo-videos="demoVideos" />
+  <PlayMain
+    v-model:selected-video-id="selectedVideoId"
+    :demo-videos="demoVideos"
+    :uploading="{
+      title: 'AI Censorship',
+      subtitle: 'Đang tải video lên hệ thống với model là [model-name]',
+    }"
+  >
+    <template #stats>
+      <!-- Standard Static Stats -->
+      <div class="backdrop-blur-md bg-gray-800/60 rounded-full px-4 py-2 flex items-center gap-3 min-w-max">
+        <div class="flex gap-1">
+          <span class="text-white/80 text-sm font-medium">Original Video</span>
+        </div>
+        <div class="text-white/50">
+          |
+        </div>
+        <div class="flex gap-1">
+          <span class="text-white/80 text-sm font-medium">Encoding Settings</span>
+          <span class="text-white font-medium text-sm">1080P H.264</span>
+        </div>
+      </div>
+
+      <!-- Sigma PTE Stats -->
+      <div class="backdrop-blur-md bg-gray-800/60 rounded-full px-4 py-2 flex items-center gap-3 min-w-max">
+        <div class="flex gap-1">
+          <span class="text-white font-bold text-sm">Sigma Censorship</span>
+        </div>
+        <div class="text-white/50">
+          |
+        </div>
+        <div class="flex gap-1">
+          <span class="text-white/80 text-sm font-medium">Encoding Settings</span>
+          <span class="text-white font-medium text-sm">1080P H.264</span>
+        </div>
+      </div>
+    </template>
+  </PlayMain>
 </template>

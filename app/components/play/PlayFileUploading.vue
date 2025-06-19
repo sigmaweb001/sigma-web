@@ -2,6 +2,11 @@
 import { ref, computed } from 'vue'
 import { asyncComputed } from '@vueuse/core'
 
+const props = defineProps<{
+  title: string
+  subtitle?: string
+}>()
+
 const emit = defineEmits<(
   e: 'upload' | 'success',
   data: { assetId: string, uploadId: string }
@@ -55,6 +60,7 @@ const duration = asyncComputed(async () => {
 }, '')
 
 async function startUpload(file: File) {
+  return
   fileRef.value = file
   uploadError.value = null
 
@@ -172,7 +178,7 @@ function open() {
             Sigma
           </div>
           <div class="text-white text-3xl font-extrabold">
-            Per-Title Encoding
+            {{ title }}
           </div>
         </div>
       </div>
@@ -206,9 +212,10 @@ function open() {
         Quá trình tải video lên thất bại.
       </div>
       <template v-else>
-        <div :class="['text-xl font-bold text-center', 'text-white flex items-end gap-1']">
-          <span>Đang tải video lên hệ thống</span>
+        <div class="text-xl font-bold text-center text-white gap-1 w-2/3">
+          <span>{{ subtitle || 'Đang tải video lên hệ thống' }}</span>
           <Icon
+            class="inline-block size-5 ml-1 align-bottom"
             name="i-svg-spinners:3-dots-fade"
           />
         </div>
