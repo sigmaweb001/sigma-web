@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+
 const pageParams = useUrlSearchParams('history')
 pageParams.modal = ''
 
@@ -124,6 +126,8 @@ const updateAspect = () => {
   isTallScreen.value = window.innerHeight / window.innerWidth > 9 / 16
 }
 
+const isClientLoaded = ref(false)
+
 onMounted(() => {
   updateAspect()
   window.addEventListener('resize', updateAspect)
@@ -135,6 +139,7 @@ onMounted(() => {
   })
 
   // Add horizontal scroll for video demo list
+  isClientLoaded.value = true
 })
 
 onUnmounted(() => {
@@ -282,219 +287,247 @@ async function handleDownloadVideo() {
 </script>
 
 <template>
-  <div class="h-screen bg-gray-900 flex items-center justify-center relative overflow-hidden">
-    <a
-      ref="downloadAnchor"
-      style="display:none"
-    />
-    <div
-      class="relative group aspect-video"
-      :class="isTallScreen ? 'w-full' : 'h-full'"
-    >
-      <!-- Video/Thumbnail Section -->
-      <div class="relative w-full h-full bg-gray-900 overflow-hidden flex items-center justify-center">
-        <!-- Background Image/Video -->
-        <div class="absolute inset-0">
-          <ClientOnly>
-            <PlayVideoPte
-              :key="selectedVideoId"
-              ref="playVideoRef"
-              :src="originalSrc"
-              :optimized-src="optimizedSrc"
-              :thumbnail="selectedVideo.thumbnail"
-              :hide-controls="hideInfo"
-              :control-class="showDetail ? 'bottom-17' : 'bottom-6'"
-            />
-          </ClientOnly>
-        </div>
-
-        <!-- Top Stats Overlay -->
-        <div
-          v-if="!hideInfo"
-          class="absolute top-6 left-6 right-6 flex justify-between items-start z-10 transition-opacity duration-300 flex-nowrap gap-4 overflow-x-auto scrollbar-hide opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto"
+  <div class="h-full w-full relative">
+    <template v-if="!isClientLoaded">
+      <div class="fixed inset-0 z-[99999] flex items-center justify-center bg-black/80">
+        <svg
+          class="animate-spin h-12 w-12 text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
         >
-          <!-- Standard Static Stats -->
-          <div class="backdrop-blur-md bg-gray-800/60 rounded-full px-4 py-2 flex items-center gap-3 min-w-max">
-            <div class="flex gap-1">
-              <span class="text-white/80 text-sm font-medium">Standard Static</span>
-              <span class="text-white font-bold text-sm">6.8 GB</span>
-            </div>
-            <div class="text-white/50">
-              |
-            </div>
-            <div class="flex gap-1">
-              <span class="text-white/80 text-sm font-medium">Encoding Settings</span>
-              <span class="text-white font-medium text-sm">1080P H.264</span>
-            </div>
-          </div>
-
-          <!-- Sigma PTE Stats -->
-          <div class="backdrop-blur-md bg-gray-800/60 rounded-full px-4 py-2 flex items-center gap-3 min-w-max">
-            <div class="flex gap-1">
-              <span class="text-white font-bold text-sm">Sigma Per-title Encoding</span>
-              <span class="text-orange-400 font-bold text-sm">{{ selectedVideo.optimizedSize }} {{
-                selectedVideo.optimizedUnit }}</span>
-            </div>
-            <div class="text-white/50">
-              |
-            </div>
-            <div class="flex gap-1">
-              <span class="text-white/80 text-sm font-medium">Encoding Settings</span>
-              <span class="text-white font-medium text-sm">1080P H.264</span>
-            </div>
-          </div>
-        </div>
-
+          <circle
+            class="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            stroke-width="4"
+          />
+          <path
+            class="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+          />
+        </svg>
+      </div>
+    </template>
+    <template v-else>
+      <div class="h-screen bg-gray-900 flex items-center justify-center relative overflow-hidden">
+        <a
+          ref="downloadAnchor"
+          style="display:none"
+        />
         <div
-          v-if="!hideInfo"
-          class="absolute bottom-0 left-0 right-0 px-6 py-5 opacity-0 bg-gradient-to-t from-gray-900/80 to-transparent pointer-events-none transition-opacity duration-300 group-hover:opacity-100 group-hover:pointer-events-auto"
+          class="relative group aspect-video"
+          :class="isTallScreen ? 'w-full' : 'h-full'"
         >
-          <div class="flex items-end gap-2">
-            <!-- View More Demo Button -->
-            <UButton
-              v-if="pageParams.modal === ''"
-              color="neutral"
-              variant="solid"
-              size="lg"
-              class="backdrop-blur-lg bg-white/80 text-gray-800 border-0 hover:bg-white/90 transition-colors duration-200 rounded-full"
-              @click="showVideoList"
+          <!-- Video/Thumbnail Section -->
+          <div class="relative w-full h-full bg-gray-900 overflow-hidden flex items-center justify-center">
+            <!-- Background Image/Video -->
+            <div class="absolute inset-0">
+              <ClientOnly>
+                <PlayVideoPte
+                  :key="selectedVideoId"
+                  ref="playVideoRef"
+                  :src="originalSrc"
+                  :optimized-src="optimizedSrc"
+                  :thumbnail="selectedVideo.thumbnail"
+                  :hide-controls="hideInfo"
+                  :control-class="showDetail ? 'bottom-17' : 'bottom-6'"
+                />
+              </ClientOnly>
+            </div>
+
+            <!-- Top Stats Overlay -->
+            <div
+              v-if="!hideInfo"
+              class="absolute top-6 left-6 right-6 flex justify-between items-start z-10 transition-opacity duration-300 flex-nowrap gap-4 overflow-x-auto scrollbar-hide opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto"
             >
-              <Icon
-                name="i-heroicons-rectangle-group-20-solid"
-                class="size-5 text-gray-800"
-              />
-              Xem thêm demo
-            </UButton>
-
-            <template v-if="!showDetail">
-              <!-- Right Side Content -->
-              <div class="flex-1 text-right pr-2">
-                <h3 class="text-white font-bold text-sm mb-1">
-                  Trải nghiệm video của bạn (Tối đa 1GB)
-                </h3>
-                <p class="text-white/80 text-xs">
-                  <a
-                    href="https://portal.sigma.video/auth/signup"
-                    class="underline"
-                    target="_blank"
-                  >Bạn muốn thử video lớn hơn?</a>
-                </p>
-              </div>
-              <!-- Upload Button -->
-              <UButton
-                color="warning"
-                size="lg"
-                class="font-bold rounded-full"
-                @click="open()"
-              >
-                <Icon
-                  name="i-heroicons-arrow-up-tray-20-solid"
-                  class="size-5"
-                />
-                Upload video
-              </UButton>
-            </template>
-            <template v-else>
-              <!-- Right Side Content -->
-              <div class="flex-1 text-right pr-2">
-                <h3 class="text-white font-bold text-sm mb-1">
-                  Video kết quả chỉ được lưu trữ trong vòng 24h
-                </h3>
-                <p class="text-white/80 text-xs">
-                  Bạn có thể kéo thanh so sánh để đối chiếu với video gốc
-                </p>
+              <!-- Standard Static Stats -->
+              <div class="backdrop-blur-md bg-gray-800/60 rounded-full px-4 py-2 flex items-center gap-3 min-w-max">
+                <div class="flex gap-1">
+                  <span class="text-white/80 text-sm font-medium">Standard Static</span>
+                  <span class="text-white font-bold text-sm">6.8 GB</span>
+                </div>
+                <div class="text-white/50">
+                  |
+                </div>
+                <div class="flex gap-1">
+                  <span class="text-white/80 text-sm font-medium">Encoding Settings</span>
+                  <span class="text-white font-medium text-sm">1080P H.264</span>
+                </div>
               </div>
 
-              <!-- Upload Button -->
-              <UButton
-                color="warning"
-                size="lg"
-                class="font-bold rounded-full"
-                @click="handleDownloadVideo"
-              >
-                <Icon
-                  name="i-heroicons-arrow-down-tray-20-solid"
-                  class="size-5"
-                />
-                Tải video
-              </UButton>
-              <UButton
-                color="neutral"
-                variant="outline"
-                size="lg"
-                class="font-bold rounded-full"
-                @click="pageParams.modal = 'share'"
-              >
-                <Icon
-                  name="i-heroicons-share-20-solid"
-                  class="size-5"
-                />
-                Chia sẻ
-              </UButton>
+              <!-- Sigma PTE Stats -->
+              <div class="backdrop-blur-md bg-gray-800/60 rounded-full px-4 py-2 flex items-center gap-3 min-w-max">
+                <div class="flex gap-1">
+                  <span class="text-white font-bold text-sm">Sigma Per-title Encoding</span>
+                  <span class="text-orange-400 font-bold text-sm">{{ selectedVideo.optimizedSize }} {{
+                    selectedVideo.optimizedUnit }}</span>
+                </div>
+                <div class="text-white/50">
+                  |
+                </div>
+                <div class="flex gap-1">
+                  <span class="text-white/80 text-sm font-medium">Encoding Settings</span>
+                  <span class="text-white font-medium text-sm">1080P H.264</span>
+                </div>
+              </div>
+            </div>
 
-              <!-- Upload Button -->
-              <UButton
-                color="neutral"
-                variant="outline"
-                size="lg"
-                class="font-bold rounded-full"
-                @click="open()"
-              >
-                <Icon
-                  name="i-heroicons-arrow-up-tray-20-solid"
-                  class="size-5"
-                />
-                Upload video
-              </UButton>
-            </template>
+            <div
+              v-if="!hideInfo"
+              class="absolute bottom-0 left-0 right-0 px-6 py-5 opacity-0 bg-gradient-to-t from-gray-900/80 to-transparent pointer-events-none transition-opacity duration-300 group-hover:opacity-100 group-hover:pointer-events-auto"
+            >
+              <div class="flex items-end gap-2">
+                <!-- View More Demo Button -->
+                <UButton
+                  v-if="pageParams.modal === ''"
+                  color="neutral"
+                  variant="solid"
+                  size="lg"
+                  class="backdrop-blur-lg bg-white/80 text-gray-800 border-0 hover:bg-white/90 transition-colors duration-200 rounded-full"
+                  @click="showVideoList"
+                >
+                  <Icon
+                    name="i-heroicons-rectangle-group-20-solid"
+                    class="size-5 text-gray-800"
+                  />
+                  Xem thêm demo
+                </UButton>
+
+                <template v-if="!showDetail">
+                  <!-- Right Side Content -->
+                  <div class="flex-1 text-right pr-2">
+                    <h3 class="text-white font-bold text-sm mb-1">
+                      Trải nghiệm video của bạn (Tối đa 1GB)
+                    </h3>
+                    <p class="text-white/80 text-xs">
+                      <a
+                        href="https://portal.sigma.video/auth/signup"
+                        class="underline"
+                        target="_blank"
+                      >Bạn muốn thử video lớn hơn?</a>
+                    </p>
+                  </div>
+                  <!-- Upload Button -->
+                  <UButton
+                    color="warning"
+                    size="lg"
+                    class="font-bold rounded-full"
+                    @click="open()"
+                  >
+                    <Icon
+                      name="i-heroicons-arrow-up-tray-20-solid"
+                      class="size-5"
+                    />
+                    Upload video
+                  </UButton>
+                </template>
+                <template v-else>
+                  <!-- Right Side Content -->
+                  <div class="flex-1 text-right pr-2">
+                    <h3 class="text-white font-bold text-sm mb-1">
+                      Video kết quả chỉ được lưu trữ trong vòng 24h
+                    </h3>
+                    <p class="text-white/80 text-xs">
+                      Bạn có thể kéo thanh so sánh để đối chiếu với video gốc
+                    </p>
+                  </div>
+
+                  <!-- Upload Button -->
+                  <UButton
+                    color="warning"
+                    size="lg"
+                    class="font-bold rounded-full"
+                    @click="handleDownloadVideo"
+                  >
+                    <Icon
+                      name="i-heroicons-arrow-down-tray-20-solid"
+                      class="size-5"
+                    />
+                    Tải video
+                  </UButton>
+                  <UButton
+                    color="neutral"
+                    variant="outline"
+                    size="lg"
+                    class="font-bold rounded-full"
+                    @click="pageParams.modal = 'share'"
+                  >
+                    <Icon
+                      name="i-heroicons-share-20-solid"
+                      class="size-5"
+                    />
+                    Chia sẻ
+                  </UButton>
+
+                  <!-- Upload Button -->
+                  <UButton
+                    color="neutral"
+                    variant="outline"
+                    size="lg"
+                    class="font-bold rounded-full"
+                    @click="open()"
+                  >
+                    <Icon
+                      name="i-heroicons-arrow-up-tray-20-solid"
+                      class="size-5"
+                    />
+                    Upload video
+                  </UButton>
+                </template>
+              </div>
+            </div>
           </div>
+
+          <!-- Demo Overlay -->
+          <Transition
+            enter-active-class="transition-all duration-300 ease-out"
+            enter-from-class="opacity-0"
+            enter-to-class="opacity-100"
+            leave-active-class="transition-all duration-300 ease-in"
+            leave-from-class="opacity-100"
+            leave-to-class="opacity-0"
+          >
+            <div
+              v-if="pageParams.modal !== ''"
+              class="absolute inset-0 z-[9999] bg-black/10 backdrop-blur-xs overflow-hidden flex flex-col"
+            >
+              <PlayVideoList
+                v-if="pageParams.modal === 'list'"
+                :demo-videos="demoVideos"
+                :selected-video-id="selectedVideoId"
+                @select-video="selectVideo"
+                @close="hideVideoList"
+              />
+
+              <PlayFileUploading
+                v-else-if="pageParams.modal === 'uploading'"
+                ref="uploadingRef"
+                :uploading-data="uploadingData"
+                @upload="handleOpenUploading"
+                @success="handleUploadSuccess"
+              />
+
+              <PlayFileProcessing
+                v-else-if="pageParams.modal === 'processing'"
+                ref="processingRef"
+                @upload="handleOpenUploading"
+                @back="pageParams.modal = ''"
+                @result="handleOpenResult"
+              />
+
+              <PlayFileShare
+                v-else-if="pageParams.modal === 'share'"
+                @back="pageParams.modal = ''"
+              />
+            </div>
+          </Transition>
         </div>
       </div>
-
-      <!-- Demo Overlay -->
-      <Transition
-        enter-active-class="transition-all duration-300 ease-out"
-        enter-from-class="opacity-0"
-        enter-to-class="opacity-100"
-        leave-active-class="transition-all duration-300 ease-in"
-        leave-from-class="opacity-100"
-        leave-to-class="opacity-0"
-      >
-        <div
-          v-if="pageParams.modal !== ''"
-          class="absolute inset-0 z-[9999] bg-black/10 backdrop-blur-xs overflow-hidden flex flex-col"
-        >
-          <PlayVideoList
-            v-if="pageParams.modal === 'list'"
-            :demo-videos="demoVideos"
-            :selected-video-id="selectedVideoId"
-            @select-video="selectVideo"
-            @close="hideVideoList"
-          />
-
-          <PlayFileUploading
-            v-else-if="pageParams.modal === 'uploading'"
-            ref="uploadingRef"
-            :uploading-data="uploadingData"
-            @upload="handleOpenUploading"
-            @success="handleUploadSuccess"
-          />
-
-          <PlayFileProcessing
-            v-else-if="pageParams.modal === 'processing'"
-            ref="processingRef"
-            @upload="handleOpenUploading"
-            @back="pageParams.modal = ''"
-            @result="handleOpenResult"
-          />
-
-          <PlayFileShare
-            v-else-if="pageParams.modal === 'share'"
-            @back="pageParams.modal = ''"
-          />
-        </div>
-      </Transition>
-    </div>
+    </template>
   </div>
 </template>
 
