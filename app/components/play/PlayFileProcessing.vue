@@ -18,32 +18,52 @@ const emits = defineEmits<{
 const status = ref('processing')
 const stepIndex = ref(0)
 
-const steps = [
-  {
-    icon: 'i-ri:check-fill',
-    iconClass: 'text-green-500 text-xl',
-    text: 'Tải video thành công',
-    textClass: 'text-gray-200 text-lg',
-  },
-  {
-    icon: 'i-ri:timer-fill',
-    iconClass: 'text-info-500 text-xl',
-    text: 'Đang chờ xử lý video - vị trí trong hàng đợi: [số thứ tự-của-job]',
-    textClass: 'text-orange-400 text-lg font-semibold',
-  },
-  {
-    icon: 'i-ri:flashlight-fill',
-    iconClass: 'text-yellow-400 text-xl',
-    text: 'Đang thực hiện transcode video',
-    textClass: 'text-gray-300 text-lg',
-  },
-  {
-    icon: 'i-ri:brain-fill',
-    iconClass: 'text-gray-300 text-xl',
-    text: 'AI đang phân tích video...',
-    textClass: 'text-gray-300 text-lg',
-  },
-]
+// /api/sigma-demo/vod-demo/jobs/count
+const jobCount = ref(0)
+const interval = ref<NodeJS.Timeout>()
+const domain = 'https://dev-streaming.gviet.vn:8783'
+onMounted(() => {
+  const updateJobCount = async () => {
+    const res = await $fetch('/api/sigma-demo/vod-demo/jobs/count', {
+      baseURL: domain,
+    })
+    jobCount.value = res.count
+  }
+
+  updateJobCount()
+  interval.value = setInterval(updateJobCount, 1000)
+})
+
+onUnmounted(() => clearInterval(interval.value))
+
+const steps = computed(() => {
+  return [
+    {
+      icon: 'i-ri:check-fill',
+      iconClass: 'text-green-500 text-xl',
+      text: 'Tải video thành công',
+      textClass: 'text-gray-200 text-lg',
+    },
+    {
+      icon: 'i-ri:timer-fill',
+      iconClass: 'text-info-500 text-xl',
+      text: `Đang chờ xử lý video - vị trí trong hàng đợi: ${jobCount.value}`,
+      textClass: 'text-orange-400 text-lg font-semibold',
+    },
+    {
+      icon: 'i-ri:flashlight-fill',
+      iconClass: 'text-yellow-400 text-xl',
+      text: 'Đang thực hiện transcode video',
+      textClass: 'text-gray-300 text-lg',
+    },
+    {
+      icon: 'i-ri:brain-fill',
+      iconClass: 'text-gray-300 text-xl',
+      text: 'AI đang phân tích video...',
+      textClass: 'text-gray-300 text-lg',
+    },
+  ]
+})
 
 const showProcessing = computed(() => status.value === 'processing')
 const showSuccess = computed(() => status.value === 'success')
@@ -52,7 +72,7 @@ const showError = computed(() => status.value === 'error')
 onMounted(() => {
   if (status.value !== 'processing') return
   const interval = setInterval(() => {
-    if (stepIndex.value < steps.length - 1) {
+    if (stepIndex.value < steps.value.length - 1) {
       stepIndex.value++
     }
     else {
