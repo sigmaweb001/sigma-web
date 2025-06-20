@@ -4,37 +4,137 @@ import { computed, ref, onMounted } from 'vue'
 const props = defineProps<{
   title: string
   successTitle: string
-  uploadingData: { assetId: string, uploadId: string }
   originalSize: number
   optimizedSize: number
+  videoUri: string
 }>()
 
 const emits = defineEmits<{
-  (e: 'back'): void
-  (e: 'upload'): void
-  (e: 'result'): void
+  (e: 'back' | 'upload' | 'result'): void
 }>()
 
 const status = ref('processing')
-const stepIndex = ref(0)
+const stepIndex = ref(1)
 
-// /api/sigma-demo/vod-demo/jobs/count
+// API response types
+interface JobCountResponse {
+  count: number
+}
+
+interface JobResponse {
+  id: string
+  status: string
+}
+
+// Job tracking
 const jobCount = ref(0)
-const interval = ref<NodeJS.Timeout>()
+const jobId = ref<string>('')
+const jobInterval = ref<NodeJS.Timeout>()
+const countInterval = ref<NodeJS.Timeout>()
 const domain = 'https://dev-streaming.gviet.vn:8783'
-onMounted(() => {
-  const updateJobCount = async () => {
-    const res = await $fetch('/api/sigma-demo/vod-demo/jobs/count', {
-      baseURL: domain,
-    })
-    jobCount.value = res.count
-  }
 
-  updateJobCount()
-  interval.value = setInterval(updateJobCount, 1000)
+onMounted(() => {
+  startProcessing()
 })
 
-onUnmounted(() => clearInterval(interval.value))
+onUnmounted(() => {
+  clearInterval(countInterval.value)
+  clearInterval(jobInterval.value)
+})
+
+async function startProcessing() {
+  // Step 1: Check job count until it's less than 10
+  await checkJobCountUntilReady()
+
+  // Step 2: Move to step 2 and start job
+  stepIndex.value = 2
+  await startJob()
+
+  // Step 3 & 4: Check job status and progress
+  await checkJobStatus()
+}
+
+async function checkJobCountUntilReady() {
+  return new Promise<void>((resolve) => {
+    const updateJobCount = async () => {
+      try {
+        const res = await $fetch<JobCountResponse>('/api/sigma-demo/vod-demo/jobs/count', {
+          baseURL: domain,
+        })
+        jobCount.value = res.count
+
+        // If job count is less than 10, move to next step
+        if (res.count < 10) {
+          clearInterval(countInterval.value)
+          resolve()
+        }
+      }
+      catch (error) {
+        console.error('Error checking job count:', error)
+      }
+    }
+
+    updateJobCount()
+    countInterval.value = setInterval(updateJobCount, 1000)
+  })
+}
+
+async function startJob() {
+  try {
+    const jobResponse = await $fetch<JobResponse>('/api/sigma-demo/vod-demo/jobs', {
+      method: 'POST',
+      baseURL: domain,
+      body: {
+        mode: 'pte',
+        videoUri: props.videoUri,
+      },
+    })
+
+    jobId.value = jobResponse.id
+  }
+  catch (error) {
+    console.error('Error starting job:', error)
+    status.value = 'error'
+  }
+}
+
+async function checkJobStatus() {
+  if (!jobId.value) return
+
+  const checkStatus = async () => {
+    try {
+      const jobResponse = await $fetch<JobResponse>(`/api/sigma-demo/vod-demo/jobs/${jobId.value}`, {
+        baseURL: domain,
+      })
+
+      if (jobResponse.status === 'transcoding') {
+        stepIndex.value = 2 // Transcoding step
+      }
+      else if (jobResponse.status === 'analyzing') {
+        stepIndex.value = 3 // AI analysis step
+      }
+      else if (jobResponse.status === 'completed') {
+        clearInterval(jobInterval.value)
+        status.value = 'success'
+
+        setTimeout(() => {
+          emits('result')
+        }, 3000)
+      }
+      else if (jobResponse.status === 'failed') {
+        clearInterval(jobInterval.value)
+        status.value = 'error'
+      }
+    }
+    catch (error) {
+      console.error('Error checking job status:', error)
+      status.value = 'error'
+    }
+  }
+
+  checkStatus()
+  jobInterval.value = setInterval(checkStatus, 2000)
+}
 
 const steps = computed(() => {
   return [
@@ -68,26 +168,6 @@ const steps = computed(() => {
 const showProcessing = computed(() => status.value === 'processing')
 const showSuccess = computed(() => status.value === 'success')
 const showError = computed(() => status.value === 'error')
-
-onMounted(() => {
-  if (status.value !== 'processing') return
-  const interval = setInterval(() => {
-    if (stepIndex.value < steps.value.length - 1) {
-      stepIndex.value++
-    }
-    else {
-      clearInterval(interval)
-      // Toggle between success and error for demo. Set to 'success' or 'error' as needed.
-      status.value = 'success' // or 'error'
-
-      if (status.value === 'success') {
-        setTimeout(() => {
-          emits('result')
-        }, 3000)
-      }
-    }
-  }, 2000)
-})
 
 function openDemo() {
   emits('back')

@@ -117,7 +117,7 @@ onChange((newFiles) => {
     }
 
     pageParams.modal = 'uploading'
-    pageParams.uploadId = ''
+    pageParams.videoUri = ''
     // pause video
     playVideoRef.value.pause()
     nextTick(() => {
@@ -126,8 +126,8 @@ onChange((newFiles) => {
     })
   }
 })
-const uploadingData = ref<{ assetId: string, uploadId: string } | null>(null)
-function handleUploadSuccess(data: { assetId: string, uploadId: string }) {
+const uploadingData = ref<{ assetId: string, videoUri: string } | null>(null)
+function handleUploadSuccess(data: { assetId: string, videoUri: string }) {
   uploadingData.value = data
   pageParams.modal = 'processing'
 }
@@ -142,10 +142,10 @@ function handleOpenUploading() {
 
 function handleOpenResult() {
   pageParams.modal = ''
-  pageParams.uploadId = uploadingData.value?.uploadId
+  pageParams.videoUri = uploadingData.value?.videoUri
 }
 
-const showDetail = computed(() => Boolean(pageParams.uploadId))
+const showDetail = computed(() => Boolean(pageParams.videoUri))
 
 const { startDownload } = useDownloadVideo()
 
@@ -360,6 +360,7 @@ async function handleDownloadVideo() {
               <PlayFileProcessing
                 v-else-if="pageParams.modal === 'processing'"
                 ref="processingRef"
+                :video-uri="pageParams.videoUri"
                 :title="processing.title"
                 :success-title="processing.successTitle"
                 :original-size="originalSize"

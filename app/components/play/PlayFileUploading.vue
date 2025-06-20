@@ -9,7 +9,7 @@ const props = defineProps<{
 
 const emit = defineEmits<(
   e: 'upload' | 'success',
-  data: { assetId: string, uploadId: string }
+  data: { assetId: string, uploadId: string, videoUri: string }
 ) => void>()
 
 const domain = 'https://dev-streaming.gviet.vn:8783/proxy'
@@ -88,7 +88,15 @@ async function startUpload(file: File) {
     percentage.value = 10
     // 2. Upload file in chunks
     await uploadMultipartFile(assetId, uploadId, item)
-    emit('success', { assetId, uploadId })
+    const response = await $fetch<{ uri: string }>(
+      `/api/library/assets/${assetId}`,
+      {
+        baseURL: domain,
+        method: 'GET',
+      },
+    )
+    const videoUri = response.uri
+    emit('success', { assetId, uploadId, videoUri })
   }
   catch (err) {
     console.error('Upload error:', err)
