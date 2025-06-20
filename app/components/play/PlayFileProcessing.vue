@@ -28,7 +28,7 @@ const steps = [
   {
     icon: 'i-ri:timer-fill',
     iconClass: 'text-info-500 text-xl',
-    text: 'Chờ đến lượt xử lý video',
+    text: 'Đang chờ xử lý video - vị trí trong hàng đợi: [số thứ tự-của-job]',
     textClass: 'text-orange-400 text-lg font-semibold',
   },
   {
