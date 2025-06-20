@@ -88,5 +88,32 @@ const optimizedSize = ref(Math.floor(Math.random() * 1000))
         </div>
       </div>
     </template>
+
+    <template #list-item="{ video }">
+      <div class="relative z-20 p-3 flex flex-col w-full">
+        <div class="flex items-center gap-4 mb-1.5 ">
+          <span class="text-white text-xl font-extrabold leading-none">{{ video.resolution }}</span>
+
+          <div class="flex items-center gap-1">
+            <span class="text-white text-xl font-bold leading-none">{{ video.originalSize }}</span>
+            <span class="text-gray-300 text-base font-semibold leading-none">{{ video.originalUnit }}</span>
+            <span class="text-orange-400 text-xl font-bold leading-none mx-1">&gt;</span>
+            <span class="text-orange-400 text-xl font-extrabold leading-none">{{ video.optimizedSize }}</span>
+            <span class="text-orange-300 text-base font-semibold leading-none">{{ video.optimizedUnit }}</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-1 text-xs text-gray-300 font-medium">
+          <span>{{ video.dimensions }}</span>
+          <span>|</span>
+          <span>{{ video.duration }}</span>
+          <span>|</span>
+          <span>{{ 'MP4' }}</span>
+          <span>|</span>
+          <span>{{ video.codec }}</span>
+          <span>|</span>
+          <span>{{ video.fps }}</span>
+        </div>
+      </div>
+    </template>
   </PlayMain>
 </template>

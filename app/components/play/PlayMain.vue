@@ -147,52 +147,12 @@ function handleOpenResult() {
 
 const showDetail = computed(() => Boolean(pageParams.uploadId))
 
-const downloadAnchor = ref<HTMLAnchorElement | null>(null)
+const { startDownload } = useDownloadVideo()
 
 async function handleDownloadVideo() {
-  try {
-    const url = optimizedSrc.value
-    const filename = (selectedVideo.value?.title || 'video') + '.mp4'
-
-    // Show loading state
-    const loadingToast = toast.add({
-      title: 'Đang chuẩn bị tải xuống...',
-      description: 'Vui lòng đợi trong giây lát',
-      color: 'info',
-      duration: Infinity,
-      close: false,
-    })
-
-    // Fetch the video as a blob
-    const response = await fetch(url)
-    const blob = await response.blob()
-    const objectUrl = URL.createObjectURL(blob)
-
-    // Use a simple anchor for download
-    if (downloadAnchor.value) {
-      downloadAnchor.value.href = objectUrl
-      downloadAnchor.value.download = filename
-      downloadAnchor.value.click()
-      // Revoke the object URL after a short delay
-      setTimeout(() => URL.revokeObjectURL(objectUrl), 1000)
-    }
-
-    toast.remove(loadingToast.id)
-
-    toast.add({
-      title: 'Tải xuống thành công',
-      description: filename,
-      color: 'success',
-    })
-  }
-  catch (error) {
-    toast.add({
-      title: 'Tải xuống thất bại',
-      description: 'Có lỗi xảy ra khi tải video',
-      color: 'error',
-    })
-    console.error('Download error:', error)
-  }
+  const url = optimizedSrc.value
+  const filename = (selectedVideo.value?.title || 'video') + '.mp4'
+  startDownload(url, filename)
 }
 </script>
 
@@ -224,10 +184,6 @@ async function handleDownloadVideo() {
     </template>
     <template v-else>
       <div class="h-screen bg-black/80 flex items-center justify-center relative overflow-hidden">
-        <a
-          ref="downloadAnchor"
-          style="display:none"
-        />
         <div
           class="relative group aspect-video"
           :class="isTallScreen ? 'w-full' : 'h-full'"
@@ -382,7 +338,14 @@ async function handleDownloadVideo() {
                 :selected-video-id="selectedVideoId"
                 @select-video="selectVideo"
                 @close="hideVideoList"
-              />
+              >
+                <template #item="{ video }">
+                  <slot
+                    name="list-item"
+                    :video="video"
+                  />
+                </template>
+              </PlayVideoList>
 
               <PlayFileUploading
                 v-else-if="pageParams.modal === 'uploading'"
