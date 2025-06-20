@@ -2,9 +2,10 @@ export function useDownloadVideo() {
   const toast = useToast()
 
   async function startDownload(url: string, filename: string) {
+    let loadingToast: any
     try {
       // Show loading state
-      const loadingToast = toast.add({
+      loadingToast = toast.add({
         title: 'Đang chuẩn bị tải xuống...',
         description: 'Vui lòng đợi trong giây lát',
         color: 'info',
@@ -42,6 +43,7 @@ export function useDownloadVideo() {
         color: 'error',
       })
       console.error('Download error:', error)
+      toast.remove(loadingToast.id)
     }
   }
 

@@ -38,7 +38,7 @@ const selectedVideo = computed(() => {
   return videoSamples.value.find(video => video.id === selectedVideoId.value) || videoSamples.value[0]
 })
 
-const modelName = computed(() => 'Sigma Model')
+const modelName = computed(() => '[Model Name]')
 const { startDownload } = useDownloadVideo()
 function createItems(video: any) {
   const items = [
