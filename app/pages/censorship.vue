@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import type { DropdownMenuItem } from '@nuxt/ui'
-
 definePageMeta({
   layout: 'empty',
 })
@@ -48,7 +46,6 @@ function createItems(video: any) {
       label: 'Tải video gốc',
       icon: 'i-heroicons-arrow-down-tray-20-solid',
       onSelect() {
-        console.log('[LOG] ~ video:', video)
         startDownload(video.originalSrc, 'original-' + video.name + '.mp4')
       },
     },
