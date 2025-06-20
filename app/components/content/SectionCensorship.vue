@@ -16,7 +16,7 @@
       />
     </template>
     <iframe
-      src="/pte"
+      src="/censorship"
       class="aspect-video w-full rounded-lg"
     />
   </UPageSection>

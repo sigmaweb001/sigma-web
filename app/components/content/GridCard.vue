@@ -6,6 +6,7 @@ const props = defineProps<{
   icon?: string
   left?: boolean
   padding?: number
+  center?: boolean
 }>()
 
 const slot = useSlots()
@@ -29,6 +30,7 @@ const rowSpan = computed(() => {
     :ui="{
       root: left ? 'text-left rounded-2xl' : 'text-center rounded-2xl',
       leadingIcon: 'size-17 p-1',
+      leading: !left || center ? 'mx-auto' : '',
     }"
     spotlight
     variant="subtle"
