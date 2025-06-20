@@ -151,15 +151,15 @@ const steps = computed(() => {
       textClass: 'text-orange-400 text-lg font-semibold',
     },
     {
-      icon: 'i-ri:flashlight-fill',
-      iconClass: 'text-yellow-400 text-xl',
-      text: 'Đang thực hiện transcode video',
-      textClass: 'text-gray-300 text-lg',
-    },
-    {
       icon: 'i-ri:brain-fill',
       iconClass: 'text-gray-300 text-xl',
       text: 'AI đang phân tích video...',
+      textClass: 'text-gray-300 text-lg',
+    },
+    {
+      icon: 'i-ri:flashlight-fill',
+      iconClass: 'text-yellow-400 text-xl',
+      text: 'Đang thực hiện transcode video',
       textClass: 'text-gray-300 text-lg',
     },
   ]
