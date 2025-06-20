@@ -39,7 +39,7 @@ const selectedVideo = computed(() => {
 })
 
 const originalSize = ref(Math.floor(Math.random() * 1000))
-const optimizedSize = ref(Math.floor(Math.random() * 1000))
+const optimizedSize = ref(Math.floor(Math.random() * originalSize.value))
 </script>
 
 <template>
