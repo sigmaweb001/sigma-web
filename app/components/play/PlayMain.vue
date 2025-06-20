@@ -358,9 +358,9 @@ async function handleDownloadVideo() {
               />
 
               <PlayFileProcessing
-                v-else-if="pageParams.modal === 'processing'"
+                v-else-if="pageParams.modal === 'processing' && uploadingData?.videoUri"
                 ref="processingRef"
-                :video-uri="pageParams.videoUri"
+                :video-uri="uploadingData?.videoUri"
                 :title="processing.title"
                 :success-title="processing.successTitle"
                 :original-size="originalSize"

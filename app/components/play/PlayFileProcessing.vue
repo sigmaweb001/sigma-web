@@ -44,7 +44,7 @@ onUnmounted(() => {
 
 async function startProcessing() {
   // Step 1: Check job count until it's less than 10
-  await checkJobCountUntilReady()
+  // await checkJobCountUntilReady()
 
   // Step 2: Move to step 2 and start job
   stepIndex.value = 2
