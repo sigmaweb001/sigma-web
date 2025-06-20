@@ -5,7 +5,7 @@ const emit = defineEmits<{
   (e: 'back'): void
 }>()
 const url = typeof window !== 'undefined' ? window.location.href : ''
-const embedCode = `<iframe width="560" height="315" src="${url}" frameborder="0" allowfullscreen></iframe>`
+const embedCode = `<iframe width="1120" height="630" src="${url}" frameborder="0" allowfullscreen></iframe>`
 const { copy: copyLink, copied: linkCopied } = useClipboard({ source: url })
 const { copy: copyEmbed, copied: embedCopied } = useClipboard({ source: embedCode })
 const toast = useToast()
