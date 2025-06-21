@@ -47,7 +47,7 @@ async function startProcessing() {
   // Step 1: Check job count until it's less than 10
 
   // TODO: uncomment this after testing
-  // await checkJobCountUntilReady()
+  await checkJobCountUntilReady()
 
   // Step 2: Move to step 2 and start job
   stepIndex.value = 2
@@ -111,9 +111,9 @@ async function checkJobStatus() {
       })
 
       // TODO: remove this after testing
-      setTimeout(() => {
-        emits('result', jobId.value)
-      }, 5000)
+      // setTimeout(() => {
+      //   emits('result', jobId.value)
+      // }, 5000)
 
       if (jobResponse.status === 'transcoding') {
         stepIndex.value = 2 // Transcoding step
