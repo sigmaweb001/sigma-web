@@ -32,11 +32,7 @@ videoSamples.value = data.map((item: any) => ({
   id: item.name,
 }))
 
-const selectedVideoId = ref('Big Buck Bunny')
-
-const selectedVideo = computed(() => {
-  return videoSamples.value.find(video => video.id === selectedVideoId.value) || videoSamples.value[0]
-})
+const selectedVideo = ref({ ...videoSamples.value[0] })
 
 const modelName = computed(() => '[Model Name]')
 const { startDownload } = useDownloadVideo()
@@ -64,7 +60,7 @@ function createItems(video: any) {
 
 <template>
   <PlayMain
-    v-model:selected-video-id="selectedVideoId"
+    v-model:selected-video="selectedVideo"
     :demo-videos="videoSamples"
     :uploading="{
       title: 'AI Censorship',
