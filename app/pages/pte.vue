@@ -33,18 +33,12 @@ videoSamples.value = data.map((item: any) => ({
   id: item.name,
 }))
 
-const selectedVideoId = ref('Big Buck Bunny')
-const selectedVideo = computed(() => {
-  return videoSamples.value.find(video => video.id === selectedVideoId.value) || videoSamples.value[0]
-})
-
-const originalSize = ref(Math.floor(Math.random() * 1000))
-const optimizedSize = ref(Math.floor(Math.random() * originalSize.value))
+const selectedVideo = ref({ ...videoSamples.value[0] })
 </script>
 
 <template>
   <PlayMain
-    v-model:selected-video-id="selectedVideoId"
+    v-model:selected-video="selectedVideo"
     :demo-videos="videoSamples"
     :uploading="{
       title: 'Uploading Video',
@@ -54,8 +48,6 @@ const optimizedSize = ref(Math.floor(Math.random() * originalSize.value))
       title: 'Hệ thống Sigma AI Per-title Encoding bắt đầu xử lý',
       successTitle: 'Hệ thống Sigma AI Per-title Encoding đã hoàn tất xử lý video!',
     }"
-    :original-size="originalSize"
-    :optimized-size="optimizedSize"
   >
     <template #stats>
       <!-- Standard Static Stats -->

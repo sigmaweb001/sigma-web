@@ -1,10 +1,8 @@
 <script lang="ts" setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-
 const pageParams = useUrlSearchParams('history')
 pageParams.modal = ''
 
-const selectedVideoId = defineModel<number>('selected-video-id', { required: true })
+const selectedVideo = defineModel<anyt>('selected-video', { required: true })
 
 const props = defineProps<{
   demoVideos: Array<any>
@@ -16,8 +14,6 @@ const props = defineProps<{
     title: string
     successTitle: string
   }
-  originalSize?: number
-  optimizedSize?: number
 }>()
 
 const demoVideos = props.demoVideos
@@ -31,20 +27,16 @@ function hideVideoList() {
 }
 
 function selectVideo(videoId: number) {
-  selectedVideoId.value = videoId
+  selectedVideo.value = demoVideos.find(video => video.id === videoId) || demoVideos[0]
 
   hideVideoList()
 }
 
-const selectedVideo = computed(() => {
-  return demoVideos.find(video => video.id === selectedVideoId.value) || demoVideos[0]
-})
-
 const originalSrc = computed(() => {
-  return selectedVideo.value.originalSrc
+  return selectedVideo.value?.originalSrc
 })
 const optimizedSrc = computed(() => {
-  return selectedVideo.value.optimizedSrc
+  return selectedVideo.value?.optimizedSrc
 })
 
 const isTallScreen = ref(false)
@@ -67,7 +59,9 @@ onMounted(() => {
   })
 
   // Add horizontal scroll for video demo list
-  isClientLoaded.value = true
+  if (!pageParams.jobId) {
+    isClientLoaded.value = true
+  }
 })
 
 onUnmounted(() => {
@@ -117,7 +111,7 @@ onChange((newFiles) => {
     }
 
     pageParams.modal = 'uploading'
-    pageParams.videoUri = ''
+    pageParams.jobId = undefined
     // pause video
     playVideoRef.value.pause()
     nextTick(() => {
@@ -140,12 +134,81 @@ function handleOpenUploading() {
   open()
 }
 
-function handleOpenResult() {
+function handleOpenResult(jobId: string) {
   pageParams.modal = ''
-  pageParams.videoUri = uploadingData.value?.videoUri
+  pageParams.jobId = jobId
 }
 
-const showDetail = computed(() => Boolean(pageParams.videoUri))
+const showDetail = computed(() => Boolean(pageParams.jobId))
+interface JobResponse {
+  id: string
+  status: string
+}
+
+const domain = 'https://dev-streaming.gviet.vn:8783'
+
+watchImmediate(showDetail, async (newVal) => {
+  function showError() {
+    toast.add({
+      title: 'Lỗi',
+      description: 'Đã xảy ra lỗi khi xử lý video',
+      color: 'error',
+    })
+  }
+
+  if (newVal) {
+    try {
+      const jobResponse = await $fetch<JobResponse>(`/api/sigma-demo/vod-demo/jobs/${pageParams.jobId}`, {
+        baseURL: domain,
+      })
+
+      // if (jobResponse.status !== 'completed') {
+      //   showError()
+      //   return
+      // }
+
+      const sourceMetadata = jobResponse.source.metadata
+      const optimizedMetadata = jobResponse.transcode.metadata
+
+      function getSizeAndUnit(bytes, decimals = 2) {
+        if (bytes === 0) return [0, 'B'] // special-case 0
+
+        const k = 1024
+        const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+        const i = Math.floor(Math.log(bytes) / Math.log(k)) // exponent / unit index
+
+        const value = parseFloat((bytes / k ** i).toFixed(decimals))
+        return [value, units[i]]
+      }
+
+      const [originalSize, originalUnit] = getSizeAndUnit(sourceMetadata.size)
+      const [optimizedSize, optimizedUnit] = getSizeAndUnit(optimizedMetadata.size)
+
+      selectedVideo.value = {
+        id: jobResponse.id,
+        name: jobResponse.id,
+        resolution: sourceMetadata.width + 'p',
+        originalSize,
+        originalUnit,
+        optimizedSize,
+        optimizedUnit,
+        dimensions: sourceMetadata.width + ' x ' + sourceMetadata.height,
+        duration: new Date(sourceMetadata.duration * 1000).toISOString().substr(11, 8).replace(/^00:/, ''),
+        format: sourceMetadata.format.includes('mp4') ? 'mp4' : sourceMetadata.format.split(',')[0],
+        codec: sourceMetadata.videoCodec,
+        fps: sourceMetadata.fps + ' FPS',
+        thumbnail: sourceMetadata.thumbnail,
+        originalSrc: jobResponse.source.uri,
+        optimizedSrc: jobResponse.transcode.uri,
+      }
+      isClientLoaded.value = true
+    }
+    catch (error) {
+      console.error('Error checking job status:', error)
+      showError()
+    }
+  }
+})
 
 const { startDownload } = useDownloadVideo()
 
@@ -194,7 +257,7 @@ async function handleDownloadVideo() {
             <div class="absolute inset-0">
               <ClientOnly>
                 <PlayVideoPte
-                  :key="selectedVideoId"
+                  :key="selectedVideo.id"
                   ref="playVideoRef"
                   :src="originalSrc"
                   :optimized-src="optimizedSrc"
@@ -335,7 +398,7 @@ async function handleDownloadVideo() {
               <PlayVideoList
                 v-if="pageParams.modal === 'list'"
                 :demo-videos="demoVideos"
-                :selected-video-id="selectedVideoId"
+                :selected-video-id="selectedVideo.id"
                 @select-video="selectVideo"
                 @close="hideVideoList"
               >
@@ -363,8 +426,6 @@ async function handleDownloadVideo() {
                 :video-uri="uploadingData?.videoUri"
                 :title="processing.title"
                 :success-title="processing.successTitle"
-                :original-size="originalSize"
-                :optimized-size="optimizedSize"
                 @upload="handleOpenUploading"
                 @back="pageParams.modal = ''"
                 @result="handleOpenResult"

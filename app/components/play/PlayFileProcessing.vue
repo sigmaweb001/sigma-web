@@ -1,16 +1,13 @@
 <script lang="ts" setup>
-import { computed, ref, onMounted } from 'vue'
-
 const props = defineProps<{
   title: string
   successTitle: string
-  originalSize: number
-  optimizedSize: number
   videoUri: string
 }>()
 
 const emits = defineEmits<{
-  (e: 'back' | 'upload' | 'result'): void
+  (e: 'back' | 'upload'): void
+  (e: 'result', jobId: string): void
 }>()
 
 const status = ref('processing')
@@ -32,6 +29,10 @@ const jobId = ref<string>('')
 const jobInterval = ref<NodeJS.Timeout>()
 const countInterval = ref<NodeJS.Timeout>()
 const domain = 'https://dev-streaming.gviet.vn:8783'
+const originalSize = ref<number | null>(null)
+const optimizedSize = ref<number | null>(null)
+const originalUnit = ref<string>('MB')
+const optimizedUnit = ref<string>('MB')
 
 onMounted(() => {
   startProcessing()
@@ -44,6 +45,8 @@ onUnmounted(() => {
 
 async function startProcessing() {
   // Step 1: Check job count until it's less than 10
+
+  // TODO: uncomment this after testing
   // await checkJobCountUntilReady()
 
   // Step 2: Move to step 2 and start job
@@ -107,6 +110,11 @@ async function checkJobStatus() {
         baseURL: domain,
       })
 
+      // TODO: remove this after testing
+      setTimeout(() => {
+        emits('result', jobId.value)
+      }, 5000)
+
       if (jobResponse.status === 'transcoding') {
         stepIndex.value = 2 // Transcoding step
       }
@@ -117,9 +125,27 @@ async function checkJobStatus() {
         clearInterval(jobInterval.value)
         status.value = 'success'
 
+        function getSizeAndUnit(bytes, decimals = 2) {
+          if (bytes === 0) return [0, 'B'] // special-case 0
+
+          const k = 1024
+          const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+          const i = Math.floor(Math.log(bytes) / Math.log(k)) // exponent / unit index
+
+          const value = parseFloat((bytes / k ** i).toFixed(decimals))
+          return [value, units[i]]
+        }
+
+        const [_originalSize, _originalUnit] = getSizeAndUnit(jobResponse.source.metadata.size)
+        const [_optimizedSize, _optimizedUnit] = getSizeAndUnit(jobResponse.transcode.metadata.size)
+        originalSize.value = _originalSize
+        optimizedSize.value = _optimizedSize
+        originalUnit.value = _originalUnit
+        optimizedUnit.value = _optimizedUnit
+
         setTimeout(() => {
-          emits('result')
-        }, 3000)
+          emits('result', jobId.value)
+        }, 5000)
       }
       else if (jobResponse.status === 'failed') {
         clearInterval(jobInterval.value)
@@ -252,10 +278,10 @@ function openUploading() {
             class="flex items-center gap-3 mt-2"
           >
             <span class="text-5xl font-extrabold text-white">{{ originalSize }}</span>
-            <span class="text-2xl font-bold text-gray-300">MB</span>
+            <span class="text-2xl font-bold text-gray-300">{{ originalUnit }}</span>
             <span class="text-4xl font-bold text-gray-400">&gt;</span>
             <span class="text-5xl font-extrabold text-orange-400">{{ optimizedSize }}</span>
-            <span class="text-2xl font-bold text-orange-300">MB</span>
+            <span class="text-2xl font-bold text-orange-300">{{ optimizedUnit }}</span>
           </div>
         </div>
       </template>
