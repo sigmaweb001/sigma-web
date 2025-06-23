@@ -4,6 +4,7 @@ const props = defineProps<{
   successTitle: string
   videoUri: string
   mode: 'pte' | 'censorship'
+  isEn: boolean
 }>()
 
 const emits = defineEmits<{
@@ -22,6 +23,16 @@ interface JobCountResponse {
 interface JobResponse {
   id: string
   status: string
+  source: {
+    metadata: {
+      size: number
+    }
+  }
+  transcode: {
+    metadata: {
+      size: number
+    }
+  }
 }
 
 // Job tracking
@@ -166,6 +177,34 @@ async function checkJobStatus() {
 }
 
 const steps = computed(() => {
+  if (props.isEn) {
+    return [
+      {
+        icon: 'i-ri:check-fill',
+        iconClass: 'text-green-500 text-xl',
+        text: 'Video uploaded successfully',
+        textClass: 'text-gray-200 text-lg',
+      },
+      {
+        icon: 'i-ri:timer-fill',
+        iconClass: 'text-info-500 text-xl',
+        text: `Waiting for video processing${jobCount.value ? ` - queue position: ${jobCount.value}` : ''}`,
+        textClass: 'text-orange-400 text-lg font-semibold',
+      },
+      {
+        icon: 'i-ri:brain-fill',
+        iconClass: 'text-gray-300 text-xl',
+        text: 'AI is analyzing video...',
+        textClass: 'text-gray-300 text-lg',
+      },
+      {
+        icon: 'i-ri:flashlight-fill',
+        iconClass: 'text-yellow-400 text-xl',
+        text: 'Transcoding video in progress',
+        textClass: 'text-gray-300 text-lg',
+      },
+    ]
+  }
   return [
     {
       icon: 'i-ri:check-fill',
@@ -222,7 +261,7 @@ function openUploading() {
       <!-- Processing Screen -->
       <template v-if="showProcessing">
         <div class="text-lg font-semibold text-white px-3">
-          <span>{{ title || 'Hệ thống Sigma AI Per-title Encoding bắt đầu xử lý' }}</span>
+          <span>{{ title || (isEn ? 'Sigma AI Per-title Encoding system started processing' : 'Hệ thống Sigma AI Per-title Encoding bắt đầu xử lý') }}</span>
           <Icon
             class="inline-block size-5 ml-1 align-bottom"
             name="i-svg-spinners:3-dots-fade"
@@ -286,7 +325,7 @@ function openUploading() {
       <!-- Error Screen -->
       <template v-else-if="showError">
         <div class="text-white text-lg font-semibold text-center">
-          Đã xảy ra lỗi trong quá trình xử lý video.<br>Vui lòng thử lại sau.
+          {{ isEn ? 'An error occurred during video processing.' : 'Đã xảy ra lỗi trong quá trình xử lý video.' }}<br>{{ isEn ? 'Please try again later.' : 'Vui lòng thử lại sau.' }}
         </div>
         <div class="flex flex-col items-center justify-center gap-4">
           <Icon
@@ -303,14 +342,14 @@ function openUploading() {
               name="i-heroicons-arrow-up-tray-20-solid"
               class="w-5 h-5"
             />
-            Tải lại video
+            {{ isEn ? 'Retry upload' : 'Tải lại video' }}
           </UButton>
 
           <button
             class="text-gray-300 text-sm underline cursor-pointer"
             @click="openDemo()"
           >
-            Xem thêm demo
+            {{ isEn ? 'View more demos' : 'Xem thêm demo' }}
           </button>
         </div>
       </template>

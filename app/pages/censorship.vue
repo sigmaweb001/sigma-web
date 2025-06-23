@@ -27,26 +27,31 @@ const data = await $fetch('/api/sigma-demo/vod-demo/video-samples', {
     mode: 'censorship',
   },
 })
-videoSamples.value = data.map((item: any) => ({
+videoSamples.value = (data as any[]).map((item: any) => ({
   ...item,
   id: item.name,
 }))
 
+const pageParams = useUrlSearchParams('history')
 const selectedVideo = ref({ ...videoSamples.value[0] })
+
+const isEn = computed(() => {
+  return pageParams.lang === 'en'
+})
 
 const modelName = computed(() => '[Model Name]')
 const { startDownload } = useDownloadVideo()
 function createItems(video: any) {
   const items = [
     {
-      label: 'Tải video gốc',
+      label: isEn.value ? 'Download original video' : 'Tải video gốc',
       icon: 'i-heroicons-arrow-down-tray-20-solid',
       onSelect() {
         startDownload(video.originalSrc, 'original-' + video.name + '.mp4')
       },
     },
     {
-      label: 'Tải video demo',
+      label: isEn.value ? 'Download demo video' : 'Tải video demo',
       icon: 'i-heroicons:inbox-arrow-down',
       onSelect() {
         startDownload(video.optimizedSrc, 'optimized-' + video.name + '.mp4')
@@ -64,25 +69,25 @@ function createItems(video: any) {
     :demo-videos="videoSamples"
     mode="censorship"
     :uploading="{
-      title: 'AI Censorship',
-      subtitle: `Đang tải video lên hệ thống với model là ${modelName}`,
+      title: isEn ? 'AI Censorship' : 'AI Censorship',
+      subtitle: isEn ? `Uploading video to system with model ${modelName}` : `Đang tải video lên hệ thống với model là ${modelName}`,
     }"
     :processing="{
-      title: `Hệ thống Sigma AI Censorship bắt đầu xử lý với model là ${modelName}`,
-      successTitle: 'Hệ thống Sigma AI Censorship đã hoàn tất xử lý video!',
+      title: isEn ? `Sigma AI Censorship system started processing with model ${modelName}` : `Hệ thống Sigma AI Censorship bắt đầu xử lý với model là ${modelName}`,
+      successTitle: isEn ? 'Sigma AI Censorship system has completed video processing!' : 'Hệ thống Sigma AI Censorship đã hoàn tất xử lý video!',
     }"
   >
     <template #stats>
       <!-- Standard Static Stats -->
       <div class="backdrop-blur-md bg-gray-800/60 rounded-full px-4 py-2 flex items-center gap-3 min-w-max">
         <div class="flex gap-1">
-          <span class="text-white/80 text-sm font-medium">Original Video</span>
+          <span class="text-white/80 text-sm font-medium">{{ isEn ? 'Original Video' : 'Original Video' }}</span>
         </div>
         <div class="text-white/50">
           |
         </div>
         <div class="flex gap-1">
-          <span class="text-white/80 text-sm font-medium">Encoding Settings</span>
+          <span class="text-white/80 text-sm font-medium">{{ isEn ? 'Encoding Settings' : 'Encoding Settings' }}</span>
           <span class="text-white font-medium text-sm">{{ selectedVideo.resolution }} {{ selectedVideo.codec }}</span>
         </div>
       </div>
@@ -90,13 +95,13 @@ function createItems(video: any) {
       <!-- Sigma PTE Stats -->
       <div class="backdrop-blur-md bg-gray-800/60 rounded-full px-4 py-2 flex items-center gap-3 min-w-max">
         <div class="flex gap-1">
-          <span class="text-white font-bold text-sm">Sigma Censorship</span>
+          <span class="text-white font-bold text-sm">{{ isEn ? 'Sigma Censorship' : 'Sigma Censorship' }}</span>
         </div>
         <div class="text-white/50">
           |
         </div>
         <div class="flex gap-1">
-          <span class="text-white/80 text-sm font-medium">Encoding Settings</span>
+          <span class="text-white/80 text-sm font-medium">{{ isEn ? 'Encoding Settings' : 'Encoding Settings' }}</span>
           <span class="text-white font-medium text-sm">{{ selectedVideo.resolution }} {{ selectedVideo.codec }}</span>
         </div>
       </div>
@@ -132,7 +137,7 @@ function createItems(video: any) {
             size="md"
             class="item-action backdrop-blur-lg bg-white/80 text-gray-800 border-0 hover:bg-white/90 transition-colors duration-200 rounded-full"
           >
-            Download
+            {{ isEn ? 'Download' : 'Download' }}
             <Icon
               name="i-heroicons-chevron-down-20-solid"
               class="size-5 text-gray-800"

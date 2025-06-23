@@ -5,6 +5,7 @@ import { asyncComputed } from '@vueuse/core'
 const props = defineProps<{
   title: string
   subtitle?: string
+  isEn: boolean
 }>()
 
 const emit = defineEmits<(
@@ -100,7 +101,7 @@ async function startUpload(file: File) {
   }
   catch (err) {
     console.error('Upload error:', err)
-    uploadError.value = 'Upload failed!'
+    uploadError.value = props.isEn ? 'Upload failed!' : 'Quá trình tải video lên thất bại!'
   }
   finally {
     isUploading.value = false
@@ -216,11 +217,11 @@ function open() {
           name="i-ri:close-circle-line"
           class="text-red-500 size-6"
         />
-        Quá trình tải video lên thất bại.
+        {{ uploadError }}
       </div>
       <template v-else>
         <div class="text-xl font-bold text-center text-white gap-1 w-2/3">
-          <span>{{ subtitle || 'Đang tải video lên hệ thống' }}</span>
+          <span>{{ subtitle || (isEn ? 'Uploading video to system' : 'Đang tải video lên hệ thống') }}</span>
           <Icon
             class="inline-block size-5 ml-1 align-bottom"
             name="i-svg-spinners:3-dots-fade"
@@ -253,16 +254,16 @@ function open() {
             name="i-heroicons-arrow-up-tray-20-solid"
             class="w-5 h-5"
           />
-          Tải lại video
+          {{ isEn ? 'Retry upload' : 'Tải lại video' }}
         </UButton>
 
         <div class="text-xs text-gray-300 text-center mb-6">
-          Bạn muốn tải video lên nhanh hơn để sớm trải nghiệm?
+          {{ isEn ? 'Want to upload videos faster for earlier experience?' : 'Bạn muốn tải video lên nhanh hơn để sớm trải nghiệm?' }}
           <a
             href="https://portal.sigma.video/auth/signup"
             class="underline"
             target="_blank"
-          > Nhấn vào đây</a>
+          >{{ isEn ? ' Click here' : ' Nhấn vào đây' }}</a>
         </div>
       </div>
 
@@ -271,8 +272,8 @@ function open() {
         class="w-full flex flex-col items-center"
       >
         <div class="text-xs text-gray-300 text-center mb-6">
-          Bạn đang trong quá trình tải video lên để trải nghiệm tính năng. Vui lòng không thoát hoặc tải lại trang.<br>
-          Nếu bạn thoát hoặc tải lại trang, quá trình này sẽ không được tiếp tục.
+          {{ isEn ? 'You are uploading a video to experience the feature. Please do not exit or reload the page.' : 'Bạn đang trong quá trình tải video lên để trải nghiệm tính năng. Vui lòng không thoát hoặc tải lại trang.' }}<br>
+          {{ isEn ? 'If you exit or reload the page, this process will not continue.' : 'Nếu bạn thoát hoặc tải lại trang, quá trình này sẽ không được tiếp tục.' }}
         </div>
       </div>
     </div>

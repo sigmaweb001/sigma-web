@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { useClipboard } from '@vueuse/core'
 
+const props = defineProps<{
+  isEn: boolean
+}>()
+
 const emit = defineEmits<{
   (e: 'back'): void
 }>()
@@ -11,11 +15,17 @@ const { copy: copyEmbed, copied: embedCopied } = useClipboard({ source: embedCod
 const toast = useToast()
 function handleCopyLink() {
   copyLink()
-  toast.add({ title: 'Đã sao chép link!', color: 'success' })
+  toast.add({
+    title: props.isEn ? 'Link copied!' : 'Đã sao chép link!',
+    color: 'success',
+  })
 }
 function handleCopyEmbed() {
   copyEmbed()
-  toast.add({ title: 'Đã sao chép mã nhúng!', color: 'success' })
+  toast.add({
+    title: props.isEn ? 'Embed code copied!' : 'Đã sao chép mã nhúng!',
+    color: 'success',
+  })
 }
 </script>
 
@@ -28,7 +38,7 @@ function handleCopyEmbed() {
         variant="subtle"
         color="neutral"
         class="absolute top-4 right-4 !rounded-full"
-        aria-label="Đóng"
+        :aria-label="isEn ? 'Close' : 'Đóng'"
         @click="emit('back')"
       />
       <!-- Logo and Title -->
@@ -42,16 +52,16 @@ function handleCopyEmbed() {
       </div>
       <div class="text-center">
         <div class="text-xl font-bold text-white mb-1">
-          Video của bạn đã sẵn sàng để chia sẻ!
+          {{ isEn ? 'Your video is ready to share!' : 'Video của bạn đã sẵn sàng để chia sẻ!' }}
         </div>
         <div class="text-gray-300 text-sm">
-          Video kết quả chỉ được lưu trữ trong vòng 24h
+          {{ isEn ? 'Result video is only stored for 24 hours' : 'Video kết quả chỉ được lưu trữ trong vòng 24h' }}
         </div>
       </div>
       <!-- Link -->
       <div>
         <div class="text-white font-semibold mb-1 text-sm">
-          Link
+          {{ isEn ? 'Link' : 'Link' }}
         </div>
         <div class="flex items-center bg-white/10 rounded-full px-4 py-2">
           <input
@@ -70,7 +80,7 @@ function handleCopyEmbed() {
             <span
               v-if="linkCopied"
               class="ml-1 text-xs text-white font-medium"
-            >Đã sao chép</span>
+            >{{ isEn ? 'Copied' : 'Đã sao chép' }}</span>
             <span
               v-else
               class="ml-1 text-xs text-white font-medium"
@@ -81,7 +91,7 @@ function handleCopyEmbed() {
       <!-- Iframe Embed -->
       <div>
         <div class="text-white font-semibold mb-1 text-sm">
-          Mã nhúng iframe
+          {{ isEn ? 'Iframe embed code' : 'Mã nhúng iframe' }}
         </div>
         <div class="flex items-center bg-white/10 rounded-full px-4 py-2">
           <input
@@ -100,7 +110,7 @@ function handleCopyEmbed() {
             <span
               v-if="embedCopied"
               class="ml-1 text-xs text-white font-medium"
-            >Đã sao chép</span>
+            >{{ isEn ? 'Copied' : 'Đã sao chép' }}</span>
             <span
               v-else
               class="ml-1 text-xs text-white font-medium"

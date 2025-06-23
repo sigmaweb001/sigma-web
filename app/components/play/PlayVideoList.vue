@@ -2,6 +2,7 @@
 const props = defineProps<{
   demoVideos: Array<any>
   selectedVideoId: number
+  isEn: boolean
 }>()
 
 const emit = defineEmits(['select-video', 'close'])
@@ -84,7 +85,7 @@ function handleSelectVideo(event: Event, videoId: number) {
           name="i-heroicons-x-mark-20-solid"
           class="size-5 text-gray-800"
         />
-        Thu gọn
+        {{ isEn ? 'Collapse' : 'Thu gọn' }}
       </UButton>
     </div>
   </div>

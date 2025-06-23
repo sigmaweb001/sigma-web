@@ -2,7 +2,10 @@
 const pageParams = useUrlSearchParams('history')
 pageParams.modal = ''
 
-const selectedVideo = defineModel<anyt>('selected-video', { required: true })
+const selectedVideo = defineModel<any>('selected-video', { required: true })
+const isEn = computed(() => {
+  return pageParams.lang === 'en'
+})
 
 const props = defineProps<{
   demoVideos: Array<any>
@@ -86,16 +89,16 @@ function validateFile(file: File): boolean {
   const isSizeOk = file.size <= maxSizeMB * 1024 * 1024
   if (!isVideo) {
     toast.add({
-      title: 'Loại tệp không hợp lệ',
-      description: 'Chỉ cho phép tệp video',
+      title: isEn.value ? 'Invalid file type' : 'Loại tệp không hợp lệ',
+      description: isEn.value ? 'Only video files are allowed' : 'Chỉ cho phép tệp video',
       color: 'error',
     })
     return true
   }
   if (!isSizeOk) {
     toast.add({
-      title: 'Tệp quá lớn',
-      description: `Video vượt quá dung lượng cho phép (Dung lượng tối đa: 1GB)`,
+      title: isEn.value ? 'File too large' : 'Tệp quá lớn',
+      description: isEn.value ? 'Video exceeds maximum allowed size (Max size: 1GB)' : `Video vượt quá dung lượng cho phép (Dung lượng tối đa: 1GB)`,
       color: 'error',
     })
     return true
@@ -144,6 +147,25 @@ const showDetail = computed(() => Boolean(pageParams.jobId))
 interface JobResponse {
   id: string
   status: string
+  source: {
+    metadata: {
+      size: number
+      width: number
+      height: number
+      duration: number
+      format: string
+      videoCodec: string
+      fps: number
+      thumbnail: string
+    }
+    uri: string
+  }
+  transcode: {
+    metadata: {
+      size: number
+    }
+    uri: string
+  }
 }
 
 const domain = 'https://dev-streaming.gviet.vn:8783'
@@ -151,8 +173,8 @@ const domain = 'https://dev-streaming.gviet.vn:8783'
 watchImmediate(showDetail, async (newVal) => {
   function showError() {
     toast.add({
-      title: 'Lỗi',
-      description: 'Đã xảy ra lỗi khi xử lý video',
+      title: isEn.value ? 'Error' : 'Lỗi',
+      description: isEn.value ? 'An error occurred while processing the video' : 'Đã xảy ra lỗi khi xử lý video',
       color: 'error',
     })
   }
@@ -295,21 +317,21 @@ async function handleDownloadVideo() {
                     name="i-heroicons-rectangle-group-20-solid"
                     class="size-5 text-gray-800"
                   />
-                  Xem thêm demo
+                  {{ isEn ? 'View more demos' : 'Xem thêm demo' }}
                 </UButton>
 
                 <template v-if="!showDetail">
                   <!-- Right Side Content -->
                   <div class="flex-1 text-right pr-2">
                     <h3 class="text-white font-bold text-sm mb-1">
-                      Trải nghiệm video của bạn (Tối đa 1GB)
+                      {{ isEn ? 'Experience your video (Max 1GB)' : 'Trải nghiệm video của bạn (Tối đa 1GB)' }}
                     </h3>
                     <p class="text-white/80 text-xs">
                       <a
                         href="https://portal.sigma.video/auth/signup"
                         class="underline"
                         target="_blank"
-                      >Bạn muốn thử video lớn hơn?</a>
+                      >{{ isEn ? 'Want to try larger videos?' : 'Bạn muốn thử video lớn hơn?' }}</a>
                     </p>
                   </div>
                   <!-- Upload Button -->
@@ -323,21 +345,21 @@ async function handleDownloadVideo() {
                       name="i-heroicons-arrow-up-tray-20-solid"
                       class="size-5"
                     />
-                    Upload video
+                    {{ isEn ? 'Upload video' : 'Upload video' }}
                   </UButton>
                 </template>
                 <template v-else>
                   <!-- Right Side Content -->
                   <div class="flex-1 text-right pr-2">
                     <h3 class="text-white font-bold text-sm mb-1">
-                      Video kết quả chỉ được lưu trữ trong vòng 24h
+                      {{ isEn ? 'Result video is only stored for 24 hours' : 'Video kết quả chỉ được lưu trữ trong vòng 24h' }}
                     </h3>
                     <p class="text-white/80 text-xs">
-                      Bạn có thể kéo thanh so sánh để đối chiếu với video gốc
+                      {{ isEn ? 'You can drag the comparison slider to compare with the original video' : 'Bạn có thể kéo thanh so sánh để đối chiếu với video gốc' }}
                     </p>
                   </div>
 
-                  <!-- Upload Button -->
+                  <!-- Download Button -->
                   <UButton
                     color="warning"
                     size="lg"
@@ -348,7 +370,7 @@ async function handleDownloadVideo() {
                       name="i-heroicons-arrow-down-tray-20-solid"
                       class="size-5"
                     />
-                    Tải video
+                    {{ isEn ? 'Download video' : 'Tải video' }}
                   </UButton>
                   <UButton
                     color="neutral"
@@ -361,7 +383,7 @@ async function handleDownloadVideo() {
                       name="i-heroicons-share-20-solid"
                       class="size-5"
                     />
-                    Chia sẻ
+                    {{ isEn ? 'Share' : 'Chia sẻ' }}
                   </UButton>
 
                   <!-- Upload Button -->
@@ -376,7 +398,7 @@ async function handleDownloadVideo() {
                       name="i-heroicons-arrow-up-tray-20-solid"
                       class="size-5"
                     />
-                    Upload video
+                    {{ isEn ? 'Upload video' : 'Upload video' }}
                   </UButton>
                 </template>
               </div>
@@ -400,6 +422,7 @@ async function handleDownloadVideo() {
                 v-if="pageParams.modal === 'list'"
                 :demo-videos="demoVideos"
                 :selected-video-id="selectedVideo.id"
+                :is-en="isEn"
                 @select-video="selectVideo"
                 @close="hideVideoList"
               >
@@ -417,6 +440,7 @@ async function handleDownloadVideo() {
                 :uploading-data="uploadingData"
                 :title="uploading.title"
                 :subtitle="uploading.subtitle"
+                :is-en="isEn"
                 @upload="handleOpenUploading"
                 @success="handleUploadSuccess"
               />
@@ -428,6 +452,7 @@ async function handleDownloadVideo() {
                 :title="processing.title"
                 :mode="props.mode"
                 :success-title="processing.successTitle"
+                :is-en="isEn"
                 @upload="handleOpenUploading"
                 @back="pageParams.modal = ''"
                 @result="handleOpenResult"
@@ -435,6 +460,7 @@ async function handleDownloadVideo() {
 
               <PlayFileShare
                 v-else-if="pageParams.modal === 'share'"
+                :is-en="isEn"
                 @back="pageParams.modal = ''"
               />
             </div>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-
+const { locale } = useI18n()
 </script>
 
 <template>
@@ -16,7 +16,7 @@
       />
     </template>
     <iframe
-      src="/pte"
+      :src="`/pte?lang=${locale}`"
       class="aspect-video w-full rounded-lg"
     />
   </UPageSection>

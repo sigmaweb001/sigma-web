@@ -28,12 +28,17 @@ const data = await $fetch('/api/sigma-demo/vod-demo/video-samples', {
     mode: 'pte',
   },
 })
-videoSamples.value = data.map((item: any) => ({
+videoSamples.value = (data as any[]).map((item: any) => ({
   ...item,
   id: item.name,
 }))
+const pageParams = useUrlSearchParams('history')
 
 const selectedVideo = ref({ ...videoSamples.value[0] })
+
+const isEn = computed(() => {
+  return pageParams.lang === 'en'
+})
 </script>
 
 <template>
@@ -42,26 +47,26 @@ const selectedVideo = ref({ ...videoSamples.value[0] })
     :demo-videos="videoSamples"
     mode="pte"
     :uploading="{
-      title: 'Uploading Video',
-      subtitle: 'Đang tải video lên hệ thống',
+      title: isEn ? 'Uploading Video' : 'Uploading Video',
+      subtitle: isEn ? 'Uploading video to system' : 'Đang tải video lên hệ thống',
     }"
     :processing="{
-      title: 'Hệ thống Sigma AI Per-title Encoding bắt đầu xử lý',
-      successTitle: 'Hệ thống Sigma AI Per-title Encoding đã hoàn tất xử lý video!',
+      title: isEn ? 'Sigma AI Per-title Encoding system started processing' : 'Hệ thống Sigma AI Per-title Encoding bắt đầu xử lý',
+      successTitle: isEn ? 'Sigma AI Per-title Encoding system has completed video processing!' : 'Hệ thống Sigma AI Per-title Encoding đã hoàn tất xử lý video!',
     }"
   >
     <template #stats>
       <!-- Standard Static Stats -->
       <div class="backdrop-blur-md bg-gray-800/60 rounded-full px-4 py-2 flex items-center gap-3 min-w-max">
         <div class="flex gap-1">
-          <span class="text-white/80 text-sm font-medium">Standard Static</span>
+          <span class="text-white/80 text-sm font-medium">{{ isEn ? 'Standard Static' : 'Standard Static' }}</span>
           <span class="text-white font-bold text-sm">{{ selectedVideo.originalSize }} {{ selectedVideo.originalUnit }}</span>
         </div>
         <div class="text-white/50">
           |
         </div>
         <div class="flex gap-1">
-          <span class="text-white/80 text-sm font-medium">Encoding Settings</span>
+          <span class="text-white/80 text-sm font-medium">{{ isEn ? 'Encoding Settings' : 'Encoding Settings' }}</span>
           <span class="text-white font-medium text-sm">{{ selectedVideo.resolution }} {{ selectedVideo.codec }}</span>
         </div>
       </div>
@@ -69,14 +74,14 @@ const selectedVideo = ref({ ...videoSamples.value[0] })
       <!-- Sigma PTE Stats -->
       <div class="backdrop-blur-md bg-gray-800/60 rounded-full px-4 py-2 flex items-center gap-3 min-w-max">
         <div class="flex gap-1">
-          <span class="text-white font-bold text-sm">Sigma Per-title Encoding</span>
+          <span class="text-white font-bold text-sm">{{ isEn ? 'Sigma Per-title Encoding' : 'Sigma Per-title Encoding' }}</span>
           <span class="text-orange-400 font-bold text-sm">{{ selectedVideo.optimizedSize }} {{ selectedVideo.optimizedUnit }}</span>
         </div>
         <div class="text-white/50">
           |
         </div>
         <div class="flex gap-1">
-          <span class="text-white/80 text-sm font-medium">Encoding Settings</span>
+          <span class="text-white/80 text-sm font-medium">{{ isEn ? 'Encoding Settings' : 'Encoding Settings' }}</span>
           <span class="text-white font-medium text-sm">{{ selectedVideo.resolution }} {{ selectedVideo.codec }}</span>
         </div>
       </div>
