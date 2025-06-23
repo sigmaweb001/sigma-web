@@ -116,10 +116,7 @@ async function checkJobStatus() {
       // }, 5000)
 
       if (jobResponse.status === 'transcoding') {
-        stepIndex.value = 2 // Transcoding step
-      }
-      else if (jobResponse.status === 'analyzing') {
-        stepIndex.value = 3 // AI analysis step
+        stepIndex.value = 3 // Transcoding step
       }
       else if (jobResponse.status === 'completed') {
         clearInterval(jobInterval.value)
@@ -147,7 +144,7 @@ async function checkJobStatus() {
           emits('result', jobId.value)
         }, 5000)
       }
-      else if (jobResponse.status === 'failed') {
+      else if (jobResponse.status === 'error') {
         clearInterval(jobInterval.value)
         status.value = 'error'
       }
