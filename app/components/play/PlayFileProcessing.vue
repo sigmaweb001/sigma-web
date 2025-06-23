@@ -231,17 +231,17 @@ function openUploading() {
             <Icon
               v-if="idx < stepIndex"
               name="i-ri:check-fill"
-              class="text-green-500 text-xl"
+              class="text-green-500 text-xl flex-shrink-0"
             />
             <Icon
               v-else-if="idx === stepIndex"
               :name="step.icon"
-              :class="[step.iconClass, 'animate-bounce']"
+              :class="[step.iconClass, 'animate-bounce flex-shrink-0']"
             />
             <Icon
               v-else
               :name="step.icon"
-              class="text-gray-500 text-xl"
+              class="text-gray-500 text-xl flex-shrink-0"
             />
 
             <span
