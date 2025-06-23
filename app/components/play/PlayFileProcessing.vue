@@ -3,6 +3,7 @@ const props = defineProps<{
   title: string
   successTitle: string
   videoUri: string
+  mode: 'pte' | 'censorship'
 }>()
 
 const emits = defineEmits<{
@@ -91,7 +92,7 @@ async function startJob() {
       method: 'POST',
       baseURL: domain,
       body: {
-        mode: 'pte',
+        mode: props.mode,
         videoUri: props.videoUri,
       },
     })

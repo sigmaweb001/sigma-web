@@ -40,6 +40,7 @@ const selectedVideo = ref({ ...videoSamples.value[0] })
   <PlayMain
     v-model:selected-video="selectedVideo"
     :demo-videos="videoSamples"
+    mode="pte"
     :uploading="{
       title: 'Uploading Video',
       subtitle: 'Đang tải video lên hệ thống',
