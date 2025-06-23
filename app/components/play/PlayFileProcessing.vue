@@ -69,7 +69,10 @@ async function checkJobCountUntilReady() {
         // If job count is less than 10, move to next step
         if (res.count < 10) {
           clearInterval(countInterval.value)
-          resolve()
+
+          setTimeout(() => {
+            resolve()
+          }, 3000)
         }
       }
       catch (error) {
@@ -116,7 +119,9 @@ async function checkJobStatus() {
       // }, 5000)
 
       if (jobResponse.status === 'transcoding') {
-        stepIndex.value = 3 // Transcoding step
+        setTimeout(() => {
+          stepIndex.value = 3 // Transcoding step
+        }, 3000)
       }
       else if (jobResponse.status === 'completed') {
         clearInterval(jobInterval.value)
@@ -170,7 +175,7 @@ const steps = computed(() => {
     {
       icon: 'i-ri:timer-fill',
       iconClass: 'text-info-500 text-xl',
-      text: `Đang chờ xử lý video - vị trí trong hàng đợi: ${jobCount.value}`,
+      text: `Đang chờ xử lý video${jobCount.value ? ` - vị trí trong hàng đợi: ${jobCount.value}` : ''}`,
       textClass: 'text-orange-400 text-lg font-semibold',
     },
     {
