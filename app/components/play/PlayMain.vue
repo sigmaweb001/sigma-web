@@ -14,6 +14,7 @@ const props = defineProps<{
     title: string
     successTitle: string
   }
+  mode: 'pte' | 'censorship'
 }>()
 
 const demoVideos = props.demoVideos
@@ -425,6 +426,7 @@ async function handleDownloadVideo() {
                 ref="processingRef"
                 :video-uri="uploadingData?.videoUri"
                 :title="processing.title"
+                :mode="props.mode"
                 :success-title="processing.successTitle"
                 @upload="handleOpenUploading"
                 @back="pageParams.modal = ''"

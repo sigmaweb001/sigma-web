@@ -62,6 +62,7 @@ function createItems(video: any) {
   <PlayMain
     v-model:selected-video="selectedVideo"
     :demo-videos="videoSamples"
+    mode="censorship"
     :uploading="{
       title: 'AI Censorship',
       subtitle: `Đang tải video lên hệ thống với model là ${modelName}`,
