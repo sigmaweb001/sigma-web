@@ -469,6 +469,7 @@ async function handleDownloadVideo() {
                 :subtitle="uploading.subtitle"
                 :is-en="isEn"
                 :icon="props.icon"
+                :mode="props.mode"
                 @upload="handleOpenUploading"
                 @success="handleUploadSuccess"
               />

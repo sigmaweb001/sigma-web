@@ -7,6 +7,7 @@ const props = defineProps<{
   subtitle?: string
   isEn: boolean
   icon?: string
+  mode?: 'pte' | 'censorship'
 }>()
 
 const emit = defineEmits<(
@@ -224,6 +225,7 @@ function open() {
         <div class="text-xl font-bold text-center text-white gap-1 w-2/3">
           <span>{{ subtitle || (isEn ? 'Uploading video to system' : 'Đang tải video lên hệ thống') }}</span>
           <UAvatar
+            v-if="mode === 'censorship'"
             class="ml-1.5"
             size="sm"
             :src="props.icon"
