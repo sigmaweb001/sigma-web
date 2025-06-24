@@ -107,7 +107,7 @@ defineExpose({ play, pause })
     <template v-if="!error">
       <ImgComparisonSlider
         :hide-handle="!isPlaying"
-        class="w-full h-full relative"
+        :handle-text="isEn ? 'Drag to compare' : 'Kéo để so sánh'"
       >
         <template #first>
           <video

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const props = defineProps<{
   hideHandle?: boolean
+  handleText?: string
 }>()
 
 const TABINDEX = 0
@@ -547,7 +548,7 @@ function resetDimensions() {
                 <span
                   class="truncate"
                 >
-                  Kéo để so sánh
+                  {{ handleText || 'Drag to compare' }}
                 </span>
                 <UIcon
                   name="i-heroicons:chevron-right-20-solid"
