@@ -13,7 +13,9 @@ const { src, optimizedSrc, thumbnail, hideControls, isEn } = toRefs(props)
 const videoRef = ref<HTMLVideoElement>()
 const videoRefOptimized = ref<HTMLVideoElement>()
 
-const loaded = ref(false)
+const _loaded = ref(false)
+const loadedOptimized = ref(false)
+const loaded = computed(() => _loaded.value && loadedOptimized.value)
 const currentTime = ref(0)
 const duration = ref(0)
 const isMuted = ref(false)
@@ -52,8 +54,12 @@ function onError(event: Event) {
 }
 
 function onLoadedMetadata() {
-  loaded.value = true
+  _loaded.value = true
   duration.value = videoRef.value?.duration || 0
+}
+
+function onLoadedMetadataOptimized() {
+  loadedOptimized.value = true
 }
 
 function onTimeUpdate() {
@@ -137,6 +143,7 @@ defineExpose({ play, pause })
             preload="auto"
             playsinline
             :poster="thumbnail"
+            @loadedmetadata="onLoadedMetadataOptimized"
             @error="onError"
           />
         </template>
