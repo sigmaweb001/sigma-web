@@ -125,6 +125,7 @@ async function checkJobStatus() {
       const jobResponse = await $fetch<JobResponse>(`/api/sigma-demo/vod-demo/jobs/${jobId.value}`, {
         baseURL: domain,
       })
+      console.log('🚀 ~ checkStatus ~ jobResponse:', jobResponse)
 
       // TODO: remove this after testing
       // setTimeout(() => {
@@ -260,7 +261,7 @@ function openUploading() {
         <span class="text-3xl font-bold text-white tracking-wide">SIGMA</span>
       </div>
       <!-- Processing Screen -->
-      <template v-if="true">
+      <template v-if="showProcessing">
         <div class="text-lg font-semibold text-white px-3">
           <span>{{ title || (isEn ? 'Sigma AI Per-title Encoding system started processing' : 'Hệ thống Sigma AI Per-title Encoding bắt đầu xử lý') }}</span>
           <UAvatar
