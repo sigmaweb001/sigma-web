@@ -20,6 +20,13 @@ const isMuted = ref(false)
 const isPlaying = ref(false)
 const error = ref<string | null>(null)
 
+// Synchronization variables
+const syncTolerance = 0.1 // Allow 100ms difference before syncing
+const bothVideosLoaded = ref(false)
+const video1Loaded = ref(false)
+const video2Loaded = ref(false)
+let isSyncing = false
+
 function onError(event: Event) {
   const video = event.target as HTMLVideoElement
   switch (video.error?.code) {
@@ -51,19 +58,74 @@ function onError(event: Event) {
   }
 }
 
-function onLoadedMetadata() {
-  loaded.value = true
-  duration.value = videoRef.value?.duration || 0
+function onLoadedMetadata(event: Event) {
+  const video = event.target as HTMLVideoElement
+  const isOptimized = video === videoRefOptimized.value
+
+  if (isOptimized) {
+    video2Loaded.value = true
+  }
+  else {
+    video1Loaded.value = true
+    duration.value = videoRef.value?.duration || 0
+  }
+
+  // Check if both videos are loaded
+  if (video1Loaded.value && video2Loaded.value) {
+    bothVideosLoaded.value = true
+    loaded.value = true
+  }
 }
 
-function onTimeUpdate() {
-  currentTime.value = videoRef.value?.currentTime || 0
+function syncVideos() {
+  if (isSyncing || !bothVideosLoaded.value || !videoRef.value || !videoRefOptimized.value) {
+    return
+  }
+
+  const time1 = videoRef.value.currentTime
+  const time2 = videoRefOptimized.value.currentTime
+  const timeDiff = Math.abs(time1 - time2)
+
+  // If videos are out of sync beyond tolerance, sync them
+  if (timeDiff > syncTolerance) {
+    isSyncing = true
+
+    // Use the video that's ahead as the reference
+    const referenceTime = Math.max(time1, time2)
+
+    if (time1 < referenceTime) {
+      videoRef.value.currentTime = referenceTime
+    }
+    if (time2 < referenceTime) {
+      videoRefOptimized.value.currentTime = referenceTime
+    }
+
+    // Reset syncing flag after a short delay
+    setTimeout(() => {
+      isSyncing = false
+    }, 50)
+  }
+}
+
+function onTimeUpdate(event: Event) {
+  const video = event.target as HTMLVideoElement
+  const isOptimized = video === videoRefOptimized.value
+
+  if (!isOptimized) {
+    currentTime.value = videoRef.value?.currentTime || 0
+  }
+
+  // Sync videos periodically during playback
+  syncVideos()
 }
 
 function toggleMute() {
   if (videoRef.value) {
     videoRef.value.muted = !videoRef.value.muted
     isMuted.value = videoRef.value.muted
+  }
+  if (videoRefOptimized.value) {
+    videoRefOptimized.value.muted = videoRef.value?.muted || false
   }
 }
 
@@ -73,12 +135,30 @@ function formatTime(time: number) {
   return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
 }
 
-function play() {
-  if (videoRef.value) {
-    videoRef.value.play()
+async function play() {
+  if (!bothVideosLoaded.value) {
+    // Wait for both videos to be loaded before playing
+    return
   }
-  if (videoRefOptimized.value) {
-    videoRefOptimized.value.play()
+
+  try {
+    // Ensure both videos start from the same time
+    const currentTimeToSync = Math.max(
+      videoRef.value?.currentTime || 0,
+      videoRefOptimized.value?.currentTime || 0,
+    )
+
+    if (videoRef.value) {
+      videoRef.value.currentTime = currentTimeToSync
+      await videoRef.value.play()
+    }
+    if (videoRefOptimized.value) {
+      videoRefOptimized.value.currentTime = currentTimeToSync
+      await videoRefOptimized.value.play()
+    }
+  }
+  catch (e) {
+    console.error('Error playing videos:', e)
   }
 }
 
@@ -98,6 +178,18 @@ function onPlay() {
 function onPause() {
   isPlaying.value = false
 }
+
+// Watch for both videos to be loaded
+watch(bothVideosLoaded, (newValue) => {
+  if (newValue) {
+    // Sync initial mute state
+    if (videoRef.value && videoRefOptimized.value) {
+      const muteState = videoRef.value.muted
+      videoRefOptimized.value.muted = muteState
+      isMuted.value = muteState
+    }
+  }
+})
 
 defineExpose({ play, pause })
 </script>
@@ -134,6 +226,10 @@ defineExpose({ play, pause })
             preload="auto"
             playsinline
             :poster="thumbnail"
+            @loadedmetadata="onLoadedMetadata"
+            @timeupdate="onTimeUpdate"
+            @play="onPlay"
+            @pause="onPause"
             @error="onError"
           />
         </template>
