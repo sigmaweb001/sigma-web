@@ -114,6 +114,7 @@ defineExpose({ play, pause })
             ref="videoRef"
             :src="src"
             class="w-full h-full object-cover"
+            :class="loaded ? 'opacity-100' : 'opacity-0'"
             crossorigin="anonymous"
             preload="auto"
             playsinline
@@ -130,6 +131,7 @@ defineExpose({ play, pause })
             ref="videoRefOptimized"
             :src="optimizedSrc"
             class="w-full h-full object-cover"
+            :class="loaded ? 'opacity-100' : 'opacity-0'"
             crossorigin="anonymous"
             preload="auto"
             playsinline
