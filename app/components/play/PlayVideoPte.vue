@@ -180,7 +180,7 @@ defineExpose({ play, pause })
       </transition>
       <!-- Central Play Button Overlay -->
       <div
-        v-if="!isPlaying"
+        v-if="!isPlaying && loaded"
         class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none"
       >
         <button
