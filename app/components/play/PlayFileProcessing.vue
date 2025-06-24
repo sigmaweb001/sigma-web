@@ -362,7 +362,7 @@ function openUploading() {
             class="text-gray-300 text-sm underline cursor-pointer"
             @click="openDemo()"
           >
-            {{ isEn ? 'View more demos' : 'Xem thêm demo' }}
+            {{ isEn ? 'View more demo' : 'Xem thêm demo' }}
           </button>
         </div>
       </template>
