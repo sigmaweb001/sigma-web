@@ -27,6 +27,10 @@ const data = await $fetch('/api/sigma-demo/vod-demo/video-samples', {
     mode: 'censorship',
   },
 })
+const model = await $fetch('/api/sigma-demo/vod-demo/models', {
+  baseURL: domain,
+})
+
 videoSamples.value = (data as any[]).map((item: any) => ({
   ...item,
   id: item.name,
@@ -39,7 +43,8 @@ const isEn = computed(() => {
   return pageParams.lang === 'en'
 })
 
-const modelName = computed(() => '[Model Name]')
+const modelName = model?.[0]?.modelName
+const icon = model?.[0]?.data?.[0].icon
 const { startDownload } = useDownloadVideo()
 function createItems(video: any) {
   const items = [
@@ -76,6 +81,7 @@ function createItems(video: any) {
       title: isEn ? `Sigma AI Censorship system started processing with model ${modelName}` : `Hệ thống Sigma AI Censorship bắt đầu xử lý với model là ${modelName}`,
       successTitle: isEn ? 'Sigma AI Censorship system has completed video processing!' : 'Hệ thống Sigma AI Censorship đã hoàn tất xử lý video!',
     }"
+    :icon
   >
     <template #stats>
       <!-- Standard Static Stats -->

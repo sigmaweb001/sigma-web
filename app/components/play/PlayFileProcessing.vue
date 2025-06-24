@@ -5,6 +5,7 @@ const props = defineProps<{
   videoUri: string
   mode: 'pte' | 'censorship'
   isEn: boolean
+  icon?: string
 }>()
 
 const emits = defineEmits<{
@@ -124,6 +125,7 @@ async function checkJobStatus() {
       const jobResponse = await $fetch<JobResponse>(`/api/sigma-demo/vod-demo/jobs/${jobId.value}`, {
         baseURL: domain,
       })
+      console.log('🚀 ~ checkStatus ~ jobResponse:', jobResponse)
 
       // TODO: remove this after testing
       // setTimeout(() => {
@@ -262,6 +264,12 @@ function openUploading() {
       <template v-if="showProcessing">
         <div class="text-lg font-semibold text-white px-3">
           <span>{{ title || (isEn ? 'Sigma AI Per-title Encoding system started processing' : 'Hệ thống Sigma AI Per-title Encoding bắt đầu xử lý') }}</span>
+          <UAvatar
+            v-if="mode === 'censorship'"
+            class="ml-1.5"
+            size="sm"
+            :src="props.icon"
+          />
           <Icon
             class="inline-block size-5 ml-1 align-bottom"
             name="i-svg-spinners:3-dots-fade"
@@ -316,7 +324,7 @@ function openUploading() {
           />
 
           <div
-            v-if="originalSize && optimizedSize"
+            v-if="originalSize && optimizedSize && mode === 'pte'"
             class="flex items-center gap-3 mt-2"
           >
             <span class="text-5xl font-extrabold text-white">{{ originalSize }}</span>

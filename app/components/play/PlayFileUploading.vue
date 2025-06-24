@@ -6,6 +6,7 @@ const props = defineProps<{
   title: string
   subtitle?: string
   isEn: boolean
+  icon?: string
 }>()
 
 const emit = defineEmits<(
@@ -222,6 +223,11 @@ function open() {
       <template v-else>
         <div class="text-xl font-bold text-center text-white gap-1 w-2/3">
           <span>{{ subtitle || (isEn ? 'Uploading video to system' : 'Đang tải video lên hệ thống') }}</span>
+          <UAvatar
+            class="ml-1.5"
+            size="sm"
+            :src="props.icon"
+          />
           <Icon
             class="inline-block size-5 ml-1 align-bottom"
             name="i-svg-spinners:3-dots-fade"
