@@ -264,7 +264,7 @@ const { startDownload } = useDownloadVideo()
 async function handleDownloadVideo() {
   const url = optimizedSrc.value
   const filename = (selectedVideo.value?.title || 'video') + '.mp4'
-  startDownload(url, filename)
+  startDownload(url, filename, isEn.value)
 }
 </script>
 
@@ -484,7 +484,7 @@ async function handleDownloadVideo() {
                 :is-en="isEn"
                 :icon="props.icon"
                 @upload="handleOpenUploading"
-                @back="pageParams.modal = ''"
+                @back="pageParams.modal = 'list'"
                 @result="handleOpenResult"
               />
 

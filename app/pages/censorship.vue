@@ -52,14 +52,14 @@ function createItems(video: any) {
       label: isEn.value ? 'Download original video' : 'Tải video gốc',
       icon: 'i-heroicons-arrow-down-tray-20-solid',
       onSelect() {
-        startDownload(video.originalSrc, 'original-' + video.name + '.mp4')
+        startDownload(video.originalSrc, 'original-' + video.name + '.mp4', isEn.value)
       },
     },
     {
       label: isEn.value ? 'Download demo video' : 'Tải video demo',
       icon: 'i-heroicons:inbox-arrow-down',
       onSelect() {
-        startDownload(video.optimizedSrc, 'optimized-' + video.name + '.mp4')
+        startDownload(video.optimizedSrc, 'optimized-' + video.name + '.mp4', isEn.value)
       },
     },
   ]

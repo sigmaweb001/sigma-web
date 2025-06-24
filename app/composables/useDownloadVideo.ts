@@ -1,13 +1,13 @@
 export function useDownloadVideo() {
   const toast = useToast()
 
-  async function startDownload(url: string, filename: string) {
+  async function startDownload(url: string, filename: string, isEn: boolean) {
     let loadingToast: any
     try {
       // Show loading state
       loadingToast = toast.add({
-        title: 'Đang chuẩn bị tải xuống...',
-        description: 'Vui lòng đợi trong giây lát',
+        title: isEn ? 'Preparing to download...' : 'Đang chuẩn bị tải xuống...',
+        description: isEn ? 'Please wait for a moment' : 'Vui lòng đợi trong giây lát',
         color: 'info',
         duration: Infinity,
         close: false,
@@ -31,15 +31,15 @@ export function useDownloadVideo() {
       toast.remove(loadingToast.id)
 
       toast.add({
-        title: 'Tải xuống thành công',
-        description: filename,
+        title: isEn ? 'Download successful' : 'Tải xuống thành công',
+        description: isEn ? filename : 'Tải xuống thành công',
         color: 'success',
       })
     }
     catch (error) {
       toast.add({
-        title: 'Tải xuống thất bại',
-        description: 'Có lỗi xảy ra khi tải video',
+        title: isEn ? 'Download failed' : 'Tải xuống thất bại',
+        description: isEn ? 'An error occurred while downloading the video' : 'Có lỗi xảy ra khi tải video',
         color: 'error',
       })
       console.error('Download error:', error)
