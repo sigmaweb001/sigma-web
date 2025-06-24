@@ -265,6 +265,7 @@ function openUploading() {
         <div class="text-lg font-semibold text-white px-3">
           <span>{{ title || (isEn ? 'Sigma AI Per-title Encoding system started processing' : 'Hệ thống Sigma AI Per-title Encoding bắt đầu xử lý') }}</span>
           <UAvatar
+            v-if="mode === 'censorship'"
             class="ml-1.5"
             size="sm"
             :src="props.icon"
