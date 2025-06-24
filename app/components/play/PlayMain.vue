@@ -83,7 +83,7 @@ const { open, onChange, reset } = useFileDialog({
 const uploadingRef = ref()
 const toast = useToast()
 
-function validateFile(file: File): boolean {
+async function validateFile(file: File): Promise<boolean> {
   const maxSizeMB = 1024
   const isVideo = file.type.startsWith('video/')
   const isSizeOk = file.size <= maxSizeMB * 1024 * 1024
@@ -103,12 +103,37 @@ function validateFile(file: File): boolean {
     })
     return true
   }
+
+  async function getDuration(file: File) {
+    if (!file) return 0
+    const url = URL.createObjectURL(file)
+    const video = document.createElement('video')
+    video.preload = 'metadata'
+    return await new Promise<number>((resolve) => {
+      video.onloadedmetadata = () => {
+        URL.revokeObjectURL(url)
+        resolve(video.duration)
+      }
+      video.src = url
+    })
+  }
+
+  const duration = await getDuration(file)
+  if (duration > 600) {
+    toast.add({
+      title: isEn.value ? 'Video too long' : 'Video quá dài',
+      description: isEn.value ? 'Video exceeds maximum allowed duration (Max duration: 10 minutes)' : 'Video vượt quá thời gian cho phép (Thời gian tối đa: 10 phút)',
+      color: 'error',
+    })
+    return true
+  }
+
   return false // valid file
 }
 
-onChange((newFiles) => {
+onChange(async (newFiles) => {
   if (newFiles?.length > 0) {
-    const error = validateFile(newFiles[0])
+    const error = await validateFile(newFiles[0])
     if (error) {
       reset()
       return
