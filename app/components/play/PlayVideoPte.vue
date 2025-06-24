@@ -5,9 +5,10 @@ const props = defineProps<{
   thumbnail: string
   hideControls: boolean
   controlClass: string
+  isEn?: boolean
 }>()
 
-const { src, optimizedSrc, thumbnail, hideControls } = toRefs(props)
+const { src, optimizedSrc, thumbnail, hideControls, isEn } = toRefs(props)
 
 const videoRef = ref<HTMLVideoElement>()
 const videoRefOptimized = ref<HTMLVideoElement>()
@@ -23,21 +24,29 @@ function onError(event: Event) {
   const video = event.target as HTMLVideoElement
   switch (video.error?.code) {
     case MediaError.MEDIA_ERR_ABORTED:
-      error.value = 'The video playback was aborted.'
+      error.value = isEn?.value
+        ? 'The video playback was aborted.'
+        : 'Quá trình phát video đã bị hủy bỏ.'
       break
     case MediaError.MEDIA_ERR_NETWORK:
-      error.value = 'A network error caused the video download to fail.'
+      error.value = isEn?.value
+        ? 'A network error caused the video download to fail.'
+        : 'Lỗi mạng đã làm tải video thất bại.'
       break
     case MediaError.MEDIA_ERR_DECODE:
-      error.value
-        = 'The video playback was aborted due to a corruption problem or because the video used features your browser did not support.'
+      error.value = isEn?.value
+        ? 'The video playback was aborted due to a corruption problem or because the video used features your browser did not support.'
+        : 'Quá trình phát video đã bị hủy bỏ do lỗi dữ liệu hoặc video sử dụng tính năng mà trình duyệt không hỗ trợ.'
       break
     case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
-      error.value
-        = 'The video could not be loaded, either because the server or network failed or because the format is not supported.'
+      error.value = isEn?.value
+        ? 'The video could not be loaded, either because the server or network failed or because the format is not supported.'
+        : 'Không thể tải video, có thể do lỗi máy chủ, mạng hoặc định dạng không được hỗ trợ.'
       break
     default:
-      error.value = 'An unknown error occurred.'
+      error.value = isEn?.value
+        ? 'An unknown error occurred.'
+        : 'Đã xảy ra lỗi không xác định.'
       break
   }
 }
@@ -182,7 +191,7 @@ defineExpose({ play, pause })
             name="i-heroicons-play-20-solid"
             class="size-5"
           />
-          Phát video
+          {{ isEn ? 'Play video' : 'Phát video' }}
         </button>
       </div>
     </template>
@@ -195,7 +204,7 @@ defineExpose({ play, pause })
         class="w-10 h-10 mb-4 text-red-500"
       />
       <p class="font-semibold">
-        Error playing video
+        {{ isEn ? 'Error playing video' : 'Lỗi phát video' }}
       </p>
       <p class="text-sm text-gray-300">
         {{ error }}

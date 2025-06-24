@@ -287,6 +287,7 @@ async function handleDownloadVideo() {
                   :thumbnail="selectedVideo.thumbnail"
                   :hide-controls="hideInfo"
                   :control-class="showDetail ? 'bottom-17' : 'bottom-6'"
+                  :is-en="isEn"
                 />
               </ClientOnly>
             </div>
