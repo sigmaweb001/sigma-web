@@ -129,8 +129,8 @@ async function checkJobStatus() {
       })
 
       // Update progress
-      // transcodeProgress.value = jobResponse.progress || 0
-      transcodeProgress.value = 50
+      transcodeProgress.value = jobResponse.progress || 10
+      // transcodeProgress.value = 50
 
       // TODO: remove this after testing
       // setTimeout(() => {
