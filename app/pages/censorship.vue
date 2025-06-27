@@ -100,8 +100,14 @@ function createItems(video: any) {
 
       <!-- Sigma PTE Stats -->
       <div class="backdrop-blur-md bg-gray-800/60 rounded-full px-4 py-2 flex items-center gap-3 min-w-max">
-        <div class="flex gap-1">
+        <div class="flex gap-1 items-center">
           <span class="text-white font-bold text-sm">{{ isEn ? 'Sigma Censorship' : 'Sigma Censorship' }}</span>
+          <UAvatar
+            v-if="icon"
+            class="ml-1.5"
+            size="sm"
+            :src="icon"
+          />
         </div>
         <div class="text-white/50">
           |
