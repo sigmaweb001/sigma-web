@@ -34,6 +34,7 @@ interface JobResponse {
       size: number
     }
   }
+  progress: number
 }
 
 // Job tracking
@@ -46,6 +47,7 @@ const originalSize = ref<number | null>(null)
 const optimizedSize = ref<number | null>(null)
 const originalUnit = ref<string>('MB')
 const optimizedUnit = ref<string>('MB')
+const transcodeProgress = ref(0)
 
 onMounted(() => {
   startProcessing()
@@ -125,7 +127,10 @@ async function checkJobStatus() {
       const jobResponse = await $fetch<JobResponse>(`/api/sigma-demo/vod-demo/jobs/${jobId.value}`, {
         baseURL: domain,
       })
-      console.log('🚀 ~ checkStatus ~ jobResponse:', jobResponse)
+
+      // Update progress
+      // transcodeProgress.value = jobResponse.progress || 0
+      transcodeProgress.value = 50
 
       // TODO: remove this after testing
       // setTimeout(() => {
@@ -141,7 +146,7 @@ async function checkJobStatus() {
         clearInterval(jobInterval.value)
         status.value = 'success'
 
-        function getSizeAndUnit(bytes, decimals = 2) {
+        function getSizeAndUnit(bytes: number, decimals = 2): [number, string] {
           if (bytes === 0) return [0, 'B'] // special-case 0
 
           const k = 1024
@@ -297,18 +302,36 @@ function openUploading() {
               class="text-gray-500 text-xl flex-shrink-0"
             />
 
-            <span
-              v-if="idx < stepIndex"
-              class="text-gray-400 text-lg"
-            >{{ step.text }}</span>
-            <span
-              v-else-if="idx === stepIndex"
-              class="text-orange-400 text-lg font-bold"
-            >{{ step.text }}</span>
-            <span
-              v-else
-              class="text-gray-500 text-lg"
-            >{{ step.text }}</span>
+            <div class="flex-1">
+              <span
+                v-if="idx < stepIndex"
+                class="text-gray-400 text-lg"
+              >{{ step.text }}</span>
+              <span
+                v-else-if="idx === stepIndex"
+                class="text-orange-400 text-lg font-bold"
+              >{{ step.text }}</span>
+              <span
+                v-else
+                class="text-gray-500 text-lg"
+              >{{ step.text }}</span>
+
+              <!-- Progress bar for transcoding step -->
+              <div
+                v-if="idx === 3 && stepIndex === 3 && transcodeProgress > 0"
+                class="mt-2 flex items-center gap-3"
+              >
+                <div class="flex-1 bg-gray-700 rounded-full h-2">
+                  <div
+                    class="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full transition-all duration-300 ease-out"
+                    :style="{ width: `${Math.min(transcodeProgress, 100)}%` }"
+                  />
+                </div>
+                <span class="text-xs text-gray-300 font-medium">
+                  {{ Math.round(transcodeProgress) }}%
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </template>
