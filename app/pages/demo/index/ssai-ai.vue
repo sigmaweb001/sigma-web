@@ -29,22 +29,41 @@ function formatTime(seconds: number) {
 }
 
 function startPlayer() {
-// Get references to the video and ad container elements
-  const video = document.querySelector('.videoElement') as HTMLVideoElement | null
-  if (!video)
+  // Get references to both video elements
+  const adsVideo = document.querySelector('.videoElement') as HTMLVideoElement | null
+  const originalVideo = document.querySelector('.originalVideoElement') as HTMLVideoElement | null
+
+  if (!adsVideo || !originalVideo)
     return
+
   let destroyFn
   let hlsInstance
+  let originalHlsInstance
 
   // STEP 5: Set the URL of the HLS manifest (video stream with SSAI)
   const sourceURL = 'https://dai.sigma.video/manifest/manipulation/master/53ff75d8-22ca-4457-baf9-a058233e098b/scte35-av6s-clear/master.m3u8'
 
+  // Initialize original video (without ads)
+  if (window.Hls.isSupported()) {
+    const originalHls = new window.Hls()
+    originalHlsInstance = originalHls
+
+    // Use original stream without SSAI processing
+    const originalSourceURL = 'https://dai.sigma.video/manifest/origin04/scte35-av6s-clear/master.m3u8'
+    originalHls.loadSource(originalSourceURL)
+    originalHls.attachMedia(originalVideo)
+
+    originalHls.on(window.Hls.Events.MEDIA_ATTACHED, () => {
+      originalVideo.muted = true
+      originalVideo.play()
+    })
+  }
+
   const { playerUrl, adsUrl } = window.SigmaDaiSdk.processURL(sourceURL)
 
-  // STEP 6: Create a new instance of the Sigma SSAI SDK with the video and ad containers
-
+  // STEP 6: Create a new instance of the Sigma SSAI SDK with the ads video
   window.SigmaDaiSdk.createSigmaDai({
-    video,
+    video: adsVideo,
     adContainer: null,
     adsUrl,
   })
@@ -56,7 +75,7 @@ function startPlayer() {
 
         // STEP 7: Load the manifest URL and attach the HLS stream to the video element
         hls.loadSource(playerUrl)
-        hls.attachMedia(video)
+        hls.attachMedia(adsVideo)
 
         sigmaPlayer.attachHls(hls)
         destroyFn = destroy
@@ -69,7 +88,7 @@ function startPlayer() {
 
             if (isAds) {
               if (!adInsertedTime.value) {
-                adInsertedTime.value = formatTime(video.currentTime)
+                adInsertedTime.value = formatTime(adsVideo.currentTime)
               }
             }
             else {
@@ -81,15 +100,15 @@ function startPlayer() {
         hls.on(window.Hls.Events.FRAG_CHANGED, createHlsFragChanged())
         // play video
         hls.on(window.Hls.Events.MEDIA_ATTACHED, () => {
-          video.muted = true
-          video.play()
+          adsVideo.muted = true
+          adsVideo.play()
         })
       }
     })
 
-  video.addEventListener('timeupdate', () => {
-    if (video) {
-      timeElapsed.value = formatTime(video.currentTime)
+  adsVideo.addEventListener('timeupdate', () => {
+    if (adsVideo) {
+      timeElapsed.value = formatTime(adsVideo.currentTime)
     }
   })
 }
@@ -109,32 +128,57 @@ onMounted(() => {
   <main class="py-10">
     <div class="mx-16 flex items-start justify-between gap-8">
       <div class="flex-1">
-        <div class="flex items-center justify-between">
-          <div class="mb-2 text-lg font-semibold">
+        <div class="flex items-center justify-between mb-6">
+          <div class="text-lg font-semibold">
             Time Elapsed: {{ timeElapsed }}
           </div>
-          <p class="mt-4 text-lg text-(--ui-primary) font-semibold">
+          <p class="text-lg text-(--ui-primary) font-semibold">
             {{ adInsertedTime ? `Ads (${adInsertedTime})` : 'In-stream' }}
           </p>
         </div>
-        <video
-          controls
-          class="videoElement w-full rounded-lg shadow"
-        />
-      </div>
-      <UCard class="mt-15 w-80 rounded-lg p-4 text-(--ui-primary)">
-        <h3 class="mb-4 text-base">
-          Observe how ads seamlessly appear within the video without interruption, providing an optimal user experience. AI Ads Marker ensures that the ad placement points are selected accurately and appropriately.
-        </h3>
-      </UCard>
-    </div>
 
-    <SectionCta
-      title="Experience seamless ad insertion with SSAI's Manual Ads Insert feature. Control when and where your ads appear in real-time for a fully customized streaming experience"
-      :button="{
-        label: 'Contact us',
-        to: localePath('/contact'),
-      }"
-    />
+        <!-- Two videos side by side -->
+        <div class="grid grid-cols-2 gap-6">
+          <!-- Original Stream -->
+          <div class="space-y-3">
+            <video
+              controls
+              muted
+              class="originalVideoElement w-full rounded-lg shadow"
+            />
+            <div class="text-center">
+              <h3 class="text-lg font-semibold text-orange-500 mb-2">
+                Original stream
+              </h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                This is the original video stream, played without any ad insertion. It showcases the
+                untouched content, providing a baseline for comparison. Unlike the stream on the right,
+                this playback does not include any AI-detected ad break points or dynamic ad insertion.
+              </p>
+            </div>
+          </div>
+
+          <!-- AI Ads Insert Stream -->
+          <div class="space-y-3">
+            <video
+              controls
+              muted
+              class="videoElement w-full rounded-lg shadow"
+            />
+            <div class="text-center">
+              <h3 class="text-lg font-semibold text-orange-500 mb-2">
+                AI Ads insert stream
+              </h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                This stream demonstrates how AI automatically detects and inserts ads into the video at
+                optimal break points. The ad insertion is seamlessly integrated into the playback,
+                ensuring minimal disruption to the viewing experience. It highlights the effectiveness of
+                AI Ads Marker in delivering intelligent and context-aware ad placements.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 </template>

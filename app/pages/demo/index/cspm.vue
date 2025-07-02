@@ -126,19 +126,6 @@ onMounted(() => {
           class="videoElement w-full rounded-lg shadow"
         />
       </div>
-      <UCard class="mt-15 w-80 rounded-lg p-4 text-(--ui-primary)">
-        <h3 class="mb-4 text-base">
-          Observe how ads seamlessly appear within the video without interruption, providing an optimal user experience. AI Ads Marker ensures that the ad placement points are selected accurately and appropriately.
-        </h3>
-      </UCard>
     </div>
-
-    <SectionCta
-      title="Experience seamless ad insertion with SSAI's Manual Ads Insert feature. Control when and where your ads appear in real-time for a fully customized streaming experience"
-      :button="{
-        label: 'Contact us',
-        to: localePath('/contact'),
-      }"
-    />
   </main>
 </template>
