@@ -14,38 +14,28 @@ interface DemoItem {
 
 const router = useRouter()
 const selectedTab = ref('0')
+//
 
-const demoItems = ref<DemoItem[]>([
-  {
-    value: '0',
-    path: 'ssai-manual',
-    label: 'Manual Ads Insert',
-    description: 'Easily insert ads into a live stream playlist and customize content flow with real-time updates',
-  },
-  {
-    value: '1',
-    path: 'ssai-ai',
-    label: 'AI Ads Marker',
-    description: 'Automatically detect and mark ad insertion points in live or on-demand content, ensuring seamless and precise ad placements',
-  },
-  {
-    value: '2',
-    path: 'ssai',
-    label: 'SSAI',
-    description: 'Uses SSAI to inject ads seamlessly into the content stream, reducing ad-blocking issues for a smooth viewing experience.',
-  },
-  {
-    value: '3',
-    path: 'cspm',
-    label: 'CSPM',
-    description: 'Inserts ads directly on the client side, offering greater flexibility, cross-platform integration, and personalized ad optimization.',
-  },
-])
+const { data } = await useAsyncData('demoItems',
+  () => queryCollectionNavigation('demo', ['title', 'description', 'path']),
+)
+console.log(data.value)
+
+const demoItems = computed(() => {
+  return data.value[0].children.map((item: any, index: number) => {
+    return {
+      value: index.toString(),
+      label: item.title,
+      description: item.description,
+      path: item.path,
+    }
+  })
+})
 
 watchImmediate(selectedTab, (newVal) => {
-  const path = demoItems.value.find(item => item.value === newVal)?.path
+  const path = demoItems.value.find(item => item.value === newVal)?.path || ''
   if (path) {
-    router.push(localePath(`/demo/${path}`))
+    router.push(localePath(`${path}`))
   }
 })
 
@@ -97,24 +87,5 @@ const selectedDemoItem = computed(() => {
     </div>
 
     <NuxtPage />
-
-    <SectionCta
-      title="Ready to Get Started?"
-      description="Try our product for Free and start streaming today"
-    >
-      <ButtonLink
-        data-appointlet-modal
-        data-appointlet-modal-title="View demo"
-        href="https://appt.link/meet-with-sigma-team"
-      >
-        View demo
-      </ButtonLink>
-      <ButtonLink
-        white
-        href="/contact"
-      >
-        Contact Us
-      </ButtonLink>
-    </SectionCta>
   </main>
 </template>

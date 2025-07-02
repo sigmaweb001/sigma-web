@@ -107,10 +107,6 @@ onMounted(() => {
 
 <template>
   <main class="py-10">
-    <div class="relative mb-4">
-      SSAI
-    </div>
-
     <div class="mx-16 flex items-start justify-between gap-8">
       <div class="flex-1">
         <div class="flex items-center justify-between">
