@@ -107,22 +107,26 @@ onMounted(() => {
 
 <template>
   <main class="py-10">
-    <div class="mx-16 flex items-start justify-between gap-8">
-      <div class="flex-1">
-        <div class="flex items-center justify-between">
-          <div class="mb-2 text-lg font-semibold">
-            Time Elapsed: {{ timeElapsed }}
-          </div>
-          <p class="mt-4 text-lg text-(--ui-primary) font-semibold">
-            {{ adInsertedTime ? `Ads (${adInsertedTime})` : 'In-stream' }}
-          </p>
+    <div class="mx-16 gap-8">
+      <div class="flex items-center gap-6 justify-center pb-4">
+        <div class="text-lg font-semibold">
+          Time Elapsed: {{ timeElapsed }}
         </div>
-        <div class="relative aspect-video max-h-[420px] mx-auto">
-          <video
-            controls
-            class="videoElement size-full absolute top-0 left-0 rounded-lg shadow"
-          />
-        </div>
+        <p class="text-lg text-(--ui-primary) font-semibold">
+          {{ adInsertedTime ? `Ads (${adInsertedTime})` : 'In-stream' }}
+        </p>
+        <UBadge
+          color="success"
+          variant="subtle"
+        >
+          Content
+        </UBadge>
+      </div>
+      <div class="relative aspect-video max-h-[420px] mx-auto">
+        <video
+          controls
+          class="videoElement size-full absolute top-0 left-0 rounded-lg shadow"
+        />
       </div>
     </div>
   </main>
