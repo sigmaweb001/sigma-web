@@ -145,7 +145,7 @@ onMounted(() => {
             <h3 class="text-lg font-semibold text-orange-500 mb-2">
               Original stream
             </h3>
-            <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
+            <div class="bg-(--ui-color-primary-100)/20 dark:bg-(--ui-color-primary-800)/20 p-4 rounded-lg">
               <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                 This is the original video stream, played without any ad insertion. It showcases the
                 untouched content, providing a baseline for comparison. Unlike the stream on the right,
@@ -171,7 +171,7 @@ onMounted(() => {
             <h3 class="text-lg font-semibold text-orange-500 mb-2">
               AI Ads insert stream
             </h3>
-            <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
+            <div class="bg-(--ui-color-primary-100)/20 dark:bg-(--ui-color-primary-800)/20 p-4 rounded-lg">
               <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                 This stream demonstrates how AI automatically detects and inserts ads into the video at
                 optimal break points. The ad insertion is seamlessly integrated into the playback,

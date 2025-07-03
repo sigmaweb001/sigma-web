@@ -117,10 +117,12 @@ onMounted(() => {
             {{ adInsertedTime ? `Ads (${adInsertedTime})` : 'In-stream' }}
           </p>
         </div>
-        <video
-          controls
-          class="videoElement w-full rounded-lg shadow"
-        />
+        <div class="relative aspect-video max-h-[420px] mx-auto">
+          <video
+            controls
+            class="videoElement size-full absolute top-0 left-0 rounded-lg shadow"
+          />
+        </div>
       </div>
     </div>
   </main>

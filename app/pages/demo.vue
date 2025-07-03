@@ -5,15 +5,7 @@ useHead({
 
 const localePath = useLocalePath()
 
-interface DemoItem {
-  value: string
-  path: string
-  label: string
-  description: string
-}
-
 const router = useRouter()
-const selectedTab = ref('0')
 //
 
 const { data } = await useAsyncData('demoItems',
@@ -31,8 +23,9 @@ const demoItems = computed(() => {
     }
   })
 })
+const selectedTab = ref(demoItems.value.find(item => item.path === router.currentRoute.value.path)?.value || '')
 
-watchImmediate(selectedTab, (newVal) => {
+watch(selectedTab, (newVal) => {
   const path = demoItems.value.find(item => item.value === newVal)?.path || ''
   if (path) {
     router.push(localePath(`${path}`))
