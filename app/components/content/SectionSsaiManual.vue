@@ -169,7 +169,9 @@ onMounted(() => {
               <label
                 for="adTime"
                 class="block text-sm text-gray-700 dark:text-gray-300 font-medium"
-              >Duration</label>
+              >
+                Duration
+              </label>
               <p class="text-xs text-gray-500">
                 (from 5 to 60 seconds)
               </p>

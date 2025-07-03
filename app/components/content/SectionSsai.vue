@@ -128,6 +128,12 @@ onMounted(() => {
           class="videoElement size-full absolute top-0 left-0 rounded-lg shadow"
         />
       </div>
+
+      <div class="mt-4 mx-30 bg-(--ui-color-primary-100)/20 dark:bg-(--ui-color-primary-800)/20 p-4 rounded-lg">
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          <span class="text-(--ui-primary) font-semibold">SSAI (Server-Side Ad Insertion)</span> - This widely adopted approach involves SSAI (Server-Side Ad Insertion) operating on the server. The system detects ad insertion points within the content stream and injects advertisements at the designated time before delivering the content to the viewer. This method ensures a smooth, uninterrupted viewing experience while minimizing ad-blocking issues.
+        </p>
+      </div>
     </div>
   </main>
 </template>
