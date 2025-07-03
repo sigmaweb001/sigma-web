@@ -125,31 +125,27 @@ onMounted(() => {
 </script>
 
 <template>
-  <main class="py-10">
-    <div class="mx-16 flex items-start justify-between gap-8">
-      <div class="flex-1">
-        <div class="flex items-center justify-between mb-6">
+  <main class="py-5">
+    <div class="mx-16 flex items-start justify-center gap-8">
+      <!-- Two videos side by side -->
+      <div class="grid grid-cols-2 gap-6">
+        <!-- Original Stream -->
+        <div class="space-y-3 px-10">
           <div class="text-lg font-semibold">
             Time Elapsed: {{ timeElapsed }}
           </div>
-          <p class="text-lg text-(--ui-primary) font-semibold">
-            {{ adInsertedTime ? `Ads (${adInsertedTime})` : 'In-stream' }}
-          </p>
-        </div>
-
-        <!-- Two videos side by side -->
-        <div class="grid grid-cols-2 gap-6">
-          <!-- Original Stream -->
-          <div class="space-y-3">
+          <div class="relative aspect-video max-h-[420px] mx-auto">
             <video
               controls
               muted
-              class="originalVideoElement w-full rounded-lg shadow"
+              class="originalVideoElement size-full absolute top-0 left-0 rounded-lg shadow"
             />
-            <div class="text-center">
-              <h3 class="text-lg font-semibold text-orange-500 mb-2">
-                Original stream
-              </h3>
+          </div>
+          <div class="text-center">
+            <h3 class="text-lg font-semibold text-orange-500 mb-2">
+              Original stream
+            </h3>
+            <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
               <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                 This is the original video stream, played without any ad insertion. It showcases the
                 untouched content, providing a baseline for comparison. Unlike the stream on the right,
@@ -157,18 +153,25 @@ onMounted(() => {
               </p>
             </div>
           </div>
+        </div>
 
-          <!-- AI Ads Insert Stream -->
-          <div class="space-y-3">
+        <!-- AI Ads Insert Stream -->
+        <div class="space-y-3 px-10">
+          <p class="text-lg text-(--ui-primary) font-semibold">
+            {{ adInsertedTime ? `Ads (${adInsertedTime})` : 'In-stream' }}
+          </p>
+          <div class="relative aspect-video max-h-[420px] mx-auto">
             <video
               controls
               muted
-              class="videoElement w-full rounded-lg shadow"
+              class="videoElement size-full absolute top-0 left-0 rounded-lg shadow"
             />
-            <div class="text-center">
-              <h3 class="text-lg font-semibold text-orange-500 mb-2">
-                AI Ads insert stream
-              </h3>
+          </div>
+          <div class="text-center">
+            <h3 class="text-lg font-semibold text-orange-500 mb-2">
+              AI Ads insert stream
+            </h3>
+            <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
               <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                 This stream demonstrates how AI automatically detects and inserts ads into the video at
                 optimal break points. The ad insertion is seamlessly integrated into the playback,

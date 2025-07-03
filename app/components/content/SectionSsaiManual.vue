@@ -137,16 +137,18 @@ onMounted(() => {
 </script>
 
 <template>
-  <main class="py-10">
-    <div class="mx-16 flex items-start justify-between gap-8">
-      <div class="flex-1">
+  <main class="py-5">
+    <div class="mx-16 flex items-start justify-center gap-8">
+      <div class="">
         <div class="mb-2 text-lg font-semibold">
           Time Elapsed: {{ timeElapsed }}
         </div>
-        <video
-          controls
-          class="videoElement w-full rounded-lg shadow"
-        />
+        <div class="relative aspect-video h-[420px]">
+          <video
+            controls
+            class="videoElement size-full absolute top-0 left-0 rounded-lg shadow"
+          />
+        </div>
         <p
           v-if="adInsertedTime"
           class="mt-4"
