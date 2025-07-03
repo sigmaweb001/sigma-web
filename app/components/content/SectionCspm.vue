@@ -128,6 +128,12 @@ onMounted(() => {
           class="videoElement size-full absolute top-0 left-0 rounded-lg shadow"
         />
       </div>
+
+      <div class="mt-4 mx-30 bg-(--ui-color-primary-100)/20 dark:bg-(--ui-color-primary-800)/20 p-4 rounded-lg">
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          <span class="text-(--ui-primary) font-semibold">CSPM (Client-Side Placement & Management)</span> - This method allows ads to be inserted directly within the client environment. Instead of server-side processing, the client is responsible for detecting ad insertion points and injecting advertisements dynamically during playback. This approach offers greater flexibility, enabling integration across multiple platforms while leveraging personalized data to optimize ad performance.
+        </p>
+      </div>
     </div>
   </main>
 </template>
