@@ -112,7 +112,7 @@ const items = computed(() => {
     {
       label: 'Demo',
       icon: 'i-lucide-circle-play',
-      to: '/demo',
+      to: '/demo/ssai-manual',
     },
   ]
 })

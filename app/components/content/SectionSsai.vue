@@ -121,6 +121,13 @@ onMounted(() => {
         >
           Content
         </UBadge>
+
+        <UBadge
+          color="warning"
+          variant="subtle"
+        >
+          Ads
+        </UBadge>
       </div>
       <div class="relative aspect-video max-h-[420px] mx-auto">
         <video
