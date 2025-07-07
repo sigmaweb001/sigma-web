@@ -86,7 +86,18 @@ function startPlayer() {
           }
         }
 
-        hls.on(window.Hls.Events.FRAG_CHANGED, createHlsFragChanged())
+        onEventTracking('*', ({ eventType }) => {
+          if (eventType === 'start') {
+            if (!adInsertedTime.value) {
+              adInsertedTime.value = formatTime(video.currentTime)
+            }
+          }
+          else if (eventType === 'complete') {
+            adInsertedTime.value = ''
+          }
+        })
+
+        // hls.on(window.Hls.Events.FRAG_CHANGED, createHlsFragChanged())
         // play video
         hls.on(window.Hls.Events.MEDIA_ATTACHED, () => {
           video.muted = true
