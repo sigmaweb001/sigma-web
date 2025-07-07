@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 useHead({
-  title: 'SSAI AI Ads Marker',
+  title: 'SSAI',
   script: [
     {
       src: 'https://cdn.jsdelivr.net/npm/hls.js@latest',
@@ -8,7 +8,7 @@ useHead({
       tagPosition: 'head',
     },
     {
-      src: 'https://cdn.jsdelivr.net/gh/sigmaott/sigma-ssai-web-sdk@v1.1.1/build/sdk-dai.iife.js',
+      src: 'https://cdn.jsdelivr.net/gh/sigmaott/sigma-ssai-web-sdk@v1.5.1/build/sdk-dai.iife.js',
       tagPosition: 'head',
     },
   ],
@@ -28,6 +28,8 @@ function formatTime(seconds: number) {
     .join(':')
 }
 
+const config = useRuntimeConfig()
+
 function startPlayer() {
 // Get references to the video and ad container elements
   const video = document.querySelector('.videoElement') as HTMLVideoElement | null
@@ -37,9 +39,15 @@ function startPlayer() {
   let hlsInstance
 
   // STEP 5: Set the URL of the HLS manifest (video stream with SSAI)
-  const sourceURL = 'https://dai.sigma.video/manifest/manipulation/master/53ff75d8-22ca-4457-baf9-a058233e098b/scte35-av6s-clear/master.m3u8'
+  const adsEndpoint = config.public.ssaiAdsEndpoint
+  const params = {
+    userId: 'abcd1234',
+    sessionId: 'xyz987',
+  }
 
-  const { playerUrl, adsUrl } = window.SigmaDaiSdk.processURL(sourceURL)
+  const { adsUrl } = window.SigmaDaiSdk.getAdsURL(adsEndpoint, params)
+
+  const playerUrl = config.public.ssaiUrl
 
   // STEP 6: Create a new instance of the Sigma SSAI SDK with the video and ad containers
 
@@ -112,10 +120,9 @@ onMounted(() => {
         <div class="text-lg font-semibold">
           Time Elapsed: {{ timeElapsed }}
         </div>
-        <p class="text-lg text-(--ui-primary) font-semibold">
-          {{ adInsertedTime ? `Ads (${adInsertedTime})` : 'In-stream' }}
-        </p>
+
         <UBadge
+          v-if="!adInsertedTime"
           color="success"
           variant="subtle"
         >
@@ -123,6 +130,7 @@ onMounted(() => {
         </UBadge>
 
         <UBadge
+          v-if="adInsertedTime"
           color="warning"
           variant="subtle"
         >

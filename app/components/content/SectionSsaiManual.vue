@@ -18,10 +18,10 @@ useHead({
 const sessionId = useSessionStorage('sessionId', nanoid())
 const localePath = useLocalePath()
 
-const domain = 'https://dev-streaming.gviet.vn:8783'
+const config = useRuntimeConfig()
 
 function getPlayerUrl(sessionId: string) {
-  return `http://123.31.18.25:2180/manifest/manipulation/master/c1979665-2bf6-488f-b1db-51a847ae4679/${sessionId}/manifest/origin04/demo-ssai/master.m3u8`
+  return config.public.playerUrl.replace('{sessionId}', sessionId)
 }
 
 const adDuration = ref('30')
@@ -60,14 +60,14 @@ async function insertAds() {
   }
   isLoading.value = true
   countdown.value = duration
-  const res = await $fetch(joinURL(domain, '/api/demo-page/sessions', sessionId.value), {
+  const url = config.public.ssaiManualUrl.replace('{sessionId}', sessionId.value)
+  const res = await $fetch(url, {
     method: 'POST',
     body: {
       duration,
     },
   })
   isLoading.value = false
-  isPending.value = true
 }
 
 async function startPlayer() {

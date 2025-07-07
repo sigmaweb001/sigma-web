@@ -59,6 +59,11 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       recaptchaSiteKey: process.env.NUXT_PUBLIC_RECAPTCHA_SITE_KEY || '6Lejt7ElAAAAALNFyfDMb8_dlRbbi7EMCJEK_tT2',
+      ssaiManualUrl: process.env.NUXT_PUBLIC_SSAI_MANUAL_URL || '',
+      playerUrl: process.env.NUXT_PUBLIC_PLAYER_URL || '',
+      //
+      ssaiUrl: process.env.NUXT_PUBLIC_SSAI_URL || '',
+      ssaiAdsEndpoint: process.env.NUXT_PUBLIC_SSAI_ADS_ENDPOINT || '',
     },
   },
   routeRules: {
