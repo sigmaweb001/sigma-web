@@ -127,7 +127,7 @@ onMounted(() => {
 <template>
   <main class="py-10">
     <div class="mx-16 gap-8">
-      <div class="flex items-center gap-6 justify-center pb-4">
+      <div class="flex items-center gap-6 pb-4 w-[900px] mx-auto">
         <div class="text-lg font-semibold">
           Time Elapsed: {{ timeElapsed }}
         </div>
