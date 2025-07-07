@@ -23,15 +23,6 @@ const Author = z.object({
   }).optional(),
 })
 
-const PageFeature = z.object({
-  title: z.string(),
-  description: z.string(),
-  icon: z.string().editor({ input: 'icon' }),
-  to: z.string().optional(),
-  target: z.enum(['_blank', '_self']).optional(),
-  soon: z.boolean().optional(),
-})
-
 const PageHero = z.object({
   title: z.string(),
   description: z.string(),
@@ -108,6 +99,11 @@ export default defineContentConfig({
         title: z.string(),
         description: z.string(),
       }),
+    }),
+    documents: defineCollection({
+      type: 'page',
+      source: 'documents/**/*',
+      schema: z.object({}),
     }),
     engines: defineCollection({
       type: 'page',

@@ -17,16 +17,17 @@ const heroBackgroundClass = computed(() => route.meta?.heroBackground || '')
 
 <template>
   <AppHeader />
-  <UMain class="relative">
-    <HeroBackground
-      class="absolute w-full -top-px transition-all text-(--ui-primary) shrink-0 -z-10 print:hidden"
-      :class="[
-        isLoading ? 'animate-pulse' : (appear ? heroBackgroundClass : 'opacity-0'),
-        appeared ? 'duration-[400ms]' : 'duration-1000',
-      ]"
-    />
-    <slot />
-  </UMain>
-
+  <UContainer>
+    <UMain class="relative">
+      <HeroBackground
+        class="absolute w-full -top-px transition-all text-(--ui-primary) shrink-0 -z-10 print:hidden"
+        :class="[
+          isLoading ? 'animate-pulse' : (appear ? heroBackgroundClass : 'opacity-0'),
+          appeared ? 'duration-[400ms]' : 'duration-1000',
+        ]"
+      />
+      <slot />
+    </UMain>
+  </UContainer>
   <AppFooter />
 </template>
