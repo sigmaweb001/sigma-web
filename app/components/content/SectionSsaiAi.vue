@@ -14,9 +14,9 @@ useHead({
   ],
 })
 
-const localePath = useLocalePath()
-
-const timeElapsed = ref('00:00:00')
+// Separate time tracking for both videos
+const originalTimeElapsed = ref('00:00:00')
+const adsTimeElapsed = ref('00:00:00')
 const adInsertedTime = ref('')
 
 function formatTime(seconds: number) {
@@ -28,28 +28,41 @@ function formatTime(seconds: number) {
     .join(':')
 }
 
+const config = useRuntimeConfig()
+
+// Add type declarations for window objects
+declare global {
+  interface Window {
+    Hls: any
+    SigmaDaiSdk: any
+  }
+}
+
 function startPlayer() {
   // Get references to both video elements
-  const adsVideo = document.querySelector('.videoElement') as HTMLVideoElement | null
   const originalVideo = document.querySelector('.originalVideoElement') as HTMLVideoElement | null
+  const adsVideo = document.querySelector('.videoElement') as HTMLVideoElement | null
+
+  const ssaiAiRawUrl = config.public.ssaiAiRawUrl
+  const ssaiAiAdsUrl = config.public.ssaiAiAdsUrl
 
   if (!adsVideo || !originalVideo)
     return
 
-  let destroyFn
-  let hlsInstance
-  let originalHlsInstance
+  let _destroyFn: (() => void) | undefined
+  let _hlsInstance: any
+  let _originalHlsInstance: any
 
   // STEP 5: Set the URL of the HLS manifest (video stream with SSAI)
-  const sourceURL = 'https://dai.sigma.video/manifest/manipulation/master/53ff75d8-22ca-4457-baf9-a058233e098b/scte35-av6s-clear/master.m3u8'
+  const sourceURL = ssaiAiAdsUrl
 
   // Initialize original video (without ads)
   if (window.Hls.isSupported()) {
     const originalHls = new window.Hls()
-    originalHlsInstance = originalHls
+    _originalHlsInstance = originalHls
 
     // Use original stream without SSAI processing
-    const originalSourceURL = 'https://dai.sigma.video/manifest/origin04/scte35-av6s-clear/master.m3u8'
+    const originalSourceURL = ssaiAiRawUrl
     originalHls.loadSource(originalSourceURL)
     originalHls.attachMedia(originalVideo)
 
@@ -67,22 +80,22 @@ function startPlayer() {
     adContainer: null,
     adsUrl,
   })
-    .then(({ onEventTracking, sigmaPlayer, destroy }) => {
+    .then(({ sigmaPlayer, destroy }: { sigmaPlayer: any, destroy: () => void }) => {
       // Check if the HLS.js is supported in the browser
       if (window.Hls.isSupported()) {
         const hls = new window.Hls()
-        hlsInstance = hls
+        _hlsInstance = hls
 
         // STEP 7: Load the manifest URL and attach the HLS stream to the video element
         hls.loadSource(playerUrl)
         hls.attachMedia(adsVideo)
 
         sigmaPlayer.attachHls(hls)
-        destroyFn = destroy
+        _destroyFn = destroy
 
         function createHlsFragChanged() {
-          return async (event: string, data: any) => {
-            const { tagList, _url } = data.frag
+          return async (_event: string, data: { frag: { tagList: string[][], _url: string } }) => {
+            const { tagList } = data.frag
 
             const isAds = tagList.flat().find(tag => tag === 'ads')
 
@@ -106,9 +119,16 @@ function startPlayer() {
       }
     })
 
+  // Add separate time tracking for both videos
+  originalVideo.addEventListener('timeupdate', () => {
+    if (originalVideo) {
+      originalTimeElapsed.value = formatTime(originalVideo.currentTime)
+    }
+  })
+
   adsVideo.addEventListener('timeupdate', () => {
     if (adsVideo) {
-      timeElapsed.value = formatTime(adsVideo.currentTime)
+      adsTimeElapsed.value = formatTime(adsVideo.currentTime)
     }
   })
 }
@@ -132,7 +152,7 @@ onMounted(() => {
         <!-- Original Stream -->
         <div class="space-y-3 px-10">
           <div class="text-lg font-semibold">
-            Time Elapsed: {{ timeElapsed }}
+            Time Elapsed: {{ originalTimeElapsed }}
           </div>
           <div class="relative aspect-video max-h-[420px] mx-auto">
             <video
@@ -157,9 +177,14 @@ onMounted(() => {
 
         <!-- AI Ads Insert Stream -->
         <div class="space-y-3 px-10">
-          <p class="text-lg text-(--ui-primary) font-semibold">
-            {{ adInsertedTime ? `Ads (${adInsertedTime})` : 'In-stream' }}
-          </p>
+          <div class="flex justify-between items-center">
+            <div class="text-lg font-semibold">
+              Time Elapsed: {{ adsTimeElapsed }}
+            </div>
+            <!-- <p class="text-lg text-(--ui-primary) font-semibold">
+              {{ adInsertedTime ? `Ads (${adInsertedTime})` : 'In-stream' }}
+            </p> -->
+          </div>
           <div class="relative aspect-video max-h-[420px] mx-auto">
             <video
               controls

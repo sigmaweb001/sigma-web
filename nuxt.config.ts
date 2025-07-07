@@ -64,6 +64,10 @@ export default defineNuxtConfig({
       //
       ssaiUrl: process.env.NUXT_PUBLIC_SSAI_URL || '',
       ssaiAdsEndpoint: process.env.NUXT_PUBLIC_SSAI_ADS_ENDPOINT || '',
+
+      // ai ssai
+      ssaiAiRawUrl: process.env.NUXT_PUBLIC_SSAI_AI_RAW_URL || '',
+      ssaiAiAdsUrl: process.env.NUXT_PUBLIC_SSAI_AI_ADS_URL || '',
     },
   },
   routeRules: {
