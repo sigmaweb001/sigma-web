@@ -107,7 +107,7 @@ async function startPlayer() {
         })
 
         onEventTracking('complete', (payload: any) => {
-          // adInsertedTime.value = formatTime(video.currentTime)
+          adInsertedTime.value = formatTime(video.currentTime)
         })
 
         // play video
