@@ -154,7 +154,7 @@ onMounted(() => {
           <div class="text-lg font-semibold">
             Time Elapsed: {{ originalTimeElapsed }}
           </div>
-          <div class="relative aspect-video max-h-[420px] mx-auto">
+          <div class="relative aspect-video max-h-[500px] mx-auto">
             <video
               controls
               muted
@@ -185,7 +185,7 @@ onMounted(() => {
               {{ adInsertedTime ? `Ads (${adInsertedTime})` : 'In-stream' }}
             </p> -->
           </div>
-          <div class="relative aspect-video max-h-[420px] mx-auto">
+          <div class="relative aspect-video max-h-[500px] mx-auto">
             <video
               controls
               muted
