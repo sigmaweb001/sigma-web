@@ -29,7 +29,7 @@ jobs:
           NUXT_UI_PRO_LICENSE: "1234567890"
           NUXT_PUBLIC_SSAI_MANUAL_URL: "https://dev-streaming.gviet.vn:8783/api/sigma-demo-ssai/sessions/{sessionId}"
           NUXT_PUBLIC_PLAYER_URL: "https://dai.sigma.video/manifest/manipulation/master/e4a9ad52-a549-457d-8b1e-24fd842602b4/{sessionId}/manifest/dev-manual-ssai-demo/master.m3u8"
-          NUXT_PUBLIC_SSAI_URL: "https://cdn-lrm-test.sigma.video/manifest/channel-test/masterhls-ts-2s.m3u8"
+          NUXT_PUBLIC_SSAI_URL: "https://dai.sigma.video/manifest/manipulation/master/05feb022-8c58-4813-8214-c0b91393bc1a/manifest/channel-test/masterhls-ts-2s.m3u8"
           NUXT_PUBLIC_SSAI_ADS_ENDPOINT: "05feb022-8c58-4813-8214-c0b91393bc1a"
           NUXT_PUBLIC_SSAI_AI_RAW_URL: "https://cdn-lrm-test.sigma.video/manifest/channel-test/masterhls-ts-2s.m3u8"
           NUXT_PUBLIC_SSAI_AI_ADS_URL: "https://dai.sigma.video/manifest/manipulation/master/05feb022-8c58-4813-8214-c0b91393bc1a/manifest/channel-test/masterhls-ts-2s.m3u8"
