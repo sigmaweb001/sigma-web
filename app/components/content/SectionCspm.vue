@@ -133,10 +133,19 @@ onMounted(() => {
         </div>
 
         <UBadge
+          v-if="!adInsertedTime"
           color="success"
           variant="subtle"
         >
           Content
+        </UBadge>
+
+        <UBadge
+          v-if="adInsertedTime"
+          color="warning"
+          variant="subtle"
+        >
+          Ads
         </UBadge>
       </div>
       <div class="relative aspect-video max-w-[900px] mx-auto">
