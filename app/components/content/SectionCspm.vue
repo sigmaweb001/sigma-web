@@ -131,9 +131,7 @@ onMounted(() => {
         <div class="text-lg font-semibold">
           Time Elapsed: {{ timeElapsed }}
         </div>
-        <p class="text-lg text-(--ui-primary) font-semibold">
-          {{ adInsertedTime ? `Ads (${adInsertedTime})` : 'In-stream' }}
-        </p>
+
         <UBadge
           color="success"
           variant="subtle"
