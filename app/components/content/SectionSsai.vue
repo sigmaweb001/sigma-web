@@ -47,7 +47,9 @@ function startPlayer() {
 
   const { adsUrl } = window.SigmaDaiSdk.getAdsURL(adsEndpoint, params)
 
+  console.log('[LOG] ~ adsUrl:', adsUrl)
   const playerUrl = config.public.ssaiUrl
+  console.log('[LOG] ~ playerUrl:', playerUrl)
 
   // STEP 6: Create a new instance of the Sigma SSAI SDK with the video and ad containers
 
@@ -71,6 +73,7 @@ function startPlayer() {
 
         function createHlsFragChanged() {
           return async (event: string, data: any) => {
+            console.log('[LOG] ~ data:', data)
             const { tagList, _url } = data.frag
 
             const isAds = tagList.flat().find(tag => tag === 'ads')
@@ -86,18 +89,20 @@ function startPlayer() {
           }
         }
 
-        onEventTracking('*', ({ eventType }) => {
-          if (eventType === 'start') {
-            if (!adInsertedTime.value) {
-              adInsertedTime.value = formatTime(video.currentTime)
-            }
-          }
-          else if (eventType === 'complete') {
-            adInsertedTime.value = ''
-          }
-        })
+        // onEventTracking('*', (data) => {
+        //   console.log('[LOG] ~ data:', data)
+        //   const { eventType } = data
+        //   if (eventType === 'start') {
+        //     if (!adInsertedTime.value) {
+        //       adInsertedTime.value = formatTime(video.currentTime)
+        //     }
+        //   }
+        //   else if (eventType === 'complete') {
+        //     adInsertedTime.value = ''
+        //   }
+        // })
 
-        // hls.on(window.Hls.Events.FRAG_CHANGED, createHlsFragChanged())
+        hls.on(window.Hls.Events.FRAG_CHANGED, createHlsFragChanged())
         // play video
         hls.on(window.Hls.Events.MEDIA_ATTACHED, () => {
           video.muted = true
