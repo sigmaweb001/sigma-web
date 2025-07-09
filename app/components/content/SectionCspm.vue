@@ -86,18 +86,18 @@ function startPlayer() {
           }
         }
 
-        onEventTracking('*', ({ eventType }) => {
-          if (eventType === 'start') {
-            if (!adInsertedTime.value) {
-              adInsertedTime.value = formatTime(video.currentTime)
-            }
-          }
-          else if (eventType === 'complete') {
-            adInsertedTime.value = ''
-          }
-        })
+        // onEventTracking('*', ({ eventType }) => {
+        //   if (eventType === 'start') {
+        //     if (!adInsertedTime.value) {
+        //       adInsertedTime.value = formatTime(video.currentTime)
+        //     }
+        //   }
+        //   else if (eventType === 'complete') {
+        //     adInsertedTime.value = ''
+        //   }
+        // })
 
-        // hls.on(window.Hls.Events.FRAG_CHANGED, createHlsFragChanged())
+        hls.on(window.Hls.Events.FRAG_CHANGED, createHlsFragChanged())
         // play video
         hls.on(window.Hls.Events.MEDIA_ATTACHED, () => {
           video.muted = true
