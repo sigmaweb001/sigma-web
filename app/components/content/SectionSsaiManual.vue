@@ -180,7 +180,6 @@ onMounted(() => {
               v-model="adDuration"
               class="min-w-64"
               placeholder="30"
-              type="number"
               :min="5"
               :max="60"
               :step="5"
