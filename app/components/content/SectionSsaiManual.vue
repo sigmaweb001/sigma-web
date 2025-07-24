@@ -24,7 +24,7 @@ function getPlayerUrl(sessionId: string) {
   return config.public.playerUrl.replace('{sessionId}', sessionId)
 }
 
-const adDuration = ref('30')
+const adDuration = ref(30)
 const adUrl = ref(getPlayerUrl(sessionId.value))
 const timeElapsed = ref('00:00:00')
 const adInsertedTime = ref('')
@@ -176,13 +176,15 @@ onMounted(() => {
                 (from 5 to 60 seconds)
               </p>
             </div>
-            <UInput
+            <UInputNumber
               v-model="adDuration"
               class="min-w-64"
               placeholder="30"
               type="number"
-              min="5"
-              max="60"
+              :min="5"
+              :max="60"
+              :step="5"
+              orientation="vertical"
             />
           </div>
           <div>
