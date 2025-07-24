@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 useHead({
-  title: 'SSAI AI Ads Marker',
+  title: 'SSAI',
   script: [
     {
       src: 'https://cdn.jsdelivr.net/npm/hls.js@latest',
@@ -8,7 +8,7 @@ useHead({
       tagPosition: 'head',
     },
     {
-      src: 'https://cdn.jsdelivr.net/gh/sigmaott/sigma-ssai-web-sdk@v1.1.1/build/sdk-dai.iife.js',
+      src: 'https://cdn.jsdelivr.net/gh/sigmaott/sigma-ssai-web-sdk@v1.5.1/build/sdk-dai.iife.js',
       tagPosition: 'head',
     },
   ],
@@ -28,6 +28,8 @@ function formatTime(seconds: number) {
     .join(':')
 }
 
+const config = useRuntimeConfig()
+
 function startPlayer() {
 // Get references to the video and ad container elements
   const video = document.querySelector('.videoElement') as HTMLVideoElement | null
@@ -37,9 +39,17 @@ function startPlayer() {
   let hlsInstance
 
   // STEP 5: Set the URL of the HLS manifest (video stream with SSAI)
-  const sourceURL = 'https://dai.sigma.video/manifest/manipulation/master/53ff75d8-22ca-4457-baf9-a058233e098b/scte35-av6s-clear/master.m3u8'
+  const adsEndpoint = config.public.ssaiAdsEndpoint
+  const params = {
+    userId: 'abcd1234',
+    sessionId: 'xyz987',
+  }
 
-  const { playerUrl, adsUrl } = window.SigmaDaiSdk.processURL(sourceURL)
+  const { adsUrl } = window.SigmaDaiSdk.getAdsURL(adsEndpoint, params)
+
+  console.log('[LOG] ~ adsUrl:', adsUrl)
+  const playerUrl = config.public.ssaiUrl
+  console.log('[LOG] ~ playerUrl:', playerUrl)
 
   // STEP 6: Create a new instance of the Sigma SSAI SDK with the video and ad containers
 
@@ -63,6 +73,7 @@ function startPlayer() {
 
         function createHlsFragChanged() {
           return async (event: string, data: any) => {
+            console.log('[LOG] ~ data:', data)
             const { tagList, _url } = data.frag
 
             const isAds = tagList.flat().find(tag => tag === 'ads')
@@ -77,6 +88,19 @@ function startPlayer() {
             }
           }
         }
+
+        // onEventTracking('*', (data) => {
+        //   console.log('[LOG] ~ data:', data)
+        //   const { eventType } = data
+        //   if (eventType === 'start') {
+        //     if (!adInsertedTime.value) {
+        //       adInsertedTime.value = formatTime(video.currentTime)
+        //     }
+        //   }
+        //   else if (eventType === 'complete') {
+        //     adInsertedTime.value = ''
+        //   }
+        // })
 
         hls.on(window.Hls.Events.FRAG_CHANGED, createHlsFragChanged())
         // play video
@@ -106,52 +130,41 @@ onMounted(() => {
 </script>
 
 <template>
-  <main>
-    <div class="relative mb-4">
-      <PricingHero>
-        <template #title>
-          SSAI AI Ads Marker
-        </template>
-        <template #subtitle>
-          SSAI AI Ads Marker leverages artificial intelligence to automatically detect and mark ad insertion points in live or on-demand content, ensuring seamless and precise ad placements
-        </template>
-        <template #image>
-          <img
-            src="/MediaLive/slide5.png"
-            alt="SSAI Manual Ads Insert"
-          >
-        </template>
-      </PricingHero>
-    </div>
-
-    <div class="mx-16 flex items-start justify-between gap-8">
-      <div class="flex-1">
-        <div class="flex items-center justify-between">
-          <div class="mb-2 text-lg font-semibold">
-            Time Elapsed: {{ timeElapsed }}
-          </div>
-          <p class="mt-4 text-lg text-(--ui-primary) font-semibold">
-            {{ adInsertedTime ? `Ads (${adInsertedTime})` : 'In-stream' }}
-          </p>
+  <main class="py-10">
+    <div class="mx-16 gap-8">
+      <div class="flex items-center gap-6 pb-4 w-[900px] mx-auto">
+        <div class="text-lg font-semibold">
+          Time Elapsed: {{ timeElapsed }}
         </div>
+
+        <UBadge
+          v-if="!adInsertedTime"
+          color="success"
+          variant="subtle"
+        >
+          Content
+        </UBadge>
+
+        <UBadge
+          v-if="adInsertedTime"
+          color="warning"
+          variant="subtle"
+        >
+          Ads
+        </UBadge>
+      </div>
+      <div class="relative aspect-video max-w-[900px] mx-auto">
         <video
           controls
-          class="videoElement w-full rounded-lg shadow"
+          class="videoElement size-full absolute top-0 left-0 rounded-lg shadow"
         />
       </div>
-      <UCard class="mt-15 w-80 rounded-lg p-4 text-(--ui-primary)">
-        <h3 class="mb-4 text-base">
-          Observe how ads seamlessly appear within the video without interruption, providing an optimal user experience. AI Ads Marker ensures that the ad placement points are selected accurately and appropriately.
-        </h3>
-      </UCard>
-    </div>
 
-    <SectionCta
-      title="Experience seamless ad insertion with SSAI's Manual Ads Insert feature. Control when and where your ads appear in real-time for a fully customized streaming experience"
-      :button="{
-        label: 'Contact us',
-        to: localePath('/contact'),
-      }"
-    />
+      <div class="mt-4 mx-auto bg-(--ui-color-primary-100)/20 dark:bg-(--ui-color-primary-800)/20 p-4 rounded-lg max-w-[900px]">
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          <span class="text-(--ui-primary) font-semibold">SSAI (Server-Side Ad Insertion)</span> - This widely adopted approach involves SSAI (Server-Side Ad Insertion) operating on the server. The system detects ad insertion points within the content stream and injects advertisements at the designated time before delivering the content to the viewer. This method ensures a smooth, uninterrupted viewing experience while minimizing ad-blocking issues.
+        </p>
+      </div>
+    </div>
   </main>
 </template>

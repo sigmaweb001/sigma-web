@@ -18,13 +18,13 @@ useHead({
 const sessionId = useSessionStorage('sessionId', nanoid())
 const localePath = useLocalePath()
 
-const domain = 'https://dev-streaming.gviet.vn:8783'
+const config = useRuntimeConfig()
 
 function getPlayerUrl(sessionId: string) {
-  return `http://123.31.18.25:2180/manifest/manipulation/master/c1979665-2bf6-488f-b1db-51a847ae4679/${sessionId}/manifest/origin04/demo-ssai/master.m3u8`
+  return config.public.playerUrl.replace('{sessionId}', sessionId)
 }
 
-const adDuration = ref('30')
+const adDuration = ref(30)
 const adUrl = ref(getPlayerUrl(sessionId.value))
 const timeElapsed = ref('00:00:00')
 const adInsertedTime = ref('')
@@ -60,14 +60,14 @@ async function insertAds() {
   }
   isLoading.value = true
   countdown.value = duration
-  const res = await $fetch(joinURL(domain, '/api/demo-page/sessions', sessionId.value), {
+  const url = config.public.ssaiManualUrl.replace('{sessionId}', sessionId.value)
+  const res = await $fetch(url, {
     method: 'POST',
     body: {
       duration,
     },
   })
   isLoading.value = false
-  isPending.value = true
 }
 
 async function startPlayer() {
@@ -107,7 +107,7 @@ async function startPlayer() {
         })
 
         onEventTracking('complete', (payload: any) => {
-          // adInsertedTime.value = formatTime(video.currentTime)
+          adInsertedTime.value = formatTime(video.currentTime)
         })
 
         // play video
@@ -137,33 +137,18 @@ onMounted(() => {
 </script>
 
 <template>
-  <main>
-    <div class="relative mb-4">
-      <PricingHero>
-        <template #title>
-          SSAI Manual Ads Insert
-        </template>
-        <template #subtitle>
-          Easily insert ads into a live stream playlist and customize content flow with real-time updates
-        </template>
-        <template #image>
-          <img
-            src="/MediaLive/slide5.png"
-            alt="SSAI Manual Ads Insert"
-          >
-        </template>
-      </PricingHero>
-    </div>
-
-    <div class="mx-16 flex items-start justify-between gap-8">
-      <div class="flex-1">
+  <main class="py-5">
+    <div class="mx-16 flex items-start justify-center gap-8">
+      <div class="">
         <div class="mb-2 text-lg font-semibold">
           Time Elapsed: {{ timeElapsed }}
         </div>
-        <video
-          controls
-          class="videoElement w-full rounded-lg shadow"
-        />
+        <div class="relative aspect-video h-[420px]">
+          <video
+            controls
+            class="videoElement size-full absolute top-0 left-0 rounded-lg shadow"
+          />
+        </div>
         <p
           v-if="adInsertedTime"
           class="mt-4"
@@ -171,56 +156,57 @@ onMounted(() => {
           Ad inserted successfully at {{ adInsertedTime }}
         </p>
       </div>
-      <div class="mt-9 w-80 rounded-lg bg-white p-4 shadow">
-        <h3 class="mb-4 text-xl font-semibold">
-          Manual Ads Insert
-        </h3>
-        <div class="mb-4">
-          <div class="flex items-center gap-1">
-            <label
-              for="adTime"
-              class="block text-sm text-gray-700 font-medium"
-            >Duration</label>
-            <p class="text-xs text-gray-500">
-              (from 5 to 60 seconds)
-            </p>
-          </div>
-          <UInput
-            v-model="adDuration"
-            class="min-w-64"
-            placeholder="30"
-            type="number"
-            min="5"
-            max="60"
-          />
-        </div>
-        <div class="mb-4">
-          <label
-            for="adUrl"
-            class="block text-sm text-gray-700 font-medium"
-          >Ad URL</label>
-          <UInput
-            v-model="adUrl"
-            disabled
-            class="min-w-64"
-            placeholder=""
-          />
-        </div>
-        <UButton
-          :disabled="isLoading || isPending"
-          @click="insertAds"
-        >
-          {{ isLoading || isPending ? `Inserting... (${countdown}s)` : 'Insert Ads Now' }}
-        </UButton>
-      </div>
-    </div>
+      <UCard class="mt-9 w-80">
+        <template #header>
+          <h3 class="text-xl font-semibold">
+            Manual Ads Insert
+          </h3>
+        </template>
 
-    <SectionCta
-      title="Experience seamless ad insertion with SSAI's Manual Ads Insert feature. Control when and where your ads appear in real-time for a fully customized streaming experience"
-      :button="{
-        label: 'Contact us',
-        to: localePath('/contact'),
-      }"
-    />
+        <div class="space-y-4">
+          <div>
+            <div class="flex items-center gap-1 mb-2">
+              <label
+                for="adTime"
+                class="block text-sm text-gray-700 dark:text-gray-300 font-medium"
+              >
+                Duration
+              </label>
+              <p class="text-xs text-gray-500">
+                (from 5 to 60 seconds)
+              </p>
+            </div>
+            <UInputNumber
+              v-model="adDuration"
+              class="min-w-64"
+              placeholder="30"
+              type="number"
+              :min="5"
+              :max="60"
+              :step="5"
+              orientation="vertical"
+            />
+          </div>
+          <div>
+            <label
+              for="adUrl"
+              class="block text-sm text-gray-700 dark:text-gray-300 font-medium mb-2"
+            >Ad URL</label>
+            <UInput
+              v-model="adUrl"
+              disabled
+              class="min-w-64"
+              placeholder=""
+            />
+          </div>
+          <UButton
+            :disabled="isLoading || isPending"
+            @click="insertAds"
+          >
+            {{ isLoading || isPending ? `Inserting... (${countdown}s)` : 'Insert Ads Now' }}
+          </UButton>
+        </div>
+      </UCard>
+    </div>
   </main>
 </template>

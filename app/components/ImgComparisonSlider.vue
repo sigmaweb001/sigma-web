@@ -1,4 +1,9 @@
 <script lang="ts" setup>
+const props = defineProps<{
+  hideHandle?: boolean
+  handleText?: string
+}>()
+
 const TABINDEX = 0
 const RENDERED_CLASS = 'rendered'
 const inBetween = (actual: number, min: number, max: number): number => {
@@ -92,6 +97,9 @@ const isFocused = ref(false)
 
 const dragByHandle = ref(false)
 
+let resizeObserver: ResizeObserver | null = null
+let dragStartHandler: ((e: Event) => void) | null = null
+
 function setHandle(newValue: any) {
   dragByHandle.value = newValue.toString().toLowerCase() !== 'false'
 }
@@ -151,12 +159,13 @@ function connectedCallback() {
     tabIndex.value = TABINDEX
   }
 
-  rootEle.value.addEventListener('dragstart', (e) => {
+  dragStartHandler = (e) => {
     e.preventDefault()
     return false
-  })
+  }
+  rootEle.value.addEventListener('dragstart', dragStartHandler)
 
-  const resizeObserver = new ResizeObserver(resetDimensions)
+  resizeObserver = new ResizeObserver(resetDimensions)
   resizeObserver.observe(rootEle.value)
 
   setExposure(0)
@@ -203,9 +212,35 @@ function disconnectedCallback() {
   if (transitionTimer.value) {
     window.clearTimeout(transitionTimer.value)
   }
+
+  if (dragStartHandler && rootEle.value) {
+    rootEle.value.removeEventListener('dragstart', dragStartHandler)
+    dragStartHandler = null
+  }
+
+  if (rootEle.value) {
+    rootEle.value.removeEventListener('keydown', onKeyDown)
+    rootEle.value.removeEventListener('keyup', onKeyUp)
+    rootEle.value.removeEventListener('focus', onFocus)
+    rootEle.value.removeEventListener('blur', onBlur)
+    rootEle.value.removeEventListener('touchstart', onTouchStart)
+    rootEle.value.removeEventListener('touchmove', onTouchMove)
+    rootEle.value.removeEventListener('touchend', onTouchEnd)
+    rootEle.value.removeEventListener('mousedown', onMouseDown)
+  }
+
+  window.removeEventListener('mousemove', onMouseMove)
+  window.removeEventListener('mouseup', onWindowMouseUp)
+
+  removeEventListener('mousemove', onMouseMove)
+
+  if (resizeObserver && rootEle.value) {
+    resizeObserver.disconnect()
+    resizeObserver = null
+  }
 }
 
-onUnmounted(() => {
+onBeforeUnmount(() => {
   disconnectedCallback()
 })
 
@@ -489,24 +524,38 @@ function resetDimensions() {
           <slot name="first" />
         </div>
       </div>
-      <div class="handle-container">
+      <div
+        v-if="!hideHandle"
+        class="handle-container"
+      >
         <div class="divider" />
         <div
           ref="handleElement"
           class="handle"
         >
           <slot name="handle">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="default-handle"
-              viewBox="-8 -3 16 6"
+            <!-- Custom handle overlay -->
+            <div
+              class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
             >
-              <path
-                d="M -5 -2 L -7 0 L -5 2 M 5 -2 L 7 0 L 5 2"
-                fill="none"
-                vector-effect="non-scaling-stroke"
-              />
-            </svg>
+              <button
+                class="pointer-events-auto backdrop-blur-md bg-gray-900/60 border border-white/20 hover:bg-gray-900/80 transition-colors duration-200 rounded-full flex items-center gap-1 px-2 py-1 text-white text-sm font-semibold shadow-lg"
+              >
+                <UIcon
+                  name="i-heroicons:chevron-left-20-solid"
+                  class="size-6"
+                />
+                <span
+                  class="truncate"
+                >
+                  {{ handleText || 'Drag to compare' }}
+                </span>
+                <UIcon
+                  name="i-heroicons:chevron-right-20-solid"
+                  class="size-6"
+                />
+              </button>
+            </div>
           </slot>
         </div>
       </div>

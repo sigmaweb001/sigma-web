@@ -16,7 +16,7 @@ const { locale } = useI18n()
       />
     </template>
     <iframe
-      :src="`/pte?lang=${locale}`"
+      :src="`/censorship?lang=${locale}`"
       class="aspect-video w-full rounded-lg"
     />
   </UPageSection>

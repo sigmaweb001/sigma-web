@@ -112,7 +112,7 @@ const items = computed(() => {
     {
       label: 'Demo',
       icon: 'i-lucide-circle-play',
-      to: '/demo',
+      to: '/demo/ssai-manual',
     },
   ]
 })
@@ -248,8 +248,8 @@ const active = ref()
       </template>
 
       <template #solutions-content="{ item: solutions }">
-        <div class="grid px-2 lg:w-128 py-2">
-          <ul class="grid m-0 list-none gap-[10px] ">
+        <div class="grid px-2 py-2">
+          <ul class="grid grid-cols-1 lg:grid-cols-2 m-0 list-none gap-[10px] ">
             <AppNavMenuItem
               v-for="item in solutions.children"
               :key="item.to"

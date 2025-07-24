@@ -23,33 +23,6 @@ const Author = z.object({
   }).optional(),
 })
 
-const Testimonial = z.object({
-  quote: z.string(),
-  author: Author,
-})
-
-const PageFeature = z.object({
-  title: z.string(),
-  description: z.string(),
-  icon: z.string().editor({ input: 'icon' }),
-  to: z.string().optional(),
-  target: z.enum(['_blank', '_self']).optional(),
-  soon: z.boolean().optional(),
-})
-
-const PageSection = z.object({
-  title: z.string(),
-  description: z.string(),
-  links: z.array(Button),
-  features: z.array(PageFeature),
-  image: z.object({
-    light: z.string().editor({ input: 'media' }),
-    dark: z.string().editor({ input: 'media' }),
-    width: z.number().optional(),
-    height: z.number().optional(),
-  }),
-})
-
 const PageHero = z.object({
   title: z.string(),
   description: z.string(),
@@ -111,9 +84,25 @@ export default defineContentConfig({
         icon: z.string().editor({ input: 'icon' }),
       }),
     }),
-    products_vi: defineCollection({
+    demo: defineCollection({
       type: 'page',
-      source: 'vi/products/**/*',
+      source: 'demo/**/*',
+      schema: z.object({
+        title: z.string(),
+        description: z.string(),
+      }),
+    }),
+    demo_vi: defineCollection({
+      type: 'page',
+      source: 'vi/demo/**/*',
+      schema: z.object({
+        title: z.string(),
+        description: z.string(),
+      }),
+    }),
+    documents: defineCollection({
+      type: 'page',
+      source: 'documents/**/*',
       schema: z.object({}),
     }),
     engines: defineCollection({

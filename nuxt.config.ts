@@ -6,7 +6,6 @@ export default defineNuxtConfig({
     '@nuxt/content',
     // '@nuxt/image',
     '@nuxt/scripts',
-    '@nuxtjs/plausible',
     '@vueuse/nuxt',
     'nuxt-og-image',
     'nuxt-cloudflare-analytics',
@@ -22,11 +21,6 @@ export default defineNuxtConfig({
   app: {
     head: {
       script: [
-        {
-          src: '//fw-cdn.com/11186380/3902989.js',
-          async: true,
-          defer: true,
-        },
         {
           src: 'https://js.appointlet.com/',
           async: true,
@@ -65,6 +59,15 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       recaptchaSiteKey: process.env.NUXT_PUBLIC_RECAPTCHA_SITE_KEY || '6Lejt7ElAAAAALNFyfDMb8_dlRbbi7EMCJEK_tT2',
+      ssaiManualUrl: process.env.NUXT_PUBLIC_SSAI_MANUAL_URL || '',
+      playerUrl: process.env.NUXT_PUBLIC_PLAYER_URL || '',
+      //
+      ssaiUrl: process.env.NUXT_PUBLIC_SSAI_URL || '',
+      ssaiAdsEndpoint: process.env.NUXT_PUBLIC_SSAI_ADS_ENDPOINT || '',
+
+      // ai ssai
+      ssaiAiRawUrl: process.env.NUXT_PUBLIC_SSAI_AI_RAW_URL || '',
+      ssaiAiAdsUrl: process.env.NUXT_PUBLIC_SSAI_AI_ADS_URL || '',
     },
   },
   routeRules: {
